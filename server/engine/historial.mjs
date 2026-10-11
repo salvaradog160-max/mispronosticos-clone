@@ -129,41 +129,88 @@ const puntosDe = filas => {
 };
 
 /**
- * Patrones de una serie: rachas y lo que el equipo hizo seguido.
- * Las series vienen del mas reciente al mas antiguo.
+ * Patrones de una serie: rachas, forma (puntos), goles y el contexto
+ * local/fuera cuando llega. Las series vienen del mas reciente al mas
+ * antiguo. Cuanto mas filas, mas patrones finos se pueden ver.
  */
-const patronesDe = (filas, equipo) => {
+const patronesDe = (filas, equipo, { enCasa = null } = {}) => {
   const out = [];
   if (filas.length < 2) return out;
   const en = (i, res) => filas[i]?.res === res;
+  // "en casa" se lee del primer partido de la serie: describe el equipo
+  // analizado en la serie que recibio (general, L/V, H2H...).
+  const contexto = enCasa === true ? ' en casa' : enCasa === false ? ' fuera' : '';
 
   // Rachas desde el mas reciente
   let racha = 1;
   for (let i = 1; i < filas.length && filas[i].res === filas[0].res; i++) racha++;
   const nRacha = racha;
   const suf = nRacha >= 3 ? ` (${nRacha} seguidos)` : '';
-  if (filas[0].res === 'G' && nRacha >= 2) out.push(`${equipo}: ${nRacha} victorias seguidas`);
-  if (filas[0].res === 'P' && nRacha >= 2) out.push(`${equipo}: ${nRacha} derrotas seguidas`);
+  if (filas[0].res === 'G' && nRacha >= 2) out.push(`${equipo}${contexto}: ${nRacha} victorias seguidas`);
+  if (filas[0].res === 'P' && nRacha >= 2) out.push(`${equipo}${contexto}: ${nRacha} derrotas seguidas`);
 
   // Sin perder / sin ganar
   const vistos = filas.slice(0, 5);
-  if (!vistos.some(f => f.res === 'P')) out.push(`${equipo}: ${vistos.length} sin perder`);
-  if (!vistos.some(f => f.res === 'G')) out.push(`${equipo}: ${vistos.length} sin ganar`);
+  if (!vistos.some(f => f.res === 'P')) out.push(`${equipo}${contexto}: ${vistos.length} sin perder`);
+  if (!vistos.some(f => f.res === 'G')) out.push(`${equipo}${contexto}: ${vistos.length} sin ganar`);
+
+  // Rompe racha: el ultimo cambio el signo del anterior (G tras varias P, etc.)
+  const ultimo = filas[0].res;
+  const prev = filas[1].res;
+  if (ultimo !== prev) {
+    const desc = { G: 'ganó', P: 'perdió', E: 'empató' }[ultimo];
+    // cuenta racha previa del signo contrario
+    let nPrev = 1;
+    for (let i = 1; i < filas.length && filas[i].res === prev; i++) nPrev++;
+    if (nPrev >= 3 && (ultimo === 'G')) out.push(`${equipo}${contexto}: ganó el último tras ${nPrev} sin ganar`);
+    if (nPrev >= 3 && (ultimo === 'P')) out.push(`${equipo}${contexto}: perdió el último tras ${nPrev} sin perder`);
+  }
 
   // Anoto / recibio / ambos
-  if (filas.slice(0, 3).every(f => f.gf >= 1)) out.push(`${equipo}: anotó en sus últimos ${Math.min(3, filas.length)}`);
-  if (filas.slice(0, 3).every(f => f.gc >= 1)) out.push(`${equipo}: recibió gol en sus últimos ${Math.min(3, filas.length)}`);
-  if (filas.slice(0, 2).every(f => f.gf >= 1 && f.gc >= 1)) out.push(`${equipo}: ambos anotaron en sus últimos ${Math.min(2, filas.length)}`);
+  if (filas.slice(0, 3).every(f => f.gf >= 1)) out.push(`${equipo}${contexto}: anotó en sus últimos ${Math.min(3, filas.length)}`);
+  if (filas.slice(0, 3).every(f => f.gc >= 1)) out.push(`${equipo}${contexto}: recibió gol en sus últimos ${Math.min(3, filas.length)}`);
+  if (filas.slice(0, 2).every(f => f.gf >= 1 && f.gc >= 1)) out.push(`${equipo}${contexto}: ambos anotaron en sus últimos ${Math.min(2, filas.length)}`);
 
-  // Momento: ultimos 2 vs anteriores (goles a favor)
+  // Momento goles a favor: ultimos 2 vs anteriores
   if (filas.length >= 4) {
     const reciente = filas.slice(0, 2);
     const previo = filas.slice(2);
     const mR = reciente.reduce((s, f) => s + f.gf, 0) / 2;
     const mP = previo.reduce((s, f) => s + f.gf, 0) / previo.length;
-    if (mR >= mP + 1) out.push(`Goles a favor al alza: ${mR.toFixed(1)} por partido en los últimos 2 contra ${mP.toFixed(1)} antes`);
-    else if (mP >= mR + 1) out.push(`Goles a favor a la baja: ${mR.toFixed(1)} por partido en los últimos 2 contra ${mP.toFixed(1)} antes`);
+    if (mR >= mP + 1) out.push(`${equipo}${contexto}: goles a favor al alza, ${mR.toFixed(1)} por partido en los últimos 2 contra ${mP.toFixed(1)} antes`);
+    else if (mP >= mR + 1) out.push(`${equipo}${contexto}: goles a favor a la baja, ${mR.toFixed(1)} por partido en los últimos 2 contra ${mP.toFixed(1)} antes`);
   }
+
+  // Momento goles en contra (recibe menos/mas)
+  if (filas.length >= 4) {
+    const reciente = filas.slice(0, 2);
+    const previo = filas.slice(2);
+    const mR = reciente.reduce((s, f) => s + f.gc, 0) / 2;
+    const mP = previo.reduce((s, f) => s + f.gc, 0) / previo.length;
+    if (mP >= mR + 1) out.push(`${equipo}${contexto}: recibe menos, ${mR.toFixed(1)} por partido en los últimos 2 contra ${mP.toFixed(1)} antes`);
+    else if (mR >= mP + 1) out.push(`${equipo}${contexto}: recibe más, ${mR.toFixed(1)} por partido en los últimos 2 contra ${mP.toFixed(1)} antes`);
+  }
+
+  // Forma por puntos (3/1/0): ultimos 2 vs anteriores
+  if (filas.length >= 4) {
+    const pts = f => (f.res === 'G' ? 3 : f.res === 'E' ? 1 : 0);
+    const reciente = filas.slice(0, 2);
+    const previo = filas.slice(2);
+    const mR = reciente.reduce((s, f) => s + pts(f), 0) / 2;
+    const mP = previo.reduce((s, f) => s + pts(f), 0) / previo.length;
+    if (mR >= mP + 0.5) out.push(`${equipo}${contexto}: forma al alza, ${mR.toFixed(1)} pts por partido en los últimos 2 contra ${mP.toFixed(1)} antes`);
+    else if (mP >= mR + 0.5) out.push(`${equipo}${contexto}: forma a la baja, ${mR.toFixed(1)} pts por partido en los últimos 2 contra ${mP.toFixed(1)} antes`);
+  }
+
+  // Goles concentrados: la desviacion supera el promedio (goles en pocos partidos)
+  if (filas.length >= 4) {
+    const gfs = filas.map(f => f.gf);
+    const prom = gfs.reduce((s, v) => s + v, 0) / gfs.length;
+    const de = Math.sqrt(gfs.reduce((s, v) => s + (v - prom) ** 2, 0) / gfs.length);
+    if (prom > 0 && de > prom * 1.25)
+      out.push(`${equipo}${contexto}: goles concentrados, la desviación (${de.toFixed(2)}) supera el promedio (${prom.toFixed(2)})`);
+  }
+
   return out;
 };
 
@@ -392,10 +439,10 @@ export const historialDe = (history, homeRaw, awayRaw) => {
     patrones: {
       generalLocal: patronesDe(cuadroGeneralL, homeRaw),
       generalVisita: patronesDe(cuadroGeneralV, awayRaw),
-      localCasa: patronesDe(cuadroLocalCasa, `${homeRaw} en casa`),
-      visitaFuera: patronesDe(cuadroVisitaFuera, `${awayRaw} fuera`),
+      localCasa: patronesDe(cuadroLocalCasa, `${homeRaw}`, { enCasa: true }),
+      visitaFuera: patronesDe(cuadroVisitaFuera, `${awayRaw}`, { enCasa: false }),
       h2h: patronesDe(h2hLocalVisto, 'H2H'),
-      h2hCasa: patronesDe(h2hCasaVisto, 'H2H en casa del local'),
+      h2hCasa: patronesDe(h2hCasaVisto, 'H2H', { enCasa: true }),
     },
     pesoEstadio: {
       local: {

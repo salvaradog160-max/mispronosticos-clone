@@ -1,6 +1,6 @@
 {
-  "generado": "2026-10-11T23:20:05.172Z",
-  "anterior": "2026-10-11T23:19:50.012Z",
+  "generado": "2026-10-11T23:20:57.921Z",
+  "anterior": "2026-10-11T23:20:05.172Z",
   "fuente": "football-data.co.uk + ESPN (sin claves)",
   "calibracion": {
     "partidos": 35973,
@@ -919,7 +919,9 @@
           "Más de 0.5 goles: modelo 94% e historial 98% coinciden.",
           "Más de 3 goles: modelo 32% e historial 35% coinciden."
         ],
-        "riesgos": [],
+        "riesgos": [
+          "Contra este rival, al local no le pesa su estadio: en H2H en casa promedia 2.0-1.7 contra su general en casa de 2.1-1.3."
+        ],
         "serieH2H": [
           "G",
           "E",
@@ -1800,7 +1802,8 @@
         ],
         "riesgos": [
           "Patrón Local: Red Bull Bragantino en casa: recibe más, 2.0 por partido en los últimos 2 contra 0.9 antes.",
-          "Patrón H2H: H2H: 2 derrotas seguidas."
+          "Patrón H2H: H2H: 2 derrotas seguidas.",
+          "Contra este rival, al local no le pesa su estadio: en H2H en casa promedia 0.7-1.3 contra su general en casa de 1.4-1.1."
         ],
         "serieH2H": [
           "P",
@@ -2683,6 +2686,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 3.55,
+          "current": 3,
+          "closed": 3,
+          "movePct": 5.1643,
+          "capturedAt": "2026-10-11T23:20:05.650Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 1.909,
@@ -2910,6 +2923,16 @@
           "closed": 2.2,
           "movePct": -6.9264,
           "capturedAt": "2026-10-11T23:15:04.840Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 1.909,
+          "current": 2.2,
+          "closed": 2.2,
+          "movePct": -6.9264,
+          "capturedAt": "2026-10-11T23:20:05.646Z"
         },
         {
           "market": "spread",
@@ -3143,6 +3166,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 1.8,
+          "current": 1.645,
+          "closed": 1.645,
+          "movePct": 5.2288,
+          "capturedAt": "2026-10-11T23:20:05.656Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -0.5,
           "opened": 1.833,
@@ -3370,6 +3403,16 @@
           "closed": 2.1,
           "movePct": -6.9264,
           "capturedAt": "2026-10-11T23:15:04.847Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 1.833,
+          "current": 2.1,
+          "closed": 2.1,
+          "movePct": -6.9264,
+          "capturedAt": "2026-10-11T23:20:05.653Z"
         },
         {
           "market": "total",
@@ -3603,6 +3646,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.625,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:20:05.659Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -3830,6 +3883,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-11T23:15:04.855Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.2,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:20:05.661Z"
         }
       ],
       "combinado": {
@@ -5833,6 +5896,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 3,
+          "current": 3.45,
+          "closed": null,
+          "movePct": -4.3478,
+          "capturedAt": "2026-10-11T23:20:06.716Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 2.4,
@@ -6060,6 +6133,16 @@
           "closed": null,
           "movePct": 3.7879,
           "capturedAt": "2026-10-11T23:15:05.889Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 2.4,
+          "current": 2.2,
+          "closed": null,
+          "movePct": 3.7879,
+          "capturedAt": "2026-10-11T23:20:06.707Z"
         },
         {
           "market": "spread",
@@ -6293,6 +6376,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 1.513,
+          "current": 1.645,
+          "closed": null,
+          "movePct": -5.3174,
+          "capturedAt": "2026-10-11T23:20:06.723Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -0.5,
           "opened": 2.25,
@@ -6520,6 +6613,16 @@
           "closed": null,
           "movePct": 3.1746,
           "capturedAt": "2026-10-11T23:15:05.896Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 2.25,
+          "current": 2.1,
+          "closed": null,
+          "movePct": 3.1746,
+          "capturedAt": "2026-10-11T23:20:06.720Z"
         },
         {
           "market": "total",
@@ -6753,6 +6856,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.3,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:20:06.726Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -6980,6 +7093,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-11T23:15:05.908Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.571,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:20:06.729Z"
         }
       ],
       "combinado": {
@@ -7202,7 +7325,8 @@
           "Más de 1 goles: modelo 74% e historial 70% coinciden."
         ],
         "riesgos": [
-          "Patrón Visita: Independiente fuera: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.4 antes."
+          "Patrón Visita: Independiente fuera: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.4 antes.",
+          "Contra este rival, al local no le pesa su estadio: en H2H en casa promedia 1.0-2.0 contra su general en casa de 1.1-1.1."
         ],
         "serieH2H": [
           "G",
@@ -9789,6 +9913,7 @@
         "oportunidades": [
           "Forma L/V: 26 pts local en casa vs 9 visita fuera. Respalda a Local.",
           "Patrón H2H L/V (local): H2H en casa: 2 victorias seguidas.",
+          "A este rival le pesa el estadio del local: en H2H en casa promedia 1.8-0.6 vs su general en casa de 1.6-1.4.",
           "Más de 0.5 goles: modelo 95% e historial 90% coinciden.",
           "Más de 2 goles: modelo 56% e historial 52% coinciden."
         ],
@@ -11535,7 +11660,9 @@
           "Más de 0.5 goles: modelo 92% e historial 89% coinciden.",
           "Más de 4 goles: modelo 11% e historial 7% coinciden."
         ],
-        "riesgos": [],
+        "riesgos": [
+          "Contra este rival, al local no le pesa su estadio: en H2H en casa promedia 0.7-1.0 contra su general en casa de 1.1-0.8."
+        ],
         "serieH2H": [
           "G",
           "P",
@@ -13280,6 +13407,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 2.05,
+          "current": 2,
+          "closed": null,
+          "movePct": 1.2195,
+          "capturedAt": "2026-10-11T23:20:05.911Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 3.25,
@@ -13507,6 +13644,16 @@
           "closed": null,
           "movePct": -2.1978,
           "capturedAt": "2026-10-11T23:15:05.070Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 3.25,
+          "current": 3.5,
+          "closed": null,
+          "movePct": -2.1978,
+          "capturedAt": "2026-10-11T23:20:05.908Z"
         },
         {
           "market": "spread",
@@ -13740,6 +13887,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": 0.5,
+          "opened": 1.952,
+          "current": 1.952,
+          "closed": null,
+          "movePct": 0,
+          "capturedAt": "2026-10-11T23:20:05.917Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": 0.5,
           "opened": 1.69,
@@ -13967,6 +14124,16 @@
           "closed": null,
           "movePct": -1.7369,
           "capturedAt": "2026-10-11T23:15:05.075Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": 0.5,
+          "opened": 1.69,
+          "current": 1.741,
+          "closed": null,
+          "movePct": -1.7369,
+          "capturedAt": "2026-10-11T23:20:05.915Z"
         },
         {
           "market": "total",
@@ -14200,6 +14367,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.714,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:20:05.920Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -14427,6 +14604,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-11T23:15:05.084Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.05,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:20:05.923Z"
         }
       ],
       "combinado": {
@@ -14641,7 +14828,9 @@
           }
         ],
         "oportunidades": [],
-        "riesgos": [],
+        "riesgos": [
+          "Contra este rival, al local no le pesa su estadio: en H2H en casa promedia 1.2-1.7 contra su general en casa de 1.9-1.3."
+        ],
         "serieH2H": [
           "E",
           "G",
@@ -15515,7 +15704,8 @@
           "Más de 2 goles: modelo 52% e historial 52% coinciden."
         ],
         "riesgos": [
-          "Patrón H2H: H2H: 2 derrotas seguidas."
+          "Patrón H2H: H2H: 2 derrotas seguidas.",
+          "Contra este rival, al local no le pesa su estadio: en H2H en casa promedia 1.2-1.6 contra su general en casa de 2.1-0.4."
         ],
         "serieH2H": [
           "P",
@@ -18146,6 +18336,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 4.4,
+          "current": 4.7,
+          "closed": 4.7,
+          "movePct": -1.4507,
+          "capturedAt": "2026-10-11T23:20:07.648Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 1.69,
@@ -18373,6 +18573,16 @@
           "closed": 1.69,
           "movePct": 0,
           "capturedAt": "2026-10-11T23:15:06.580Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 1.69,
+          "current": 1.69,
+          "closed": 1.69,
+          "movePct": 0,
+          "capturedAt": "2026-10-11T23:20:07.645Z"
         },
         {
           "market": "spread",
@@ -18606,6 +18816,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 2.05,
+          "current": 2.15,
+          "closed": 2.15,
+          "movePct": -2.2689,
+          "capturedAt": "2026-10-11T23:20:07.654Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -0.5,
           "opened": 1.645,
@@ -18833,6 +19053,16 @@
           "closed": 1.625,
           "movePct": 0.7541,
           "capturedAt": "2026-10-11T23:15:06.585Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 1.645,
+          "current": 1.625,
+          "closed": 1.625,
+          "movePct": 0.7541,
+          "capturedAt": "2026-10-11T23:20:07.651Z"
         },
         {
           "market": "total",
@@ -19066,6 +19296,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.606,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:20:07.657Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -19293,6 +19533,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-11T23:15:06.593Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.25,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:20:07.659Z"
         }
       ],
       "combinado": {
@@ -22993,6 +23243,7 @@
           "Más de 0.5 goles: modelo 95% e historial 96% coinciden."
         ],
         "riesgos": [
+          "Contra este rival, al local no le pesa su estadio: en H2H en casa promedia 1.3-1.8 contra su general en casa de 2.1-1.9.",
           "Más de 4 goles: modelo 18% contra historial 39% (modelo abajo 21pp).",
           "Más de 4.5 goles: modelo 18% contra historial 39% (modelo abajo 21pp)."
         ],
@@ -24730,7 +24981,8 @@
           "Más de 0.5 goles: modelo 95% e historial 96% coinciden."
         ],
         "riesgos": [
-          "Patrón Visita: River Plate fuera: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.4 antes."
+          "Patrón Visita: River Plate fuera: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.4 antes.",
+          "Contra este rival, al local no le pesa su estadio: en H2H en casa promedia 0.7-1.7 contra su general en casa de 1.4-0.8."
         ],
         "serieH2H": [
           "P",
@@ -25608,6 +25860,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 4.4,
+          "current": 4.5,
+          "closed": 4.5,
+          "movePct": -0.5051,
+          "capturedAt": "2026-10-11T23:20:05.781Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 1.667,
@@ -25835,6 +26097,16 @@
           "closed": null,
           "movePct": -1.6667,
           "capturedAt": "2026-10-11T23:15:04.954Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 1.667,
+          "current": 1.714,
+          "closed": 1.714,
+          "movePct": -1.6667,
+          "capturedAt": "2026-10-11T23:20:05.777Z"
         },
         {
           "market": "spread",
@@ -26068,6 +26340,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 2.05,
+          "current": 2.1,
+          "closed": 2.1,
+          "movePct": -1.1614,
+          "capturedAt": "2026-10-11T23:20:05.788Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -0.5,
           "opened": 1.606,
@@ -26295,6 +26577,16 @@
           "closed": null,
           "movePct": -2.2642,
           "capturedAt": "2026-10-11T23:15:04.960Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 1.606,
+          "current": 1.645,
+          "closed": 1.645,
+          "movePct": -1.4798,
+          "capturedAt": "2026-10-11T23:20:05.784Z"
         },
         {
           "market": "total",
@@ -26528,6 +26820,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.625,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:20:05.791Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -26755,6 +27057,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-11T23:15:04.968Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.2,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:20:05.793Z"
         }
       ],
       "combinado": {
@@ -26977,6 +27289,7 @@
         "oportunidades": [
           "Patrón H2H L/V (local): H2H en casa: 2 victorias seguidas.",
           "Patrón Visita: Necaxa fuera: 5 sin ganar.",
+          "A este rival le pesa el estadio del local: en H2H en casa promedia 2.4-1.0 vs su general en casa de 1.7-1.3.",
           "Más de 0.5 goles: modelo 95% e historial 93% coinciden.",
           "Más de 1 goles: modelo 80% e historial 81% coinciden."
         ],
@@ -27867,6 +28180,7 @@
           "Más de 0.5 goles: modelo 88% e historial 88% coinciden."
         ],
         "riesgos": [
+          "Contra este rival, al local no le pesa su estadio: en H2H en casa promedia 1.3-2.0 contra su general en casa de 2.3-1.3.",
           "Más de 2 goles: modelo 35% contra historial 63% (modelo abajo 28pp).",
           "Más de 2.5 goles: modelo 35% contra historial 63% (modelo abajo 28pp).",
           "Más de 3 goles: modelo 16% contra historial 44% (modelo abajo 28pp)."
@@ -28751,7 +29065,8 @@
           "Más de 1 goles: modelo 81% e historial 84% coinciden."
         ],
         "riesgos": [
-          "Patrón Visita: Philadelphia Union fuera: forma al alza, 3.0 pts por partido en los últimos 2 contra 0.9 antes."
+          "Patrón Visita: Philadelphia Union fuera: forma al alza, 3.0 pts por partido en los últimos 2 contra 0.9 antes.",
+          "Contra este rival, al local no le pesa su estadio: en H2H en casa promedia 1.7-1.8 contra su general en casa de 1.9-1.1."
         ],
         "serieH2H": [
           "G",
@@ -30486,6 +30801,7 @@
           }
         ],
         "oportunidades": [
+          "A este rival le pesa el estadio del local: en H2H en casa promedia 1.0-0.5 vs su general en casa de 1.4-1.4.",
           "Más de 0.5 goles: modelo 96% e historial 95% coinciden.",
           "Más de 1 goles: modelo 83% e historial 79% coinciden."
         ],
@@ -32245,6 +32561,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 3.2,
+          "current": 3.2,
+          "closed": 3.2,
+          "movePct": 0,
+          "capturedAt": "2026-10-11T23:20:06.595Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 2.35,
@@ -32472,6 +32798,16 @@
           "closed": 2.35,
           "movePct": 0,
           "capturedAt": "2026-10-11T23:15:05.772Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 2.35,
+          "current": 2.35,
+          "closed": 2.35,
+          "movePct": 0,
+          "capturedAt": "2026-10-11T23:20:06.590Z"
         },
         {
           "market": "spread",
@@ -32705,6 +33041,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 1.541,
+          "current": 1.588,
+          "closed": 1.588,
+          "movePct": -1.9493,
+          "capturedAt": "2026-10-11T23:20:06.603Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -0.5,
           "opened": 2.2,
@@ -32932,6 +33278,16 @@
           "closed": 2.2,
           "movePct": 0,
           "capturedAt": "2026-10-11T23:15:05.780Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 2.2,
+          "current": 2.2,
+          "closed": 2.2,
+          "movePct": 0,
+          "capturedAt": "2026-10-11T23:20:06.599Z"
         },
         {
           "market": "total",
@@ -33165,6 +33521,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.2,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:20:06.606Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -33392,6 +33758,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-11T23:15:05.789Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.645,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:20:06.610Z"
         }
       ],
       "combinado": {
@@ -33613,7 +33989,8 @@
           }
         ],
         "oportunidades": [
-          "Patrón Visita: Belgrano (Córdoba) fuera: ganó el último tras 3 sin ganar."
+          "Patrón Visita: Belgrano (Córdoba) fuera: ganó el último tras 3 sin ganar.",
+          "A este rival le pesa el estadio del local: en H2H en casa promedia 2.0-0.0 vs su general en casa de 1.1-1.2."
         ],
         "riesgos": [
           "Más de 2 goles: modelo 69% contra historial 43% (modelo arriba 26pp).",
@@ -35363,6 +35740,7 @@
         ],
         "oportunidades": [
           "Peso del estadio local: rinde mejor en casa (1.43 vs 1.04 pts por partido, +0.4).",
+          "A este rival le pesa el estadio del local: en H2H en casa promedia 2.5-1.5 vs su general en casa de 1.4-1.1.",
           "Más de 0.5 goles: modelo 92% e historial 95% coinciden."
         ],
         "riesgos": [
@@ -37111,7 +37489,9 @@
           "La visita baja fuera de casa (1.21 vs 1.64 pts por partido).",
           "Más de 0.5 goles: modelo 95% e historial 98% coinciden."
         ],
-        "riesgos": [],
+        "riesgos": [
+          "Contra este rival, al local no le pesa su estadio: en H2H en casa promedia 1.2-1.6 contra su general en casa de 2.8-2.0."
+        ],
         "serieH2H": [
           "P",
           "G",
@@ -37994,7 +38374,9 @@
           "Más de 0.5 goles: modelo 97% e historial 96% coinciden.",
           "Más de 1 goles: modelo 86% e historial 89% coinciden."
         ],
-        "riesgos": [],
+        "riesgos": [
+          "Contra este rival, al local no le pesa su estadio: en H2H en casa promedia 1.6-1.8 contra su general en casa de 2.8-1.9."
+        ],
         "serieH2H": [
           "G",
           "G",
@@ -42359,7 +42741,9 @@
           "Más de 0.5 goles: modelo 94% e historial 94% coinciden.",
           "Más de 1 goles: modelo 77% e historial 80% coinciden."
         ],
-        "riesgos": [],
+        "riesgos": [
+          "Contra este rival, al local no le pesa su estadio: en H2H en casa promedia 1.4-1.2 contra su general en casa de 1.7-0.6."
+        ],
         "serieH2H": [
           "G",
           "E",
@@ -43224,8 +43608,8 @@
           "La visita baja fuera de casa (0.21 vs 0.83 pts por partido).",
           "Patrón H2H L/V (local): H2H en casa: 4 victorias seguidas.",
           "Patrón Visita: Jaguares de Córdoba fuera: 5 sin ganar.",
-          "Más de 4 goles: modelo 11% e historial 11% coinciden.",
-          "Más de 4.5 goles: modelo 11% e historial 11% coinciden."
+          "A este rival le pesa el estadio del local: en H2H en casa promedia 2.8-0.3 vs su general en casa de 1.7-1.1.",
+          "Más de 4 goles: modelo 11% e historial 11% coinciden."
         ],
         "riesgos": [],
         "serieH2H": [
@@ -43577,7 +43961,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-11T23:20:02.733Z",
+      "createdAt": "2026-10-11T23:20:55.415Z",
       "roiUnit": 0.11948717948717946,
       "margen": 0.0789830508474576,
       "breakEven": 0.6610169491525424,
@@ -43603,7 +43987,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-11T23:20:02.733Z",
+      "createdAt": "2026-10-11T23:20:55.415Z",
       "roiUnit": 0.08418604651162787,
       "margen": 0.057460317460317434,
       "breakEven": 0.6825396825396826,
@@ -43629,7 +44013,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-11T23:20:02.733Z",
+      "createdAt": "2026-10-11T23:20:55.415Z",
       "roiUnit": 0.09238095238095245,
       "margen": 0.06258064516129036,
       "breakEven": 0.6774193548387096,
@@ -43655,7 +44039,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-11T23:20:02.733Z",
+      "createdAt": "2026-10-11T23:20:55.415Z",
       "roiUnit": 0.12947368421052619,
       "margen": 0.08482758620689645,
       "breakEven": 0.6551724137931035,
@@ -43671,8 +44055,8 @@
       "leagueKey": "mex.1",
       "kickoff": "2026-10-11T23:00Z",
       "status": "in",
-      "statusDetail": "20'",
-      "minute": "20'",
+      "statusDetail": "21'",
+      "minute": "21'",
       "period": 1,
       "homeTeam": "Atlético de San Luis",
       "awayTeam": "Santos",
@@ -43709,8 +44093,8 @@
       "leagueKey": "mex.1",
       "kickoff": "2026-10-11T23:10Z",
       "status": "in",
-      "statusDetail": "9'",
-      "minute": "9'",
+      "statusDetail": "10'",
+      "minute": "10'",
       "period": 1,
       "homeTeam": "Pachuca",
       "awayTeam": "Necaxa",
@@ -43823,8 +44207,8 @@
       "leagueKey": "bra.1",
       "kickoff": "2026-10-11T22:30Z",
       "status": "in",
-      "statusDetail": "45'+3'",
-      "minute": "45'+3'",
+      "statusDetail": "45'+4'",
+      "minute": "45'+4'",
       "period": 1,
       "homeTeam": "Bahia",
       "awayTeam": "Mirassol",

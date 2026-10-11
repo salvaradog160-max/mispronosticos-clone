@@ -428,17 +428,28 @@ export default function MatchDetailScreen({
                   {fila.combinado.recomendacion && (
                     <>
                       <Text style={s.subEtiqueta}>Recomendación</Text>
-                      <Fila etiqueta={fila.combinado.recomendacion.nombre}>
-                        <Text style={s.valor}>
-                          {pct0(fila.combinado.recomendacion.p)} · riesgo {fila.combinado.recomendacion.riesgo} · @
-                          {fila.combinado.recomendacion.cuotaJusta}
+                      <View style={s.recomCaja}>
+                        <Text style={s.recomNombre}>{fila.combinado.recomendacion.nombre}</Text>
+                        <Text style={s.recomPct}>{pct0(fila.combinado.recomendacion.p)} combinada</Text>
+                        <Text style={s.recomLinea}>
+                          Cuota justa @{fila.combinado.recomendacion.cuotaJusta ?? '—'} · riesgo{' '}
+                          {fila.combinado.recomendacion.riesgo}. Apuesta solo si tu casa paga más de @
+                          {fila.combinado.recomendacion.cuotaJusta ?? '—'}.
                         </Text>
-                      </Fila>
-                      <Text style={s.pie}>
-                        Cuota justa @{fila.combinado.recomendacion.cuotaJusta}: apuesta solo si tu casa paga más de
-                        eso. Riesgo {fila.combinado.recomendacion.riesgo}: bajo ~75%, medio ~60%, y sube un nivel si el
-                        modelo y el historial difieren 25 puntos o más.
-                      </Text>
+                        {fila.combinado.alternativa && (
+                          <Text style={s.recomLinea}>
+                            Alternativa: {fila.combinado.alternativa.nombre} ({pct0(fila.combinado.alternativa.p)}).
+                          </Text>
+                        )}
+                        {fila.combinado.evitar && fila.combinado.evitar.length > 0 && (
+                          <Text style={[s.recomLinea, { color: palette.danger }]}>
+                            Evita: {fila.combinado.evitar.join('; ')}
+                          </Text>
+                        )}
+                        {fila.combinado.calidad && (
+                          <Text style={[s.recomLinea, { color: palette.star }]}>{fila.combinado.calidad}</Text>
+                        )}
+                      </View>
                     </>
                   )}
 
@@ -908,6 +919,19 @@ const s = StyleSheet.create({
     marginTop: spacing.sm,
   },
   patronTitulo: { color: palette.star, fontSize: fontSize.sm, fontWeight: '800', marginBottom: spacing.xs },
+
+  recomCaja: {
+    backgroundColor: palette.surface,
+    borderWidth: 1,
+    borderColor: palette.accent,
+    borderRadius: radius.md,
+    padding: spacing.md,
+    marginTop: spacing.xs,
+    gap: spacing.xs,
+  },
+  recomNombre: { color: palette.text, fontSize: fontSize.md, fontWeight: '900' },
+  recomPct: { color: palette.accent, fontSize: fontSize.lg, fontWeight: '900' },
+  recomLinea: { color: palette.textMuted, fontSize: fontSize.sm, lineHeight: 20 },
 
   tabs: {
     flexDirection: 'row',

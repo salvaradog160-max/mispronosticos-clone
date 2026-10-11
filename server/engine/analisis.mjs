@@ -254,7 +254,7 @@ export const analizar = (partido, probs, confianza = null) => {
     // marcadores), sacada de las lambdas reales del modelo. Es la misma
     // cuenta que la herramienta manual, pero con datos reales. Si el
     // partido no trae lambdas, null.
-    ladder: ladderMercados(partido.lambdaHome, partido.lambdaAway),
+    ladder: (partido.ladder = ladderMercados(partido.lambdaHome, partido.lambdaAway)),
 
     // Goles esperados desglosados en primer y segundo tiempo, con la
     // fraccion real de goles por tiempo medida por liga (HTHG/HTAG de
@@ -327,23 +327,107 @@ const historialCombinado = (partido, probs) => {
 
   const pts = h.puntos ?? {};
   const pmt = (o) => o?.porPartido ?? null;
-  if (pts.localCasa && pts.localGral && pmt(pts.localCasa) - pmt(pts.localGral) >= 0.3)
-    oportunidades.push(`El local rinde mejor en casa (${pmt(pts.localCasa)} vs ${pmt(pts.localGral)} pts por partido).`);
+  // Peso del estadio local: cuantos puntos rinde en casa vs su general.
+  // Un dif claro en cualquiera de las dos direcciones es un dato fino.
+  const pesoLocal = h.pesoEstadio?.local ?? {};
+  const pesoVisita = h.pesoEstadio?.visita ?? {};
+  if (pesoLocal.dif != null && pesoLocal.dif >= 0.3)
+    oportunidades.push(`Peso del estadio local: rinde mejor en casa (${pmt(pts.localCasa)} vs ${pmt(pts.localGral)} pts por partido, +${pesoLocal.dif.toFixed(1)}).`);
+  if (pesoLocal.dif != null && pesoLocal.dif <= -0.3)
+    riesgos.push(`No le pesa el estadio al local: rinde menos en casa (${pmt(pts.localCasa)} vs ${pmt(pts.localGral)} pts por partido).`);
+  if (pts.localCasa && pts.visitaFuera && pmt(pts.localCasa) - pmt(pts.visitaFuera) >= 1)
+    oportunidades.push(`Forma L/V: ${pts.localCasa.pts} pts local en casa vs ${pts.visitaFuera.pts} visita fuera. Respalda a Local.`);
+  if (pts.localGral && pts.visitaGral && pmt(pts.localGral) - pmt(pts.visitaGral) >= 1)
+    oportunidades.push(`H2H General: ${pts.localGral.pts} pts local vs ${pts.visitaGral.pts} visita. Respalda a Local.`);
   if (pts.visitaFuera && pts.visitaGral && pmt(pts.visitaFuera) - pmt(pts.visitaGral) <= -0.3)
     oportunidades.push(`La visita baja fuera de casa (${pmt(pts.visitaFuera)} vs ${pmt(pts.visitaGral)} pts por partido).`);
-  if (pts.localCasa && pts.visitaFuera && pmt(pts.localCasa) - pmt(pts.visitaFuera) >= 1)
-    oportunidades.push(`Forma últ. 5 L/V: ${pts.localCasa.pts} pts local vs ${pts.visitaFuera.pts} visita. Respalda a Local.`);
-  if (pts.localGral && pts.visitaGral && pmt(pts.localGral) - pmt(pts.visitaGral) >= 1)
-    oportunidades.push(`Forma últ. 5 General: ${pts.localGral.pts} pts local vs ${pts.visitaGral.pts} visita. Respalda a Local.`);
-  if (h.patrones?.visitaFuera?.some(p => p.includes('sin ganar')))
-    oportunidades.push(`Patrón Visita: ${h.patrones.visitaFuera.find(p => p.includes('sin ganar'))}.`);
 
-  if (pts.localCasa && pts.localGral && pmt(pts.localCasa) - pmt(pts.localGral) <= -0.3)
-    riesgos.push(`El local rinde menos en casa (${pmt(pts.localCasa)} vs ${pmt(pts.localGral)} pts por partido).`);
-  if (h.patrones?.visitaFuera?.some(p => p.includes('anotó')))
-    riesgos.push(`Patrón Visita: ${h.patrones.visitaFuera.find(p => p.includes('anotó'))}.`);
-  if (!h.cuadros?.generalLocal?.n || h.cuadros.generalLocal.n < 4)
-    riesgos.push(`Poca historia del local en la base (${h.cuadros?.generalLocal?.n ?? 0} de 5 partidos).`);
+  // Patrones: el mejor del local en casa, el mejor H2H L/V y la forma
+  // del visitante se convierten en oportunidades o riesgos finos.
+  const pat = h.patrones ?? {};
+  const mejorPatron = (lista, busqueda) => (lista ?? []).find(p => p.toLowerCase().includes(busqueda));
+  const ganoUltimoLocal = mejorPatron(pat.localCasa, 'ganó el último');
+  if (ganoUltimoLocal) oportunidades.push(`Patrón Local: ${ganoUltimoLocal}.`);
+  const h2hVictoria = mejorPatron(pat.h2hCasa, 'victorias seguidas');
+  if (h2hVictoria) oportunidades.push(`Patrón H2H L/V (local): ${h2hVictoria}.`);
+  const visitaSinGanar = mejorPatron(pat.visitaFuera, 'sin ganar');
+  if (visitaSinGanar) oportunidades.push(`Patrón Visita: ${visitaSinGanar}.`);
+  const localRecibeMas = mejorPatron(pat.localCasa, 'recibe más');
+  if (localRecibeMas) riesgos.push(`Patrón Local: ${localRecibeMas}.`);
+  const visitaFormaAlza = mejorPatron(pat.visitaFuera, 'forma al alza');
+  if (visitaFormaAlza) riesgos.push(`Patrón Visita: ${visitaFormaAlza}.`);
+  const visitaRecibeMenos = mejorPatron(pat.visitaFuera, 'recibe menos');
+  if (visitaRecibeMenos) riesgos.push(`Patrón Visita: ${visitaRecibeMenos}.`);
+  const h2hDerrotas = mejorPatron(pat.h2h, 'derrotas seguidas');
+  if (h2hDerrotas) riesgos.push(`Patrón H2H: ${h2hDerrotas}.`);
+
+  // Peso del estadio CONTRA ESTE rival: el local en H2H en casa vs su
+  // general en casa. Si en los enfrentamientos jugados en su cancha rinde
+  // menos que en su temporada, al local no le pesa el estadio con este rival.
+  const h2hCasaCuadro = h.cuadros?.h2hCasa ?? null;
+  const localCasaCuadro = h.cuadros?.localCasa ?? null;
+  if (h2hCasaCuadro && localCasaCuadro && h2hCasaCuadro.n >= 2 && localCasaCuadro.n >= 4) {
+    const pptsH2HCasa = (h2hCasaCuadro.gfProm - h2hCasaCuadro.gcProm);
+    const pptsLocalCasa = (localCasaCuadro.gfProm - localCasaCuadro.gcProm);
+    if (pptsLocalCasa - pptsH2HCasa >= 0.5)
+      riesgos.push(`Contra este rival, al local no le pesa su estadio: en H2H en casa promedia ${h2hCasaCuadro.gfProm.toFixed(1)}-${h2hCasaCuadro.gcProm.toFixed(1)} contra su general en casa de ${localCasaCuadro.gfProm.toFixed(1)}-${localCasaCuadro.gcProm.toFixed(1)}.`);
+    else if (pptsH2HCasa - pptsLocalCasa >= 0.5)
+      oportunidades.push(`A este rival le pesa el estadio del local: en H2H en casa promedia ${h2hCasaCuadro.gfProm.toFixed(1)}-${h2hCasaCuadro.gcProm.toFixed(1)} vs su general en casa de ${localCasaCuadro.gfProm.toFixed(1)}-${localCasaCuadro.gcProm.toFixed(1)}.`);
+  }
+
+  // Goles concentrados (DE > promedio) del local: la base no es estable.
+  const gConcentrado = (pat.localCasa ?? []).find(p => p.includes('goles concentrados'));
+  if (gConcentrado) riesgos.push(`Los goles de Local en su base se concentran en pocos partidos (${gConcentrado.split(') ')[1] ?? ''}DE sobre el promedio).`);
+
+  // % over real del historial general, por linea (para comparar modelo).
+  const tendOver = linea => {
+    const t = h.tendencias?.general?.ou?.find(o => o.linea === linea);
+    return t?.over ?? null;
+  };
+
+  // Coincidencias modelo-historial de los mercados de goles: si difieren
+  // mas de 20 puntos es un riesgo/oportunidad fino.
+  const coincidencias = [];
+  const divergencias = [];
+  const merc = partido.ladder ?? null;
+  if (merc?.overUnder) {
+    for (const f of merc.overUnder) {
+      const pM = f.over?.p ?? null;      // modelo (prob over)
+      const pB = tendOver(f.linea);      // historial (over %)
+      if (pM == null || pB == null) continue;
+      const dif = (pM - pB / 100) * 100;
+      if (Math.abs(dif) >= 20) {
+        const linea = `Más de ${f.linea} goles`;
+        const dirM = pM > pB / 100 ? 'modelo arriba' : 'modelo abajo';
+        divergencias.push(`${linea}: modelo ${Math.round(pM * 100)}% contra historial ${pB}% (${dirM} ${Math.round(Math.abs(dif))}pp).`);
+      } else if (Math.abs(dif) < 5) {
+        const linea = `Más de ${f.linea} goles`;
+        coincidencias.push(`${linea}: modelo ${Math.round(pM * 100)}% e historial ${pB}% coinciden.`);
+      }
+    }
+  }
+  for (const c of coincidencias.slice(0, 2)) oportunidades.push(`${c}`);
+  for (const d of divergencias.slice(0, 3)) riesgos.push(`${d}`);
+
+  if (h.cuadros?.generalLocal?.n && h.cuadros.generalLocal.n < 4)
+    riesgos.push(`Poca historia del local en la temporada vigente (${h.cuadros.generalLocal.n} partidos).`);
+
+  // Recomendacion: la apuesta principal = el primer pronostico; si no hay
+  // modelo de goles o el historial es corto, se marca la calidad.
+  const recomendacion = pro[0] ?? null;
+  const calidadNotas = () => {
+    const notas = [];
+    if (partido.lambdaHome != null && partido.lambdaAway != null &&
+        (partido.lambdaHome + partido.lambdaAway) > 5) {
+      notas.push('λ total alta');
+    }
+    const deL = h.cuadros?.generalLocal?.gfDe ?? null;
+    const promL = h.cuadros?.generalLocal?.gfProm ?? null;
+    if (deL != null && promL != null && deL > promL * 1.25) notas.push('goles irregulares en la base');
+    if ((h.cuadros?.generalLocal?.n ?? 0) < 4) notas.push('historial corto de la temporada');
+    return notas.length ? `Calidad de datos media: ${notas.join(' y ')}.` : 'Calidad de datos buena.';
+  };
+  const calidad = calidadNotas();
 
   return {
     combinado: {
@@ -360,10 +444,17 @@ const historialCombinado = (partido, probs) => {
         historial: Number((pBase?.[l] ?? 0).toFixed(4)),
         combinada: Number((pComb[l] ?? 0).toFixed(4)),
       })),
-      recomendacion: pro[0] ?? null,
+      recomendacion: recomendacion,
+      // Alternativa segura: el mercado con menor dispersion modelo-hist historial.
+      alternativa: pro[1] ?? null,
+      demasPronosticos: pro.slice(2),
+      // "Evita": los mercados donde modelo e historial NO coinciden.
+      evitar: divergencias,
+      coinciden: coincidencias,
+      calidad: calidad,
       pronosticos: pro,
-      oportunidades: oportunidades.slice(0, 5),
-      riesgos: riesgos.slice(0, 5),
+      oportunidades: oportunidades.slice(0, 6),
+      riesgos: riesgos.slice(0, 6),
       cuotaJusta: cuotaJusta,
       serieH2H: h.serieH2H ?? [],
       h2hPartidos: h.h2hPartidos ?? 0,
