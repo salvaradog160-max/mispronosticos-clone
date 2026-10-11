@@ -123,14 +123,17 @@ export const detectarMovimiento = (anteriores, actuales, tramos = {}) => {
       a => a.fixtureId === previo.fixtureId && a.market === previo.market && a.selection !== previo.selection,
     );
     if (revirto) continue;
-    alertas.push({
+alertas.push({
       tipo: 'PICK_RETIRADO',
       severidad: 'media',
       fixtureId: previo.fixtureId,
       partido: `${previo.homeTeam} vs ${previo.awayTeam}`,
       mercado: previo.market,
-      detalle: `${previo.selection} dejo de ser consenso: ya no aparece en los picks.`,
-      antes: { confianza: previo.confidence },
+      // O dejo de haber consenso, o la cuota subio y el pick dejo de
+      // cubrirla. Con el filtro de valor esperado, las dos cosas llevan
+      // a que desaparezca, asi que no se puede distinguir aqui.
+      detalle: `${previo.selection} ya no se publica: perdio el consenso o dejo de cubrir la cuota.`,
+      antes: { confianza: previo.confianza },
       ahora: null,
       delta: null,
     });

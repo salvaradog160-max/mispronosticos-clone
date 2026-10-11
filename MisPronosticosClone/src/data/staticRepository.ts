@@ -51,6 +51,9 @@ interface ServerPickShape {
   isSpecial: boolean;
   isPremium: boolean;
   probMercado?: number;
+  margen?: number | null;
+  roiUnit?: number | null;
+  breakEven?: number | null;
   nMuestra?: number;
   rango?: number[];
 }
@@ -74,6 +77,9 @@ const toPick = (raw: ServerPickShape): Pick => ({
   line: raw.linea ?? undefined,
   homeTeam: raw.homeTeam,
   awayTeam: raw.awayTeam,
+  margen: raw.margen ?? null,
+  roiUnit: raw.roiUnit ?? null,
+  breakEven: raw.breakEven ?? null,
   odds: raw.odds ?? 0,
   confidence: raw.confidence,
   stars: raw.stars,

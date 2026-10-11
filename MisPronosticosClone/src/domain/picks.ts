@@ -24,6 +24,9 @@ export interface Pick {
   line?: number;
   homeTeam?: string;
   awayTeam?: string;
+  margen?: number | null;
+  roiUnit?: number | null;
+  breakEven?: number | null;
   odds: number;
   confidence: number;
   stars: number;

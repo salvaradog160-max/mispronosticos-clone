@@ -75,10 +75,13 @@ export default function TopAiScreen({ config = DEFAULTS }: Props) {
             <Stars value={item.stars} />
           </View>
           <Text variant="bodySmall" style={styles.muted}>
-            {item.homeTeam && item.awayTeam
+            {/* En 1X2 la seleccion ya trae el equipo ("Gana X"), asi que
+                repetir el partido seria redundante. En goles si hace falta. */}
+            {item.homeTeam && item.awayTeam && !item.selection.includes(item.homeTeam)
               ? `${item.homeTeam} vs ${item.awayTeam}`
-              : item.market}
-            {item.line ? ` · línea ${item.line}` : ''}
+              : item.line
+                ? `${item.market} · línea ${item.line}`
+                : item.market}
           </Text>
           <View style={styles.progressWrap}>
             <Text style={styles.confidence}>{item.confidence}%</Text>
@@ -89,7 +92,12 @@ export default function TopAiScreen({ config = DEFAULTS }: Props) {
             />
           </View>
           <View style={styles.row}>
-            <Text style={styles.odds}>Cuota {item.odds.toFixed(2)}</Text>
+            <Text style={styles.odds}>
+              Cuota {item.odds.toFixed(2)}
+              {item.margen !== null && item.margen !== undefined
+                ? `  ·  margen +${(item.margen * 100).toFixed(1)}pp`
+                : ''}
+            </Text>
             {item.isSpecial ? (
               <Chip icon="shield-check" compact style={styles.special}>
                 Validado

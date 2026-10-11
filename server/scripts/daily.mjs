@@ -14,6 +14,7 @@ import { buildRatings, predictMatch } from '../engine/ratings.mjs';
 import { normalizeTeam, buildConsensusPicks } from '../engine/calibration.mjs';
 import { buildMercadoPicks } from '../engine/mercados.mjs';
 import { detectarMovimiento } from '../engine/movimiento.mjs';
+import { anotarValor } from '../engine/valor.mjs';
 import { upcoming, implied, liveNow } from '../providers/espn.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
@@ -196,7 +197,19 @@ async function buildPicks(buckets, ratings) {
     /* sin partidos en vivo */
   }
 
-  return { fixtures: withData.length, picks, picksMercado, live, mercados };
+  // El filtro de valor esperado se aplica AL FINAL, sobre todo junto.
+  // Regla: publico solo lo que acierta MAS de lo que la cuota cobra,
+  // con 5 puntos de margen. Medido en ev-backtest.mjs.
+  const { rented, descartados } = anotarValor([...picks, ...picksMercado]);
+
+  return {
+    fixtures: withData.length,
+    picks: rented.filter(p => p.market === '1X2'),
+    picksMercado: rented.filter(p => p.market !== '1X2'),
+    live,
+    mercados,
+    descartados,
+  };
 }
 
 // ------------------------------------------------------------------------ run
@@ -210,7 +223,7 @@ const leerAnterior = async () => {
 
 const calibration = await buildCalibration();
 const ratings = await buildRatingsCache();
-const { fixtures, picks, picksMercado, live, mercados } = await buildPicks(calibration.buckets, ratings);
+const { fixtures, picks, picksMercado, live, mercados, descartados } = await buildPicks(calibration.buckets, ratings);
 
 const todosPicks = [...picks, ...picksMercado];
 const anterior = await leerAnterior();
@@ -246,7 +259,20 @@ const payload = {
     partidosConDatos: fixtures,
     picks: picks.length,
     picksMercado: picksMercado.length,
+    descartados: descartados.length,
     enVivo: live.length,
+  },
+  descarte: {
+    criterio: 'Se publica solo lo que acierta mas de lo que la cuota cobra, con 5pp de margen.',
+    motivo: 'Un pick puede acertar el 57% y aun asi perder dinero si la cuota exige 61%.',
+    descartados: descartados.map(d => ({
+      partido: `${d.homeTeam} vs ${d.awayTeam}`,
+      mercado: d.market,
+      seleccion: d.selection,
+      cuota: d.odds,
+      confianza: d.confidence,
+      necesita: d.breakEven !== null && d.breakEven !== undefined ? Math.round(d.breakEven * 100) : null,
+    })),
   },
   alertas,
   resumenAlertas: {
@@ -271,12 +297,12 @@ await writeFile(
 );
 
 log(`fixtures con datos: ${fixtures}`);
-log(`picks de consenso: ${picks.length}`);
-log(`picks de mercado (O/U + BTTS): ${picksMercado.length}`);
+log(`picks publicados (con valor esperado positivo): ${picks.length + picksMercado.length}`);
+log(`descartados por no cubrir la cuota: ${descartados.length}`);
 log(`alertas: ${alertas.length} (alta ${payload.resumenAlertas.alta} / media ${payload.resumenAlertas.media} / baja ${payload.resumenAlertas.baja})`);
 for (const a of alertas.slice(0, 5)) log(`  [${a.severidad}] ${a.tipo}: ${a.detalle}`);
 log(`partidos en vivo: ${live.length}`);
 log(`escrito: ${path}`);
-for (const p of picks.slice(0, 5)) {
-  log(`  ${p.selection} @ ${p.odds?.toFixed(2)} -> ${p.confidence}% (n=${p.nMuestra})`);
+for (const p of [...picks, ...picksMercado].slice(0, 5)) {
+  log(`  ${p.selection} @ ${p.odds?.toFixed(2)} -> ${p.confidence}% (margen ${(p.margen * 100).toFixed(1)}pp)`);
 }
