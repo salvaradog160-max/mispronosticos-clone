@@ -120,7 +120,12 @@ export default function TopAiScreen({ config = DEFAULTS }: Props) {
             <View style={styles.cifra}>
               <Text style={styles.etiqueta}>Mercado</Text>
               <Text style={styles.valor}>{item.ladoMercado}</Text>
-              <Text style={styles.sub}>{pct(item.probMercado)} · cuota {item.cuotaMercado.toFixed(2)}</Text>
+              <Text style={styles.sub}>{pct(item.probMercado)}</Text>
+              <Text style={styles.cuota}>
+                {item.cuotaApertura != null
+                  ? `${item.cuotaApertura.toFixed(2)} → ${item.cuotaMercado.toFixed(2)}`
+                  : item.cuotaMercado.toFixed(2)}
+              </Text>
             </View>
             <View style={styles.sep} />
             <View style={styles.cifra}>
@@ -192,6 +197,7 @@ const styles = StyleSheet.create({
   etiqueta: { color: palette.textMuted, fontSize: 11, textTransform: 'uppercase', letterSpacing: 0.5 },
   valor: { color: palette.text, fontSize: 16, fontWeight: '700', marginTop: 2 },
   sub: { color: palette.textMuted, fontSize: 12, marginTop: 1 },
+  cuota: { color: '#4da3ff', fontSize: 12, marginTop: 1, fontWeight: '600' },
   barraWrap: { marginTop: spacing.sm },
   barra: { height: 3, backgroundColor: palette.surfaceAlt },
   veredicto: { fontSize: 12, marginTop: 6 },

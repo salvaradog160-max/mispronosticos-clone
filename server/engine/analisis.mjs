@@ -29,14 +29,19 @@ export const analizar = (partido, probs) => {
 
   if (!actual || !probs) return null;
 
-  const top = k => k;
   const ladoMercado = Object.entries({ H: actual.H, D: actual.D, A: actual.A })
     .sort((a, b) => b[1] - a[1])[0][0];
   const ladoModelo = Object.entries({ H: probs.H, D: probs.D, A: probs.A })
     .sort((a, b) => b[1] - a[1])[0][0];
 
-  const cuotaApertura = apertura ? apertura[ladoMercado] : null;
-  const cuotaAhora = actual[ladoMercado];
+  // Probabilidades: sobre ellas se mide el movimiento, en puntos porcentuales.
+  const cuotaProbAhora = actual[ladoMercado];
+  const cuotaProbApertura = apertura ? apertura[ladoMercado] : null;
+
+  // Cuotas decimales reales. Confundir esto con la probabilidad fue un
+  // bug: salia "cuota 0.46", que no es una cuota valida.
+  const cuotaAhora = o[ladoMercado];
+  const cuotaAbierta = o?.apertura?.[ladoMercado] ?? null;
 
   return {
     partido: `${partido.homeTeam} vs ${partido.awayTeam}`,
@@ -46,8 +51,9 @@ export const analizar = (partido, probs) => {
     // Que dice el mercado
     favoritoMercado: ladoMercado,
     ladoMercado: NOMBRE[ladoMercado],
-    probMercado: Number(cuotaAhora.toFixed(4)),
-    cuotaMercado: Number(cuotaApertura?.toFixed(2) ?? cuotaAhora.toFixed(2)),
+    probMercado: Number(cuotaProbAhora.toFixed(4)),
+    cuotaMercado: Number(cuotaAhora.toFixed(2)),
+    cuotaApertura: cuotaAbierta === null ? null : Number(cuotaAbierta.toFixed(2)),
 
     // Que dice el modelo
     ladoModelo: NOMBRE[ladoModelo],
@@ -55,12 +61,13 @@ export const analizar = (partido, probs) => {
     coincide: ladoMercado === ladoModelo,
 
     // Movimiento de linea, en puntos porcentuales
-    movimiento: apertura
-      ? Number(((cuotaAhora - cuotaApertura) * 100).toFixed(2))
+    movimiento: cuotaProbApertura
+      ? Number(((cuotaProbAhora - cuotaProbApertura) * 100).toFixed(2))
       : null,
     cambioFavorito:
-      apertura && top(Object.entries({ H: apertura.H, D: apertura.D, A: apertura.A })
-        .sort((a, b) => b[1] - a[1])[0][0]) !== ladoMercado,
+      apertura &&
+      Object.entries({ H: apertura.H, D: apertura.D, A: apertura.A })
+        .sort((a, b) => b[1] - a[1])[0][0] !== ladoMercado,
 
     lineaGoles: o?.line ?? null,
     cuotaGoles: o?.over ?? null,

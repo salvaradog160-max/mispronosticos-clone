@@ -7,6 +7,7 @@ export interface AnalisisFila {
   ladoMercado: string;
   probMercado: number;
   cuotaMercado: number;
+  cuotaApertura?: number | null;
   ladoModelo: string;
   probModelo: number;
   coincide: boolean;
