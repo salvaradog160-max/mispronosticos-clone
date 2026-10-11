@@ -7,9 +7,15 @@
  * serie sale de la tabla line_series (UN append por corrida, cada 30').
  *
  * Postgres es opcional: si no responde (maquina arrancando, docker
- * caido) se devuelve null y la app muestra la linea sin cable.
+ * caido, CI sin Postgres) se devuelve null y la app muestra la linea
+ * sin cable.
  */
-import { Client } from 'pg';
+let Client = null;
+try {
+  ({ Client } = await import('pg'));
+} catch {
+  /* pg no instalado (CI): no hay seres disponibles, se degrada sin romper */
+}
 
 const PG_URL = process.env.DATABASE_URL
   ?? 'postgresql://lineas:lineas_dev_2026@localhost:55432/lineas';
@@ -21,6 +27,7 @@ const PG_URL = process.env.DATABASE_URL
  */
 export const cargarSeries = async (eventIds, { limite = 30 } = {}) => {
   if (!eventIds?.length) return new Map();
+  if (!Client) return new Map(); // CI / sin pg
   const client = new Client({ connectionString: PG_URL });
   try {
     await client.connect();
