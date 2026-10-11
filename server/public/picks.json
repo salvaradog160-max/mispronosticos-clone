@@ -1,6 +1,6 @@
 {
-  "generado": "2026-10-11T01:37:34.751Z",
-  "anterior": "2026-10-11T01:37:16.719Z",
+  "generado": "2026-10-11T01:44:43.078Z",
+  "anterior": "2026-10-11T01:44:37.015Z",
   "fuente": "football-data.co.uk + ESPN (sin claves)",
   "calibracion": {
     "partidos": 13559,
@@ -12,13 +12,13 @@
     "overUnder25": true,
     "handicap": false,
     "handicapMotivo": "El consenso modelo+mercado en handicap asiatico acierta 48.4%, por DEBAJO de la moneda. No se publican picks de este mercado: no hay ventaja medible que ofrecer.",
-    "btts": true,
-    "bttsNota": "SIN CUOTA DE MERCADO: solo probabilidad del modelo. Los tramos de abajo del 50% muestran que el modelo sobrevalora BTTS y la calibracion lo corrige."
+    "btts": false,
+    "bttsNota": "Medido con probabilidad del modelo unicamente. Los tramos de abajo del 50% muestran que el modelo sobrevalora BTTS."
   },
   "resumen": {
     "partidosConDatos": 11,
     "picks": 7,
-    "picksMercado": 18,
+    "picksMercado": 7,
     "enVivo": 0
   },
   "alertas": [],
@@ -48,7 +48,7 @@
         71.4,
         75
       ],
-      "createdAt": "2026-10-11T01:37:34.574Z"
+      "createdAt": "2026-10-11T01:44:42.934Z"
     },
     {
       "id": "401874951-H",
@@ -70,7 +70,7 @@
         53.5,
         59.8
       ],
-      "createdAt": "2026-10-11T01:37:34.574Z"
+      "createdAt": "2026-10-11T01:44:42.934Z"
     },
     {
       "id": "401884778-H",
@@ -92,7 +92,7 @@
         53.5,
         59.8
       ],
-      "createdAt": "2026-10-11T01:37:34.574Z"
+      "createdAt": "2026-10-11T01:44:42.934Z"
     },
     {
       "id": "401874776-A",
@@ -114,7 +114,7 @@
         44,
         49.1
       ],
-      "createdAt": "2026-10-11T01:37:34.574Z"
+      "createdAt": "2026-10-11T01:44:42.934Z"
     },
     {
       "id": "401874763-H",
@@ -136,7 +136,7 @@
         41.5,
         46.3
       ],
-      "createdAt": "2026-10-11T01:37:34.574Z"
+      "createdAt": "2026-10-11T01:44:42.934Z"
     },
     {
       "id": "401876443-H",
@@ -158,7 +158,7 @@
         41.5,
         46.3
       ],
-      "createdAt": "2026-10-11T01:37:34.574Z"
+      "createdAt": "2026-10-11T01:44:42.934Z"
     },
     {
       "id": "401874940-H",
@@ -180,7 +180,7 @@
         35.3,
         40.2
       ],
-      "createdAt": "2026-10-11T01:37:34.574Z"
+      "createdAt": "2026-10-11T01:44:42.933Z"
     }
   ],
   "picksMercado": [
@@ -295,52 +295,6 @@
       "isPremium": false
     },
     {
-      "id": "btts-401884778",
-      "fixtureId": "401884778",
-      "league": "Bundesliga",
-      "kickoff": "2026-10-11T15:30Z",
-      "homeTeam": "SC Freiburg",
-      "awayTeam": "Schalke 04",
-      "market": "BTTS",
-      "linea": null,
-      "selection": "Ambos marcan",
-      "odds": null,
-      "probMercado": 0.6295,
-      "confidence": 55,
-      "stars": 3,
-      "nMuestra": 2942,
-      "rango": [
-        53,
-        56.6
-      ],
-      "sinCuota": true,
-      "isSpecial": false,
-      "isPremium": false
-    },
-    {
-      "id": "btts-401876440",
-      "fixtureId": "401876440",
-      "league": "Ligue 1",
-      "kickoff": "2026-10-11T18:45Z",
-      "homeTeam": "Troyes",
-      "awayTeam": "Marseille",
-      "market": "BTTS",
-      "linea": null,
-      "selection": "Ambos marcan",
-      "odds": null,
-      "probMercado": 0.6113,
-      "confidence": 55,
-      "stars": 3,
-      "nMuestra": 2942,
-      "rango": [
-        53,
-        56.6
-      ],
-      "sinCuota": true,
-      "isSpecial": false,
-      "isPremium": false
-    },
-    {
       "id": "ou-401874789",
       "fixtureId": "401874789",
       "league": "Serie A",
@@ -381,213 +335,6 @@
         51.4,
         54.9
       ],
-      "isSpecial": false,
-      "isPremium": false
-    },
-    {
-      "id": "btts-401882852",
-      "fixtureId": "401882852",
-      "league": "La Liga",
-      "kickoff": "2026-10-12T19:00Z",
-      "homeTeam": "Levante",
-      "awayTeam": "Sevilla",
-      "market": "BTTS",
-      "linea": null,
-      "selection": "Ambos marcan",
-      "odds": null,
-      "probMercado": 0.5781,
-      "confidence": 45,
-      "stars": 2,
-      "nMuestra": 3393,
-      "rango": [
-        43.7,
-        47
-      ],
-      "sinCuota": true,
-      "isSpecial": false,
-      "isPremium": false
-    },
-    {
-      "id": "btts-401874776",
-      "fixtureId": "401874776",
-      "league": "Serie A",
-      "kickoff": "2026-10-11T13:00Z",
-      "homeTeam": "Lecce",
-      "awayTeam": "Bologna",
-      "market": "BTTS",
-      "linea": null,
-      "selection": "Alguno no marca",
-      "odds": null,
-      "probMercado": 0.5855,
-      "confidence": 45,
-      "stars": 2,
-      "nMuestra": 3393,
-      "rango": [
-        43.7,
-        47
-      ],
-      "sinCuota": true,
-      "isSpecial": false,
-      "isPremium": false
-    },
-    {
-      "id": "btts-401874789",
-      "fixtureId": "401874789",
-      "league": "Serie A",
-      "kickoff": "2026-10-11T16:00Z",
-      "homeTeam": "Sassuolo",
-      "awayTeam": "AC Milan",
-      "market": "BTTS",
-      "linea": null,
-      "selection": "Ambos marcan",
-      "odds": null,
-      "probMercado": 0.5931,
-      "confidence": 45,
-      "stars": 2,
-      "nMuestra": 3393,
-      "rango": [
-        43.7,
-        47
-      ],
-      "sinCuota": true,
-      "isSpecial": false,
-      "isPremium": false
-    },
-    {
-      "id": "btts-401876443",
-      "fixtureId": "401876443",
-      "league": "Ligue 1",
-      "kickoff": "2026-10-11T13:00Z",
-      "homeTeam": "Nice",
-      "awayTeam": "Strasbourg",
-      "market": "BTTS",
-      "linea": null,
-      "selection": "Ambos marcan",
-      "odds": null,
-      "probMercado": 0.5506,
-      "confidence": 45,
-      "stars": 2,
-      "nMuestra": 3393,
-      "rango": [
-        43.7,
-        47
-      ],
-      "sinCuota": true,
-      "isSpecial": false,
-      "isPremium": false
-    },
-    {
-      "id": "btts-401874940",
-      "fixtureId": "401874940",
-      "league": "Serie A",
-      "kickoff": "2026-10-11T10:30Z",
-      "homeTeam": "Como",
-      "awayTeam": "AS Roma",
-      "market": "BTTS",
-      "linea": null,
-      "selection": "Alguno no marca",
-      "odds": null,
-      "probMercado": 0.5058,
-      "confidence": 36,
-      "stars": 2,
-      "nMuestra": 6094,
-      "rango": [
-        35.1,
-        37.5
-      ],
-      "sinCuota": true,
-      "isSpecial": false,
-      "isPremium": false
-    },
-    {
-      "id": "btts-401874951",
-      "fixtureId": "401874951",
-      "league": "Serie A",
-      "kickoff": "2026-10-11T13:00Z",
-      "homeTeam": "Lazio",
-      "awayTeam": "Monza",
-      "market": "BTTS",
-      "linea": null,
-      "selection": "Ambos marcan",
-      "odds": null,
-      "probMercado": 0.5091,
-      "confidence": 36,
-      "stars": 2,
-      "nMuestra": 6094,
-      "rango": [
-        35.1,
-        37.5
-      ],
-      "sinCuota": true,
-      "isSpecial": false,
-      "isPremium": false
-    },
-    {
-      "id": "btts-401874764",
-      "fixtureId": "401874764",
-      "league": "Serie A",
-      "kickoff": "2026-10-11T18:45Z",
-      "homeTeam": "Cagliari",
-      "awayTeam": "Juventus",
-      "market": "BTTS",
-      "linea": null,
-      "selection": "Alguno no marca",
-      "odds": null,
-      "probMercado": 0.5489,
-      "confidence": 36,
-      "stars": 2,
-      "nMuestra": 6094,
-      "rango": [
-        35.1,
-        37.5
-      ],
-      "sinCuota": true,
-      "isSpecial": false,
-      "isPremium": false
-    },
-    {
-      "id": "btts-401875005",
-      "fixtureId": "401875005",
-      "league": "Serie A",
-      "kickoff": "2026-10-12T16:30Z",
-      "homeTeam": "Atalanta",
-      "awayTeam": "Venezia",
-      "market": "BTTS",
-      "linea": null,
-      "selection": "Ambos marcan",
-      "odds": null,
-      "probMercado": 0.516,
-      "confidence": 36,
-      "stars": 2,
-      "nMuestra": 6094,
-      "rango": [
-        35.1,
-        37.5
-      ],
-      "sinCuota": true,
-      "isSpecial": false,
-      "isPremium": false
-    },
-    {
-      "id": "btts-401874763",
-      "fixtureId": "401874763",
-      "league": "Serie A",
-      "kickoff": "2026-10-12T18:45Z",
-      "homeTeam": "Torino",
-      "awayTeam": "Udinese",
-      "market": "BTTS",
-      "linea": null,
-      "selection": "Alguno no marca",
-      "odds": null,
-      "probMercado": 0.5333,
-      "confidence": 36,
-      "stars": 2,
-      "nMuestra": 6094,
-      "rango": [
-        35.1,
-        37.5
-      ],
-      "sinCuota": true,
       "isSpecial": false,
       "isPremium": false
     }

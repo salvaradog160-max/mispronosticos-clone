@@ -22,6 +22,8 @@ export interface Pick {
   market: Market;
   selection: string;
   line?: number;
+  homeTeam?: string;
+  awayTeam?: string;
   odds: number;
   confidence: number;
   stars: number;

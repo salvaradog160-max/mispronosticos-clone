@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-11T01:31:40.688Z",
+  "generado": "2026-10-11T01:44:29.828Z",
   "partidos": 13958,
   "minN": 100,
   "overUnder25": {
@@ -272,7 +272,8 @@
         ]
       }
     ],
-    "operativo": true,
-    "nota": "SIN CUOTA DE MERCADO: solo probabilidad del modelo. Los tramos de abajo del 50% muestran que el modelo sobrevalora BTTS y la calibracion lo corrige."
+    "operativo": false,
+    "motivo": "SIN CUOTA DE MERCADO. Un pick sin precio no es accionable: no se sabe cuanto cuesta ni si compensa, asi que no se publica. La calibracion se conserva por si mas adelante aparece una fuente de cuotas de BTTS.",
+    "nota": "Medido con probabilidad del modelo unicamente. Los tramos de abajo del 50% muestran que el modelo sobrevalora BTTS."
   }
 }

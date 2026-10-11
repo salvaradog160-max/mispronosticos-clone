@@ -191,10 +191,14 @@ const payload = {
     n: btts.length,
     acierto: btts.filter(x => x.hit).length / btts.length,
     buckets: bttsBuckets.filter(b => b.n >= MIN_N),
-    operativo: true,
+    operativo: false,
+    motivo:
+      'SIN CUOTA DE MERCADO. Un pick sin precio no es accionable: no se sabe cuanto ' +
+      'cuesta ni si compensa, asi que no se publica. La calibracion se conserva por si ' +
+      'mas adelante aparece una fuente de cuotas de BTTS.',
     nota:
-      'SIN CUOTA DE MERCADO: solo probabilidad del modelo. Los tramos de abajo del 50% ' +
-      'muestran que el modelo sobrevalora BTTS y la calibracion lo corrige.',
+      'Medido con probabilidad del modelo unicamente. Los tramos de abajo del 50% ' +
+      'muestran que el modelo sobrevalora BTTS.',
   },
 };
 

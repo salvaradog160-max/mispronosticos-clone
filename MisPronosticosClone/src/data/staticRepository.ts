@@ -72,6 +72,8 @@ const toPick = (raw: ServerPickShape): Pick => ({
   market: (raw.market ?? '1X2') as Pick['market'],
   selection: raw.selection,
   line: raw.linea ?? undefined,
+  homeTeam: raw.homeTeam,
+  awayTeam: raw.awayTeam,
   odds: raw.odds ?? 0,
   confidence: raw.confidence,
   stars: raw.stars,

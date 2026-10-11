@@ -19,7 +19,6 @@ const Stars = ({ value }: { value: number }) => (
 const MERCADOS: { key: Market; label: string }[] = [
   { key: '1X2', label: '1X2' },
   { key: 'TOTAL', label: 'Goles' },
-  { key: 'BTTS', label: 'Ambos' },
 ];
 
 export default function TopAiScreen({ config = DEFAULTS }: Props) {
@@ -76,8 +75,10 @@ export default function TopAiScreen({ config = DEFAULTS }: Props) {
             <Stars value={item.stars} />
           </View>
           <Text variant="bodySmall" style={styles.muted}>
-            {item.market}
-            {item.line ? ` ${item.line}` : ''}
+            {item.homeTeam && item.awayTeam
+              ? `${item.homeTeam} vs ${item.awayTeam}`
+              : item.market}
+            {item.line ? ` · línea ${item.line}` : ''}
           </Text>
           <View style={styles.progressWrap}>
             <Text style={styles.confidence}>{item.confidence}%</Text>
