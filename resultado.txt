@@ -1,0 +1,8 @@
+403  https://www.sofascore.com/api/v1/sport/football/scheduled-events/2026-10
+      {"error": {"code": 403, "reason": "Forbidden" }}
+403  https://www.sofascore.com/api/v1/unique-tournament/football/league-of-me
+      {"error": {"code": 403, "reason": "Forbidden" }}
+403  https://www.sofascore.com/api/v1/team/1979/events/last/0
+      {"error": {"code": 403, "reason": "Forbidden" }}
+403  https://api.sofascore.com/api/v1/sport/football/scheduled-events/2026-10
+      {"error": {"code": 403, "reason": "Forbidden" }}
