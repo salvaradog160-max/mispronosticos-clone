@@ -66,3 +66,34 @@ export const anotarValor = (picks, margenMinimo = MARGEN_MINIMO) => {
 };
 
 export { lookupBucket };
+/**
+ * `good_to_line`: a que precio vuelve a valer un pick.
+ *
+ * Idea tomada de un sistema de betting ajeno: cuando la linea se mueve
+ * en contra y el pick deja de cumplir su umbral, no basta con avisar
+ * "ya no es rentable". Lo util es decir a que precio vuelve a servir.
+ *
+ * @param confianza  0..1, lo que mide la calibracion para ese tramo
+ * @param probActual 0..1, probabilidad de mercado de ese lado ahora
+ * @param margenMinimo margen exigido sobre el break-even
+ * @returns {{ejecutable, probActual, necesita, cuotaNecesaria, cuotaActual}}
+ */
+export const goodToLine = (confianza, probActual, margenMinimo = MARGEN_MINIMO) => {
+  const ejecutable = margen(confianza, probActual) >= margenMinimo;
+  if (ejecutable) {
+    return { ejecutable: true, probActual, necesita: null, cuotaNecesaria: null, cuotaActual: 1 / probActual };
+  }
+  // La probabilidad de mercado tiene que BAJAR hasta que el margen alcance
+  // el minimo. Si nunca alcanza, no hay buen precio: se descarta.
+  const necesita = confianza - margenMinimo;
+  if (necesita <= 0 || necesita >= 1) {
+    return { ejecutable: false, probActual, necesita: null, cuotaNecesaria: null, cuotaActual: 1 / probActual, inalcanzable: true };
+  }
+  return {
+    ejecutable: false,
+    probActual,
+    necesita,
+    cuotaNecesaria: 1 / necesita,
+    cuotaActual: 1 / probActual,
+  };
+};

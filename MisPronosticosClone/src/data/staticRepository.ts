@@ -77,6 +77,14 @@ interface AnalisisFila {
   cambioFavorito: boolean;
   lineaGoles: number | null;
   cuotaGoles: number | null;
+  goodToLine: {
+    ejecutable: boolean;
+    probActual: number;
+    necesita: number | null;
+    cuotaNecesaria: number | null;
+    cuotaActual: number;
+    inalcanzable?: boolean;
+  } | null;
 }
 
 interface AnalisisStats {

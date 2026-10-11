@@ -30,4 +30,4 @@ MisPronosticosClone/android/.gradle/
 MisPronosticosClone/android/app/google-services.json
 
 # esto SÍ se versiona:
-!server/public/picks.json
+!server/public/picks.jsonserver/data/odds-historicas.json

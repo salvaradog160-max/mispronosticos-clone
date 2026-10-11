@@ -29,7 +29,9 @@ const NOMBRE = { H: 'local', D: 'empate', A: 'visitante' };
  */
 export const LIGAS_SIN_CALIBRACION = new Set(['mex.1', 'bra.1', 'usa.1', 'arg.1', 'col.1', 'chi.1']);
 
-export const analizar = (partido, probs) => {
+import { goodToLine } from './valor.mjs';
+
+export const analizar = (partido, probs, confianza = null) => {
   const o = partido.odds;
   const actual = o ? probs1x2(o.H, o.D, o.A) : null;
   const apertura = o?.apertura?.H ? probs1x2(o.apertura.H, o.apertura.D, o.apertura.A) : null;
@@ -79,5 +81,9 @@ export const analizar = (partido, probs) => {
 
     lineaGoles: o?.line ?? null,
     cuotaGoles: o?.over ?? null,
+
+    // A que precio volveria a valer. `confianza` viene de la tabla
+    // calibrada segun la probabilidad de mercado actual.
+    goodToLine: confianza === null ? null : goodToLine(confianza, cuotaProbAhora),
   };
 };

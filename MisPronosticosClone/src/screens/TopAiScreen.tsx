@@ -151,6 +151,22 @@ export default function TopAiScreen({ config = DEFAULTS }: Props) {
             </Text>
           </View>
 
+          {item.goodToLine && !item.goodToLine.ejecutable ? (
+            <View style={styles.gtl}>
+              <Text style={styles.gtlTexto}>
+                {item.goodToLine.inalcanzable
+                  ? 'Sin buen precio posible a este nivel de acierto'
+                  : `Vuelve a valer si la cuota llega a ${item.goodToLine.cuotaNecesaria!.toFixed(2)} (ahora ${item.goodToLine.cuotaActual.toFixed(2)})`}
+              </Text>
+            </View>
+          ) : item.goodToLine?.ejecutable ? (
+            <View style={[styles.gtl, styles.gtlOk]}>
+              <Text style={styles.gtlTextoOk}>
+                Cumple el margen a cuota {item.goodToLine.cuotaActual.toFixed(2)}
+              </Text>
+            </View>
+          ) : null}
+
           {item.cambioFavorito ? (
             <Text style={styles.giro}>El favorito cambió desde la apertura</Text>
           ) : null}
@@ -207,6 +223,10 @@ const styles = StyleSheet.create({
   ok: { color: palette.accent },
   avisoColor: { color: '#ffb84d' },
   giro: { color: '#ffb84d', fontSize: 12, marginTop: 6, fontWeight: '600' },
+  gtl: { marginTop: 6, padding: spacing.xs, backgroundColor: 'rgba(255,184,77,0.10)', borderRadius: radius.sm },
+  gtlOk: { backgroundColor: 'rgba(0,224,184,0.10)' },
+  gtlTexto: { color: '#ffb84d', fontSize: 12 },
+  gtlTextoOk: { color: palette.accent, fontSize: 12 },
   goles: { color: palette.textMuted, fontSize: 12, marginTop: 4 },
   vacio: { color: palette.textMuted, textAlign: 'center', marginTop: spacing.xl, lineHeight: 20 },
   loader: { marginTop: spacing.xl },

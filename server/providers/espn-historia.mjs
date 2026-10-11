@@ -55,6 +55,7 @@ export const temporada = async (liga, anio, limite = 400) => {
     if (!Number.isFinite(hg) || !Number.isFinite(ag)) continue;
 
     out.push({
+      eventId: String(event.id),
       league: liga,
       leagueName: NOMBRES[liga] ?? liga,
       season: String(anio),

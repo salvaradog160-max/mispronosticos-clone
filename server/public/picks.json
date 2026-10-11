@@ -1,11 +1,11 @@
 {
-  "generado": "2026-10-11T02:59:07.626Z",
-  "anterior": "2026-10-11T02:58:54.185Z",
+  "generado": "2026-10-11T03:25:42.311Z",
+  "anterior": "2026-10-11T03:25:29.187Z",
   "fuente": "football-data.co.uk + ESPN (sin claves)",
   "calibracion": {
-    "partidos": 33882,
-    "consensoAcierto": 0.5209876543209877,
-    "consensoN": 22828,
+    "partidos": 35973,
+    "consensoAcierto": 0.520690091534146,
+    "consensoN": 23707,
     "nota": "Acierto empirico de los picks de consenso, medido sobre partidos ya jugados."
   },
   "mercados": {
@@ -398,9 +398,9 @@
         "partido": "Bahia vs Mirassol",
         "mercado": "TOTAL",
         "seleccion": "Más de 2.5 goles",
-        "cuota": 1.6451612903225805,
+        "cuota": 1.6666666666666665,
         "confianza": 59,
-        "necesita": 61
+        "necesita": 60
       },
       {
         "partido": "Atlético Bucaramanga vs Águilas Doradas",
@@ -509,7 +509,14 @@
       "movimiento": -5.86,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.6896551724137931
+      "cuotaGoles": 1.6896551724137931,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.42498004788507576,
+        "necesita": 0.38,
+        "cuotaNecesaria": 2.6315789473684212,
+        "cuotaActual": 2.3530516431924884
+      }
     },
     {
       "partido": "Atlético Bucaramanga vs Águilas Doradas",
@@ -527,7 +534,14 @@
       "movimiento": -5.23,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 2.05
+      "cuotaGoles": 2.05,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.44543882843486227,
+        "necesita": 0.38,
+        "cuotaNecesaria": 2.6315789473684212,
+        "cuotaActual": 2.2449771689497715
+      }
     },
     {
       "partido": "Talleres (Córdoba) vs Independiente",
@@ -545,7 +559,14 @@
       "movimiento": 3.77,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 2.3
+      "cuotaGoles": 2.3,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.4280649926144756,
+        "necesita": 0.38,
+        "cuotaNecesaria": 2.6315789473684212,
+        "cuotaActual": 2.336093857832988
+      }
     },
     {
       "partido": "St. Louis CITY SC vs LA Galaxy",
@@ -563,7 +584,14 @@
       "movimiento": 3.51,
       "cambioFavorito": false,
       "lineaGoles": 3.5,
-      "cuotaGoles": 1.9523809523809523
+      "cuotaGoles": 1.9523809523809523,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.6087425796006477,
+        "necesita": 0.69,
+        "cuotaNecesaria": 1.4492753623188408,
+        "cuotaActual": 1.6427304964539005
+      }
     },
     {
       "partido": "Padova vs Carrarese",
@@ -581,7 +609,14 @@
       "movimiento": 3.46,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.8695652173913042
+      "cuotaGoles": 1.8695652173913042,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.4939678284182306,
+        "necesita": 0.42,
+        "cuotaNecesaria": 2.380952380952381,
+        "cuotaActual": 2.0244233378561733
+      }
     },
     {
       "partido": "FC Andorra vs Castellón",
@@ -599,7 +634,14 @@
       "movimiento": -2.66,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.6666666666666665
+      "cuotaGoles": 1.6666666666666665,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.4225721784776903,
+        "necesita": 0.38,
+        "cuotaNecesaria": 2.6315789473684212,
+        "cuotaActual": 2.3664596273291925
+      }
     },
     {
       "partido": "Excelsior vs FC Groningen",
@@ -617,7 +659,14 @@
       "movimiento": 2.48,
       "cambioFavorito": true,
       "lineaGoles": 3.5,
-      "cuotaGoles": 2.3
+      "cuotaGoles": 2.3,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.3751889549531392,
+        "necesita": 0.32,
+        "cuotaNecesaria": 3.125,
+        "cuotaActual": 2.66532366371206
+      }
     },
     {
       "partido": "Boyacá Chicó FC vs Cúcuta Deportivo",
@@ -635,7 +684,14 @@
       "movimiento": -2.38,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 2.15
+      "cuotaGoles": 2.15,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.3967049642315196,
+        "necesita": 0.32,
+        "cuotaNecesaria": 3.125,
+        "cuotaActual": 2.5207650273224047
+      }
     },
     {
       "partido": "Atlético-MG vs Santos",
@@ -653,7 +709,14 @@
       "movimiento": -1.92,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.9090909090909092
+      "cuotaGoles": 1.9090909090909092,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.4491671453187822,
+        "necesita": 0.38,
+        "cuotaNecesaria": 2.6315789473684212,
+        "cuotaActual": 2.226342710997443
+      }
     },
     {
       "partido": "Grêmio vs Internacional",
@@ -671,7 +734,14 @@
       "movimiento": 1.87,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.9523809523809523
+      "cuotaGoles": 1.9523809523809523,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.3952604739526047,
+        "necesita": 0.32,
+        "cuotaNecesaria": 3.125,
+        "cuotaActual": 2.52997723248166
+      }
     },
     {
       "partido": "Nice vs Strasbourg",
@@ -689,7 +759,14 @@
       "movimiento": -1.83,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.6666666666666665
+      "cuotaGoles": 1.6666666666666665,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.4082652570879385,
+        "necesita": 0.38,
+        "cuotaNecesaria": 2.6315789473684212,
+        "cuotaActual": 2.449387947269303
+      }
     },
     {
       "partido": "Lazio vs Monza",
@@ -707,7 +784,14 @@
       "movimiento": 1.78,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.8333333333333335
+      "cuotaGoles": 1.8695652173913042,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.5705705705705706,
+        "necesita": 0.5399999999999999,
+        "cuotaNecesaria": 1.851851851851852,
+        "cuotaActual": 1.7526315789473683
+      }
     },
     {
       "partido": "Lanús vs Vélez Sarsfield",
@@ -725,7 +809,14 @@
       "movimiento": -1.74,
       "cambioFavorito": false,
       "lineaGoles": 1.5,
-      "cuotaGoles": 1.5
+      "cuotaGoles": 1.5,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.42274699767887775,
+        "necesita": 0.38,
+        "cuotaNecesaria": 2.6315789473684212,
+        "cuotaActual": 2.365481021723562
+      }
     },
     {
       "partido": "Arouca vs Estrela",
@@ -743,7 +834,14 @@
       "movimiento": 1.72,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.8333333333333335
+      "cuotaGoles": 1.8333333333333335,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.45873302307911484,
+        "necesita": 0.42,
+        "cuotaNecesaria": 2.380952380952381,
+        "cuotaActual": 2.1799171842650105
+      }
     },
     {
       "partido": "Atalanta vs Venezia",
@@ -761,7 +859,14 @@
       "movimiento": 1.69,
       "cambioFavorito": false,
       "lineaGoles": 3.5,
-      "cuotaGoles": 2.35
+      "cuotaGoles": 2.35,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.600516414607156,
+        "necesita": 0.69,
+        "cuotaNecesaria": 1.4492753623188408,
+        "cuotaActual": 1.6652334152334154
+      }
     },
     {
       "partido": "América de Cali vs Independiente Medellín",
@@ -779,7 +884,14 @@
       "movimiento": 1.59,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.9090909090909092
+      "cuotaGoles": 1.9090909090909092,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.5150371767839307,
+        "necesita": 0.47000000000000003,
+        "cuotaNecesaria": 2.127659574468085,
+        "cuotaActual": 1.9416074121956477
+      }
     },
     {
       "partido": "Burgos vs Granada",
@@ -797,7 +909,14 @@
       "movimiento": 1.57,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 2.1
+      "cuotaGoles": 2.1,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.39922282441967477,
+        "necesita": 0.32,
+        "cuotaNecesaria": 3.125,
+        "cuotaActual": 2.5048668032786887
+      }
     },
     {
       "partido": "Mallorca vs Las Palmas",
@@ -815,7 +934,14 @@
       "movimiento": 1.55,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.7692307692307692
+      "cuotaGoles": 1.7692307692307692,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.6024590163934426,
+        "necesita": 0.69,
+        "cuotaNecesaria": 1.4492753623188408,
+        "cuotaActual": 1.6598639455782314
+      }
     },
     {
       "partido": "Aberdeen vs St Johnstone",
@@ -833,7 +959,14 @@
       "movimiento": 1.32,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.9090909090909092
+      "cuotaGoles": 1.9090909090909092,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.4285714285714286,
+        "necesita": 0.38,
+        "cuotaNecesaria": 2.6315789473684212,
+        "cuotaActual": 2.333333333333333
+      }
     },
     {
       "partido": "Rosario Central vs Independiente Rivadavia",
@@ -851,7 +984,14 @@
       "movimiento": -1.3,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 2.25
+      "cuotaGoles": 2.25,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.4733974940984202,
+        "necesita": 0.42,
+        "cuotaNecesaria": 2.380952380952381,
+        "cuotaActual": 2.1123897199846566
+      }
     },
     {
       "partido": "Chapecoense vs Athletico-PR",
@@ -869,7 +1009,14 @@
       "movimiento": 1.3,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.8333333333333335
+      "cuotaGoles": 1.8333333333333335,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.4778465511867124,
+        "necesita": 0.42,
+        "cuotaNecesaria": 2.380952380952381,
+        "cuotaActual": 2.0927220203149752
+      }
     },
     {
       "partido": "Almería vs Leganés",
@@ -887,7 +1034,14 @@
       "movimiento": 1.29,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.6896551724137931
+      "cuotaGoles": 1.6896551724137931,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.5757032326052192,
+        "necesita": 0.5399999999999999,
+        "cuotaNecesaria": 1.851851851851852,
+        "cuotaActual": 1.7370060534048395
+      }
     },
     {
       "partido": "Universidad de Chile vs Ñublense",
@@ -905,7 +1059,14 @@
       "movimiento": -1.26,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.7142857142857144
+      "cuotaGoles": 1.7142857142857144,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.6115259299484116,
+        "necesita": 0.69,
+        "cuotaNecesaria": 1.4492753623188408,
+        "cuotaActual": 1.6352536352536353
+      }
     },
     {
       "partido": "Motherwell vs Celtic",
@@ -923,7 +1084,14 @@
       "movimiento": -1.25,
       "cambioFavorito": false,
       "lineaGoles": 3.5,
-      "cuotaGoles": 2.15
+      "cuotaGoles": 2.15,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.5914154978613348,
+        "necesita": 0.5399999999999999,
+        "cuotaNecesaria": 1.851851851851852,
+        "cuotaActual": 1.6908586325792618
+      }
     },
     {
       "partido": "Torino vs Udinese",
@@ -941,7 +1109,14 @@
       "movimiento": -0.87,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 2.1
+      "cuotaGoles": 2.1,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.4025348276945638,
+        "necesita": 0.38,
+        "cuotaNecesaria": 2.6315789473684212,
+        "cuotaActual": 2.4842570908144674
+      }
     },
     {
       "partido": "Levante vs Sevilla",
@@ -959,7 +1134,14 @@
       "movimiento": 0.71,
       "cambioFavorito": true,
       "lineaGoles": 2.5,
-      "cuotaGoles": 2.05
+      "cuotaGoles": 2.05,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.36144578313253006,
+        "necesita": 0.32,
+        "cuotaNecesaria": 3.125,
+        "cuotaActual": 2.766666666666667
+      }
     },
     {
       "partido": "FC Utrecht vs Willem II",
@@ -977,7 +1159,14 @@
       "movimiento": -0.71,
       "cambioFavorito": false,
       "lineaGoles": 3.5,
-      "cuotaGoles": 2.15
+      "cuotaGoles": 2.15,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.6329039812646371,
+        "necesita": 0.69,
+        "cuotaNecesaria": 1.4492753623188408,
+        "cuotaActual": 1.5800185013876038
+      }
     },
     {
       "partido": "Pumas UNAM vs Cruz Azul",
@@ -995,7 +1184,14 @@
       "movimiento": 0.59,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.625
+      "cuotaGoles": 1.625,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.4619823173569102,
+        "necesita": 0.42,
+        "cuotaNecesaria": 2.380952380952381,
+        "cuotaActual": 2.1645850120870267
+      }
     },
     {
       "partido": "Palmeiras vs Corinthians",
@@ -1013,7 +1209,14 @@
       "movimiento": -0.59,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 2.1
+      "cuotaGoles": 2.1,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.5757569053439674,
+        "necesita": 0.5399999999999999,
+        "cuotaNecesaria": 1.851851851851852,
+        "cuotaActual": 1.7368441276489464
+      }
     },
     {
       "partido": "Sassuolo vs AC Milan",
@@ -1031,7 +1234,14 @@
       "movimiento": -0.58,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.7407407407407407
+      "cuotaGoles": 1.7407407407407407,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.5131239434113355,
+        "necesita": 0.47000000000000003,
+        "cuotaNecesaria": 2.127659574468085,
+        "cuotaActual": 1.9488468874631526
+      }
     },
     {
       "partido": "Everton CD vs La Serena",
@@ -1049,7 +1259,39 @@
       "movimiento": 0.57,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.625
+      "cuotaGoles": 1.625,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.5418534994594403,
+        "necesita": 0.47000000000000003,
+        "cuotaNecesaria": 2.127659574468085,
+        "cuotaActual": 1.8455172864946194
+      }
+    },
+    {
+      "partido": "Atlético de San Luis vs Santos",
+      "liga": "Liga MX",
+      "calibracion": "europea",
+      "kickoff": "2026-10-11T23:00Z",
+      "favoritoMercado": "H",
+      "ladoMercado": "local",
+      "probMercado": 0.483,
+      "cuotaMercado": 1.95,
+      "cuotaApertura": 1.91,
+      "ladoModelo": "local",
+      "probModelo": 0.5288,
+      "coincide": true,
+      "movimiento": -0.56,
+      "cambioFavorito": false,
+      "lineaGoles": 2.5,
+      "cuotaGoles": 1.625,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.4829514781144054,
+        "necesita": 0.42,
+        "cuotaNecesaria": 2.380952380952381,
+        "cuotaActual": 2.070601386094344
+      }
     },
     {
       "partido": "Como vs AS Roma",
@@ -1067,7 +1309,14 @@
       "movimiento": 0.52,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.6451612903225805
+      "cuotaGoles": 1.6451612903225805,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.37955371043072134,
+        "necesita": 0.32,
+        "cuotaNecesaria": 3.125,
+        "cuotaActual": 2.6346732294230244
+      }
     },
     {
       "partido": "FC Famalicao vs Alverca",
@@ -1085,7 +1334,14 @@
       "movimiento": 0.52,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.9523809523809523
+      "cuotaGoles": 1.9523809523809523,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.5021501819384717,
+        "necesita": 0.47000000000000003,
+        "cuotaNecesaria": 2.127659574468085,
+        "cuotaActual": 1.9914361001317522
+      }
     },
     {
       "partido": "Gimnasia (Mendoza) vs Newell's Old Boys",
@@ -1103,7 +1359,14 @@
       "movimiento": 0.52,
       "cambioFavorito": false,
       "lineaGoles": 1.5,
-      "cuotaGoles": 1.5
+      "cuotaGoles": 1.5,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.4167587662011454,
+        "necesita": 0.38,
+        "cuotaNecesaria": 2.6315789473684212,
+        "cuotaActual": 2.39946962391514
+      }
     },
     {
       "partido": "Atlético Junior vs Deportivo Pereira",
@@ -1121,7 +1384,14 @@
       "movimiento": 0.47,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.7142857142857144
+      "cuotaGoles": 1.7142857142857144,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.6990376202974629,
+        "necesita": 0.69,
+        "cuotaNecesaria": 1.4492753623188408,
+        "cuotaActual": 1.4305381727158948
+      }
     },
     {
       "partido": "Catanzaro vs Mantova",
@@ -1139,7 +1409,14 @@
       "movimiento": 0.46,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.7407407407407407
+      "cuotaGoles": 1.7407407407407407,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.40136395547086556,
+        "necesita": 0.38,
+        "cuotaNecesaria": 2.6315789473684212,
+        "cuotaActual": 2.491504247876062
+      }
     },
     {
       "partido": "San Lorenzo vs Deportivo Riestra",
@@ -1157,7 +1434,14 @@
       "movimiento": 0.46,
       "cambioFavorito": false,
       "lineaGoles": 1.5,
-      "cuotaGoles": 1.6451612903225805
+      "cuotaGoles": 1.6451612903225805,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.38596491228070173,
+        "necesita": 0.32,
+        "cuotaNecesaria": 3.125,
+        "cuotaActual": 2.5909090909090913
+      }
     },
     {
       "partido": "Flamengo vs Fluminense",
@@ -1175,7 +1459,14 @@
       "movimiento": -0.46,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.6896551724137931
+      "cuotaGoles": 1.6896551724137931,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.6464088397790055,
+        "necesita": 0.69,
+        "cuotaNecesaria": 1.4492753623188408,
+        "cuotaActual": 1.547008547008547
+      }
     },
     {
       "partido": "Deportes Concepcion vs Unión La Calera",
@@ -1193,7 +1484,14 @@
       "movimiento": -0.46,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 2.15
+      "cuotaGoles": 2.15,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.4632617313542916,
+        "necesita": 0.42,
+        "cuotaNecesaria": 2.380952380952381,
+        "cuotaActual": 2.158606965174129
+      }
     },
     {
       "partido": "Coquimbo Unido vs Colo Colo",
@@ -1211,7 +1509,14 @@
       "movimiento": 0.41,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.9090909090909092
+      "cuotaGoles": 1.9090909090909092,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.419124218051832,
+        "necesita": 0.38,
+        "cuotaNecesaria": 2.6315789473684212,
+        "cuotaActual": 2.3859275053304905
+      }
     },
     {
       "partido": "Bahia vs Mirassol",
@@ -1229,7 +1534,14 @@
       "movimiento": -0.36,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.6451612903225805
+      "cuotaGoles": 1.6666666666666665,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.5499999999999999,
+        "necesita": 0.47000000000000003,
+        "cuotaNecesaria": 2.127659574468085,
+        "cuotaActual": 1.8181818181818183
+      }
     },
     {
       "partido": "Deportes Limache vs Palestino",
@@ -1247,7 +1559,14 @@
       "movimiento": -0.33,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.5714285714285714
+      "cuotaGoles": 1.5714285714285714,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.4272851830103739,
+        "necesita": 0.38,
+        "cuotaNecesaria": 2.6315789473684212,
+        "cuotaActual": 2.3403573064590013
+      }
     },
     {
       "partido": "Jaguares de Córdoba vs Deportes Tolima",
@@ -1265,7 +1584,14 @@
       "movimiento": 0.25,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.9090909090909092
+      "cuotaGoles": 1.9090909090909092,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.5242174116181281,
+        "necesita": 0.47000000000000003,
+        "cuotaNecesaria": 2.127659574468085,
+        "cuotaActual": 1.9076054664289956
+      }
     },
     {
       "partido": "Cagliari vs Juventus",
@@ -1283,25 +1609,14 @@
       "movimiento": 0.21,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 2
-    },
-    {
-      "partido": "Atlético de San Luis vs Santos",
-      "liga": "Liga MX",
-      "calibracion": "europea",
-      "kickoff": "2026-10-11T23:00Z",
-      "favoritoMercado": "H",
-      "ladoMercado": "local",
-      "probMercado": 0.4865,
-      "cuotaMercado": 1.95,
-      "cuotaApertura": 1.91,
-      "ladoModelo": "local",
-      "probModelo": 0.5288,
-      "coincide": true,
-      "movimiento": -0.21,
-      "cambioFavorito": false,
-      "lineaGoles": 2.5,
-      "cuotaGoles": 1.625
+      "cuotaGoles": 2,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.5994986413913617,
+        "necesita": 0.5399999999999999,
+        "cuotaNecesaria": 1.851851851851852,
+        "cuotaActual": 1.6680604941474506
+      }
     },
     {
       "partido": "Troyes vs Marseille",
@@ -1319,7 +1634,14 @@
       "movimiento": -0.2,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.5714285714285714
+      "cuotaGoles": 1.5714285714285714,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.49127751711217205,
+        "necesita": 0.42,
+        "cuotaNecesaria": 2.380952380952381,
+        "cuotaActual": 2.035509391673775
+      }
     },
     {
       "partido": "Besiktas vs Kocaelispor",
@@ -1337,25 +1659,14 @@
       "movimiento": -0.2,
       "cambioFavorito": false,
       "lineaGoles": 3.5,
-      "cuotaGoles": 2.3
-    },
-    {
-      "partido": "Racing Club vs Belgrano (Córdoba)",
-      "liga": "Liga Profesional",
-      "calibracion": "europea",
-      "kickoff": "2026-10-11T22:15Z",
-      "favoritoMercado": "H",
-      "ladoMercado": "local",
-      "probMercado": 0.401,
-      "cuotaMercado": 2.35,
-      "cuotaApertura": 2.35,
-      "ladoModelo": "local",
-      "probModelo": 0.5859,
-      "coincide": true,
-      "movimiento": 0.18,
-      "cambioFavorito": false,
-      "lineaGoles": 2.5,
-      "cuotaGoles": 2.35
+      "cuotaGoles": 2.35,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.7555033754035808,
+        "necesita": 0.69,
+        "cuotaNecesaria": 1.4492753623188408,
+        "cuotaActual": 1.3236208236208238
+      }
     },
     {
       "partido": "Lecce vs Bologna",
@@ -1373,7 +1684,14 @@
       "movimiento": 0.15,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 2.1
+      "cuotaGoles": 2.1,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.4875346260387812,
+        "necesita": 0.42,
+        "cuotaNecesaria": 2.380952380952381,
+        "cuotaActual": 2.0511363636363633
+      }
     },
     {
       "partido": "SC Freiburg vs Schalke 04",
@@ -1391,7 +1709,14 @@
       "movimiento": 0.14,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.625
+      "cuotaGoles": 1.625,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.5752512904102146,
+        "necesita": 0.5399999999999999,
+        "cuotaNecesaria": 1.851851851851852,
+        "cuotaActual": 1.738370720188902
+      }
     },
     {
       "partido": "Platense vs Argentinos Juniors",
@@ -1409,7 +1734,14 @@
       "movimiento": -0.09,
       "cambioFavorito": false,
       "lineaGoles": 1.5,
-      "cuotaGoles": 1.5714285714285714
+      "cuotaGoles": 1.5714285714285714,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.372164004476549,
+        "necesita": 0.32,
+        "cuotaNecesaria": 3.125,
+        "cuotaActual": 2.686987424822307
+      }
     },
     {
       "partido": "Pachuca vs Necaxa",
@@ -1427,7 +1759,14 @@
       "movimiento": -0.08,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.625
+      "cuotaGoles": 1.625,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.5562067128396376,
+        "necesita": 0.5399999999999999,
+        "cuotaNecesaria": 1.851851851851852,
+        "cuotaActual": 1.7978927203065136
+      }
     },
     {
       "partido": "Tenerife vs Girona",
@@ -1445,7 +1784,39 @@
       "movimiento": 0,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 2.1
+      "cuotaGoles": 2.1,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.3658587987355111,
+        "necesita": 0.32,
+        "cuotaNecesaria": 3.125,
+        "cuotaActual": 2.733294930875576
+      }
+    },
+    {
+      "partido": "Racing Club vs Belgrano (Córdoba)",
+      "liga": "Liga Profesional",
+      "calibracion": "europea",
+      "kickoff": "2026-10-11T22:15Z",
+      "favoritoMercado": "H",
+      "ladoMercado": "local",
+      "probMercado": 0.4012,
+      "cuotaMercado": 2.35,
+      "cuotaApertura": 2.35,
+      "ladoModelo": "local",
+      "probModelo": 0.5859,
+      "coincide": true,
+      "movimiento": 0,
+      "cambioFavorito": false,
+      "lineaGoles": 2.5,
+      "cuotaGoles": 2.3,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.4012133468149647,
+        "necesita": 0.38,
+        "cuotaNecesaria": 2.6315789473684212,
+        "cuotaActual": 2.492439516129032
+      }
     },
     {
       "partido": "Coritiba vs Botafogo",
@@ -1463,7 +1834,14 @@
       "movimiento": 0,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.7142857142857144
+      "cuotaGoles": 1.7142857142857144,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.37227640589333894,
+        "necesita": 0.32,
+        "cuotaNecesaria": 3.125,
+        "cuotaActual": 2.686176142697881
+      }
     },
     {
       "partido": "Millonarios vs Once Caldas",
@@ -1481,7 +1859,14 @@
       "movimiento": 0,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.8695652173913042
+      "cuotaGoles": 1.8695652173913042,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.543918918918919,
+        "necesita": 0.47000000000000003,
+        "cuotaNecesaria": 2.127659574468085,
+        "cuotaActual": 1.8385093167701863
+      }
     },
     {
       "partido": "Independiente Santa Fe vs Jaguares de Córdoba",
@@ -1499,16 +1884,23 @@
       "movimiento": 0,
       "cambioFavorito": false,
       "lineaGoles": 2.5,
-      "cuotaGoles": 1.8
+      "cuotaGoles": 1.8,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.6956521739130435,
+        "necesita": 0.69,
+        "cuotaNecesaria": 1.4492753623188408,
+        "cuotaActual": 1.4375
+      }
     }
   ],
   "estadisticas": {
-    "partidosHistorico": 33882,
+    "partidosHistorico": 35973,
     "ligas": 14,
-    "derivaMediana": 0.01765796711042711,
-    "derivaP90": 0.04945731150721738,
-    "cambioFavorito": 0.05321409598016646,
-    "consensoAcierto": 0.5209876543209877,
+    "derivaMediana": 0.023405420417158613,
+    "derivaP90": null,
+    "cambioFavorito": null,
+    "consensoAcierto": 0.520690091534146,
     "margenCasa": -0.0457,
     "nota": "El margen de la casa se mide como ROI de apostar todos los picks de consenso."
   },
@@ -1534,12 +1926,12 @@
       "isSpecial": false,
       "isPremium": false,
       "probMercado": 0.601,
-      "nMuestra": 5320,
+      "nMuestra": 5212,
       "rango": [
-        73.1,
+        73.2,
         75.5
       ],
-      "createdAt": "2026-10-11T02:59:07.551Z",
+      "createdAt": "2026-10-11T03:25:42.064Z",
       "roiUnit": 0.14,
       "margen": 0.09087719298245611,
       "breakEven": 0.6491228070175439,
@@ -1560,12 +1952,12 @@
       "isSpecial": false,
       "isPremium": false,
       "probMercado": 0.633,
-      "nMuestra": 5320,
+      "nMuestra": 5212,
       "rango": [
-        73.1,
+        73.2,
         75.5
       ],
-      "createdAt": "2026-10-11T02:59:07.551Z",
+      "createdAt": "2026-10-11T03:25:42.064Z",
       "roiUnit": 0.10999999999999999,
       "margen": 0.07333333333333336,
       "breakEven": 0.6666666666666666,
@@ -1586,12 +1978,12 @@
       "isSpecial": false,
       "isPremium": false,
       "probMercado": 0.602,
-      "nMuestra": 5320,
+      "nMuestra": 5212,
       "rango": [
-        73.1,
+        73.2,
         75.5
       ],
-      "createdAt": "2026-10-11T02:59:07.551Z",
+      "createdAt": "2026-10-11T03:25:42.064Z",
       "roiUnit": 0.1628571428571428,
       "margen": 0.10363636363636364,
       "breakEven": 0.6363636363636364,
@@ -1612,12 +2004,12 @@
       "isSpecial": false,
       "isPremium": false,
       "probMercado": 0.646,
-      "nMuestra": 5320,
+      "nMuestra": 5212,
       "rango": [
-        73.1,
+        73.2,
         75.5
       ],
-      "createdAt": "2026-10-11T02:59:07.551Z",
+      "createdAt": "2026-10-11T03:25:42.064Z",
       "roiUnit": 0.07636363636363636,
       "margen": 0.05249999999999999,
       "breakEven": 0.6875,
@@ -1638,12 +2030,12 @@
       "isSpecial": false,
       "isPremium": false,
       "probMercado": 0.609,
-      "nMuestra": 5320,
+      "nMuestra": 5212,
       "rango": [
-        73.1,
+        73.2,
         75.5
       ],
-      "createdAt": "2026-10-11T02:59:07.551Z",
+      "createdAt": "2026-10-11T03:25:42.064Z",
       "roiUnit": 0.12947368421052619,
       "margen": 0.08482758620689645,
       "breakEven": 0.6551724137931035,
@@ -1664,12 +2056,12 @@
       "isSpecial": false,
       "isPremium": false,
       "probMercado": 0.612,
-      "nMuestra": 5320,
+      "nMuestra": 5212,
       "rango": [
-        73.1,
+        73.2,
         75.5
       ],
-      "createdAt": "2026-10-11T02:59:07.551Z",
+      "createdAt": "2026-10-11T03:25:42.064Z",
       "roiUnit": 0.11948717948717946,
       "margen": 0.0789830508474576,
       "breakEven": 0.6610169491525424,

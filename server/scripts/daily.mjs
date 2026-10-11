@@ -14,6 +14,7 @@ import { fetchHistory, impliedProbs } from '../providers/footballdata.mjs';
 import { buildRatings, predictMatch } from '../engine/ratings.mjs';
 import { normalizeTeam, buildConsensusPicks } from '../engine/calibration.mjs';
 import { buildMercadoPicks } from '../engine/mercados.mjs';
+import { lookupBucket } from '../engine/calibration.mjs';
 import { detectarMovimiento } from '../engine/movimiento.mjs';
 import { anotarValor } from '../engine/valor.mjs';
 import { analizar } from '../engine/analisis.mjs';
@@ -214,7 +215,14 @@ async function buildPicks(buckets, ratings) {
     .map(f => {
       const p = f.prediction.oneXTwo;
       const total = p.H + p.D + p.A;
-      return analizar({ ...f, leagueKey: f.leagueKey }, total > 0 ? { H: p.H / total, D: p.D / total, A: p.A / total } : null);
+      const probs = total > 0 ? { H: p.H / total, D: p.D / total, A: p.A / total } : null;
+      if (!probs) return null;
+      // overround (~1.05) es el valor mas alto del objeto: si no se
+      // excluye, gana el sort y se busca un tramo para una probabilidad
+      // de 105%. Por eso H/D/A van aparte.
+      const lado = ['H', 'D', 'A'].sort((a, b) => f.market[b] - f.market[a])[0];
+      const cal = lookupBucket(calibration.buckets, f.market[lado]);
+      return analizar(f, probs, cal ? cal.confidence / 100 : null);
     })
     .filter(Boolean)
     .sort((a, b) => Math.abs(b.movimiento ?? 0) - Math.abs(a.movimiento ?? 0));

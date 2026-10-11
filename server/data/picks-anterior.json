@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-11T02:59:07.626Z",
+  "generado": "2026-10-11T03:25:42.311Z",
   "picks": [
     {
       "id": "401875005-H",
@@ -16,12 +16,12 @@
       "isSpecial": false,
       "isPremium": false,
       "probMercado": 0.601,
-      "nMuestra": 5320,
+      "nMuestra": 5212,
       "rango": [
-        73.1,
+        73.2,
         75.5
       ],
-      "createdAt": "2026-10-11T02:59:07.551Z",
+      "createdAt": "2026-10-11T03:25:42.064Z",
       "roiUnit": 0.14,
       "margen": 0.09087719298245611,
       "breakEven": 0.6491228070175439,
@@ -42,12 +42,12 @@
       "isSpecial": false,
       "isPremium": false,
       "probMercado": 0.633,
-      "nMuestra": 5320,
+      "nMuestra": 5212,
       "rango": [
-        73.1,
+        73.2,
         75.5
       ],
-      "createdAt": "2026-10-11T02:59:07.551Z",
+      "createdAt": "2026-10-11T03:25:42.064Z",
       "roiUnit": 0.10999999999999999,
       "margen": 0.07333333333333336,
       "breakEven": 0.6666666666666666,
@@ -68,12 +68,12 @@
       "isSpecial": false,
       "isPremium": false,
       "probMercado": 0.602,
-      "nMuestra": 5320,
+      "nMuestra": 5212,
       "rango": [
-        73.1,
+        73.2,
         75.5
       ],
-      "createdAt": "2026-10-11T02:59:07.551Z",
+      "createdAt": "2026-10-11T03:25:42.064Z",
       "roiUnit": 0.1628571428571428,
       "margen": 0.10363636363636364,
       "breakEven": 0.6363636363636364,
@@ -94,12 +94,12 @@
       "isSpecial": false,
       "isPremium": false,
       "probMercado": 0.646,
-      "nMuestra": 5320,
+      "nMuestra": 5212,
       "rango": [
-        73.1,
+        73.2,
         75.5
       ],
-      "createdAt": "2026-10-11T02:59:07.551Z",
+      "createdAt": "2026-10-11T03:25:42.064Z",
       "roiUnit": 0.07636363636363636,
       "margen": 0.05249999999999999,
       "breakEven": 0.6875,
@@ -120,12 +120,12 @@
       "isSpecial": false,
       "isPremium": false,
       "probMercado": 0.609,
-      "nMuestra": 5320,
+      "nMuestra": 5212,
       "rango": [
-        73.1,
+        73.2,
         75.5
       ],
-      "createdAt": "2026-10-11T02:59:07.551Z",
+      "createdAt": "2026-10-11T03:25:42.064Z",
       "roiUnit": 0.12947368421052619,
       "margen": 0.08482758620689645,
       "breakEven": 0.6551724137931035,
@@ -146,12 +146,12 @@
       "isSpecial": false,
       "isPremium": false,
       "probMercado": 0.612,
-      "nMuestra": 5320,
+      "nMuestra": 5212,
       "rango": [
-        73.1,
+        73.2,
         75.5
       ],
-      "createdAt": "2026-10-11T02:59:07.551Z",
+      "createdAt": "2026-10-11T03:25:42.064Z",
       "roiUnit": 0.11948717948717946,
       "margen": 0.0789830508474576,
       "breakEven": 0.6610169491525424,
