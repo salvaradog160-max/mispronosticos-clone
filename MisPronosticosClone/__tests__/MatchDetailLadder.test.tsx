@@ -60,6 +60,43 @@ const FILA: AnalisisFila = {
     ],
   },
   goodToLine: null,
+  serie: [
+    { market: 'moneyline', side: 'home', line: null, opened: 2.1, current: 2.1, closed: null, movePct: 0, capturedAt: '2026-10-13T12:00:00Z' },
+    { market: 'moneyline', side: 'home', line: null, opened: 2.1, current: 1.95, closed: null, movePct: 3.66, capturedAt: '2026-10-13T13:00:00Z' },
+    { market: 'moneyline', side: 'home', line: null, opened: 2.1, current: 1.95, closed: 1.9, movePct: 5.01, capturedAt: '2026-10-14T18:00:00Z' },
+  ],
+  combinado: {
+    inclina: 'Local',
+    pCombinada: 0.664,
+    confianza: 'media',
+    fuentes: ['modelo', 'base', 'h2h'],
+    tabla: [
+      { lado: 'H', modelo: 0.828, historial: 0.5, combinada: 0.664 },
+      { lado: 'D', modelo: 0.099, historial: 0.358, combinada: 0.229 },
+      { lado: 'A', modelo: 0.073, historial: 0.142, combinada: 0.107 },
+    ],
+    recomendacion: { tipo: '1X', nombre: 'Local o empate', p: 0.893, riesgo: 'bajo', cuotaJusta: 1.12 },
+    pronosticos: [
+      { tipo: '1X', nombre: 'Local o empate', p: 0.893, riesgo: 'bajo', cuotaJusta: 1.12 },
+      { tipo: '1', nombre: 'Gana local', p: 0.664, riesgo: 'medio', cuotaJusta: 1.51 },
+    ],
+    oportunidades: ['Forma últ. 5 General: 13 pts local vs 7 visita. Respalda a Local.'],
+    riesgos: ['El local rinde menos en casa (2.0 vs 2.6 pts por partido).'],
+    serieH2H: ['G', 'G', 'E', 'E', 'G'],
+    h2hPartidos: 5,
+    tendencias: {
+      general: {
+        ou: [
+          { linea: 0.5, over: 100, dev: 0 },
+          { linea: 2.5, over: 60, dev: 0 },
+        ],
+        aa: 70,
+        n: 10,
+      },
+      lv: null,
+      h2h: null,
+    },
+  },
   tiempos: {
     fraccion1T: 0.454,
     primerTiempo: {
@@ -113,4 +150,12 @@ test('el detalle dibuja la escalera de cuota justa por mercado', async () => {
   expect(plano).toContain('GOLES ESPERADOS POR TIEMPO');
   expect(plano).toContain('PRIMER TIEMPO');
   expect(plano).toContain('SEGUNDO TIEMPO');
+
+  // Combinado, cable y H2H real
+  expect(plano).toContain('ANÁLISIS COMBINADO');
+  expect(plano).toContain('Se inclina a');
+  expect(plano).toContain('Local o empate');
+  expect(plano).toContain('CABLE DE LA CUOTA');
+  expect(plano).toContain('apertura');
+  expect(plano).toContain('cierre');
 });

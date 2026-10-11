@@ -18,7 +18,9 @@ import { lookupBucket } from '../engine/calibration.mjs';
 import { detectarMovimiento } from '../engine/movimiento.mjs';
 import { anotarValor } from '../engine/valor.mjs';
 import { analizar } from '../engine/analisis.mjs';
+import { historialDe } from '../engine/historial.mjs';
 import { upcoming, implied, liveNow, standings } from '../providers/espn.mjs';
+import { cargarSeries } from './cargar-serias.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const OUT_DIR = join(ROOT, 'public');
@@ -157,12 +159,66 @@ async function buildRatingsCache() {
   };
   await mkdir(DATA_DIR, { recursive: true });
   await writeFile(cached, JSON.stringify(payload));
+  await guardarHistoria(history);
   log(`ratings listos: ${Object.keys(teams).length} equipos`);
   return payload;
 }
 
+/**
+ * La historia cera de partidos (football-data + america) la necesita el
+ * motor de historial real (cuadros, forma, H2H, tendencias). Se cachea
+ * en data/cache/history.json y se refresca junto a los ratings.
+ */
+const HISTORIA_CACHE = join(DATA_DIR, 'cache', 'history.json');
+let _historiaCacheada = null;
+let _historiaCacheadaA = false;
+
+async function guardarHistoria(history) {
+  await mkdir(join(DATA_DIR, 'cache'), { recursive: true });
+  await writeFile(HISTORIA_CACHE, JSON.stringify({ generado: new Date().toISOString(), history }));
+  log(`historia guardada: ${history.length} partidos`);
+}
+
+async function cargarHistoria() {
+  if (_historiaCacheadaA) return _historiaCacheada;
+  try {
+    const parsed = JSON.parse(await readFile(HISTORIA_CACHE, 'utf8'));
+    if ((parsed.history ?? []).length) {
+      _historiaCacheada = parsed.history;
+      _historiaCacheadaA = true;
+      return parsed.history;
+    }
+  } catch {
+    /* no hay cache */
+  }
+  log('historia no cacheada: descargando...');
+  const matches = await fetchHistory(LEAGUES, RATING_SEASONS);
+  // Historial de america (ESPN): las ligas de america no estan en
+  // football-data, pero espn-historia da sus resultados pasados. Sin
+  // esto el motor de historial (cuadros, forma, H2H) no tiene base
+  // para los partidos de America.
+  const america = [];
+  try {
+    const { historia: historiaAmerica, LIGAS_AMERICAS, ANIOS } = await import('../providers/espn-historia.mjs');
+    for (const liga of LIGAS_AMERICAS) {
+      const partidos = await historiaAmerica(liga, ANIOS);
+      if (partidos.length) {
+        america.push(...partidos);
+        log(`  america ${liga}: ${partidos.length} partidos`);
+      }
+    }
+  } catch (e) {
+    log(`  america fallo: ${e.message}`);
+  }
+  const history = [...matches, ...america].filter(m => Number.isFinite(m.homeScore) && Number.isFinite(m.awayScore));
+  await guardarHistoria(history);
+  _historiaCacheada = history;
+  _historiaCacheadaA = true;
+  return history;
+}
+
 // ---------------------------------------------------------------------- picks
-async function buildPicks(buckets, ratings) {
+async function buildPicks(buckets, ratings, history) {
   // Sin esto, las ligas de america salen dos veces: ya estan en
   // LIGAS_ESPIN y LIGAS_AMERICA las repite.
   const targets = [...new Set([...LIGAS_ESPIN, ...LIGAS_AMERICA])];
@@ -211,6 +267,11 @@ async function buildPicks(buckets, ratings) {
   // con 5 puntos de margen. Medido en ev-backtest.mjs.
   const { rented, descartados } = anotarValor([...picks, ...picksMercado]);
 
+  // El cable del telefono: las series de cuota viven en Postgres. Se
+  // cargan por evento y se pegan a cada fila para que la app dibuje la
+  // apertura -> movimiento -> cierre.
+  const series = await cargarSeries(withData.map(row => row.id));
+
   const analisis = withData
     .map(f => {
       const p = f.prediction.oneXTwo;
@@ -226,6 +287,9 @@ async function buildPicks(buckets, ratings) {
       // Sin esto la tarjeta no puede decir "Over 2.5 a 1.69, el modelo
       // lo pone en 58%", que es justo lo que el usuario pedia.
       const pred = f.prediction;
+      const historial = history
+        ? historialDe(history, f.homeTeam, f.awayTeam, { limite: 5 })
+        : null;
       const conGoles = {
         ...f,
         probOver: pred.over25 ?? null,
@@ -233,6 +297,8 @@ async function buildPicks(buckets, ratings) {
         lambdaAway: pred.lambdaAway ?? null,
         score: f.score ?? null,
         status: f.status ?? null,
+        historial,
+        serie: series?.get(String(f.id)) ?? null,
       };
       return analizar(conGoles, probs, cal ? cal.confidence / 100 : null);
     })
@@ -272,7 +338,8 @@ const roiBacktest = await (async () => {
   }
 })();
 const ratings = await buildRatingsCache();
-const { fixtures, picks, picksMercado, live, mercados, descartados, analisis } = await buildPicks(calibration.buckets, ratings);
+const history = await cargarHistoria();
+const { fixtures, picks, picksMercado, live, mercados, descartados, analisis } = await buildPicks(calibration.buckets, ratings, history);
 
 const todosPicks = [...picks, ...picksMercado];
 const anterior = await leerAnterior();

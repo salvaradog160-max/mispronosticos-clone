@@ -135,6 +135,81 @@ export interface AnalisisFila {
     cuotaActual: number;
     inalcanzable?: boolean;
   } | null;
+
+  /** El cable del telefono: serie temporal de la cuota (apertura -> lecturas -> cierre). */
+  serie?: Array<{
+    market: string;
+    side: string;
+    line: number | null;
+    opened: number | null;
+    current: number | null;
+    closed: number | null;
+    movePct: number | null;
+    capturedAt: string;
+  }> | null;
+
+  /** Analisis combinado: modelo + historial real + H2H (+porciento 50/30/20). */
+  combinado?: {
+    inclina: string | null;
+    pCombinada: number | null;
+    confianza: 'alta' | 'media' | 'baja' | null;
+    fuentes?: string[];
+    pesos?: { modelo: number; base: number; h2h: number };
+    tabla: Array<{ lado: 'H' | 'D' | 'A'; modelo: number; historial: number; combinada: number }>;
+    recomendacion: { tipo: string; nombre: string; p: number; riesgo: string; cuotaJusta: number | null } | null;
+    pronosticos: Array<{ tipo: string; nombre: string; p: number; riesgo: string; cuotaJusta: number | null }>;
+    oportunidades: string[];
+    riesgos: string[];
+    serieH2H?: string[];
+    h2hPartidos?: number;
+    cuadros?: {
+      generalLocal: CifrasCuadro;
+      generalVisita: CifrasCuadro;
+      localCasa: CifrasCuadro;
+      visitaFuera: CifrasCuadro;
+      h2h: CifrasCuadro;
+    };
+    puntos?: {
+      localCasa: PuntosCuadro | null;
+      localGral: PuntosCuadro | null;
+      visitaFuera: PuntosCuadro | null;
+      visitaGral: PuntosCuadro | null;
+    };
+    pesoEstadio?: {
+      local: { casa: number | null; general: number | null; dif: number | null };
+      visita: { casa: number | null; general: number | null; dif: number | null };
+    };
+    patrones?: Record<string, string[]>;
+    tendencias?: {
+      general: TendenciasCuadro | null;
+      lv: TendenciasCuadro | null;
+      h2h: TendenciasCuadro | null;
+    };
+  } | null;
+}
+
+export interface CifrasCuadro {
+  n: number;
+  gfProm: number;
+  gcProm: number;
+  gfMed: number;
+  gcMed: number;
+  gfDe: number;
+  gcDe: number;
+  gfGe1: number;
+  gcGe1: number;
+}
+
+export interface PuntosCuadro {
+  pts: number;
+  porPartido: number;
+  n: number;
+}
+
+export interface TendenciasCuadro {
+  ou: Array<{ linea: number; over: number; dev: number }>;
+  aa: number;
+  n: number;
 }
 
 export interface AnalisisStats {

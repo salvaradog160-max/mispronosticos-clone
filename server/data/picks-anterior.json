@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-11T18:06:49.305Z",
+  "generado": "2026-10-11T18:54:57.776Z",
   "picks": [
     {
       "id": "401875005-H",
@@ -10,44 +10,18 @@
       "awayTeam": "Venezia",
       "market": "1X2",
       "selection": "Gana Atalanta",
-      "odds": 1.5405405405405406,
-      "confidence": 74,
-      "stars": 4,
-      "isSpecial": false,
-      "isPremium": false,
-      "probMercado": 0.601,
-      "nMuestra": 5212,
-      "rango": [
-        72.9,
-        75.3
-      ],
-      "createdAt": "2026-10-11T18:06:49.163Z",
-      "roiUnit": 0.14,
-      "margen": 0.09087719298245611,
-      "breakEven": 0.6491228070175439,
-      "rentable": true
-    },
-    {
-      "id": "401883183-H",
-      "fixtureId": "401883183",
-      "league": "esp.2",
-      "kickoff": "2026-10-11T16:30Z",
-      "homeTeam": "Mallorca",
-      "awayTeam": "Las Palmas",
-      "market": "1X2",
-      "selection": "Gana Mallorca",
       "odds": 1.5128205128205128,
       "confidence": 74,
       "stars": 4,
       "isSpecial": false,
       "isPremium": false,
-      "probMercado": 0.62,
+      "probMercado": 0.613,
       "nMuestra": 5212,
       "rango": [
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-11T18:06:49.163Z",
+      "createdAt": "2026-10-11T18:54:54.772Z",
       "roiUnit": 0.11948717948717946,
       "margen": 0.0789830508474576,
       "breakEven": 0.6610169491525424,
@@ -73,7 +47,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-11T18:06:49.163Z",
+      "createdAt": "2026-10-11T18:54:54.772Z",
       "roiUnit": 0.10097560975609754,
       "margen": 0.06786885245901642,
       "breakEven": 0.6721311475409836,
@@ -99,7 +73,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-11T18:06:49.163Z",
+      "createdAt": "2026-10-11T18:54:54.772Z",
       "roiUnit": 0.09238095238095245,
       "margen": 0.06258064516129036,
       "breakEven": 0.6774193548387096,
@@ -119,13 +93,13 @@
       "stars": 4,
       "isSpecial": false,
       "isPremium": false,
-      "probMercado": 0.619,
+      "probMercado": 0.621,
       "nMuestra": 5212,
       "rango": [
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-11T18:06:49.163Z",
+      "createdAt": "2026-10-11T18:54:54.772Z",
       "roiUnit": 0.09238095238095245,
       "margen": 0.06258064516129036,
       "breakEven": 0.6774193548387096,
@@ -151,7 +125,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-11T18:06:49.163Z",
+      "createdAt": "2026-10-11T18:54:54.772Z",
       "roiUnit": 0.11948717948717946,
       "margen": 0.0789830508474576,
       "breakEven": 0.6610169491525424,

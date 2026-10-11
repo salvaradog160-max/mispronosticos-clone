@@ -33,7 +33,7 @@ export const NOMBRE_LIGA = NOMBRES;
  * Una temporada de una liga.
  * @returns Partidos con resultado, o [] si la liga no existe.
  */
-export const temporada = async (liga, anio, limite = 400) => {
+export const temporada = async (liga, anio, limite = 1000) => {
   const url = `${BASE}/${liga}/scoreboard?dates=${anio}&limit=${limite}`;
   const res = await fetch(url, { signal: AbortSignal.timeout(30_000) });
   if (!res.ok) return [];
@@ -91,4 +91,4 @@ export const historia = async (liga, anios) => {
 export const LIGAS_AMERICAS = ['mex.1', 'bra.1', 'usa.1', 'arg.1', 'col.1', 'chi.1'];
 
 /** Anios a pedir. 2026 suele estar a medias. */
-export const ANIOS = [2026, 2025, 2024];
+export const ANIOS = [2026, 2025, 2024, 2023, 2022, 2021];

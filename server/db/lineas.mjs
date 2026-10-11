@@ -199,6 +199,18 @@ const guardar = async (db, ev) => {
          computed_at = now()`,
       'line_movements', [ev.eventId, q.market, q.side, q.opened, q.current, q.closed, mv, q.closed != null],
     );
+
+    // El cable del telefono: UNA lectura por corrida (append, no upsert).
+    // Asi se ve como se fue moviendo la cuota de apertura a cierre,
+    // "de que lado se va". Si en esta corrida no hay valor, no se anade
+    // fila (evita ruido de puntos sin dato).
+    if (q.opened != null || q.current != null || q.closed != null) {
+      await qdb(db,
+        `INSERT INTO line_series (event_id, market, side, line_val, opened, current, closed, move_pct)
+         VALUES ($1,$2,$3,$4,$5,$6,$7,$8)`,
+        'line_series', [ev.eventId, q.market, q.side, q.line, q.opened, q.current, q.closed, mv],
+      );
+    }
   }
 };
 

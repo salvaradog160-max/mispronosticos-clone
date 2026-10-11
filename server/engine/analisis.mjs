@@ -156,6 +156,7 @@ export const LIGAS_SIN_CALIBRACION = new Set();
 import { goodToLine } from './valor.mjs';
 
 import { ladderMercados, desglosarTiempos, ladderTiempo } from './ladder.mjs';
+import { combinar, riesgoDe, pronosticos as pronosticosDe, cuotaJusta } from './historial.mjs';
 
 /** Ladder por tiempo: divide lambdas y arma el O/U de cada mitad. */
 const tiemposLadder = (lambdaHome, lambdaAway, ligaKey) => {
@@ -267,5 +268,93 @@ export const analizar = (partido, probs, confianza = null) => {
     // A que precio volveria a valer. `confianza` viene de la tabla
     // calibrada segun la probabilidad de mercado actual.
     goodToLine: confianza === null ? null : goodToLine(confianza, cuotaProbAhora),
+
+    // El cable del telefono: serie temporal de la cuota (apertura ->
+    // lecturas -> cierre). Viene de Postgres (line_series). null si no
+    // hay lecturas todavia.
+    serie: partido.serie ?? null,
+
+    // Analisis combinado: modelo + historial real + H2H. El motor de
+    // historial (engine/historial.mjs) construye los cuadros que la
+    // herramienta manual pedia capturar, pero con datos reales. El
+    // usuario no llena nada.
+    ...historialCombinado(partido, probs),
   };
 };
+
+/**
+ * Descanso del analisis combinado. Si el partido trae `historial`
+ * (motor de historial real), junta el modelo con la base (ult.5 L/V)
+ * y el H2H y produce: combinada 50/30/20, riesgo, pronosticos,
+ * oportunidades y riesgos. Si no, null.
+ */
+const historialCombinado = (partido, probs) => {
+  const h = partido.historial;
+  if (!h) return { combinado: null };
+
+  const { pBase, pH2H } = h.probs ?? {};
+  const pModelo = probs;
+
+  // Combinada pedida: 50% modelo, 30% cuadro base (ult.5 L/V), 20% H2H L/V.
+  const { pComb, usados } = combinar(pModelo, pBase, pH2H);
+  const pro = pronosticosDe({ pComb, pModelo, pBase });
+  const inclina = [...['H', 'D', 'A']].sort((a, b) => (pComb[b] ?? 0) - (pComb[a] ?? 0))[0];
+  const ladoNombre = { H: 'Local', D: 'Empate', A: 'Visita' };
+
+  // Oportunidades y riesgos (texto real, como la herramienta manual).
+  const oportunidades = [];
+  const riesgos = [];
+
+  const pts = h.puntos ?? {};
+  const pmt = (o) => o?.porPartido ?? null;
+  if (pts.localCasa && pts.localGral && pmt(pts.localCasa) - pmt(pts.localGral) >= 0.3)
+    oportunidades.push(`El local rinde mejor en casa (${pmt(pts.localCasa)} vs ${pmt(pts.localGral)} pts por partido).`);
+  if (pts.visitaFuera && pts.visitaGral && pmt(pts.visitaFuera) - pmt(pts.visitaGral) <= -0.3)
+    oportunidades.push(`La visita baja fuera de casa (${pmt(pts.visitaFuera)} vs ${pmt(pts.visitaGral)} pts por partido).`);
+  if (pts.localCasa && pts.visitaFuera && pmt(pts.localCasa) - pmt(pts.visitaFuera) >= 1)
+    oportunidades.push(`Forma últ. 5 L/V: ${pts.localCasa.pts} pts local vs ${pts.visitaFuera.pts} visita. Respalda a Local.`);
+  if (pts.localGral && pts.visitaGral && pmt(pts.localGral) - pmt(pts.visitaGral) >= 1)
+    oportunidades.push(`Forma últ. 5 General: ${pts.localGral.pts} pts local vs ${pts.visitaGral.pts} visita. Respalda a Local.`);
+  if (h.patrones?.visitaFuera?.some(p => p.includes('sin ganar')))
+    oportunidades.push(`Patrón Visita: ${h.patrones.visitaFuera.find(p => p.includes('sin ganar'))}.`);
+
+  if (pts.localCasa && pts.localGral && pmt(pts.localCasa) - pmt(pts.localGral) <= -0.3)
+    riesgos.push(`El local rinde menos en casa (${pmt(pts.localCasa)} vs ${pmt(pts.localGral)} pts por partido).`);
+  if (h.patrones?.visitaFuera?.some(p => p.includes('anotó')))
+    riesgos.push(`Patrón Visita: ${h.patrones.visitaFuera.find(p => p.includes('anotó'))}.`);
+  if (!h.cuadros?.generalLocal?.n || h.cuadros.generalLocal.n < 4)
+    riesgos.push(`Poca historia del local en la base (${h.cuadros?.generalLocal?.n ?? 0} de 5 partidos).`);
+
+  return {
+    combinado: {
+      // Se inclina (combinada). orienta, no garantiza.
+      inclina: ladoNombre[inclina],
+      pCombinada: Number((pComb[inclina] ?? 0).toFixed(4)),
+      confianza: pComb[inclina] >= 0.75 ? 'alta' : pComb[inclina] >= 0.6 ? 'media' : 'baja',
+      fuentes: usados,
+      pesos: { modelo: 0.5, base: 0.3, h2h: 0.2 },
+      // 1X2: modelo, historial y combinada
+      tabla: ['H', 'D', 'A'].map(l => ({
+        lado: l,
+        modelo: Number((probs[l] ?? 0).toFixed(4)),
+        historial: Number((pBase?.[l] ?? 0).toFixed(4)),
+        combinada: Number((pComb[l] ?? 0).toFixed(4)),
+      })),
+      recomendacion: pro[0] ?? null,
+      pronosticos: pro,
+      oportunidades: oportunidades.slice(0, 5),
+      riesgos: riesgos.slice(0, 5),
+      cuotaJusta: cuotaJusta,
+      serieH2H: h.serieH2H ?? [],
+      h2hPartidos: h.h2hPartidos ?? 0,
+      // Datos de base (cuadros reales)
+      cuadros: h.cuadros,
+      puntos: h.puntos,
+      pesoEstadio: h.pesoEstadio,
+      patrones: h.patrones,
+      tendencias: h.tendencias,
+    },
+  };
+};
+
+

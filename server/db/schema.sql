@@ -64,3 +64,22 @@ CREATE TABLE IF NOT EXISTS line_movements (
   computed_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   UNIQUE (event_id, market, side)
 );
+-- Serie temporal del cable: UNA fila por lectura (UPSERT no, porque el
+-- cable se ve con la historia de lecturas, no solo con la ultima).
+-- Analogia del telefono de ninos: emisor = apertura, el cable = como se
+-- mueve la cuota lectura a lectura, receptor = cierre.
+CREATE TABLE IF NOT EXISTS line_series (
+  id         BIGSERIAL PRIMARY KEY,
+  event_id   TEXT NOT NULL REFERENCES lines(event_id) ON DELETE CASCADE,
+  market     TEXT NOT NULL,
+  side       TEXT NOT NULL,
+  line_val   DECIMAL(6,2),
+  opened     DECIMAL(6,3),        -- lo que abre (el emisor) al verlo
+  current    DECIMAL(6,3),        -- lo que dice en ESTA lectura
+  closed     DECIMAL(6,3),        -- cierre; NULL hasta que empieza
+  move_pct   DECIMAL(8,4),        -- pp entre opened y current
+  captured_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS series_event_idx ON line_series (event_id, captured_at);
+CREATE INDEX IF NOT EXISTS series_event_side_idx ON line_series (event_id, market, side, captured_at);

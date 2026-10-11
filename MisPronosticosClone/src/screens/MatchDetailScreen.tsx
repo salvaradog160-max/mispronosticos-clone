@@ -14,19 +14,18 @@ import { LadoGolesFila, formatKickoff, tiempoPara } from '../components/PartidoD
 import type { AnalisisFila, TablaLiga, FilaTabla } from '../data/analisisRepository';
 
 /**
- * Detalle del partido con pestanas, como la app de referencia.
+ * Detalle del partido.
  *
- * La referencia organiza el detalle en Análisis AI / IA en vivo / H2H /
- * Posiciones. Aqui se respeta esa estructura, pero cada pestana ensena
- * SOLO lo que hay. Las que no tienen dato lo dicen; no se rellenan con
- * texto de relleno que parezca informacion.
+ * La pestana Analisis combina modelo + historial real + H2H (sin datos
+ * capturados a mano), con el cable de la cuota (apertura -> cierre).
+ * No hay IA: todo sale de datos medidos. La pestana "IA en vivo" que la
+ * referencia traia se quita porque no hay IA que haga ese analisis.
  */
 
-type Pestana = 'analisis' | 'vivo' | 'h2h' | 'posiciones';
+type Pestana = 'analisis' | 'h2h' | 'posiciones';
 
 const PESTANAS: { id: Pestana; label: string }[] = [
-  { id: 'analisis', label: 'Análisis AI' },
-  { id: 'vivo', label: 'IA en vivo' },
+  { id: 'analisis', label: 'Análisis' },
   { id: 'h2h', label: 'H2H' },
   { id: 'posiciones', label: 'Posiciones' },
 ];
@@ -245,6 +244,139 @@ export default function MatchDetailScreen({
               </Fila>
               {fila.cambioFavorito && <Text style={s.aviso}>El favorito cambió desde la apertura.</Text>}
 
+              {fila.serie && fila.serie.length > 0 && (
+                <>
+                  <Text style={s.seccion}>CABLE DE LA CUOTA (apertura → cierre)</Text>
+                  <Text style={s.aviso}>
+                    El teléfono: apertura es el emisor, el cierre el receptor, y esto es cómo se mueve el cable entre
+                    los dos. Cada lectura es una corrida de 30 minutos.
+                  </Text>
+                  {fila.serie.slice(0, 12).map((p, i, arr) => {
+                    const esApertura = i === 0;
+                    const esCierre = p.closed != null && (i === arr.length - 1 || arr[i + 1]?.closed == null);
+                    return (
+                      <Fila
+                        etiqueta={`${p.market === 'moneyline' ? '1X2' : p.market} ${p.side}${p.line != null ? ` ${p.line}` : ''}`}
+                        key={`${p.capturedAt}-${i}`}>
+                        <Text style={[s.valor, esCierre && { color: palette.accent }]} numberOfLines={1}>
+                          {esApertura ? `apertura ${Number(p.opened ?? p.current).toFixed(2)}` : ''}
+                          {esApertura ? ' → ' : ''}
+                          {Number(p.current ?? p.opened).toFixed(2)}
+                          {p.movePct != null ? ` (${p.movePct >= 0 ? '+' : ''}${p.movePct.toFixed(1)}pp)` : ''}
+                          {esCierre ? ' ← cierre' : ''}
+                        </Text>
+                      </Fila>
+                    );
+                  })}
+                  <Text style={s.pie}>
+                    {(() => {
+                      const m = fila.serie.filter(x => x.market === 'moneyline' && x.side === 'home');
+                      if (m.length < 2) return 'Solo hay 1 lectura todavía; el cable se dibuja con más corridas.';
+                      const ab = m[0].current ?? m[0].opened;
+                      const ce = m[m.length - 1].closed ?? m[m.length - 1].current;
+                      const d = ab != null && ce != null ? ce - ab : null;
+                      return d == null
+                        ? 'El cable aún no definió hacia dónde va.'
+                        : `De la apertura al cierre, el local ${d > 0 ? 'subió' : 'bajó'} ${Math.abs(d).toFixed(2)} en decimal (${d > 0 ? 'el mercado le quita' : 'el mercado le da confianza al'} local).`;
+                    })()}
+                  </Text>
+                </>
+              )}
+
+              {fila.combinado && (
+                <>
+                  <Text style={s.seccion}>ANÁLISIS COMBINADO</Text>
+                  <Text style={s.aviso}>
+                    Combina el modelo con la estadística real del historial (base y H2H). Orienta, no garantiza.
+                    Pesos: 50% modelo · 30% base (últ.5 L/V) · 20% H2H L/V.
+                  </Text>
+                  <Fila etiqueta="Se inclina a">
+                    <Text style={s.valor}>
+                      {fila.combinado.inclina ?? '—'} · {pct0(fila.combinado.pCombinada)} ·{' '}
+                      {fila.combinado.confianza}
+                    </Text>
+                  </Fila>
+
+                  <Text style={s.subEtiqueta}>1X2 (modelo / historial / combinada)</Text>
+                  {fila.combinado.tabla.map(t => (
+                    <Fila etiqueta={{ H: 'Local', D: 'Empate', A: 'Visita' }[t.lado]} key={t.lado}>
+                      <Text style={s.valor}>
+                        {pct0(t.modelo)} / {pct0(t.historial)} / {pct0(t.combinada)}
+                      </Text>
+                    </Fila>
+                  ))}
+
+                  {fila.combinado.recomendacion && (
+                    <>
+                      <Text style={s.subEtiqueta}>Recomendación</Text>
+                      <Fila etiqueta={fila.combinado.recomendacion.nombre}>
+                        <Text style={s.valor}>
+                          {pct0(fila.combinado.recomendacion.p)} · riesgo {fila.combinado.recomendacion.riesgo} · @
+                          {fila.combinado.recomendacion.cuotaJusta}
+                        </Text>
+                      </Fila>
+                      <Text style={s.pie}>
+                        Cuota justa @{fila.combinado.recomendacion.cuotaJusta}: apuesta solo si tu casa paga más de
+                        eso. Riesgo {fila.combinado.recomendacion.riesgo}: bajo ~75%, medio ~60%, y sube un nivel si el
+                        modelo y el historial difieren 25 puntos o más.
+                      </Text>
+                    </>
+                  )}
+
+                  {fila.combinado.pronosticos.length > 0 && (
+                    <>
+                      <Text style={s.subEtiqueta}>Pronósticos (en orden de probabilidad)</Text>
+                      {fila.combinado.pronosticos.map(pr => (
+                        <Fila etiqueta={pr.nombre} key={pr.tipo}>
+                          <Text style={s.valor} numberOfLines={1}>
+                            {pct0(pr.p)} · {pr.riesgo} · @{pr.cuotaJusta}
+                          </Text>
+                        </Fila>
+                      ))}
+                    </>
+                  )}
+
+                  {fila.combinado.oportunidades.length > 0 && (
+                    <>
+                      <Text style={s.subEtiqueta}>Oportunidades</Text>
+                      {fila.combinado.oportunidades.map((o, i) => (
+                        <Text style={[s.bullet, { color: palette.success }]} key={`o${i}`}>• {o}</Text>
+                      ))}
+                    </>
+                  )}
+
+                  {fila.combinado.riesgos.length > 0 && (
+                    <>
+                      <Text style={s.subEtiqueta}>Riesgos</Text>
+                      {fila.combinado.riesgos.map((o, i) => (
+                        <Text style={[s.bullet, { color: palette.star }]} key={`r${i}`}>• {o}</Text>
+                      ))}
+                    </>
+                  )}
+
+                  {fila.combinado.tendencias?.general && (
+                    <>
+                      <Text style={s.subEtiqueta}>Tendencias Over/Under (historial real)</Text>
+                      {fila.combinado.tendencias.general.ou.map(t => (
+                        <Fila etiqueta={`O/U ${t.linea}`} key={t.linea}>
+                          <Text style={[s.valor, t.over >= 60 ? { color: palette.success } : t.over <= 40 ? { color: palette.danger } : {}]}>
+                            Over {t.over}%{t.dev ? ` (dev ${t.dev}%)` : ''}
+                          </Text>
+                        </Fila>
+                      ))}
+                      <Fila etiqueta="Ambos anotan">
+                        <Text style={s.valor}>
+                          Sí {fila.combinado.tendencias.general.aa}%
+                        </Text>
+                      </Fila>
+                      <Text style={s.pie}>
+                        % de partidos del historial que pasaron la línea. Verde = tendencia a Over, rojo = a Under.
+                      </Text>
+                    </>
+                  )}
+                </>
+              )}
+
               {g ? (
                 <>
                   <Text style={s.seccion}>MERCADO DE GOLES — LÍNEA {g.linea}</Text>
@@ -400,41 +532,49 @@ export default function MatchDetailScreen({
             </>
           )}
 
-          {pestana === 'vivo' && (
-            <>
-              <Text style={s.seccion}>ESTADO DEL PARTIDO</Text>
-              {enVivo || final ? (
-                <>
-                  <Fila etiqueta="Marcador">
-                    <Text style={[s.valor, enVivo && { color: palette.danger }]}>
-                      {fila.marcador ?? '—'}
-                    </Text>
-                  </Fila>
-                  <Fila etiqueta="Estado">
-                    <Text style={s.valor}>{enVivo ? 'En vivo' : 'Finalizado'}</Text>
-                  </Fila>
-                </>
-              ) : (
-                <Text style={s.aviso}>
-                  El partido no ha empezado. Aquí aparecerá el marcador cuando ruede el balón.
-                </Text>
-              )}
-              <Text style={s.pie}>
-                Lectura en vivo del modelo sobre el estado del partido. Se alimenta del mismo dato que el resto de la
-                app.
-              </Text>
-            </>
-          )}
-
           {pestana === 'h2h' && (
             <>
               <Text style={s.seccion}>ENFRENTAMIENTOS DIRECTOS</Text>
-              <Text style={s.aviso}>
-                Sin historial de enfrentamientos para este partido.
-              </Text>
+              {fila.combinado?.h2hPartidos && fila.combinado.h2hPartidos > 0 ? (
+                <>
+                  <Fila etiqueta="Partidos">
+                    <Text style={s.valor}>{fila.combinado.h2hPartidos}</Text>
+                  </Fila>
+                  <Fila etiqueta="Serie (desde el local)">
+                    <Text style={s.valor}>
+                      {fila.combinado.serieH2H?.join(' · ') ?? '—'}
+                    </Text>
+                  </Fila>
+                  {(() => {
+                    const c = fila.combinado?.cuadros?.h2h;
+                    if (!c) return null;
+                    return (
+                      <>
+                        <Text style={s.subEtiqueta}>Goles por partido (local)</Text>
+                        <Fila etiqueta="Promedio">
+                          <Text style={s.valor}>{c.gfProm.toFixed(2)} a favor · {c.gcProm.toFixed(2)} en contra</Text>
+                        </Fila>
+                        <Fila etiqueta="Mediana">
+                          <Text style={s.valor}>{c.gfMed.toFixed(1)} · {c.gcMed.toFixed(1)}</Text>
+                        </Fila>
+                        <Fila etiqueta="≥1 gol">
+                          <Text style={s.valor}>{c.gfGe1}% a favor · {c.gcGe1}% en contra</Text>
+                        </Fila>
+                        <Fila etiqueta="Desv. estándar">
+                          <Text style={s.valor}>±{c.gfDe.toFixed(2)} · ±{c.gcDe.toFixed(2)}</Text>
+                        </Fila>
+                      </>
+                    );
+                  })()}
+                </>
+              ) : (
+                <Text style={s.aviso}>
+                  Sin historial de enfrentamientos directos entre estos dos equipos en la base descargada.
+                </Text>
+              )}
               <Text style={s.pie}>
-                La fuente de cuotas actual no publica el historial de enfrentamientos. No se rellena con datos
-                inventados: la pestaña queda vacía hasta que haya una fuente real.
+                H2H real desde la historia descargada (football-data + ESPN). No se inventa: si no hay partidos, queda
+                vacío.
               </Text>
             </>
           )}
@@ -542,6 +682,7 @@ const s = StyleSheet.create({
   valor: { color: palette.text, fontSize: fontSize.sm, fontWeight: '700', textAlign: 'right' },
 
   aviso: { color: palette.textMuted, fontSize: fontSize.sm, lineHeight: 20, marginTop: spacing.sm },
+  bullet: { color: palette.text, fontSize: fontSize.sm, lineHeight: 21, marginTop: 4, paddingRight: spacing.md },
   bien: { color: palette.success, fontSize: fontSize.md, fontWeight: '700' },
   mal: { color: palette.danger, fontSize: fontSize.md, fontWeight: '700' },
   pie: {
