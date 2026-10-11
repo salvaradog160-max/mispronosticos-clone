@@ -1,10 +1,12 @@
 name: Picks y alertas
 
 on:
-  # Cada hora. El job tarda ~12 s, asi que 24 corridas diarias (~5 min)
-  # entran de sobra en los minutos de Actions de un repo publico.
+  # Respaldo cada 3 horas: la PC del usuario publica cada 5 min con el
+  # cron local, asi que esto solo cubre cuando la PC esta apagada. Runners
+  # de Actions son ilimitados en repo publico; la frecuencia baja protege
+  # la cuota de Sportapi (RapidAPI), que es lo unico con costo por llamada.
   schedule:
-    - cron: '7 * * * *'
+    - cron: '7 */3 * * *'
   workflow_dispatch:
 
 permissions:
