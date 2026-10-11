@@ -84181,6 +84181,14 @@ __d(function (global, require, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, expor
   var _jsxRuntime = require(_dependencyMap[7], "react/jsx-runtime");
   var _jsxFileName = "/home/sergio-alvarado/Proyectos/mispronosticos-clone/MisPronosticosClone/src/navigation/RootNavigator.tsx";
   var Tab = (0, require(_dependencyMap[8], "@react-navigation/bottom-tabs").createBottomTabNavigator)();
+
+  /**
+   * Pestañas. "Top Ai"/"Especiales"/"En vivo" venian del original con
+   * nombres de marketing; aqui se quedan solo los que tienen contenido
+   * real. "Top AI" se llama "Analisis" porque no hay IA haciendo nada:
+   * es estadistica medida, contada con honestidad.
+   */
+
   var navTheme = {
     ...require(_dependencyMap[9], "@react-navigation/native").DefaultTheme,
     dark: true,
@@ -84245,12 +84253,12 @@ __d(function (global, require, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, expor
             name: "TopAi",
             component: _TopAiScreen.default,
             options: {
-              title: 'Top AI',
+              title: 'Análisis',
               tabBarIcon: ({
                 color,
                 size
               }) => /*#__PURE__*/(0, _jsxRuntime.jsx)(require(_dependencyMap[13], "@react-native-vector-icons/material-design-icons").MaterialDesignIcons, {
-                name: "trophy",
+                name: "chart-bar",
                 color: color,
                 size: size
               })
@@ -84523,9 +84531,24 @@ __d(function (global, require, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, expor
       _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
       detalle = _useState4[0],
       setDetalle = _useState4[1];
+    var _useState5 = (0, _react.useState)(''),
+      _useState6 = (0, _slicedToArray2.default)(_useState5, 2),
+      query = _useState6[0],
+      setQuery = _useState6[1];
+
+    // Buscador por equipo: coincide con el nombre de local o visita
+    // (sin acentos y sin importar mayusculas). Vacio = todo.
+    var datos = (0, _react.useMemo)(() => {
+      var q = query.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+      if (!q) return data;
+      return data.filter(f => {
+        var p = f.partido.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        return p.includes(q);
+      });
+    }, [data, query]);
     var secciones = (0, _react.useMemo)(() => {
       var mapa = new Map();
-      for (var f of data) {
+      for (var f of datos) {
         var k = f.liga || 'Sin liga';
         if (!mapa.has(k)) mapa.set(k, []);
         mapa.get(k).push(f);
@@ -84534,7 +84557,7 @@ __d(function (global, require, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, expor
         title: liga,
         data: filas.sort((a, b) => (a.kickoff ?? '').localeCompare(b.kickoff ?? '') || a.partido.localeCompare(b.partido))
       })).sort((a, b) => b.data.length - a.data.length || a.title.localeCompare(b.title));
-    }, [data]);
+    }, [datos]);
     if (loading) {
       return /*#__PURE__*/(0, _jsxRuntime.jsxs)(_reactNative.View, {
         style: [s.centro, {
@@ -84563,7 +84586,16 @@ __d(function (global, require, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, expor
           children: "Partidos"
         }), /*#__PURE__*/(0, _jsxRuntime.jsxs)(_reactNative.Text, {
           style: s.sub,
-          children: [data.length, " partidos \xB7 ", secciones.length, " ligas", error ? ' · sin conexion' : '']
+          children: [query ? `${datos.length} encontrados de ${data.length}` : `${data.length} partidos · ${secciones.length} ligas`, error ? ' · sin conexion' : '']
+        }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.TextInput, {
+          value: query,
+          onChangeText: setQuery,
+          placeholder: "Buscar equipo\u2026",
+          placeholderTextColor: require(_dependencyMap[6], "../theme").palette.textMuted,
+          style: s.buscador,
+          autoCorrect: false,
+          autoCapitalize: "none",
+          returnKeyType: "search"
         })]
       }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.SectionList, {
         sections: secciones,
@@ -84619,6 +84651,17 @@ __d(function (global, require, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, expor
     cabecera: {
       paddingHorizontal: require(_dependencyMap[6], "../theme").spacing.md,
       paddingBottom: require(_dependencyMap[6], "../theme").spacing.sm
+    },
+    buscador: {
+      marginTop: require(_dependencyMap[6], "../theme").spacing.sm,
+      backgroundColor: require(_dependencyMap[6], "../theme").palette.surface,
+      borderRadius: require(_dependencyMap[6], "../theme").radius.md,
+      paddingHorizontal: require(_dependencyMap[6], "../theme").spacing.md,
+      paddingVertical: 10,
+      color: require(_dependencyMap[6], "../theme").palette.text,
+      fontSize: require(_dependencyMap[6], "../theme").fontSize.md,
+      borderWidth: 1,
+      borderColor: require(_dependencyMap[6], "../theme").palette.surfaceAlt
     },
     titulo: {
       color: require(_dependencyMap[6], "../theme").palette.text,
@@ -86863,6 +86906,8 @@ __d(function (global, require, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, expor
       stars: raw.stars,
       isSpecial: raw.isSpecial,
       isPremium: raw.isPremium,
+      leagueName: raw.leagueName,
+      kickoff: raw.kickoff,
       createdAt: raw.kickoff,
       reasoning: raw.nMuestra ? `Medido sobre ${raw.nMuestra} partidos · rango ${raw.rango?.[0]}–${raw.rango?.[1]}%` : undefined
     });
@@ -117865,6 +117910,10 @@ __d(function (global, require, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, expor
           variant: "bodySmall",
           style: styles.muted,
           children: [item.homeTeam && item.awayTeam ? `${item.homeTeam} vs ${item.awayTeam}` : item.market, item.line ? ` · línea ${item.line}` : '']
+        }), /*#__PURE__*/(0, _jsxRuntime.jsxs)(require(_dependencyMap[3], "react-native-paper").Text, {
+          variant: "bodySmall",
+          style: styles.liga,
+          children: [item.leagueName ?? '', item.kickoff ? ` · ${(0, require(_dependencyMap[7], "../components/PartidoDetalle").formatKickoff)(item.kickoff)}` : '']
         }), /*#__PURE__*/(0, _jsxRuntime.jsxs)(_reactNative.View, {
           style: styles.progressWrap,
           children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)(_reactNative.View, {
@@ -117876,7 +117925,7 @@ __d(function (global, require, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, expor
               style: styles.needs,
               children: ["necesita ", pct(item.breakEven)]
             })]
-          }), /*#__PURE__*/(0, _jsxRuntime.jsx)(require(_dependencyMap[7], "../components/BarraConfianza").BarraConfianza, {
+          }), /*#__PURE__*/(0, _jsxRuntime.jsx)(require(_dependencyMap[8], "../components/BarraConfianza").BarraConfianza, {
             progress: item.confidence / 100,
             color: require(_dependencyMap[6], "../theme").palette.accent,
             height: 4
@@ -117914,6 +117963,11 @@ __d(function (global, require, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, expor
     muted: {
       color: require(_dependencyMap[6], "../theme").palette.textMuted,
       lineHeight: 18
+    },
+    liga: {
+      color: require(_dependencyMap[6], "../theme").palette.accent,
+      marginTop: 4,
+      fontWeight: '700'
     },
     card: {
       backgroundColor: require(_dependencyMap[6], "../theme").palette.surface,
@@ -117996,7 +118050,7 @@ __d(function (global, require, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, expor
       marginTop: require(_dependencyMap[6], "../theme").spacing.xl
     }
   });
-},840,[71,2,190,646,643,637,626,838],"src/screens/SpecialsScreen.tsx");
+},840,[71,2,190,646,643,637,626,636,838],"src/screens/SpecialsScreen.tsx");
 __d(function (global, require, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true

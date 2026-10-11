@@ -14,6 +14,13 @@ import { DEFAULTS } from '../config';
 
 const Tab = createBottomTabNavigator();
 
+/**
+ * Pestañas. "Top Ai"/"Especiales"/"En vivo" venian del original con
+ * nombres de marketing; aqui se quedan solo los que tienen contenido
+ * real. "Top AI" se llama "Analisis" porque no hay IA haciendo nada:
+ * es estadistica medida, contada con honestidad.
+ */
+
 const navTheme = {
   ...DefaultTheme,
   dark: true,
@@ -68,9 +75,9 @@ export default function RootNavigator({ config = DEFAULTS }: { config?: AppConfi
             name="TopAi"
             component={TopAiScreen}
             options={{
-              title: 'Top AI',
+              title: 'Análisis',
               tabBarIcon: ({ color, size }) => (
-                <MaterialDesignIcons name="trophy" color={color} size={size} />
+                <MaterialDesignIcons name="chart-bar" color={color} size={size} />
               ),
             }}
           />

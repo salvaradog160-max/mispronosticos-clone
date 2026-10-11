@@ -35,6 +35,8 @@ export interface Pick {
   reasoning?: string;
   analysis?: string;
   isPremium: boolean;
+  leagueName?: string;
+  kickoff?: string;
   createdAt: string;
 }
 

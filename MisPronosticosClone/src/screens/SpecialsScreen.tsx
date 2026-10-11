@@ -3,6 +3,7 @@ import { FlatList, StyleSheet, View } from 'react-native';
 import { ActivityIndicator, Surface, Text } from 'react-native-paper';
 import { palette, radius, spacing } from '../theme';
 import { BarraConfianza } from '../components/BarraConfianza';
+import { formatKickoff } from '../components/PartidoDetalle';
 import type { Pick } from '../domain/picks';
 import type { AppConfig } from '../config';
 import { DEFAULTS } from '../config';
@@ -94,6 +95,11 @@ export default function SpecialsScreen({ config = DEFAULTS }: Props) {
             {item.line ? ` · línea ${item.line}` : ''}
           </Text>
 
+          <Text variant="bodySmall" style={styles.liga}>
+            {item.leagueName ?? ''}
+            {item.kickoff ? ` · ${formatKickoff(item.kickoff)}` : ''}
+          </Text>
+
           <View style={styles.progressWrap}>
             <View style={styles.progressLabels}>
               <Text style={styles.confidence}>{item.confidence}%</Text>
@@ -120,6 +126,7 @@ const styles = StyleSheet.create({
   header: { marginBottom: spacing.md },
   title: { color: palette.text, fontWeight: '700', marginBottom: spacing.xs },
   muted: { color: palette.textMuted, lineHeight: 18 },
+  liga: { color: palette.accent, marginTop: 4, fontWeight: '700' },
   card: { backgroundColor: palette.surface, borderRadius: radius.lg, padding: spacing.md, marginBottom: spacing.sm },
   row: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   sel: { color: palette.text, fontWeight: '600', flex: 1 },

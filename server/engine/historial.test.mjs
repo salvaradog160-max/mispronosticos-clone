@@ -123,10 +123,54 @@ test('pronosticos incluye O/U y AA combinados (modelo+historial)', () => {
 
 test('forense: pronosticos ordenados por probabilidad', async () => {
   const { execFileSync } = await import('node:child_process');
-  const out = execFileSync('node', ['scripts/forense.mjs', 'P1', 'Rio Ave', 'Nacional', '2026-02-08', '3', '2'], { encoding: 'utf8', timeout: 90000 });
-  assert.match(out, /PRONOSTICOS ORDENADOS/);
-  assert.match(out, /RESULTADO REAL: Rio Ave 3-2 Nacional/);
-  // El ranking debe estar ordenado: primer pronostico p >= ultimo
-  const lineas = out.split('\n').filter(l => /^(SI|NO)\s+/.test(l));
-  assert.ok(lineas.length >= 5, `ranking con ${lineas.length} mercados`);
+  const { writeFile, rm, mkdir, readFile } = await import('node:fs/promises');
+  const { join } = await import('node:path');
+  const { fileURLToPath } = await import('node:url');
+  const dir = fileURLToPath(new URL('../data/cache', import.meta.url));
+  const cachePath = join(dir, 'history.json');
+
+  // El forense lee data/cache/history.json, que en CI no existe porque
+  // se genera en cada corrida. Aqui se crea un cache sintetico con
+  // partidos de P1 previos al kickoff (sin copas), se corre y se
+  // restaura lo que habia (o se deja sin archivo).
+  const previos = JSON.parse(await readFile(cachePath, 'utf8').catch(() => 'null'));
+  const sintetico = {
+    history: [
+      { utcDate: '12/01/2025', league: 'P1', homeTeam: 'Rio Ave', awayTeam: 'Porto', homeScore: 0, awayScore: 1 },
+      { utcDate: '26/01/2025', league: 'P1', homeTeam: 'Benfica', awayTeam: 'Rio Ave', homeScore: 3, awayScore: 0 },
+      { utcDate: '09/02/2025', league: 'P1', homeTeam: 'Rio Ave', awayTeam: 'Sporting', homeScore: 1, awayScore: 2 },
+      { utcDate: '23/02/2025', league: 'P1', homeTeam: 'Braga', awayTeam: 'Rio Ave', homeScore: 2, awayScore: 2 },
+      { utcDate: '09/03/2025', league: 'P1', homeTeam: 'Rio Ave', awayTeam: 'Vitoria', homeScore: 1, awayScore: 1 },
+      { utcDate: '22/03/2025', league: 'P1', homeTeam: 'Rio Ave', awayTeam: 'Nacional', homeScore: 2, awayScore: 0 },
+      { utcDate: '05/04/2025', league: 'P1', homeTeam: 'Nacional', awayTeam: 'Rio Ave', homeScore: 1, awayScore: 1 },
+      { utcDate: '12/08/2025', league: 'P1', homeTeam: 'Rio Ave', awayTeam: 'Maritimo', homeScore: 2, awayScore: 1 },
+      { utcDate: '24/08/2025', league: 'P1', homeTeam: 'Farense', awayTeam: 'Rio Ave', homeScore: 0, awayScore: 1 },
+      { utcDate: '07/09/2025', league: 'P1', homeTeam: 'Rio Ave', awayTeam: 'Belenenses', homeScore: 3, awayScore: 1 },
+      { utcDate: '21/09/2025', league: 'P1', homeTeam: 'Arouca', awayTeam: 'Rio Ave', homeScore: 1, awayScore: 0 },
+      { utcDate: '05/10/2025', league: 'P1', homeTeam: 'Nacional', awayTeam: 'Boavista', homeScore: 2, awayScore: 2 },
+      { utcDate: '19/10/2025', league: 'P1', homeTeam: 'Porto', awayTeam: 'Nacional', homeScore: 2, awayScore: 1 },
+      { utcDate: '02/11/2025', league: 'P1', homeTeam: 'Nacional', awayTeam: 'Benfica', homeScore: 1, awayScore: 2 },
+      { utcDate: '16/11/2025', league: 'P1', homeTeam: 'Sporting', awayTeam: 'Nacional', homeScore: 3, awayScore: 0 },
+      { utcDate: '30/11/2025', league: 'P1', homeTeam: 'Nacional', awayTeam: 'Braga', homeScore: 1, awayScore: 1 },
+      { utcDate: '14/12/2025', league: 'P1', homeTeam: 'Vitoria', awayTeam: 'Nacional', homeScore: 2, awayScore: 2 },
+      { utcDate: '11/01/2026', league: 'P1', homeTeam: 'Nacional', awayTeam: 'Rio Ave', homeScore: 1, awayScore: 2 },
+    ],
+  };
+  await mkdir(dir, { recursive: true });
+  await writeFile(cachePath, JSON.stringify(sintetico));
+
+  try {
+    const out = execFileSync(
+      'node',
+      ['scripts/forense.mjs', 'P1', 'Rio Ave', 'Nacional', '2026-02-08', '3', '2'],
+      { encoding: 'utf8', timeout: 90000 },
+    );
+    assert.match(out, /PRONOSTICOS ORDENADOS/);
+    assert.match(out, /RESULTADO REAL: Rio Ave 3-2 Nacional/);
+    const lineas = out.split('\n').filter(l => /^(SI|NO)\s+/.test(l));
+    assert.ok(lineas.length >= 5, `ranking con ${lineas.length} mercados`);
+  } finally {
+    if (previos) await writeFile(cachePath, JSON.stringify(previos));
+    else await rm(cachePath, { force: true });
+  }
 });

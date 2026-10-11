@@ -16,6 +16,7 @@ export interface ServerPick {
   id: string;
   fixtureId: string;
   league: string;
+  leagueName?: string;
   kickoff: string;
   homeTeam: string;
   awayTeam: string;
@@ -76,6 +77,8 @@ export const createApiRepository = (config: AppConfig, timeoutMs = 12000): Picks
     stars: raw.stars,
     isSpecial: raw.isSpecial,
     isPremium: raw.isPremium,
+    leagueName: raw.leagueName,
+    kickoff: raw.kickoff,
     createdAt: raw.kickoff,
     reasoning: raw.nMuestra
       ? `Medido sobre ${raw.nMuestra} partidos · rango ${raw.rango?.[0]}–${raw.rango?.[1]}%`

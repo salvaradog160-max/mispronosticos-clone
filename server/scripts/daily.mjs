@@ -226,7 +226,11 @@ async function buildPicks(buckets, ratings, history) {
   const fixtures = results
     .filter(r => r.status === 'fulfilled')
     .flatMap(r => r.value)
-    .filter(m => m.status !== 'post');
+    // Partidos por jugar + los ya terminados de la jornada. Antes se
+    // filtraba status !== 'post' y al terminar el partido desaparecia
+    // de la lista sin marcador final. Con los 'post', la app muestra
+    // FINAL y el marcador real al usuario.
+    .filter(m => m.status !== 'post' || (m.homeScore != null && m.awayScore != null));
 
   const withData = fixtures
     .map(row => {

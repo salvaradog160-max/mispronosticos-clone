@@ -7,6 +7,7 @@ import {
   Text,
   View,
   ActivityIndicator,
+  TextInput,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { palette, spacing, radius, fontSize } from '../theme';
@@ -48,8 +49,11 @@ const diaRelativo = (iso?: string | null) => {
 /** El color de ESPN viene sin '#' (C8142F); sin el, RN lo ignora. */
 const color = (c?: string | null) => (c ? (c.startsWith('#') ? c : `#${c}`) : null);
 
+/** Escudo del equipo sin hooks: si hay uri se muestra la imagen, si no
+ * (o falla) las iniciales del nombre. Sin `useState` para que el order
+ * de hooks del release (Hermes minificado) no dependa del ciclo de la
+ * lista. El badge de iniciales se pinta debajo de la imagen siempre. */
 const Escudo = ({ uri, alt, size = 42 }: { uri?: string | null; alt: string; size?: number }) => {
-  const [fallo, setFallo] = useState(false);
   const iniciales = alt
     .split(' ')
     .filter(Boolean)
@@ -58,20 +62,19 @@ const Escudo = ({ uri, alt, size = 42 }: { uri?: string | null; alt: string; siz
     .join('')
     .toUpperCase();
 
-  if (!uri || fallo) {
-    return (
-      <View style={[s.escudo, s.escudoVacio, { width: size, height: size, borderRadius: size / 2 }]}>
-        <Text style={s.escudoIniciales}>{iniciales || '?'}</Text>
-      </View>
-    );
-  }
   return (
-    <Image
-      source={{ uri }}
-      style={{ width: size, height: size }}
-      resizeMode="contain"
-      onError={() => setFallo(true)}
-    />
+    <View style={{ width: size, height: size }}>
+      <View style={[s.escudo, s.escudoVacio, { width: size, height: size, borderRadius: size / 2 }]}>
+        <Text style={[s.escudoIniciales, { fontSize: size * 0.38 }]}>{iniciales || '?'}</Text>
+      </View>
+      {uri ? (
+        <Image
+          source={{ uri }}
+          style={{ width: size, height: size, position: 'absolute', top: 0, left: 0 }}
+          resizeMode="contain"
+        />
+      ) : null}
+    </View>
   );
 };
 
@@ -166,10 +169,26 @@ export default function PartidosScreen() {
   const insets = useSafeAreaInsets();
   const { data, tablas, loading, error } = useAnalisis(DEFAULTS);
   const [detalle, setDetalle] = useState<AnalisisFila | null>(null);
+  const [query, setQuery] = useState('');
+
+  // Buscador por equipo: coincide con el nombre de local o visita
+  // (sin acentos y sin importar mayusculas). Vacio = todo.
+  const datos = useMemo(() => {
+    const q = query
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim();
+    if (!q) return data;
+    return data.filter(f => {
+      const p = f.partido.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      return p.includes(q);
+    });
+  }, [data, query]);
 
   const secciones = useMemo(() => {
     const mapa = new Map<string, AnalisisFila[]>();
-    for (const f of data) {
+    for (const f of datos) {
       const k = f.liga || 'Sin liga';
       if (!mapa.has(k)) mapa.set(k, []);
       mapa.get(k)!.push(f);
@@ -182,7 +201,7 @@ export default function PartidosScreen() {
         ),
       }))
       .sort((a, b) => b.data.length - a.data.length || a.title.localeCompare(b.title));
-  }, [data]);
+  }, [datos]);
 
   if (loading) {
     return (
@@ -198,9 +217,19 @@ export default function PartidosScreen() {
       <View style={[s.cabecera, { paddingTop: insets.top + spacing.sm }]}>
         <Text style={s.titulo}>Partidos</Text>
         <Text style={s.sub}>
-          {data.length} partidos · {secciones.length} ligas
+          {query ? `${datos.length} encontrados de ${data.length}` : `${data.length} partidos · ${secciones.length} ligas`}
           {error ? ' · sin conexion' : ''}
         </Text>
+        <TextInput
+          value={query}
+          onChangeText={setQuery}
+          placeholder="Buscar equipo…"
+          placeholderTextColor={palette.textMuted}
+          style={s.buscador}
+          autoCorrect={false}
+          autoCapitalize="none"
+          returnKeyType="search"
+        />
       </View>
 
       <SectionList
@@ -236,6 +265,17 @@ const s = StyleSheet.create({
   cargando: { color: palette.textMuted, fontSize: fontSize.md },
 
   cabecera: { paddingHorizontal: spacing.md, paddingBottom: spacing.sm },
+  buscador: {
+    marginTop: spacing.sm,
+    backgroundColor: palette.surface,
+    borderRadius: radius.md,
+    paddingHorizontal: spacing.md,
+    paddingVertical: 10,
+    color: palette.text,
+    fontSize: fontSize.md,
+    borderWidth: 1,
+    borderColor: palette.surfaceAlt,
+  },
   titulo: { color: palette.text, fontSize: fontSize.xxl, fontWeight: '800' },
   sub: { color: palette.textMuted, fontSize: fontSize.sm, marginTop: 2 },
 
