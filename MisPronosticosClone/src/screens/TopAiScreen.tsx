@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react';
 import { FlatList, Pressable, StyleSheet, View } from 'react-native';
-import { ActivityIndicator, ProgressBar, Surface, Text } from 'react-native-paper';
+import { ActivityIndicator, Surface, Text } from 'react-native-paper';
 import { palette, radius, spacing, fontSize } from '../theme';
+import { BarraConfianza } from '../components/BarraConfianza';
 import { LadoGolesFila, EstadoBadge, formatKickoff, tiempoPara } from '../components/PartidoDetalle';
 import DetalleModal from './DetalleModal';
 import type { AppConfig } from '../config';
@@ -153,10 +154,9 @@ export default function TopAiScreen({ config = DEFAULTS }: Props) {
           </View>
 
           <View style={styles.barraWrap}>
-            <ProgressBar
+            <BarraConfianza
               progress={item.coincide ? 1 : 0}
               color={item.coincide ? palette.accent : '#ffb84d'}
-              style={styles.barra}
             />
             <Text style={[styles.veredicto, item.coincide ? styles.ok : styles.avisoColor]}>
               {item.coincide
@@ -239,7 +239,6 @@ const styles = StyleSheet.create({
   sub: { color: palette.textMuted, fontSize: fontSize.sm, marginTop: 1 },
   cuota: { color: '#4da3ff', fontSize: fontSize.sm, marginTop: 1, fontWeight: '700' },
   barraWrap: { marginTop: spacing.sm },
-  barra: { height: 3, backgroundColor: palette.surfaceAlt },
   veredicto: { fontSize: fontSize.sm, marginTop: 6, lineHeight: 19 },
   ok: { color: palette.accent },
   avisoColor: { color: '#ffb84d' },

@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
-import { ActivityIndicator, ProgressBar, Surface, Text } from 'react-native-paper';
+import { ActivityIndicator, Surface, Text } from 'react-native-paper';
 import { palette, radius, spacing } from '../theme';
+import { BarraConfianza } from '../components/BarraConfianza';
 import type { Pick } from '../domain/picks';
 import type { AppConfig } from '../config';
 import { DEFAULTS } from '../config';
@@ -98,7 +99,7 @@ export default function SpecialsScreen({ config = DEFAULTS }: Props) {
               <Text style={styles.confidence}>{item.confidence}%</Text>
               <Text style={styles.needs}>necesita {pct(item.breakEven)}</Text>
             </View>
-            <ProgressBar progress={item.confidence / 100} color={palette.accent} style={styles.bar} />
+            <BarraConfianza progress={item.confidence / 100} color={palette.accent} height={4} />
           </View>
 
           <View style={styles.row}>
