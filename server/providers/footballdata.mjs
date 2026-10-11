@@ -49,6 +49,11 @@ export const parseCsv = (text, league, season) => {
   const iA = col('AvgCA') >= 0 ? col('AvgCA') : col('B365CA');
   const iO25 = col('AvgC>2.5');
   const iU25 = col('AvgC<2.5');
+  const iH0 = col('AvgH') >= 0 ? col('AvgH') : col('B365H');
+  const iD0 = col('AvgD') >= 0 ? col('AvgD') : col('B365D');
+  const iA0 = col('AvgA') >= 0 ? col('AvgA') : col('B365A');
+  const iO25o = col('Avg>2.5');
+  const iU25o = col('Avg<2.5');
 
   if (iFthg < 0 || iFtag < 0) throw new Error('CSV sin columnas de resultado');
 
@@ -73,6 +78,15 @@ export const parseCsv = (text, league, season) => {
         A: num(cells[iA]),
         over25: num(cells[iO25]),
         under25: num(cells[iU25]),
+      },
+      // Cuota de apertura. Sirve para calibrar el caso real de la app:
+      // picks generados antes del cierre, con la ultima cotizacion.
+      oddsOpen: {
+        H: num(cells[iH0]),
+        D: num(cells[iD0]),
+        A: num(cells[iA0]),
+        over25: num(cells[iO25o]),
+        under25: num(cells[iU25o]),
       },
     });
   }

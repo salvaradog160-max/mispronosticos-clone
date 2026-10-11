@@ -1,25 +1,27 @@
 {
-  "generado": "2026-10-11T00:46:12.691Z",
-  "partidos": 13561,
-  "ligas": [
-    "E1",
-    "SP1",
-    "I1",
-    "D1",
-    "F1"
-  ],
-  "temporadas": 8,
-  "consensoAcierto": 0.534005857468272,
-  "consensoN": 9219,
+  "generado": "2026-10-11T01:17:35.356Z",
+  "partidos": 13559,
+  "metodo": "consenso modelo+mercado, fusion conservadora apertura/cierre",
+  "nota": "Cada tramo toma el menor acierto de las dos tablas y el IC mas ancho.",
+  "deriva": {
+    "media": 0.020363312101625716,
+    "mediana": 0.01605422700572251,
+    "p75": 0.028433575265061184,
+    "p90": 0.0431883971328777,
+    "cambiosFavorito": 576,
+    "pctCambioFavorito": 0.04248100892396194
+  },
+  "consensoAcierto": 0.5303652474605576,
+  "consensoN": 9217,
   "buckets": [
     {
       "lo": 0.3,
       "hi": 0.4,
-      "n": 1556,
-      "accuracy": 0.37724935732647813,
+      "n": 1555,
+      "accuracy": 0.377491961414791,
       "ci95": [
-        0.3531656898911237,
-        0.4013330247618326
+        0.35339750068462317,
+        0.4015864221449589
       ]
     },
     {
@@ -65,11 +67,11 @@
     {
       "lo": 0.6,
       "hi": 1.01,
-      "n": 2412,
-      "accuracy": 0.7321724709784412,
+      "n": 2411,
+      "accuracy": 0.7320613853172957,
       "ci95": [
-        0.7144998190143597,
-        0.7498451229425227
+        0.7143827446038925,
+        0.7497400260306989
       ]
     }
   ]

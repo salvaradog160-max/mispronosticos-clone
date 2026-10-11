@@ -35,7 +35,7 @@ async function buildCalibration() {
   try {
     const parsed = JSON.parse(await readFile(cached, 'utf8'));
     const ageDays = (Date.now() - new Date(parsed.generado).getTime()) / 86400000;
-    if (ageDays < 7) {
+    if (ageDays < 30) {
       log(`calibracion en cache (${ageDays.toFixed(1)} dias)`);
       return parsed;
     }
@@ -117,7 +117,7 @@ async function buildRatingsCache() {
   try {
     const parsed = JSON.parse(await readFile(cached, 'utf8'));
     const ageDays = (Date.now() - new Date(parsed.generado).getTime()) / 86400000;
-    if (ageDays < 7) {
+    if (ageDays < 30) {
       log(`ratings en cache (${ageDays.toFixed(1)} dias)`);
       return parsed;
     }

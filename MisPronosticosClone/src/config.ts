@@ -22,7 +22,7 @@ export interface AppConfig {
 
 export const DEFAULTS: AppConfig = {
   apiBaseUrl: 'http://192.168.1.79:8787',
-  picksUrl: 'https://raw.githubusercontent.com/TU_USUARIO/TU_REPO/main/server/public/picks.json',
+  picksUrl: 'https://raw.githubusercontent.com/salvaradog160-max/mispronosticos-clone/main/server/public/picks.json',
   dataSource: 'static',
   liveSocketUrl: '',
   minConfidenceTopAi: 78,
