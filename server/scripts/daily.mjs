@@ -331,6 +331,7 @@ const payload = {
     derivaP90: calibration.deriva?.p90 ?? null,
     cambioFavorito: calibration.deriva?.cambioFavorito ?? null,
     consensoAcierto: calibration.consensoAcierto,
+    consensoN: calibration.consensoN,
     // El margen de la casa se lee del backtest, no va fijo en el codigo:
     // si el backtest se vuelve a correr con mas partidos, la app tiene
     // que reflejar el numero nuevo y no el de la vez pasada.

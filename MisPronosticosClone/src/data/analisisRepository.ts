@@ -98,6 +98,10 @@ export interface AnalisisFila {
 export interface AnalisisStats {
   partidosHistorico: number;
   ligas: number;
+  /** Cuantos partidos miden el acierto de consenso. */
+  consensoN?: number;
+  /** Cuantos picks miden el ROI (margen casa). */
+  margenCasaN?: number;
   /** Deriva de la probabilidad del favorito entre apertura y cierre, en PUNTOS PORCENTUALES (no en fracción). */
   derivaMediana: number | null;
   /** Igual que derivaMediana, en puntos porcentuales: el 90% de los partidos se mueven menos que esto. */
