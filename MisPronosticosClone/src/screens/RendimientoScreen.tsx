@@ -34,6 +34,7 @@ export default function RendimientoScreen() {
 
   const roi = stats?.margenCasa ?? null;
   const roiN = stats?.margenCasaN ?? null;
+  const roiMaxDd = stats?.margenCasaMaxDrawdown ?? null;
 
   return (
     <ScrollView
@@ -69,6 +70,11 @@ export default function RendimientoScreen() {
               {(roi * 100).toFixed(2)}%
             </Text>
             <Text style={s.tarjetaNota}>sobre {roiN?.toLocaleString('es-MX') ?? '?'} picks</Text>
+            {roiMaxDd != null ? (
+              <Text style={s.tarjetaNota}>
+                Peor racha en el camino: el saldo acumulado cayó hasta {Math.abs(Math.round(roiMaxDd * 100))}% desde su máximo, apostando 1 unidad por pick.
+              </Text>
+            ) : null}
             <Text style={s.mal}>
               Negativo: cuesta dinero. Esto es el margen real de la casa, no un número fijo en el código.
             </Text>

@@ -79,6 +79,29 @@ export interface AnalisisFila {
   lambdaHome?: number | null;
   lambdaAway?: number | null;
 
+  /**
+   * Cuota justa del modelo por mercado: 1X2, Over/Under 0.5-4.5, ambos
+   * anotan y marcadores mas probables. Es lo que la estadistica diria
+   * que deberia pagar (1/p), no la cuota real de la casa.
+   */
+  ladder?: {
+    oneXTwo: {
+      local: { p: number; cuotaJusta: number | null };
+      empate: { p: number; cuotaJusta: number | null };
+      visita: { p: number; cuotaJusta: number | null };
+    };
+    overUnder: Array<{
+      linea: number;
+      over: { p: number; cuotaJusta: number | null };
+      under: { p: number; cuotaJusta: number | null };
+    }>;
+    ambosAnotan: {
+      si: { p: number; cuotaJusta: number | null };
+      no: { p: number; cuotaJusta: number | null };
+    };
+    marcadores: Array<{ marcador: string; p: number; cuotaJusta: number | null }>;
+  } | null;
+
   /** Para saber si el partido ya se jugo y como quedo. */
   estado?: 'programado' | 'en vivo' | 'finalizado' | null;
   marcador?: string | null;
@@ -102,6 +125,8 @@ export interface AnalisisStats {
   consensoN?: number;
   /** Cuantos picks miden el ROI (margen casa). */
   margenCasaN?: number;
+  /** Peor caida del saldo acumulado desde su maximo (a $1 por pick). */
+  margenCasaMaxDrawdown?: number | null;
   /** Deriva de la probabilidad del favorito entre apertura y cierre, en PUNTOS PORCENTUALES (no en fracción). */
   derivaMediana: number | null;
   /** Igual que derivaMediana, en puntos porcentuales: el 90% de los partidos se mueven menos que esto. */

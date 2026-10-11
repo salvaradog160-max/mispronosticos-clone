@@ -155,6 +155,8 @@ export const LIGAS_SIN_CALIBRACION = new Set();
 
 import { goodToLine } from './valor.mjs';
 
+import { ladderMercados } from './ladder.mjs';
+
 export const analizar = (partido, probs, confianza = null) => {
   const o = partido.odds;
   const actual = o ? probs1x2(o.H, o.D, o.A) : null;
@@ -220,6 +222,12 @@ export const analizar = (partido, probs, confianza = null) => {
     // Under.
     goles: mercadoGoles(o, partido.probOver ?? null),
     lineaGoles: o?.line ?? null,
+
+    // Escalera de cuota justa por mercado (1X2, O/U 0.5-4.5, AA y
+    // marcadores), sacada de las lambdas reales del modelo. Es la misma
+    // cuenta que la herramienta manual, pero con datos reales. Si el
+    // partido no trae lambdas, null.
+    ladder: ladderMercados(partido.lambdaHome, partido.lambdaAway),
 
     // Estado: si ya se jogo, con que marcador quedo y si el lado que
     // eligio el mercado acertó.

@@ -277,6 +277,69 @@ export default function MatchDetailScreen({
                 </>
               )}
 
+              {fila.ladder && (
+                <>
+                  <Text style={s.seccion}>CUOTA JUSTA DEL MODELO POR MERCADO</Text>
+                  <Text style={s.aviso}>
+                    Es lo que la estadística del modelo diría que debería pagar (1 ÷ probabilidad). No es la cuota de
+                    tu casa: si tu casa paga más, hay valor según el modelo.
+                  </Text>
+
+                  <Text style={s.subEtiqueta}>1X2</Text>
+                  <Fila etiqueta={`Gana ${local ?? 'Local'}`}>
+                    <Text style={s.valor} numberOfLines={1}>
+                      {pct0(fila.ladder.oneXTwo.local.p)} · @{' '}
+                      {fila.ladder.oneXTwo.local.cuotaJusta?.toFixed(2) ?? '—'}
+                    </Text>
+                  </Fila>
+                  <Fila etiqueta="Empate">
+                    <Text style={s.valor} numberOfLines={1}>
+                      {pct0(fila.ladder.oneXTwo.empate.p)} · @{' '}
+                      {fila.ladder.oneXTwo.empate.cuotaJusta?.toFixed(2) ?? '—'}
+                    </Text>
+                  </Fila>
+                  <Fila etiqueta={`Gana ${visita ?? 'Visita'}`}>
+                    <Text style={s.valor} numberOfLines={1}>
+                      {pct0(fila.ladder.oneXTwo.visita.p)} · @{' '}
+                      {fila.ladder.oneXTwo.visita.cuotaJusta?.toFixed(2) ?? '—'}
+                    </Text>
+                  </Fila>
+
+                  <Text style={s.subEtiqueta}>Over / Under (goles)</Text>
+                  {fila.ladder.overUnder.map(f => (
+                    <Fila etiqueta={`${f.linea} goles`} key={f.linea}>
+                      <Text style={s.valor} numberOfLines={1}>
+                        O@{f.over.cuotaJusta?.toFixed(2) ?? '—'} · U@
+                        {f.under.cuotaJusta?.toFixed(2) ?? '—'}
+                      </Text>
+                    </Fila>
+                  ))}
+
+                  <Text style={s.subEtiqueta}>Ambos anotan</Text>
+                  <Fila etiqueta="Sí">
+                    <Text style={s.valor} numberOfLines={1}>
+                      {pct0(fila.ladder.ambosAnotan.si.p)} · @{' '}
+                      {fila.ladder.ambosAnotan.si.cuotaJusta?.toFixed(2) ?? '—'}
+                    </Text>
+                  </Fila>
+                  <Fila etiqueta="No">
+                    <Text style={s.valor} numberOfLines={1}>
+                      {pct0(fila.ladder.ambosAnotan.no.p)} · @{' '}
+                      {fila.ladder.ambosAnotan.no.cuotaJusta?.toFixed(2) ?? '—'}
+                    </Text>
+                  </Fila>
+
+                  <Text style={s.subEtiqueta}>Marcadores más probables</Text>
+                  {fila.ladder.marcadores.map(m => (
+                    <Fila etiqueta={m.marcador} key={m.marcador}>
+                      <Text style={s.valor} numberOfLines={1}>
+                        {pct0(m.p)} · @{m.cuotaJusta?.toFixed(2) ?? '—'}
+                      </Text>
+                    </Fila>
+                  ))}
+                </>
+              )}
+
               {fila.goodToLine && (
                 <>
                   <Text style={s.seccion}>A QUÉ PRECIO VALDRÍA</Text>
@@ -423,6 +486,13 @@ const s = StyleSheet.create({
     letterSpacing: 0.6,
     marginTop: spacing.md,
     marginBottom: spacing.sm,
+  },
+  subEtiqueta: {
+    color: palette.star,
+    fontSize: fontSize.xs,
+    fontWeight: '800',
+    marginTop: spacing.sm,
+    marginBottom: 2,
   },
   fila: {
     flexDirection: 'row',

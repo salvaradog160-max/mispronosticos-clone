@@ -337,8 +337,10 @@ const payload = {
     // que reflejar el numero nuevo y no el de la vez pasada.
     margenCasa: roiBacktest?.roi ?? null,
     margenCasaN: roiBacktest?.n ?? null,
+    margenCasaMaxDrawdown: roiBacktest?.maxDrawdown ?? null,
     backtestGenerado: roiBacktest?.generado ?? null,
     nota: 'El margen de la casa se mide como ROI de apostar todos los picks de consenso, medido por el backtest.',
+    notaDrawdown: 'Max drawdown: cuánto cayó el saldo acumulado desde su máximo, apostando 1 unidad por pick.',
   },
   alertas,
   resumenAlertas: {

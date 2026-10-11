@@ -85,6 +85,17 @@ const evaluar = (nombre, filtro) => {
   const media = roi;
   const varianza = retornos.reduce((s, r) => s + (r - media) ** 2, 0) / usados.length;
   const se = Math.sqrt(varianza / usados.length);
+  // Peor racha de bolsillo: el saldo acumulado (a $1 por pick, en orden
+  // cronologico) cae desde su maximo. Un ROI neutro puede doler -20% en
+  // el camino; eso es lo que un apostador real siente y la app debe decirlo.
+  let saldo = 0;
+  let pico = 0;
+  let maxDrawdown = 0;
+  for (const p of usados) {
+    saldo += p.roi;
+    pico = Math.max(pico, saldo);
+    maxDrawdown = Math.max(maxDrawdown, pico - saldo);
+  }
   return {
     nombre,
     n: usados.length,
@@ -93,6 +104,7 @@ const evaluar = (nombre, filtro) => {
     z: se > 0 ? roi / se : 0,
     ic: se > 0 ? [roi - 1.96 * se, roi + 1.96 * se] : [roi, roi],
     cobertura: usados.length / picks.length,
+    maxDrawdown,
   };
 };
 
@@ -124,12 +136,12 @@ for (const [k, v] of Object.entries(porLiga).sort((a, b) => b[1].n - a[1].n)) {
   console.log(`${k.padEnd(8)} ${String(v.n).padEnd(5)} ${(roi * 100).toFixed(2).padStart(7)}%   ${(100 * v.gana / v.n).toFixed(0)}%`);
 }
 
-console.log('\nregla                      n      acierto    ROI      z      cobertura');
-console.log('-'.repeat(76));
+console.log('\nregla                      n      acierto    ROI      z      cobertura  maxDD');
+console.log('-'.repeat(88));
 for (const r of resultados) {
-  if (!r.n) { console.log(`${r.nombre.padEnd(26)} 0      —         —       —      —`); continue; }
+  if (!r.n) { console.log(`${r.nombre.padEnd(26)} 0      —         —       —      —        —`); continue; }
   console.log(
-    `${r.nombre.padEnd(26)} ${String(r.n).padEnd(6)} ${(r.acierto * 100).toFixed(1).padStart(6)}%  ${(r.roi * 100 >= 0 ? '+' : '') + (r.roi * 100).toFixed(2)}%   ${r.z.toFixed(2).padStart(5)}   ${(r.cobertura * 100).toFixed(0)}%`,
+    `${r.nombre.padEnd(26)} ${String(r.n).padEnd(6)} ${(r.acierto * 100).toFixed(1).padStart(6)}%  ${(r.roi * 100 >= 0 ? '+' : '') + (r.roi * 100).toFixed(2)}%   ${r.z.toFixed(2).padStart(5)}   ${(r.cobertura * 100).toFixed(0).padStart(4)}%   ${(r.maxDrawdown * 100 >= 0 ? '-' : '') + Math.abs(r.maxDrawdown * 100).toFixed(0)}%`,
   );
 }
 

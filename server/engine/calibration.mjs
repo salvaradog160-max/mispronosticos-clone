@@ -59,6 +59,20 @@ export const consistencyGroups = rows => {
 };
 
 /**
+ * Intervalo de confianza de Wilson. Correcto con n chico y cerca de los
+ * limites [0,1] (la aproximacion normal se sale del rango y subestima la
+ * incertidumbre a un lado). Mismo z que el motor de referencia (1.96).
+ */
+export const wilsonCi = (rate, n, z = 1.96) => {
+  if (!n || rate === null || rate === undefined) return null;
+  const z2 = z * z;
+  const denom = 1 + z2 / n;
+  const center = (rate + z2 / (2 * n)) / denom;
+  const half = (z * Math.sqrt((rate * (1 - rate)) / n + z2 / (4 * n * n))) / denom;
+  return [Math.max(0, center - half), Math.min(1, center + half)];
+};
+
+/**
  * Acierto empirico de cada grupo. Es la UNICA fuente de verdad para
  * mostrar una confianza en pantalla.
  */
@@ -66,12 +80,11 @@ export const measuredAccuracy = rows => {
   if (rows.length === 0) return { n: 0, hits: 0, accuracy: null, ci95: null };
   const hits = rows.filter(r => r.actual === r.modelTop).length;
   const rate = hits / rows.length;
-  const se = Math.sqrt((rate * (1 - rate)) / rows.length);
   return {
     n: rows.length,
     hits,
     accuracy: rate,
-    ci95: [rate - 1.96 * se, rate + 1.96 * se],
+    ci95: wilsonCi(rate, rows.length),
   };
 };
 
@@ -79,9 +92,23 @@ export const measuredAccuracy = rows => {
  * Calibracion por tramos de probabilidad DEL MERCADO sobre los picks de
  * consenso. Devuelve la probabilidad empirica por tramo, que es la que
  * debe mostrarse en la app en lugar de la probabilidad del modelo.
+ *
+ * Shrink bayesiano (leccion del motor de referencia): cada tramo esta
+ * pensado como un grupo heredando de su padre. Aqui el padre natural de
+ * un tramo es la tasa medida de TODO el consenso (el mismo tipo de pick,
+ * solo que sin separar por probabilidad). Con shrinkK>0 la tasa del
+ * tramo se contrae hacia esa tasa global: un tramo con n pequeno y 64%
+ * de casualidad deja de mostrarse como 64% y baja hacia el 52% global.
+ * El numero REAL de partidos (n) se conserva: el CI se calcula sobre
+ * n+k observaciones efectivas, pero en pantalla se ve siempre el n real.
  */
-export const calibrateConsensus = (rows, edges = [0.3, 0.4, 0.45, 0.5, 0.55, 0.6, 1.01]) => {
+export const calibrateConsensus = (
+  rows,
+  edges = [0.3, 0.4, 0.45, 0.5, 0.55, 0.6, 1.01],
+  shrinkK = 50,
+) => {
   const consensus = rows.filter(r => r.modelTop === r.marketTop);
+  const prior = measuredAccuracy(consensus);
   const buckets = [];
 
   for (let i = 0; i < edges.length - 1; i++) {
@@ -92,12 +119,22 @@ export const calibrateConsensus = (rows, edges = [0.3, 0.4, 0.45, 0.5, 0.55, 0.6
       return p >= lo && p < hi;
     });
     const m = measuredAccuracy(slice);
+
+    let accuracy = m.accuracy;
+    let ci95 = m.ci95;
+    if (shrinkK > 0 && m.n > 0 && prior.accuracy !== null) {
+      const hitsS = m.hits + shrinkK * prior.accuracy;
+      const nS = m.n + shrinkK;
+      accuracy = hitsS / nS;
+      ci95 = wilsonCi(accuracy, nS);
+    }
+
     buckets.push({
       lo,
       hi,
       n: m.n,
-      accuracy: m.accuracy,
-      ci95: m.ci95,
+      accuracy,
+      ci95,
     });
   }
   return buckets;
