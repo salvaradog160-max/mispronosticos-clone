@@ -1,6 +1,6 @@
 {
-  "generado": "2026-10-11T23:35:06.048Z",
-  "anterior": "2026-10-11T23:30:07.054Z",
+  "generado": "2026-10-11T23:41:43.786Z",
+  "anterior": "2026-10-11T23:40:59.050Z",
   "fuente": "football-data.co.uk + ESPN (sin claves)",
   "calibracion": {
     "partidos": 35973,
@@ -150,9 +150,9 @@
         "partido": "Talleres (Córdoba) vs Independiente",
         "mercado": "1X2",
         "seleccion": "Gana Talleres (Córdoba)",
-        "cuota": 2.2,
+        "cuota": 2.25,
         "confianza": 43,
-        "necesita": 45
+        "necesita": 44
       },
       {
         "partido": "Lanús vs Vélez Sarsfield",
@@ -1048,6 +1048,7 @@
             "St. Louis CITY SC: 3 victorias seguidas",
             "St. Louis CITY SC: 5 sin perder",
             "St. Louis CITY SC: anotó en sus últimos 3",
+            "St. Louis CITY SC: suele ganar por 1 gol (5 de los últimos 4)",
             "St. Louis CITY SC: goles a favor al alza, 3.0 por partido en los últimos 2 contra 1.7 antes",
             "St. Louis CITY SC: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.6 antes"
           ],
@@ -1056,6 +1057,8 @@
             "LA Galaxy: anotó en sus últimos 3",
             "LA Galaxy: recibió gol en sus últimos 3",
             "LA Galaxy: ambos anotaron en sus últimos 2",
+            "LA Galaxy: suele ganar por 1 gol (7 de los últimos 4)",
+            "LA Galaxy: ambos marcan en cadena (últimos 3)",
             "LA Galaxy: goles a favor al alza, 3.0 por partido en los últimos 2 contra 1.2 antes",
             "LA Galaxy: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.2 antes"
           ],
@@ -1065,12 +1068,15 @@
             "St. Louis CITY SC en casa: anotó en sus últimos 3",
             "St. Louis CITY SC en casa: recibió gol en sus últimos 3",
             "St. Louis CITY SC en casa: ambos anotaron en sus últimos 2",
+            "St. Louis CITY SC en casa: suele ganar por 1 gol (4 de los últimos 4)",
+            "St. Louis CITY SC en casa: ambos marcan en cadena (últimos 3)",
             "St. Louis CITY SC en casa: goles a favor al alza, 3.5 por partido en los últimos 2 contra 1.9 antes",
             "St. Louis CITY SC en casa: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.9 antes"
           ],
           "visitaFuera": [
             "LA Galaxy fuera: ganó el último tras 3 sin ganar",
-            "LA Galaxy fuera: recibió gol en sus últimos 3"
+            "LA Galaxy fuera: recibió gol en sus últimos 3",
+            "LA Galaxy fuera: suele ganar por 1 gol (3 de los últimos 4)"
           ],
           "h2h": [
             "H2H: 5 sin perder",
@@ -1081,7 +1087,8 @@
             "H2H en casa: 3 sin perder",
             "H2H en casa: anotó en sus últimos 3",
             "H2H en casa: recibió gol en sus últimos 3",
-            "H2H en casa: ambos anotaron en sus últimos 2"
+            "H2H en casa: ambos anotaron en sus últimos 2",
+            "H2H en casa: ambos marcan en cadena (últimos 3)"
           ]
         },
         "tendencias": {
@@ -1930,17 +1937,20 @@
           "generalLocal": [
             "Red Bull Bragantino: 5 sin ganar",
             "Red Bull Bragantino: recibió gol en sus últimos 3",
+            "Red Bull Bragantino: suele ganar por 1 gol (5 de los últimos 4)",
             "Red Bull Bragantino: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.3 antes"
           ],
           "generalVisita": [
             "Cruzeiro: 2 victorias seguidas",
             "Cruzeiro: anotó en sus últimos 3",
+            "Cruzeiro: suele ganar por 1 gol (8 de los últimos 4)",
             "Cruzeiro: goles a favor al alza, 2.5 por partido en los últimos 2 contra 1.4 antes",
             "Cruzeiro: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.6 antes"
           ],
           "localCasa": [
             "Red Bull Bragantino en casa: anotó en sus últimos 3",
             "Red Bull Bragantino en casa: ambos anotaron en sus últimos 2",
+            "Red Bull Bragantino en casa: suele ganar por 1 gol (2 de los últimos 4)",
             "Red Bull Bragantino en casa: recibe más, 2.0 por partido en los últimos 2 contra 0.9 antes",
             "Red Bull Bragantino en casa: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.7 antes"
           ],
@@ -1948,7 +1958,9 @@
             "Cruzeiro fuera: ganó el último tras 3 sin ganar",
             "Cruzeiro fuera: anotó en sus últimos 3",
             "Cruzeiro fuera: recibió gol en sus últimos 3",
-            "Cruzeiro fuera: ambos anotaron en sus últimos 2"
+            "Cruzeiro fuera: ambos anotaron en sus últimos 2",
+            "Cruzeiro fuera: suele ganar por 1 gol (5 de los últimos 4)",
+            "Cruzeiro fuera: ambos marcan en cadena (últimos 3)"
           ],
           "h2h": [
             "H2H: 2 derrotas seguidas",
@@ -2716,6 +2728,26 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 3.55,
+          "current": 3,
+          "closed": 3,
+          "movePct": 5.1643,
+          "capturedAt": "2026-10-11T23:35:08.840Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 3.55,
+          "current": 3,
+          "closed": 3,
+          "movePct": 5.1643,
+          "capturedAt": "2026-10-11T23:40:05.275Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 1.909,
@@ -2973,6 +3005,26 @@
           "closed": 2.2,
           "movePct": -6.9264,
           "capturedAt": "2026-10-11T23:30:08.056Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 1.909,
+          "current": 2.2,
+          "closed": 2.2,
+          "movePct": -6.9264,
+          "capturedAt": "2026-10-11T23:35:08.837Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 1.909,
+          "current": 2.2,
+          "closed": 2.2,
+          "movePct": -6.9264,
+          "capturedAt": "2026-10-11T23:40:05.271Z"
         },
         {
           "market": "spread",
@@ -3236,6 +3288,26 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 1.8,
+          "current": 1.645,
+          "closed": 1.645,
+          "movePct": 5.2288,
+          "capturedAt": "2026-10-11T23:35:08.846Z"
+        },
+        {
+          "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 1.8,
+          "current": 1.645,
+          "closed": 1.645,
+          "movePct": 5.2288,
+          "capturedAt": "2026-10-11T23:40:05.281Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -0.5,
           "opened": 1.833,
@@ -3493,6 +3565,26 @@
           "closed": 2.1,
           "movePct": -6.9264,
           "capturedAt": "2026-10-11T23:30:08.062Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 1.833,
+          "current": 2.1,
+          "closed": 2.1,
+          "movePct": -6.9264,
+          "capturedAt": "2026-10-11T23:35:08.843Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 1.833,
+          "current": 2.1,
+          "closed": 2.1,
+          "movePct": -6.9264,
+          "capturedAt": "2026-10-11T23:40:05.278Z"
         },
         {
           "market": "total",
@@ -3756,6 +3848,26 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.625,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:35:08.854Z"
+        },
+        {
+          "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.625,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:40:05.284Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -4013,6 +4125,26 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-11T23:30:08.073Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.2,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:35:08.857Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.2,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:40:05.286Z"
         }
       ],
       "combinado": {
@@ -4373,6 +4505,7 @@
             "Atlético de San Luis: 2 victorias seguidas",
             "Atlético de San Luis: recibió gol en sus últimos 3",
             "Atlético de San Luis: ambos anotaron en sus últimos 2",
+            "Atlético de San Luis: suele ganar por 1 gol (2 de los últimos 4)",
             "Atlético de San Luis: goles a favor al alza, 3.0 por partido en los últimos 2 contra 1.3 antes",
             "Atlético de San Luis: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.0 antes"
           ],
@@ -4380,6 +4513,7 @@
             "Santos: 5 sin perder",
             "Santos: anotó en sus últimos 3",
             "Santos: ambos anotaron en sus últimos 2",
+            "Santos: suele ganar por 1 gol (12 de los últimos 4)",
             "Santos: forma al alza, 2.0 pts por partido en los últimos 2 contra 1.1 antes"
           ],
           "localCasa": [
@@ -4391,6 +4525,8 @@
             "Santos fuera: anotó en sus últimos 3",
             "Santos fuera: recibió gol en sus últimos 3",
             "Santos fuera: ambos anotaron en sus últimos 2",
+            "Santos fuera: suele ganar por 1 gol (6 de los últimos 4)",
+            "Santos fuera: ambos marcan en cadena (últimos 3)",
             "Santos fuera: goles a favor al alza, 2.5 por partido en los últimos 2 contra 1.3 antes",
             "Santos fuera: forma al alza, 3.0 pts por partido en los últimos 2 contra 0.8 antes"
           ],
@@ -4398,6 +4534,7 @@
             "H2H: 5 victorias seguidas",
             "H2H: 5 sin perder",
             "H2H: anotó en sus últimos 3",
+            "H2H: suele ganar por 1 gol (2 de los últimos 4)",
             "H2H: goles a favor al alza, 3.0 por partido en los últimos 2 contra 1.4 antes",
             "H2H: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.6 antes"
           ],
@@ -5259,26 +5396,32 @@
             "Atlético Bucaramanga: 5 sin perder",
             "Atlético Bucaramanga: anotó en sus últimos 3",
             "Atlético Bucaramanga: ambos anotaron en sus últimos 2",
+            "Atlético Bucaramanga: suele ganar por 1 gol (4 de los últimos 4)",
             "Atlético Bucaramanga: goles a favor al alza, 3.0 por partido en los últimos 2 contra 1.4 antes",
             "Atlético Bucaramanga: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.4 antes"
           ],
           "generalVisita": [
+            "Águilas Doradas: suele ganar por 1 gol (9 de los últimos 4)",
             "Águilas Doradas: forma al alza, 2.0 pts por partido en los últimos 2 contra 1.3 antes"
           ],
           "localCasa": [
             "Atlético Bucaramanga en casa: 2 victorias seguidas",
             "Atlético Bucaramanga en casa: 5 sin perder",
             "Atlético Bucaramanga en casa: anotó en sus últimos 3",
+            "Atlético Bucaramanga en casa: zig-zag de goles: O-U-O-U (alterna over/under de 2.5)",
+            "Atlético Bucaramanga en casa: empates seguidos (3 de los últimos 5)",
             "Atlético Bucaramanga en casa: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.6 antes"
           ],
           "visitaFuera": [
             "Águilas Doradas fuera: 5 sin ganar",
             "Águilas Doradas fuera: recibió gol en sus últimos 3",
+            "Águilas Doradas fuera: suele ganar por 1 gol (4 de los últimos 4)",
             "Águilas Doradas fuera: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.2 antes"
           ],
           "h2h": [
             "H2H: perdió el último tras 5 sin perder",
             "H2H: anotó en sus últimos 3",
+            "H2H: suele ganar por 1 gol (2 de los últimos 4)",
             "H2H: goles a favor al alza, 2.5 por partido en los últimos 2 contra 1.2 antes"
           ],
           "h2hCasa": [
@@ -5458,13 +5601,13 @@
       "kickoff": "2026-10-12T00:30Z",
       "favoritoMercado": "H",
       "ladoMercado": "Talleres (Córdoba)",
-      "probMercado": 0.4281,
-      "cuotaMercado": 2.2,
+      "probMercado": 0.4184,
+      "cuotaMercado": 2.25,
       "cuotaApertura": 2.4,
       "ladoModelo": "Talleres (Córdoba)",
       "probModelo": 0.4819,
       "coincide": true,
-      "movimiento": 3.77,
+      "movimiento": 3.19,
       "cambioFavorito": false,
       "goles": {
         "linea": 2.5,
@@ -5778,10 +5921,10 @@
       "resultado": null,
       "goodToLine": {
         "ejecutable": false,
-        "probActual": 0.4280649926144756,
+        "probActual": 0.4184312555920071,
         "necesita": 0.38,
         "cuotaNecesaria": 2.6315789473684212,
-        "cuotaActual": 2.336093857832988
+        "cuotaActual": 2.3898788310762655
       },
       "serie": [
         {
@@ -6046,6 +6189,26 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 3,
+          "current": 3.45,
+          "closed": null,
+          "movePct": -4.3478,
+          "capturedAt": "2026-10-11T23:35:09.842Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 3,
+          "current": 3.45,
+          "closed": null,
+          "movePct": -4.3478,
+          "capturedAt": "2026-10-11T23:40:06.281Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 2.4,
@@ -6303,6 +6466,26 @@
           "closed": null,
           "movePct": 3.7879,
           "capturedAt": "2026-10-11T23:30:09.063Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 2.4,
+          "current": 2.2,
+          "closed": null,
+          "movePct": 3.7879,
+          "capturedAt": "2026-10-11T23:35:09.839Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 2.4,
+          "current": 2.2,
+          "closed": null,
+          "movePct": 3.7879,
+          "capturedAt": "2026-10-11T23:40:06.278Z"
         },
         {
           "market": "spread",
@@ -6566,6 +6749,26 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 1.513,
+          "current": 1.645,
+          "closed": null,
+          "movePct": -5.3174,
+          "capturedAt": "2026-10-11T23:35:09.846Z"
+        },
+        {
+          "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 1.513,
+          "current": 1.645,
+          "closed": null,
+          "movePct": -5.3174,
+          "capturedAt": "2026-10-11T23:40:06.286Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -0.5,
           "opened": 2.25,
@@ -6823,6 +7026,26 @@
           "closed": null,
           "movePct": 3.1746,
           "capturedAt": "2026-10-11T23:30:09.069Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 2.25,
+          "current": 2.1,
+          "closed": null,
+          "movePct": 3.1746,
+          "capturedAt": "2026-10-11T23:35:09.844Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 2.25,
+          "current": 2.1,
+          "closed": null,
+          "movePct": 3.1746,
+          "capturedAt": "2026-10-11T23:40:06.284Z"
         },
         {
           "market": "total",
@@ -7086,6 +7309,26 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.3,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:35:09.849Z"
+        },
+        {
+          "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.3,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:40:06.288Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -7343,6 +7586,26 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-11T23:30:09.077Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.571,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:35:09.852Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.571,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:40:06.291Z"
         }
       ],
       "combinado": {
@@ -7693,18 +7956,26 @@
           "generalLocal": [
             "Talleres (Córdoba): 2 derrotas seguidas",
             "Talleres (Córdoba): recibió gol en sus últimos 3",
+            "Talleres (Córdoba): suele ganar por 1 gol (6 de los últimos 4)",
             "Talleres (Córdoba): forma a la baja, 0.0 pts por partido en los últimos 2 contra 1.4 antes"
           ],
           "generalVisita": [
             "Independiente: anotó en sus últimos 3",
             "Independiente: recibió gol en sus últimos 3",
             "Independiente: ambos anotaron en sus últimos 2",
+            "Independiente: suele ganar por 1 gol (6 de los últimos 4)",
+            "Independiente: ambos marcan en cadena (últimos 3)",
             "Independiente: recibe más, 2.5 por partido en los últimos 2 contra 1.1 antes"
           ],
-          "localCasa": [],
+          "localCasa": [
+            "Talleres (Córdoba) en casa: zig-zag de goles: U-O-U-O (alterna over/under de 2.5)",
+            "Talleres (Córdoba) en casa: suele ganar por 1 gol (3 de los últimos 4)"
+          ],
           "visitaFuera": [
             "Independiente fuera: 3 victorias seguidas",
             "Independiente fuera: anotó en sus últimos 3",
+            "Independiente fuera: zig-zag de goles: O-U-O-U (alterna over/under de 2.5)",
+            "Independiente fuera: suele ganar por 1 gol (4 de los últimos 4)",
             "Independiente fuera: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.4 antes"
           ],
           "h2h": [
@@ -7712,6 +7983,8 @@
             "H2H: anotó en sus últimos 3",
             "H2H: recibió gol en sus últimos 3",
             "H2H: ambos anotaron en sus últimos 2",
+            "H2H: suele ganar por 1 gol (2 de los últimos 4)",
+            "H2H: ambos marcan en cadena (últimos 3)",
             "H2H: forma al alza, 3.0 pts por partido en los últimos 2 contra 0.6 antes"
           ],
           "h2hCasa": [
@@ -8563,11 +8836,14 @@
         "patrones": {
           "generalLocal": [
             "Deportes Limache: perdió el último tras 3 sin perder",
+            "Deportes Limache: zig-zag de goles: U-O-U-O (alterna over/under de 2.5)",
             "Deportes Limache: recibe menos, 0.5 por partido en los últimos 2 contra 1.6 antes"
           ],
           "generalVisita": [
             "Palestino: recibió gol en sus últimos 3",
-            "Palestino: ambos anotaron en sus últimos 2"
+            "Palestino: ambos anotaron en sus últimos 2",
+            "Palestino: zig-zag en el resultado: P-G-P-G (alterna ganar/perder)",
+            "Palestino: suele ganar por 1 gol (7 de los últimos 4)"
           ],
           "localCasa": [
             "Deportes Limache en casa: 2 victorias seguidas",
@@ -8575,6 +8851,7 @@
             "Deportes Limache en casa: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.7 antes"
           ],
           "visitaFuera": [
+            "Palestino fuera: suele ganar por 1 gol (4 de los últimos 4)",
             "Palestino fuera: recibe menos, 1.0 por partido en los últimos 2 contra 2.0 antes",
             "Palestino fuera: forma al alza, 1.5 pts por partido en los últimos 2 contra 1.0 antes"
           ],
@@ -9415,18 +9692,21 @@
         },
         "patrones": {
           "generalLocal": [
+            "Boyacá Chicó FC: suele ganar por 1 gol (4 de los últimos 4)",
             "Boyacá Chicó FC: recibe menos, 0.0 por partido en los últimos 2 contra 1.8 antes",
             "Boyacá Chicó FC: forma al alza, 2.0 pts por partido en los últimos 2 contra 0.9 antes",
             "Boyacá Chicó FC: goles concentrados, la desviación (1.21) supera el promedio (0.83)"
           ],
           "generalVisita": [
             "Cúcuta Deportivo: 2 victorias seguidas",
+            "Cúcuta Deportivo: suele ganar por 1 gol (5 de los últimos 4)",
             "Cúcuta Deportivo: goles a favor al alza, 3.0 por partido en los últimos 2 contra 1.1 antes",
             "Cúcuta Deportivo: recibe menos, 0.5 por partido en los últimos 2 contra 1.8 antes",
             "Cúcuta Deportivo: forma al alza, 3.0 pts por partido en los últimos 2 contra 0.9 antes"
           ],
           "localCasa": [
-            "Boyacá Chicó FC en casa: anotó en sus últimos 3"
+            "Boyacá Chicó FC en casa: anotó en sus últimos 3",
+            "Boyacá Chicó FC en casa: suele ganar por 1 gol (4 de los últimos 4)"
           ],
           "visitaFuera": [
             "Cúcuta Deportivo fuera: 2 derrotas seguidas",
@@ -10286,18 +10566,26 @@
             "Atlético Junior: anotó en sus últimos 3",
             "Atlético Junior: recibió gol en sus últimos 3",
             "Atlético Junior: ambos anotaron en sus últimos 2",
+            "Atlético Junior: suele ganar por 1 gol (6 de los últimos 4)",
+            "Atlético Junior: ambos marcan en cadena (últimos 3)",
             "Atlético Junior: recibe más, 2.5 por partido en los últimos 2 contra 1.4 antes",
             "Atlético Junior: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.5 antes"
           ],
           "generalVisita": [
-            "Deportivo Pereira: 5 sin ganar"
+            "Deportivo Pereira: 5 sin ganar",
+            "Deportivo Pereira: suele ganar por 1 gol (2 de los últimos 4)",
+            "Deportivo Pereira: empates seguidos (3 de los últimos 5)"
           ],
           "localCasa": [
             "Atlético Junior en casa: 5 sin perder",
-            "Atlético Junior en casa: anotó en sus últimos 3"
+            "Atlético Junior en casa: anotó en sus últimos 3",
+            "Atlético Junior en casa: zig-zag de goles: O-U-O-U (alterna over/under de 2.5)",
+            "Atlético Junior en casa: suele ganar por 1 gol (3 de los últimos 4)",
+            "Atlético Junior en casa: empates seguidos (4 de los últimos 5)"
           ],
           "visitaFuera": [
             "Deportivo Pereira fuera: recibió gol en sus últimos 3",
+            "Deportivo Pereira fuera: empates seguidos (3 de los últimos 5)",
             "Deportivo Pereira fuera: recibe más, 3.0 por partido en los últimos 2 contra 1.5 antes",
             "Deportivo Pereira fuera: goles concentrados, la desviación (0.86) supera el promedio (0.63)"
           ],
@@ -10305,6 +10593,7 @@
             "H2H: 2 victorias seguidas",
             "H2H: recibió gol en sus últimos 3",
             "H2H: ambos anotaron en sus últimos 2",
+            "H2H: suele ganar por 1 gol (2 de los últimos 4)",
             "H2H: goles a favor al alza, 3.0 por partido en los últimos 2 contra 1.3 antes",
             "H2H: recibe más, 2.0 por partido en los últimos 2 contra 0.8 antes",
             "H2H: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.4 antes"
@@ -11159,6 +11448,7 @@
           "generalLocal": [
             "Atalanta: 3 derrotas seguidas",
             "Atalanta: recibió gol en sus últimos 3",
+            "Atalanta: suele ganar por 1 gol (2 de los últimos 4)",
             "Atalanta: recibe más, 2.0 por partido en los últimos 2 contra 1.0 antes",
             "Atalanta: forma a la baja, 0.0 pts por partido en los últimos 2 contra 2.0 antes"
           ],
@@ -12026,6 +12316,7 @@
         },
         "patrones": {
           "generalLocal": [
+            "Lanús: suele ganar por 1 gol (8 de los últimos 4)",
             "Lanús: forma al alza, 2.0 pts por partido en los últimos 2 contra 1.5 antes"
           ],
           "generalVisita": [
@@ -12033,12 +12324,16 @@
             "Vélez Sarsfield: anotó en sus últimos 3",
             "Vélez Sarsfield: recibió gol en sus últimos 3",
             "Vélez Sarsfield: ambos anotaron en sus últimos 2",
+            "Vélez Sarsfield: suele ganar por 1 gol (10 de los últimos 4)",
+            "Vélez Sarsfield: empates seguidos (3 de los últimos 5)",
+            "Vélez Sarsfield: ambos marcan en cadena (últimos 3)",
             "Vélez Sarsfield: goles a favor al alza, 2.5 por partido en los últimos 2 contra 1.2 antes",
             "Vélez Sarsfield: recibe más, 2.0 por partido en los últimos 2 contra 0.8 antes"
           ],
           "localCasa": [
             "Lanús en casa: 2 victorias seguidas",
             "Lanús en casa: anotó en sus últimos 3",
+            "Lanús en casa: suele ganar por 1 gol (5 de los últimos 4)",
             "Lanús en casa: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.4 antes"
           ],
           "visitaFuera": [
@@ -12046,6 +12341,9 @@
             "Vélez Sarsfield fuera: anotó en sus últimos 3",
             "Vélez Sarsfield fuera: recibió gol en sus últimos 3",
             "Vélez Sarsfield fuera: ambos anotaron en sus últimos 2",
+            "Vélez Sarsfield fuera: suele ganar por 1 gol (2 de los últimos 4)",
+            "Vélez Sarsfield fuera: empates seguidos (4 de los últimos 5)",
+            "Vélez Sarsfield fuera: ambos marcan en cadena (últimos 3)",
             "Vélez Sarsfield fuera: forma a la baja, 1.0 pts por partido en los últimos 2 contra 1.6 antes"
           ],
           "h2h": [
@@ -12893,12 +13191,16 @@
         },
         "patrones": {
           "generalLocal": [
-            "Chapecoense: recibió gol en sus últimos 3"
+            "Chapecoense: recibió gol en sus últimos 3",
+            "Chapecoense: suele ganar por 1 gol (2 de los últimos 4)"
           ],
           "generalVisita": [
             "Athletico-PR: anotó en sus últimos 3",
             "Athletico-PR: recibió gol en sus últimos 3",
-            "Athletico-PR: ambos anotaron en sus últimos 2"
+            "Athletico-PR: ambos anotaron en sus últimos 2",
+            "Athletico-PR: suele ganar por 1 gol (8 de los últimos 4)",
+            "Athletico-PR: empates seguidos (3 de los últimos 5)",
+            "Athletico-PR: ambos marcan en cadena (últimos 3)"
           ],
           "localCasa": [
             "Chapecoense en casa: anotó en sus últimos 3",
@@ -12909,6 +13211,8 @@
             "Athletico-PR fuera: anotó en sus últimos 3",
             "Athletico-PR fuera: recibió gol en sus últimos 3",
             "Athletico-PR fuera: ambos anotaron en sus últimos 2",
+            "Athletico-PR fuera: suele ganar por 1 gol (4 de los últimos 4)",
+            "Athletico-PR fuera: ambos marcan en cadena (últimos 3)",
             "Athletico-PR fuera: recibe más, 3.0 por partido en los últimos 2 contra 1.3 antes",
             "Athletico-PR fuera: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.4 antes"
           ],
@@ -13677,6 +13981,26 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 2.05,
+          "current": 2,
+          "closed": null,
+          "movePct": 1.2195,
+          "capturedAt": "2026-10-11T23:35:09.091Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 2.05,
+          "current": 2,
+          "closed": null,
+          "movePct": 1.2195,
+          "capturedAt": "2026-10-11T23:40:05.550Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 3.25,
@@ -13934,6 +14258,26 @@
           "closed": null,
           "movePct": -2.1978,
           "capturedAt": "2026-10-11T23:30:08.285Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 3.25,
+          "current": 3.5,
+          "closed": null,
+          "movePct": -2.1978,
+          "capturedAt": "2026-10-11T23:35:09.089Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 3.25,
+          "current": 3.5,
+          "closed": null,
+          "movePct": -2.1978,
+          "capturedAt": "2026-10-11T23:40:05.546Z"
         },
         {
           "market": "spread",
@@ -14197,6 +14541,26 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": 0.5,
+          "opened": 1.952,
+          "current": 1.952,
+          "closed": null,
+          "movePct": 0,
+          "capturedAt": "2026-10-11T23:35:09.098Z"
+        },
+        {
+          "market": "spread",
+          "side": "away",
+          "line": 0.5,
+          "opened": 1.952,
+          "current": 1.952,
+          "closed": null,
+          "movePct": 0,
+          "capturedAt": "2026-10-11T23:40:05.556Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": 0.5,
           "opened": 1.69,
@@ -14454,6 +14818,26 @@
           "closed": null,
           "movePct": -1.7369,
           "capturedAt": "2026-10-11T23:30:08.292Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": 0.5,
+          "opened": 1.69,
+          "current": 1.741,
+          "closed": null,
+          "movePct": -1.7369,
+          "capturedAt": "2026-10-11T23:35:09.095Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": 0.5,
+          "opened": 1.69,
+          "current": 1.741,
+          "closed": null,
+          "movePct": -1.7369,
+          "capturedAt": "2026-10-11T23:40:05.553Z"
         },
         {
           "market": "total",
@@ -14717,6 +15101,26 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.714,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:35:09.101Z"
+        },
+        {
+          "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.714,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:40:05.559Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -14974,6 +15378,26 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-11T23:30:08.302Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.05,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:35:09.104Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.05,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:40:05.561Z"
         }
       ],
       "combinado": {
@@ -15319,24 +15743,32 @@
           "generalLocal": [
             "Pumas UNAM: recibió gol en sus últimos 3",
             "Pumas UNAM: ambos anotaron en sus últimos 2",
+            "Pumas UNAM: suele ganar por 1 gol (5 de los últimos 4)",
             "Pumas UNAM: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.9 antes"
           ],
           "generalVisita": [
             "Cruz Azul: recibió gol en sus últimos 3",
+            "Cruz Azul: zig-zag de goles: O-U-O-U (alterna over/under de 2.5)",
+            "Cruz Azul: suele ganar por 1 gol (9 de los últimos 4)",
             "Cruz Azul: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.9 antes"
           ],
           "localCasa": [
             "Pumas UNAM en casa: anotó en sus últimos 3",
             "Pumas UNAM en casa: recibió gol en sus últimos 3",
-            "Pumas UNAM en casa: ambos anotaron en sus últimos 2"
+            "Pumas UNAM en casa: ambos anotaron en sus últimos 2",
+            "Pumas UNAM en casa: ambos marcan en cadena (últimos 3)"
           ],
           "visitaFuera": [
-            "Cruz Azul fuera: recibió gol en sus últimos 3"
+            "Cruz Azul fuera: recibió gol en sus últimos 3",
+            "Cruz Azul fuera: zig-zag en el resultado: P-G-P-G (alterna ganar/perder)",
+            "Cruz Azul fuera: suele ganar por 1 gol (3 de los últimos 4)"
           ],
           "h2h": [
             "H2H: anotó en sus últimos 3",
             "H2H: recibió gol en sus últimos 3",
             "H2H: ambos anotaron en sus últimos 2",
+            "H2H: suele ganar por 1 gol (2 de los últimos 4)",
+            "H2H: ambos marcan en cadena (últimos 3)",
             "H2H: goles a favor al alza, 2.5 por partido en los últimos 2 contra 1.3 antes",
             "H2H: forma al alza, 2.0 pts por partido en los últimos 2 contra 0.8 antes"
           ],
@@ -16194,22 +16626,28 @@
           "generalLocal": [
             "América de Cali: 2 victorias seguidas",
             "América de Cali: anotó en sus últimos 3",
+            "América de Cali: suele ganar por 1 gol (9 de los últimos 4)",
             "América de Cali: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.9 antes"
           ],
           "generalVisita": [
             "Independiente Medellín: recibió gol en sus últimos 3",
+            "Independiente Medellín: zig-zag de goles: U-O-U-O (alterna over/under de 2.5)",
+            "Independiente Medellín: suele ganar por 1 gol (9 de los últimos 4)",
             "Independiente Medellín: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.6 antes"
           ],
           "localCasa": [
+            "América de Cali en casa: suele ganar por 1 gol (4 de los últimos 4)",
             "América de Cali en casa: goles a favor a la baja, 0.5 por partido en los últimos 2 contra 2.3 antes",
             "América de Cali en casa: forma a la baja, 1.5 pts por partido en los últimos 2 contra 2.5 antes"
           ],
           "visitaFuera": [
             "Independiente Medellín fuera: recibió gol en sus últimos 3",
+            "Independiente Medellín fuera: suele ganar por 1 gol (3 de los últimos 4)",
             "Independiente Medellín fuera: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.5 antes"
           ],
           "h2h": [
             "H2H: 2 derrotas seguidas",
+            "H2H: suele ganar por 1 gol (2 de los últimos 4)",
             "H2H: recibe más, 2.5 por partido en los últimos 2 contra 1.4 antes",
             "H2H: forma a la baja, 0.0 pts por partido en los últimos 2 contra 1.3 antes"
           ],
@@ -17065,11 +17503,15 @@
             "San Diego FC: anotó en sus últimos 3",
             "San Diego FC: recibió gol en sus últimos 3",
             "San Diego FC: ambos anotaron en sus últimos 2",
+            "San Diego FC: suele ganar por 1 gol (3 de los últimos 4)",
+            "San Diego FC: ambos marcan en cadena (últimos 3)",
             "San Diego FC: recibe más, 3.5 por partido en los últimos 2 contra 1.7 antes",
             "San Diego FC: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.2 antes"
           ],
           "generalVisita": [
             "Houston Dynamo FC: recibió gol en sus últimos 3",
+            "Houston Dynamo FC: zig-zag de goles: O-U-O-U (alterna over/under de 2.5)",
+            "Houston Dynamo FC: suele ganar por 1 gol (9 de los últimos 4)",
             "Houston Dynamo FC: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.7 antes"
           ],
           "localCasa": [
@@ -17080,6 +17522,7 @@
             "San Diego FC en casa: forma a la baja, 0.0 pts por partido en los últimos 2 contra 1.8 antes"
           ],
           "visitaFuera": [
+            "Houston Dynamo FC fuera: suele ganar por 1 gol (2 de los últimos 4)",
             "Houston Dynamo FC fuera: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.4 antes"
           ],
           "h2h": [
@@ -17937,6 +18380,7 @@
           "generalLocal": [
             "Universidad de Chile: 2 victorias seguidas",
             "Universidad de Chile: anotó en sus últimos 3",
+            "Universidad de Chile: suele ganar por 1 gol (6 de los últimos 4)",
             "Universidad de Chile: goles a favor al alza, 3.5 por partido en los últimos 2 contra 1.3 antes",
             "Universidad de Chile: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.7 antes"
           ],
@@ -17944,6 +18388,7 @@
             "Ñublense: 4 derrotas seguidas",
             "Ñublense: recibió gol en sus últimos 3",
             "Ñublense: ambos anotaron en sus últimos 2",
+            "Ñublense: suele ganar por 1 gol (6 de los últimos 4)",
             "Ñublense: recibe más, 2.5 por partido en los últimos 2 contra 1.2 antes",
             "Ñublense: forma a la baja, 0.0 pts por partido en los últimos 2 contra 1.5 antes"
           ],
@@ -17951,18 +18396,22 @@
             "Universidad de Chile en casa: anotó en sus últimos 3",
             "Universidad de Chile en casa: recibió gol en sus últimos 3",
             "Universidad de Chile en casa: ambos anotaron en sus últimos 2",
+            "Universidad de Chile en casa: suele ganar por 1 gol (3 de los últimos 4)",
+            "Universidad de Chile en casa: ambos marcan en cadena (últimos 3)",
             "Universidad de Chile en casa: recibe más, 2.0 por partido en los últimos 2 contra 0.6 antes",
             "Universidad de Chile en casa: forma a la baja, 1.5 pts por partido en los últimos 2 contra 2.3 antes"
           ],
           "visitaFuera": [
             "Ñublense fuera: 2 derrotas seguidas",
             "Ñublense fuera: recibió gol en sus últimos 3",
+            "Ñublense fuera: suele ganar por 1 gol (3 de los últimos 4)",
             "Ñublense fuera: forma a la baja, 0.0 pts por partido en los últimos 2 contra 1.8 antes"
           ],
           "h2h": [
             "H2H: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.3 antes"
           ],
           "h2hCasa": [
+            "H2H en casa: zig-zag de goles: O-U-O-U (alterna over/under de 2.5)",
             "H2H en casa: goles a favor al alza, 2.5 por partido en los últimos 2 contra 1.3 antes",
             "H2H en casa: recibe menos, 0.0 por partido en los últimos 2 contra 1.0 antes",
             "H2H en casa: forma al alza, 2.0 pts por partido en los últimos 2 contra 1.3 antes"
@@ -18726,6 +19175,26 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 4.4,
+          "current": 4.7,
+          "closed": 4.7,
+          "movePct": -1.4507,
+          "capturedAt": "2026-10-11T23:35:10.540Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 4.4,
+          "current": 4.7,
+          "closed": 4.7,
+          "movePct": -1.4507,
+          "capturedAt": "2026-10-11T23:40:07.052Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 1.69,
@@ -18983,6 +19452,26 @@
           "closed": 1.69,
           "movePct": 0,
           "capturedAt": "2026-10-11T23:30:09.755Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 1.69,
+          "current": 1.69,
+          "closed": 1.69,
+          "movePct": 0,
+          "capturedAt": "2026-10-11T23:35:10.537Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 1.69,
+          "current": 1.69,
+          "closed": 1.69,
+          "movePct": 0,
+          "capturedAt": "2026-10-11T23:40:07.050Z"
         },
         {
           "market": "spread",
@@ -19246,6 +19735,26 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 2.05,
+          "current": 2.15,
+          "closed": 2.15,
+          "movePct": -2.2689,
+          "capturedAt": "2026-10-11T23:35:10.546Z"
+        },
+        {
+          "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 2.05,
+          "current": 2.15,
+          "closed": 2.15,
+          "movePct": -2.2689,
+          "capturedAt": "2026-10-11T23:40:07.059Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -0.5,
           "opened": 1.645,
@@ -19503,6 +20012,26 @@
           "closed": 1.625,
           "movePct": 0.7541,
           "capturedAt": "2026-10-11T23:30:09.760Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 1.645,
+          "current": 1.625,
+          "closed": 1.625,
+          "movePct": 0.7541,
+          "capturedAt": "2026-10-11T23:35:10.543Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 1.645,
+          "current": 1.625,
+          "closed": 1.625,
+          "movePct": 0.7541,
+          "capturedAt": "2026-10-11T23:40:07.055Z"
         },
         {
           "market": "total",
@@ -19766,6 +20295,26 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.606,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:35:10.549Z"
+        },
+        {
+          "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.606,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:40:07.062Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -20023,6 +20572,26 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-11T23:30:09.768Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.25,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:35:10.552Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.25,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:40:07.064Z"
         }
       ],
       "combinado": {
@@ -20369,11 +20938,13 @@
           "generalLocal": [
             "Bahia: 2 derrotas seguidas",
             "Bahia: recibió gol en sus últimos 3",
+            "Bahia: suele ganar por 1 gol (8 de los últimos 4)",
             "Bahia: goles a favor a la baja, 0.5 por partido en los últimos 2 contra 1.6 antes",
             "Bahia: forma a la baja, 0.0 pts por partido en los últimos 2 contra 1.7 antes"
           ],
           "generalVisita": [
             "Mirassol: anotó en sus últimos 3",
+            "Mirassol: suele ganar por 1 gol (7 de los últimos 4)",
             "Mirassol: recibe menos, 0.5 por partido en los últimos 2 contra 1.6 antes",
             "Mirassol: forma al alza, 2.0 pts por partido en los últimos 2 contra 1.1 antes"
           ],
@@ -20381,18 +20952,21 @@
             "Bahia en casa: 2 victorias seguidas",
             "Bahia en casa: 5 sin perder",
             "Bahia en casa: ambos anotaron en sus últimos 2",
+            "Bahia en casa: suele ganar por 1 gol (3 de los últimos 4)",
             "Bahia en casa: goles a favor al alza, 2.5 por partido en los últimos 2 contra 1.4 antes",
             "Bahia en casa: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.5 antes"
           ],
           "visitaFuera": [
             "Mirassol fuera: recibió gol en sus últimos 3",
             "Mirassol fuera: ambos anotaron en sus últimos 2",
+            "Mirassol fuera: suele ganar por 1 gol (2 de los últimos 4)",
             "Mirassol fuera: forma al alza, 2.0 pts por partido en los últimos 2 contra 0.5 antes"
           ],
           "h2h": [
             "H2H: anotó en sus últimos 3",
             "H2H: recibió gol en sus últimos 3",
-            "H2H: ambos anotaron en sus últimos 2"
+            "H2H: ambos anotaron en sus últimos 2",
+            "H2H: ambos marcan en cadena (últimos 3)"
           ],
           "h2hCasa": []
         },
@@ -21249,6 +21823,7 @@
           "generalVisita": [
             "Sevilla: perdió el último tras 3 sin perder",
             "Sevilla: anotó en sus últimos 3",
+            "Sevilla: suele ganar por 1 gol (3 de los últimos 4)",
             "Sevilla: forma a la baja, 1.5 pts por partido en los últimos 2 contra 2.0 antes"
           ],
           "localCasa": [
@@ -22107,20 +22682,25 @@
         },
         "patrones": {
           "generalLocal": [
+            "Gimnasia (Mendoza): suele ganar por 1 gol (7 de los últimos 4)",
             "Gimnasia (Mendoza): goles a favor a la baja, 0.0 por partido en los últimos 2 contra 1.1 antes",
             "Gimnasia (Mendoza): forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.4 antes"
           ],
           "generalVisita": [
             "Newell's Old Boys: 5 sin perder",
+            "Newell's Old Boys: suele ganar por 1 gol (5 de los últimos 4)",
+            "Newell's Old Boys: empates seguidos (4 de los últimos 5)",
             "Newell's Old Boys: recibe menos, 0.0 por partido en los últimos 2 contra 1.4 antes",
             "Newell's Old Boys: forma al alza, 2.0 pts por partido en los últimos 2 contra 1.1 antes"
           ],
           "localCasa": [
             "Gimnasia (Mendoza) en casa: 5 sin perder",
+            "Gimnasia (Mendoza) en casa: suele ganar por 1 gol (5 de los últimos 4)",
             "Gimnasia (Mendoza) en casa: forma a la baja, 1.0 pts por partido en los últimos 2 contra 2.0 antes"
           ],
           "visitaFuera": [
             "Newell's Old Boys fuera: ganó el último tras 3 sin ganar",
+            "Newell's Old Boys fuera: suele ganar por 1 gol (2 de los últimos 4)",
             "Newell's Old Boys fuera: recibe menos, 0.5 por partido en los últimos 2 contra 1.8 antes",
             "Newell's Old Boys fuera: forma al alza, 2.0 pts por partido en los últimos 2 contra 0.8 antes"
           ],
@@ -22996,12 +23576,15 @@
           ],
           "h2h": [
             "H2H: 2 derrotas seguidas",
+            "H2H: zig-zag de goles: U-O-U-O (alterna over/under de 2.5)",
+            "H2H: suele ganar por 1 gol (3 de los últimos 4)",
             "H2H: goles a favor a la baja, 0.5 por partido en los últimos 2 contra 1.5 antes",
             "H2H: recibe más, 2.0 por partido en los últimos 2 contra 0.9 antes",
             "H2H: forma a la baja, 0.0 pts por partido en los últimos 2 contra 2.1 antes"
           ],
           "h2hCasa": [
             "H2H en casa: anotó en sus últimos 3",
+            "H2H en casa: suele ganar por 1 gol (2 de los últimos 4)",
             "H2H en casa: forma a la baja, 1.5 pts por partido en los últimos 2 contra 2.3 antes"
           ]
         },
@@ -23840,6 +24423,8 @@
           "generalLocal": [
             "FC Famalicao: ganó el último tras 4 sin ganar",
             "FC Famalicao: anotó en sus últimos 3",
+            "FC Famalicao: zig-zag de goles: O-U-O-U (alterna over/under de 2.5)",
+            "FC Famalicao: empates seguidos (3 de los últimos 5)",
             "FC Famalicao: goles a favor al alza, 2.5 por partido en los últimos 2 contra 0.8 antes",
             "FC Famalicao: forma al alza, 2.0 pts por partido en los últimos 2 contra 0.6 antes"
           ],
@@ -24703,22 +25288,28 @@
           "generalLocal": [
             "Sarmiento (Junín): anotó en sus últimos 3",
             "Sarmiento (Junín): recibió gol en sus últimos 3",
-            "Sarmiento (Junín): ambos anotaron en sus últimos 2"
+            "Sarmiento (Junín): ambos anotaron en sus últimos 2",
+            "Sarmiento (Junín): suele ganar por 1 gol (7 de los últimos 4)",
+            "Sarmiento (Junín): ambos marcan en cadena (últimos 3)"
           ],
           "generalVisita": [
-            "River Plate: anotó en sus últimos 3"
+            "River Plate: anotó en sus últimos 3",
+            "River Plate: suele ganar por 1 gol (5 de los últimos 4)"
           ],
           "localCasa": [
-            "Sarmiento (Junín) en casa: anotó en sus últimos 3"
+            "Sarmiento (Junín) en casa: anotó en sus últimos 3",
+            "Sarmiento (Junín) en casa: suele ganar por 1 gol (5 de los últimos 4)"
           ],
           "visitaFuera": [
             "River Plate fuera: 2 victorias seguidas",
             "River Plate fuera: recibió gol en sus últimos 3",
             "River Plate fuera: ambos anotaron en sus últimos 2",
+            "River Plate fuera: suele ganar por 1 gol (4 de los últimos 4)",
             "River Plate fuera: goles a favor al alza, 2.5 por partido en los últimos 2 contra 0.8 antes",
             "River Plate fuera: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.4 antes"
           ],
           "h2h": [
+            "H2H: suele ganar por 1 gol (2 de los últimos 4)",
             "H2H: forma al alza, 1.5 pts por partido en los últimos 2 contra 0.8 antes"
           ],
           "h2hCasa": [
@@ -25484,6 +26075,26 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 4.4,
+          "current": 4.5,
+          "closed": 4.5,
+          "movePct": -0.5051,
+          "capturedAt": "2026-10-11T23:35:08.973Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 4.4,
+          "current": 4.5,
+          "closed": 4.5,
+          "movePct": -0.5051,
+          "capturedAt": "2026-10-11T23:40:05.413Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 1.667,
@@ -25741,6 +26352,26 @@
           "closed": 1.714,
           "movePct": -1.6667,
           "capturedAt": "2026-10-11T23:30:08.172Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 1.667,
+          "current": 1.714,
+          "closed": 1.714,
+          "movePct": -1.6667,
+          "capturedAt": "2026-10-11T23:35:08.969Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 1.667,
+          "current": 1.714,
+          "closed": 1.714,
+          "movePct": -1.6667,
+          "capturedAt": "2026-10-11T23:40:05.409Z"
         },
         {
           "market": "spread",
@@ -26004,6 +26635,26 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 2.05,
+          "current": 2.1,
+          "closed": 2.1,
+          "movePct": -1.1614,
+          "capturedAt": "2026-10-11T23:35:08.980Z"
+        },
+        {
+          "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 2.05,
+          "current": 2.1,
+          "closed": 2.1,
+          "movePct": -1.1614,
+          "capturedAt": "2026-10-11T23:40:05.420Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -0.5,
           "opened": 1.606,
@@ -26261,6 +26912,26 @@
           "closed": 1.645,
           "movePct": -1.4798,
           "capturedAt": "2026-10-11T23:30:08.177Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 1.606,
+          "current": 1.645,
+          "closed": 1.645,
+          "movePct": -1.4798,
+          "capturedAt": "2026-10-11T23:35:08.976Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 1.606,
+          "current": 1.645,
+          "closed": 1.645,
+          "movePct": -1.4798,
+          "capturedAt": "2026-10-11T23:40:05.417Z"
         },
         {
           "market": "total",
@@ -26524,6 +27195,26 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.625,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:35:08.984Z"
+        },
+        {
+          "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.625,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:40:05.422Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -26781,6 +27472,26 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-11T23:30:08.186Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.2,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:35:08.987Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.2,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:40:05.425Z"
         }
       ],
       "combinado": {
@@ -27133,6 +27844,7 @@
         },
         "patrones": {
           "generalLocal": [
+            "Pachuca: suele ganar por 1 gol (5 de los últimos 4)",
             "Pachuca: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.7 antes"
           ],
           "generalVisita": [
@@ -27140,6 +27852,7 @@
             "Necaxa: 5 sin ganar",
             "Necaxa: recibió gol en sus últimos 3",
             "Necaxa: ambos anotaron en sus últimos 2",
+            "Necaxa: suele ganar por 1 gol (4 de los últimos 4)",
             "Necaxa: recibe más, 3.5 por partido en los últimos 2 contra 1.5 antes",
             "Necaxa: forma a la baja, 0.0 pts por partido en los últimos 2 contra 1.0 antes"
           ],
@@ -27148,6 +27861,8 @@
             "Pachuca en casa: anotó en sus últimos 3",
             "Pachuca en casa: recibió gol en sus últimos 3",
             "Pachuca en casa: ambos anotaron en sus últimos 2",
+            "Pachuca en casa: suele ganar por 1 gol (3 de los últimos 4)",
+            "Pachuca en casa: ambos marcan en cadena (últimos 3)",
             "Pachuca en casa: forma a la baja, 1.0 pts por partido en los últimos 2 contra 1.8 antes"
           ],
           "visitaFuera": [
@@ -27155,12 +27870,14 @@
             "Necaxa fuera: perdió el último tras 3 sin perder",
             "Necaxa fuera: anotó en sus últimos 3",
             "Necaxa fuera: recibió gol en sus últimos 3",
-            "Necaxa fuera: ambos anotaron en sus últimos 2"
+            "Necaxa fuera: ambos anotaron en sus últimos 2",
+            "Necaxa fuera: ambos marcan en cadena (últimos 3)"
           ],
           "h2h": [
             "H2H: 4 victorias seguidas",
             "H2H: 5 sin perder",
             "H2H: anotó en sus últimos 3",
+            "H2H: suele ganar por 1 gol (4 de los últimos 4)",
             "H2H: forma al alza, 3.0 pts por partido en los últimos 2 contra 2.0 antes"
           ],
           "h2hCasa": [
@@ -27169,6 +27886,8 @@
             "H2H en casa: anotó en sus últimos 3",
             "H2H en casa: recibió gol en sus últimos 3",
             "H2H en casa: ambos anotaron en sus últimos 2",
+            "H2H en casa: suele ganar por 1 gol (3 de los últimos 4)",
+            "H2H en casa: ambos marcan en cadena (últimos 3)",
             "H2H en casa: goles a favor al alza, 4.0 por partido en los últimos 2 contra 1.3 antes",
             "H2H en casa: forma al alza, 3.0 pts por partido en los últimos 2 contra 2.3 antes"
           ]
@@ -28023,13 +28742,15 @@
         "patrones": {
           "generalLocal": [
             "Burgos: perdió el último tras 4 sin perder",
-            "Burgos: anotó en sus últimos 3"
+            "Burgos: anotó en sus últimos 3",
+            "Burgos: suele ganar por 1 gol (3 de los últimos 4)"
           ],
           "generalVisita": [
             "Granada: ganó el último tras 3 sin ganar",
             "Granada: anotó en sus últimos 3",
             "Granada: recibió gol en sus últimos 3",
             "Granada: ambos anotaron en sus últimos 2",
+            "Granada: ambos marcan en cadena (últimos 3)",
             "Granada: goles a favor al alza, 2.5 por partido en los últimos 2 contra 1.3 antes",
             "Granada: recibe más, 2.5 por partido en los últimos 2 contra 1.3 antes"
           ],
@@ -28037,6 +28758,7 @@
             "Burgos en casa: 2 victorias seguidas",
             "Burgos en casa: 4 sin perder",
             "Burgos en casa: anotó en sus últimos 3",
+            "Burgos en casa: suele ganar por 1 gol (2 de los últimos 4)",
             "Burgos en casa: recibe menos, 0.5 por partido en los últimos 2 contra 2.0 antes",
             "Burgos en casa: forma al alza, 3.0 pts por partido en los últimos 2 contra 2.0 antes"
           ],
@@ -28049,6 +28771,7 @@
           ],
           "h2h": [
             "H2H: ganó el último tras 4 sin ganar",
+            "H2H: empates seguidos (3 de los últimos 5)",
             "H2H: recibe menos, 0.5 por partido en los últimos 2 contra 1.5 antes",
             "H2H: forma al alza, 2.0 pts por partido en los últimos 2 contra 0.5 antes"
           ],
@@ -28056,7 +28779,8 @@
             "H2H en casa: 3 sin ganar",
             "H2H en casa: anotó en sus últimos 3",
             "H2H en casa: recibió gol en sus últimos 3",
-            "H2H en casa: ambos anotaron en sus últimos 2"
+            "H2H en casa: ambos anotaron en sus últimos 2",
+            "H2H en casa: ambos marcan en cadena (últimos 3)"
           ]
         },
         "tendencias": {
@@ -28908,13 +29632,16 @@
         "patrones": {
           "generalLocal": [
             "Toronto FC: ganó el último tras 4 sin ganar",
-            "Toronto FC: recibió gol en sus últimos 3"
+            "Toronto FC: recibió gol en sus últimos 3",
+            "Toronto FC: suele ganar por 1 gol (7 de los últimos 4)"
           ],
           "generalVisita": [
             "Orlando City SC: ganó el último tras 3 sin ganar",
             "Orlando City SC: anotó en sus últimos 3",
             "Orlando City SC: recibió gol en sus últimos 3",
-            "Orlando City SC: ambos anotaron en sus últimos 2"
+            "Orlando City SC: ambos anotaron en sus últimos 2",
+            "Orlando City SC: suele ganar por 1 gol (8 de los últimos 4)",
+            "Orlando City SC: ambos marcan en cadena (últimos 3)"
           ],
           "localCasa": [
             "Toronto FC en casa: 2 victorias seguidas",
@@ -28922,6 +29649,9 @@
             "Toronto FC en casa: anotó en sus últimos 3",
             "Toronto FC en casa: recibió gol en sus últimos 3",
             "Toronto FC en casa: ambos anotaron en sus últimos 2",
+            "Toronto FC en casa: suele ganar por 1 gol (5 de los últimos 4)",
+            "Toronto FC en casa: empates seguidos (3 de los últimos 5)",
+            "Toronto FC en casa: ambos marcan en cadena (últimos 3)",
             "Toronto FC en casa: recibe menos, 1.0 por partido en los últimos 2 contra 2.1 antes",
             "Toronto FC en casa: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.3 antes"
           ],
@@ -28930,6 +29660,8 @@
             "Orlando City SC fuera: anotó en sus últimos 3",
             "Orlando City SC fuera: recibió gol en sus últimos 3",
             "Orlando City SC fuera: ambos anotaron en sus últimos 2",
+            "Orlando City SC fuera: suele ganar por 1 gol (2 de los últimos 4)",
+            "Orlando City SC fuera: ambos marcan en cadena (últimos 3)",
             "Orlando City SC fuera: forma a la baja, 0.0 pts por partido en los últimos 2 contra 0.9 antes"
           ],
           "h2h": [
@@ -29795,11 +30527,13 @@
           "generalLocal": [
             "CF Montréal: recibió gol en sus últimos 3",
             "CF Montréal: ambos anotaron en sus últimos 2",
+            "CF Montréal: suele ganar por 1 gol (2 de los últimos 4)",
             "CF Montréal: forma al alza, 1.5 pts por partido en los últimos 2 contra 0.8 antes"
           ],
           "generalVisita": [
             "Atlanta United FC: anotó en sus últimos 3",
             "Atlanta United FC: ambos anotaron en sus últimos 2",
+            "Atlanta United FC: suele ganar por 1 gol (5 de los últimos 4)",
             "Atlanta United FC: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.0 antes"
           ],
           "localCasa": [
@@ -29808,6 +30542,7 @@
           ],
           "visitaFuera": [
             "Atlanta United FC fuera: ganó el último tras 3 sin ganar",
+            "Atlanta United FC fuera: suele ganar por 1 gol (3 de los últimos 4)",
             "Atlanta United FC fuera: recibe menos, 0.0 por partido en los últimos 2 contra 1.8 antes",
             "Atlanta United FC fuera: forma al alza, 2.0 pts por partido en los últimos 2 contra 0.8 antes"
           ],
@@ -29815,9 +30550,13 @@
             "H2H: anotó en sus últimos 3",
             "H2H: recibió gol en sus últimos 3",
             "H2H: ambos anotaron en sus últimos 2",
+            "H2H: suele ganar por 1 gol (4 de los últimos 4)",
+            "H2H: ambos marcan en cadena (últimos 3)",
             "H2H: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.4 antes"
           ],
-          "h2hCasa": []
+          "h2hCasa": [
+            "H2H en casa: suele ganar por 1 gol (3 de los últimos 4)"
+          ]
         },
         "tendencias": {
           "general": {
@@ -30671,6 +31410,7 @@
             "Chicago Fire FC: 3 victorias seguidas",
             "Chicago Fire FC: anotó en sus últimos 3",
             "Chicago Fire FC: ambos anotaron en sus últimos 2",
+            "Chicago Fire FC: suele ganar por 1 gol (9 de los últimos 4)",
             "Chicago Fire FC: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.6 antes"
           ],
           "generalVisita": [
@@ -30679,6 +31419,8 @@
             "Philadelphia Union: anotó en sus últimos 3",
             "Philadelphia Union: recibió gol en sus últimos 3",
             "Philadelphia Union: ambos anotaron en sus últimos 2",
+            "Philadelphia Union: suele ganar por 1 gol (6 de los últimos 4)",
+            "Philadelphia Union: ambos marcan en cadena (últimos 3)",
             "Philadelphia Union: goles a favor al alza, 3.0 por partido en los últimos 2 contra 1.9 antes",
             "Philadelphia Union: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.4 antes"
           ],
@@ -30687,22 +31429,27 @@
             "Chicago Fire FC en casa: anotó en sus últimos 3",
             "Chicago Fire FC en casa: recibió gol en sus últimos 3",
             "Chicago Fire FC en casa: ambos anotaron en sus últimos 2",
+            "Chicago Fire FC en casa: suele ganar por 1 gol (6 de los últimos 4)",
+            "Chicago Fire FC en casa: ambos marcan en cadena (últimos 3)",
             "Chicago Fire FC en casa: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.8 antes"
           ],
           "visitaFuera": [
             "Philadelphia Union fuera: 3 victorias seguidas",
             "Philadelphia Union fuera: 5 sin perder",
             "Philadelphia Union fuera: anotó en sus últimos 3",
+            "Philadelphia Union fuera: suele ganar por 1 gol (3 de los últimos 4)",
             "Philadelphia Union fuera: goles a favor al alza, 4.5 por partido en los últimos 2 contra 1.8 antes",
             "Philadelphia Union fuera: forma al alza, 3.0 pts por partido en los últimos 2 contra 0.9 antes"
           ],
           "h2h": [
             "H2H: ganó el último tras 3 sin ganar",
             "H2H: recibió gol en sus últimos 3",
+            "H2H: suele ganar por 1 gol (3 de los últimos 4)",
             "H2H: forma al alza, 1.5 pts por partido en los últimos 2 contra 1.0 antes"
           ],
           "h2hCasa": [
-            "H2H en casa: recibió gol en sus últimos 3"
+            "H2H en casa: recibió gol en sus últimos 3",
+            "H2H en casa: suele ganar por 1 gol (2 de los últimos 4)"
           ]
         },
         "tendencias": {
@@ -31538,6 +32285,7 @@
           "generalLocal": [
             "Tenerife: recibió gol en sus últimos 3",
             "Tenerife: ambos anotaron en sus últimos 2",
+            "Tenerife: zig-zag de goles: O-U-O-U (alterna over/under de 2.5)",
             "Tenerife: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.7 antes"
           ],
           "generalVisita": [
@@ -32405,6 +33153,7 @@
           "generalLocal": [
             "Coritiba: 2 derrotas seguidas",
             "Coritiba: recibió gol en sus últimos 3",
+            "Coritiba: suele ganar por 1 gol (7 de los últimos 4)",
             "Coritiba: goles a favor a la baja, 0.0 por partido en los últimos 2 contra 1.4 antes",
             "Coritiba: recibe más, 4.5 por partido en los últimos 2 contra 1.4 antes",
             "Coritiba: forma a la baja, 0.0 pts por partido en los últimos 2 contra 1.4 antes"
@@ -32412,6 +33161,8 @@
           "generalVisita": [
             "Botafogo: 2 derrotas seguidas",
             "Botafogo: recibió gol en sus últimos 3",
+            "Botafogo: zig-zag de goles: O-U-O-U (alterna over/under de 2.5)",
+            "Botafogo: suele ganar por 1 gol (6 de los últimos 4)",
             "Botafogo: goles a favor a la baja, 0.5 por partido en los últimos 2 contra 1.5 antes",
             "Botafogo: forma a la baja, 0.0 pts por partido en los últimos 2 contra 1.3 antes"
           ],
@@ -32419,19 +33170,24 @@
             "Coritiba en casa: anotó en sus últimos 3",
             "Coritiba en casa: recibió gol en sus últimos 3",
             "Coritiba en casa: ambos anotaron en sus últimos 2",
+            "Coritiba en casa: suele ganar por 1 gol (4 de los últimos 4)",
+            "Coritiba en casa: ambos marcan en cadena (últimos 3)",
             "Coritiba en casa: recibe más, 2.5 por partido en los últimos 2 contra 1.2 antes",
             "Coritiba en casa: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.5 antes"
           ],
           "visitaFuera": [
             "Botafogo fuera: 3 derrotas seguidas",
             "Botafogo fuera: recibió gol en sus últimos 3",
+            "Botafogo fuera: suele ganar por 1 gol (3 de los últimos 4)",
             "Botafogo fuera: goles a favor a la baja, 0.0 por partido en los últimos 2 contra 1.4 antes",
             "Botafogo fuera: forma a la baja, 0.0 pts por partido en los últimos 2 contra 1.2 antes"
           ],
           "h2h": [
             "H2H: anotó en sus últimos 3",
             "H2H: recibió gol en sus últimos 3",
-            "H2H: ambos anotaron en sus últimos 2"
+            "H2H: ambos anotaron en sus últimos 2",
+            "H2H: zig-zag de goles: O-U-O-U (alterna over/under de 2.5)",
+            "H2H: ambos marcan en cadena (últimos 3)"
           ],
           "h2hCasa": [
             "H2H en casa: 2 sin perder",
@@ -33288,17 +34044,24 @@
             "Columbus Crew: perdió el último tras 3 sin perder",
             "Columbus Crew: anotó en sus últimos 3",
             "Columbus Crew: ambos anotaron en sus últimos 2",
+            "Columbus Crew: suele ganar por 1 gol (3 de los últimos 4)",
             "Columbus Crew: forma al alza, 1.5 pts por partido en los últimos 2 contra 1.0 antes"
           ],
           "generalVisita": [
-            "Charlotte FC: recibió gol en sus últimos 3"
+            "Charlotte FC: recibió gol en sus últimos 3",
+            "Charlotte FC: suele ganar por 1 gol (6 de los últimos 4)"
           ],
-          "localCasa": [],
+          "localCasa": [
+            "Columbus Crew en casa: zig-zag en el resultado: G-P-G-P (alterna ganar/perder)",
+            "Columbus Crew en casa: suele ganar por 1 gol (3 de los últimos 4)"
+          ],
           "visitaFuera": [
             "Charlotte FC fuera: 5 sin perder",
             "Charlotte FC fuera: anotó en sus últimos 3",
             "Charlotte FC fuera: recibió gol en sus últimos 3",
             "Charlotte FC fuera: ambos anotaron en sus últimos 2",
+            "Charlotte FC fuera: suele ganar por 1 gol (3 de los últimos 4)",
+            "Charlotte FC fuera: ambos marcan en cadena (últimos 3)",
             "Charlotte FC fuera: goles a favor al alza, 2.5 por partido en los últimos 2 contra 1.5 antes",
             "Charlotte FC fuera: forma al alza, 2.0 pts por partido en los últimos 2 contra 1.3 antes"
           ],
@@ -33307,6 +34070,7 @@
             "H2H: anotó en sus últimos 3",
             "H2H: recibió gol en sus últimos 3",
             "H2H: ambos anotaron en sus últimos 2",
+            "H2H: ambos marcan en cadena (últimos 3)",
             "H2H: recibe más, 3.0 por partido en los últimos 2 contra 1.6 antes",
             "H2H: forma a la baja, 0.0 pts por partido en los últimos 2 contra 1.3 antes"
           ],
@@ -33314,7 +34078,9 @@
             "H2H en casa: 4 sin perder",
             "H2H en casa: anotó en sus últimos 3",
             "H2H en casa: recibió gol en sus últimos 3",
-            "H2H en casa: ambos anotaron en sus últimos 2"
+            "H2H en casa: ambos anotaron en sus últimos 2",
+            "H2H en casa: zig-zag de goles: O-U-O-U (alterna over/under de 2.5)",
+            "H2H en casa: ambos marcan en cadena (últimos 3)"
           ]
         },
         "tendencias": {
@@ -34163,26 +34929,34 @@
         "patrones": {
           "generalLocal": [
             "D.C. United: recibió gol en sus últimos 3",
+            "D.C. United: suele ganar por 1 gol (5 de los últimos 4)",
             "D.C. United: recibe más, 3.5 por partido en los últimos 2 contra 1.6 antes",
             "D.C. United: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.2 antes"
           ],
-          "generalVisita": [],
+          "generalVisita": [
+            "Red Bull New York: suele ganar por 1 gol (7 de los últimos 4)"
+          ],
           "localCasa": [
+            "D.C. United en casa: zig-zag de goles: O-U-O-U (alterna over/under de 2.5)",
+            "D.C. United en casa: suele ganar por 1 gol (4 de los últimos 4)",
             "D.C. United en casa: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.3 antes"
           ],
           "visitaFuera": [
             "Red Bull New York fuera: 2 victorias seguidas",
+            "Red Bull New York fuera: suele ganar por 1 gol (4 de los últimos 4)",
             "Red Bull New York fuera: recibe menos, 0.0 por partido en los últimos 2 contra 2.1 antes",
             "Red Bull New York fuera: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.0 antes"
           ],
           "h2h": [
             "H2H: recibió gol en sus últimos 3",
+            "H2H: suele ganar por 1 gol (3 de los últimos 4)",
             "H2H: recibe más, 3.0 por partido en los últimos 2 contra 1.8 antes",
             "H2H: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.2 antes"
           ],
           "h2hCasa": [
             "H2H en casa: 3 derrotas seguidas",
             "H2H en casa: recibió gol en sus últimos 3",
+            "H2H en casa: suele ganar por 1 gol (2 de los últimos 4)",
             "H2H en casa: recibe más, 3.0 por partido en los últimos 2 contra 1.3 antes",
             "H2H en casa: forma a la baja, 0.0 pts por partido en los últimos 2 contra 1.8 antes"
           ]
@@ -35037,36 +35811,46 @@
         },
         "patrones": {
           "generalLocal": [
-            "Inter Miami CF: anotó en sus últimos 3"
+            "Inter Miami CF: anotó en sus últimos 3",
+            "Inter Miami CF: suele ganar por 1 gol (5 de los últimos 4)",
+            "Inter Miami CF: empates seguidos (3 de los últimos 5)"
           ],
           "generalVisita": [
             "New York City FC: recibió gol en sus últimos 3",
             "New York City FC: ambos anotaron en sus últimos 2",
+            "New York City FC: suele ganar por 1 gol (3 de los últimos 4)",
             "New York City FC: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.2 antes"
           ],
           "localCasa": [
             "Inter Miami CF en casa: 5 sin perder",
             "Inter Miami CF en casa: ganó el último tras 4 sin ganar",
             "Inter Miami CF en casa: anotó en sus últimos 3",
+            "Inter Miami CF en casa: empates seguidos (3 de los últimos 5)",
             "Inter Miami CF en casa: recibe menos, 1.0 por partido en los últimos 2 contra 2.0 antes",
             "Inter Miami CF en casa: forma al alza, 2.0 pts por partido en los últimos 2 contra 1.5 antes"
           ],
           "visitaFuera": [
             "New York City FC fuera: anotó en sus últimos 3",
             "New York City FC fuera: ambos anotaron en sus últimos 2",
+            "New York City FC fuera: suele ganar por 1 gol (3 de los últimos 4)",
+            "New York City FC fuera: empates seguidos (3 de los últimos 5)",
             "New York City FC fuera: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.3 antes"
           ],
           "h2h": [
             "H2H: 2 victorias seguidas",
             "H2H: 5 sin perder",
             "H2H: anotó en sus últimos 3",
+            "H2H: suele ganar por 1 gol (2 de los últimos 4)",
+            "H2H: empates seguidos (3 de los últimos 5)",
             "H2H: goles a favor al alza, 3.5 por partido en los últimos 2 contra 1.0 antes",
             "H2H: forma al alza, 3.0 pts por partido en los últimos 2 contra 0.8 antes"
           ],
           "h2hCasa": [
             "H2H en casa: anotó en sus últimos 3",
             "H2H en casa: recibió gol en sus últimos 3",
-            "H2H en casa: ambos anotaron en sus últimos 2"
+            "H2H en casa: ambos anotaron en sus últimos 2",
+            "H2H en casa: empates seguidos (3 de los últimos 5)",
+            "H2H en casa: ambos marcan en cadena (últimos 3)"
           ]
         },
         "tendencias": {
@@ -35912,24 +36696,30 @@
         "patrones": {
           "generalLocal": [
             "LAFC: recibió gol en sus últimos 3",
+            "LAFC: suele ganar por 1 gol (3 de los últimos 4)",
             "LAFC: goles a favor a la baja, 0.5 por partido en los últimos 2 contra 1.6 antes",
             "LAFC: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.5 antes"
           ],
           "generalVisita": [
             "Austin FC: perdió el último tras 3 sin perder",
             "Austin FC: ambos anotaron en sus últimos 2",
+            "Austin FC: suele ganar por 1 gol (4 de los últimos 4)",
+            "Austin FC: empates seguidos (3 de los últimos 5)",
             "Austin FC: recibe más, 3.5 por partido en los últimos 2 contra 1.7 antes",
             "Austin FC: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.2 antes"
           ],
           "localCasa": [
-            "LAFC en casa: anotó en sus últimos 3"
+            "LAFC en casa: anotó en sus últimos 3",
+            "LAFC en casa: suele ganar por 1 gol (2 de los últimos 4)"
           ],
           "visitaFuera": [
+            "Austin FC fuera: suele ganar por 1 gol (3 de los últimos 4)",
             "Austin FC fuera: recibe menos, 0.5 por partido en los últimos 2 contra 2.6 antes",
             "Austin FC fuera: forma al alza, 2.0 pts por partido en los últimos 2 contra 0.8 antes"
           ],
           "h2h": [
             "H2H: 5 sin ganar",
+            "H2H: empates seguidos (3 de los últimos 5)",
             "H2H: goles a favor a la baja, 0.0 por partido en los últimos 2 contra 1.7 antes",
             "H2H: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.7 antes"
           ],
@@ -36696,6 +37486,26 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 3.2,
+          "current": 3.2,
+          "closed": 3.2,
+          "movePct": 0,
+          "capturedAt": "2026-10-11T23:35:09.734Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 3.2,
+          "current": 3.2,
+          "closed": 3.2,
+          "movePct": 0,
+          "capturedAt": "2026-10-11T23:40:06.163Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 2.35,
@@ -36953,6 +37763,26 @@
           "closed": 2.35,
           "movePct": 0,
           "capturedAt": "2026-10-11T23:30:08.945Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 2.35,
+          "current": 2.35,
+          "closed": 2.35,
+          "movePct": 0,
+          "capturedAt": "2026-10-11T23:35:09.731Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 2.35,
+          "current": 2.35,
+          "closed": 2.35,
+          "movePct": 0,
+          "capturedAt": "2026-10-11T23:40:06.159Z"
         },
         {
           "market": "spread",
@@ -37216,6 +38046,26 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 1.541,
+          "current": 1.588,
+          "closed": 1.588,
+          "movePct": -1.9493,
+          "capturedAt": "2026-10-11T23:35:09.739Z"
+        },
+        {
+          "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 1.541,
+          "current": 1.588,
+          "closed": 1.588,
+          "movePct": -1.9493,
+          "capturedAt": "2026-10-11T23:40:06.169Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -0.5,
           "opened": 2.2,
@@ -37473,6 +38323,26 @@
           "closed": 2.2,
           "movePct": 0,
           "capturedAt": "2026-10-11T23:30:08.952Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 2.2,
+          "current": 2.2,
+          "closed": 2.2,
+          "movePct": 0,
+          "capturedAt": "2026-10-11T23:35:09.737Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 2.2,
+          "current": 2.2,
+          "closed": 2.2,
+          "movePct": 0,
+          "capturedAt": "2026-10-11T23:40:06.166Z"
         },
         {
           "market": "total",
@@ -37736,6 +38606,26 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.2,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:35:09.742Z"
+        },
+        {
+          "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.2,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:40:06.171Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -37993,6 +38883,26 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-11T23:30:08.960Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.645,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:35:09.745Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.645,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:40:06.174Z"
         }
       ],
       "combinado": {
@@ -38347,6 +39257,8 @@
             "Racing Club: anotó en sus últimos 3",
             "Racing Club: recibió gol en sus últimos 3",
             "Racing Club: ambos anotaron en sus últimos 2",
+            "Racing Club: suele ganar por 1 gol (4 de los últimos 4)",
+            "Racing Club: ambos marcan en cadena (últimos 3)",
             "Racing Club: goles a favor al alza, 2.5 por partido en los últimos 2 contra 1.0 antes",
             "Racing Club: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.0 antes"
           ],
@@ -38354,22 +39266,29 @@
             "Belgrano (Córdoba): 2 victorias seguidas",
             "Belgrano (Córdoba): 5 sin perder",
             "Belgrano (Córdoba): anotó en sus últimos 3",
+            "Belgrano (Córdoba): suele ganar por 1 gol (8 de los últimos 4)",
+            "Belgrano (Córdoba): empates seguidos (3 de los últimos 5)",
             "Belgrano (Córdoba): forma al alza, 3.0 pts por partido en los últimos 2 contra 1.6 antes"
           ],
           "localCasa": [
             "Racing Club en casa: anotó en sus últimos 3",
             "Racing Club en casa: recibió gol en sus últimos 3",
             "Racing Club en casa: ambos anotaron en sus últimos 2",
+            "Racing Club en casa: suele ganar por 1 gol (2 de los últimos 4)",
+            "Racing Club en casa: ambos marcan en cadena (últimos 3)",
             "Racing Club en casa: goles a favor al alza, 2.0 por partido en los últimos 2 contra 1.0 antes"
           ],
           "visitaFuera": [
             "Belgrano (Córdoba) fuera: 5 sin perder",
-            "Belgrano (Córdoba) fuera: ganó el último tras 3 sin ganar"
+            "Belgrano (Córdoba) fuera: ganó el último tras 3 sin ganar",
+            "Belgrano (Córdoba) fuera: suele ganar por 1 gol (4 de los últimos 4)",
+            "Belgrano (Córdoba) fuera: empates seguidos (3 de los últimos 5)"
           ],
           "h2h": [
             "H2H: 3 victorias seguidas",
             "H2H: 5 sin perder",
             "H2H: anotó en sus últimos 3",
+            "H2H: suele ganar por 1 gol (2 de los últimos 4)",
             "H2H: goles a favor a la baja, 1.5 por partido en los últimos 2 contra 2.7 antes",
             "H2H: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.7 antes"
           ],
@@ -39221,11 +40140,14 @@
           "generalLocal": [
             "FC Cincinnati: anotó en sus últimos 3",
             "FC Cincinnati: recibió gol en sus últimos 3",
-            "FC Cincinnati: ambos anotaron en sus últimos 2"
+            "FC Cincinnati: ambos anotaron en sus últimos 2",
+            "FC Cincinnati: suele ganar por 1 gol (4 de los últimos 4)",
+            "FC Cincinnati: ambos marcan en cadena (últimos 3)"
           ],
           "generalVisita": [
             "New England Revolution: 2 derrotas seguidas",
             "New England Revolution: recibió gol en sus últimos 3",
+            "New England Revolution: suele ganar por 1 gol (8 de los últimos 4)",
             "New England Revolution: goles a favor a la baja, 0.0 por partido en los últimos 2 contra 1.7 antes",
             "New England Revolution: recibe más, 3.0 por partido en los últimos 2 contra 1.3 antes",
             "New England Revolution: forma a la baja, 0.0 pts por partido en los últimos 2 contra 1.8 antes"
@@ -39235,16 +40157,20 @@
             "FC Cincinnati en casa: anotó en sus últimos 3",
             "FC Cincinnati en casa: recibió gol en sus últimos 3",
             "FC Cincinnati en casa: ambos anotaron en sus últimos 2",
+            "FC Cincinnati en casa: suele ganar por 1 gol (3 de los últimos 4)",
+            "FC Cincinnati en casa: ambos marcan en cadena (últimos 3)",
             "FC Cincinnati en casa: goles a favor a la baja, 2.0 por partido en los últimos 2 contra 3.0 antes",
             "FC Cincinnati en casa: forma a la baja, 1.0 pts por partido en los últimos 2 contra 2.2 antes"
           ],
           "visitaFuera": [
             "New England Revolution fuera: perdió el último tras 3 sin perder",
-            "New England Revolution fuera: recibió gol en sus últimos 3"
+            "New England Revolution fuera: recibió gol en sus últimos 3",
+            "New England Revolution fuera: suele ganar por 1 gol (3 de los últimos 4)"
           ],
           "h2h": [
             "H2H: perdió el último tras 3 sin perder",
             "H2H: anotó en sus últimos 3",
+            "H2H: suele ganar por 1 gol (3 de los últimos 4)",
             "H2H: recibe más, 3.0 por partido en los últimos 2 contra 1.8 antes",
             "H2H: forma al alza, 1.5 pts por partido en los últimos 2 contra 1.0 antes"
           ],
@@ -40100,21 +41026,27 @@
           }
         },
         "patrones": {
-          "generalLocal": [],
+          "generalLocal": [
+            "FC Dallas: suele ganar por 1 gol (10 de los últimos 4)"
+          ],
           "generalVisita": [
             "Seattle Sounders FC: 4 victorias seguidas",
             "Seattle Sounders FC: 5 sin perder",
             "Seattle Sounders FC: anotó en sus últimos 3",
+            "Seattle Sounders FC: suele ganar por 1 gol (6 de los últimos 4)",
             "Seattle Sounders FC: goles a favor al alza, 2.5 por partido en los últimos 2 contra 1.3 antes",
             "Seattle Sounders FC: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.3 antes"
           ],
           "localCasa": [
+            "FC Dallas en casa: suele ganar por 1 gol (5 de los últimos 4)",
             "FC Dallas en casa: goles a favor a la baja, 0.5 por partido en los últimos 2 contra 2.2 antes",
             "FC Dallas en casa: recibe menos, 0.0 por partido en los últimos 2 contra 1.8 antes"
           ],
           "visitaFuera": [
             "Seattle Sounders FC fuera: ganó el último tras 4 sin ganar",
             "Seattle Sounders FC fuera: anotó en sus últimos 3",
+            "Seattle Sounders FC fuera: suele ganar por 1 gol (3 de los últimos 4)",
+            "Seattle Sounders FC fuera: empates seguidos (3 de los últimos 5)",
             "Seattle Sounders FC fuera: goles a favor al alza, 3.0 por partido en los últimos 2 contra 0.8 antes",
             "Seattle Sounders FC fuera: forma al alza, 2.0 pts por partido en los últimos 2 contra 1.1 antes"
           ],
@@ -40970,20 +41902,24 @@
           "generalLocal": [
             "Nashville SC: 3 victorias seguidas",
             "Nashville SC: anotó en sus últimos 3",
+            "Nashville SC: suele ganar por 1 gol (8 de los últimos 4)",
             "Nashville SC: forma al alza, 3.0 pts por partido en los últimos 2 contra 2.2 antes"
           ],
           "generalVisita": [
             "Sporting Kansas City: anotó en sus últimos 3",
-            "Sporting Kansas City: ambos anotaron en sus últimos 2"
+            "Sporting Kansas City: ambos anotaron en sus últimos 2",
+            "Sporting Kansas City: suele ganar por 1 gol (3 de los últimos 4)"
           ],
           "localCasa": [
             "Nashville SC en casa: 9 victorias seguidas",
             "Nashville SC en casa: 5 sin perder",
             "Nashville SC en casa: anotó en sus últimos 3",
+            "Nashville SC en casa: suele ganar por 1 gol (5 de los últimos 4)",
             "Nashville SC en casa: recibe menos, 0.0 por partido en los últimos 2 contra 1.0 antes"
           ],
           "visitaFuera": [
             "Sporting Kansas City fuera: anotó en sus últimos 3",
+            "Sporting Kansas City fuera: suele ganar por 1 gol (2 de los últimos 4)",
             "Sporting Kansas City fuera: recibe menos, 1.0 por partido en los últimos 2 contra 3.1 antes",
             "Sporting Kansas City fuera: forma al alza, 1.5 pts por partido en los últimos 2 contra 0.5 antes"
           ],
@@ -41840,6 +42776,9 @@
             "Colorado Rapids: anotó en sus últimos 3",
             "Colorado Rapids: recibió gol en sus últimos 3",
             "Colorado Rapids: ambos anotaron en sus últimos 2",
+            "Colorado Rapids: suele ganar por 1 gol (6 de los últimos 4)",
+            "Colorado Rapids: empates seguidos (3 de los últimos 5)",
+            "Colorado Rapids: ambos marcan en cadena (últimos 3)",
             "Colorado Rapids: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.4 antes"
           ],
           "generalVisita": [
@@ -41847,12 +42786,15 @@
             "Minnesota United FC: anotó en sus últimos 3",
             "Minnesota United FC: recibió gol en sus últimos 3",
             "Minnesota United FC: ambos anotaron en sus últimos 2",
+            "Minnesota United FC: suele ganar por 1 gol (5 de los últimos 4)",
+            "Minnesota United FC: ambos marcan en cadena (últimos 3)",
             "Minnesota United FC: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.1 antes"
           ],
           "localCasa": [
             "Colorado Rapids en casa: 5 sin perder",
             "Colorado Rapids en casa: anotó en sus últimos 3",
             "Colorado Rapids en casa: ambos anotaron en sus últimos 2",
+            "Colorado Rapids en casa: suele ganar por 1 gol (5 de los últimos 4)",
             "Colorado Rapids en casa: recibe más, 2.0 por partido en los últimos 2 contra 0.8 antes",
             "Colorado Rapids en casa: forma a la baja, 1.0 pts por partido en los últimos 2 contra 2.3 antes"
           ],
@@ -41861,17 +42803,22 @@
             "Minnesota United FC fuera: anotó en sus últimos 3",
             "Minnesota United FC fuera: recibió gol en sus últimos 3",
             "Minnesota United FC fuera: ambos anotaron en sus últimos 2",
+            "Minnesota United FC fuera: suele ganar por 1 gol (4 de los últimos 4)",
+            "Minnesota United FC fuera: ambos marcan en cadena (últimos 3)",
             "Minnesota United FC fuera: recibe más, 3.5 por partido en los últimos 2 contra 2.2 antes",
             "Minnesota United FC fuera: forma a la baja, 0.0 pts por partido en los últimos 2 contra 1.4 antes"
           ],
           "h2h": [
             "H2H: anotó en sus últimos 3",
+            "H2H: suele ganar por 1 gol (4 de los últimos 4)",
             "H2H: recibe menos, 0.5 por partido en los últimos 2 contra 2.1 antes"
           ],
           "h2hCasa": [
             "H2H en casa: anotó en sus últimos 3",
             "H2H en casa: recibió gol en sus últimos 3",
             "H2H en casa: ambos anotaron en sus últimos 2",
+            "H2H en casa: suele ganar por 1 gol (2 de los últimos 4)",
+            "H2H en casa: ambos marcan en cadena (últimos 3)",
             "H2H en casa: forma a la baja, 1.0 pts por partido en los últimos 2 contra 2.3 antes"
           ]
         },
@@ -42720,24 +43667,36 @@
           }
         },
         "patrones": {
-          "generalLocal": [],
+          "generalLocal": [
+            "Real Salt Lake: suele ganar por 1 gol (4 de los últimos 4)"
+          ],
           "generalVisita": [
             "San Jose Earthquakes: 5 sin perder",
             "San Jose Earthquakes: anotó en sus últimos 3",
             "San Jose Earthquakes: recibió gol en sus últimos 3",
-            "San Jose Earthquakes: ambos anotaron en sus últimos 2"
+            "San Jose Earthquakes: ambos anotaron en sus últimos 2",
+            "San Jose Earthquakes: suele ganar por 1 gol (5 de los últimos 4)",
+            "San Jose Earthquakes: ambos marcan en cadena (últimos 3)"
           ],
           "localCasa": [
-            "Real Salt Lake en casa: ganó el último tras 3 sin ganar"
+            "Real Salt Lake en casa: ganó el último tras 3 sin ganar",
+            "Real Salt Lake en casa: suele ganar por 1 gol (3 de los últimos 4)"
           ],
           "visitaFuera": [
             "San Jose Earthquakes fuera: anotó en sus últimos 3",
             "San Jose Earthquakes fuera: recibió gol en sus últimos 3",
-            "San Jose Earthquakes fuera: ambos anotaron en sus últimos 2"
+            "San Jose Earthquakes fuera: ambos anotaron en sus últimos 2",
+            "San Jose Earthquakes fuera: suele ganar por 1 gol (4 de los últimos 4)",
+            "San Jose Earthquakes fuera: empates seguidos (3 de los últimos 5)",
+            "San Jose Earthquakes fuera: ambos marcan en cadena (últimos 3)"
           ],
-          "h2h": [],
+          "h2h": [
+            "H2H: zig-zag en el resultado: G-P-G-P (alterna ganar/perder)",
+            "H2H: suele ganar por 1 gol (3 de los últimos 4)"
+          ],
           "h2hCasa": [
             "H2H en casa: recibió gol en sus últimos 3",
+            "H2H en casa: zig-zag de goles: O-U-O-U (alterna over/under de 2.5)",
             "H2H en casa: goles a favor a la baja, 1.0 por partido en los últimos 2 contra 2.3 antes"
           ]
         },
@@ -43592,23 +44551,34 @@
             "Millonarios: 5 sin perder",
             "Millonarios: anotó en sus últimos 3",
             "Millonarios: recibió gol en sus últimos 3",
-            "Millonarios: ambos anotaron en sus últimos 2"
+            "Millonarios: ambos anotaron en sus últimos 2",
+            "Millonarios: zig-zag de goles: U-O-U-O (alterna over/under de 2.5)",
+            "Millonarios: suele ganar por 1 gol (4 de los últimos 4)",
+            "Millonarios: empates seguidos (3 de los últimos 5)",
+            "Millonarios: ambos marcan en cadena (últimos 3)"
           ],
           "generalVisita": [
             "Once Caldas: anotó en sus últimos 3",
+            "Once Caldas: suele ganar por 1 gol (7 de los últimos 4)",
             "Once Caldas: forma al alza, 2.0 pts por partido en los últimos 2 contra 1.5 antes"
           ],
           "localCasa": [
-            "Millonarios en casa: ganó el último tras 3 sin ganar"
+            "Millonarios en casa: ganó el último tras 3 sin ganar",
+            "Millonarios en casa: suele ganar por 1 gol (2 de los últimos 4)"
           ],
           "visitaFuera": [
             "Once Caldas fuera: recibió gol en sus últimos 3",
+            "Once Caldas fuera: suele ganar por 1 gol (2 de los últimos 4)",
             "Once Caldas fuera: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.3 antes"
           ],
           "h2h": [
-            "H2H: ganó el último tras 4 sin ganar"
+            "H2H: ganó el último tras 4 sin ganar",
+            "H2H: zig-zag de goles: O-U-O-U (alterna over/under de 2.5)",
+            "H2H: suele ganar por 1 gol (3 de los últimos 4)",
+            "H2H: empates seguidos (3 de los últimos 5)"
           ],
           "h2hCasa": [
+            "H2H en casa: suele ganar por 1 gol (3 de los últimos 4)",
             "H2H en casa: goles a favor a la baja, 0.0 por partido en los últimos 2 contra 2.3 antes",
             "H2H en casa: forma a la baja, 0.5 pts por partido en los últimos 2 contra 3.0 antes"
           ]
@@ -44457,15 +45427,19 @@
         "patrones": {
           "generalLocal": [
             "Independiente Santa Fe: 2 victorias seguidas",
+            "Independiente Santa Fe: zig-zag de goles: U-O-U-O (alterna over/under de 2.5)",
+            "Independiente Santa Fe: suele ganar por 1 gol (9 de los últimos 4)",
             "Independiente Santa Fe: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.6 antes"
           ],
           "generalVisita": [
             "Jaguares de Córdoba: 3 derrotas seguidas",
             "Jaguares de Córdoba: 5 sin ganar",
             "Jaguares de Córdoba: recibió gol en sus últimos 3",
+            "Jaguares de Córdoba: suele ganar por 1 gol (4 de los últimos 4)",
             "Jaguares de Córdoba: forma a la baja, 0.0 pts por partido en los últimos 2 contra 0.9 antes"
           ],
           "localCasa": [
+            "Independiente Santa Fe en casa: suele ganar por 1 gol (4 de los últimos 4)",
             "Independiente Santa Fe en casa: goles a favor a la baja, 0.5 por partido en los últimos 2 contra 1.9 antes"
           ],
           "visitaFuera": [
@@ -44473,7 +45447,10 @@
             "Jaguares de Córdoba fuera: 5 sin ganar",
             "Jaguares de Córdoba fuera: recibió gol en sus últimos 3"
           ],
-          "h2h": [],
+          "h2h": [
+            "H2H: zig-zag en el resultado: P-G-P-G (alterna ganar/perder)",
+            "H2H: suele ganar por 1 gol (2 de los últimos 4)"
+          ],
           "h2hCasa": [
             "H2H en casa: 4 victorias seguidas",
             "H2H en casa: 4 sin perder",
@@ -44681,7 +45658,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-11T23:35:03.617Z",
+      "createdAt": "2026-10-11T23:41:41.038Z",
       "roiUnit": 0.11948717948717946,
       "margen": 0.0789830508474576,
       "breakEven": 0.6610169491525424,
@@ -44707,7 +45684,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-11T23:35:03.618Z",
+      "createdAt": "2026-10-11T23:41:41.038Z",
       "roiUnit": 0.08418604651162787,
       "margen": 0.057460317460317434,
       "breakEven": 0.6825396825396826,
@@ -44733,7 +45710,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-11T23:35:03.618Z",
+      "createdAt": "2026-10-11T23:41:41.038Z",
       "roiUnit": 0.10097560975609754,
       "margen": 0.06786885245901642,
       "breakEven": 0.6721311475409836,
@@ -44759,7 +45736,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-11T23:35:03.618Z",
+      "createdAt": "2026-10-11T23:41:41.038Z",
       "roiUnit": 0.12947368421052619,
       "margen": 0.08482758620689645,
       "breakEven": 0.6551724137931035,
@@ -44775,8 +45752,8 @@
       "leagueKey": "mex.1",
       "kickoff": "2026-10-11T23:00Z",
       "status": "in",
-      "statusDetail": "35'",
-      "minute": "35'",
+      "statusDetail": "42'",
+      "minute": "42'",
       "period": 1,
       "homeTeam": "Atlético de San Luis",
       "awayTeam": "Santos",
@@ -44813,8 +45790,8 @@
       "leagueKey": "mex.1",
       "kickoff": "2026-10-11T23:10Z",
       "status": "in",
-      "statusDetail": "24'",
-      "minute": "24'",
+      "statusDetail": "31'",
+      "minute": "31'",
       "period": 1,
       "homeTeam": "Pachuca",
       "awayTeam": "Necaxa",
@@ -44851,8 +45828,8 @@
       "leagueKey": "usa.1",
       "kickoff": "2026-10-11T23:00Z",
       "status": "in",
-      "statusDetail": "22'",
-      "minute": "22'",
+      "statusDetail": "29'",
+      "minute": "29'",
       "period": 1,
       "homeTeam": "St. Louis CITY SC",
       "awayTeam": "LA Galaxy",
@@ -44889,8 +45866,8 @@
       "leagueKey": "arg.1",
       "kickoff": "2026-10-11T22:15Z",
       "status": "in",
-      "statusDetail": "61'",
-      "minute": "61'",
+      "statusDetail": "67'",
+      "minute": "67'",
       "period": 2,
       "homeTeam": "Racing Club",
       "awayTeam": "Belgrano (Córdoba)",

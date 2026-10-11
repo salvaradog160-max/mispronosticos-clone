@@ -202,3 +202,32 @@ test('historialDe: general/L-V usan SOLO la temporada vigente y el H2H el histor
   assert.equal(h.h2hPartidos, 5, 'H2H usa el historial completo');
   assert.equal(h.cuadros.h2h.n, 5, 'cuadro H2H con todo el historial');
 });
+
+test('patronesDe detecta zig-zag, ganar por 1 gol, empates y ambos marcan', () => {
+  // G P G P (zig-zag), con 2 ganadas por 1 gol, 3 empates en otros, y
+  // ambos marcan en 3 seguidos.
+  const hist = [
+    p('01/03/2025', 'Lazio', 'Monza', 2, 1, '2425'), // G por 1, ambos
+    p('08/03/2025', 'Torino', 'Lazio', 1, 0, '2425'), // P del local
+    p('15/03/2025', 'Lazio', 'Bologna', 2, 1, '2425'), // G por 1, ambos
+    p('22/03/2025', 'Salernitana', 'Lazio', 3, 2, '2425'), // P, ambos
+    p('29/03/2025', 'Lazio', 'Verona', 1, 1, '2425'), // E
+    p('05/04/2025', 'Lazio', 'Udinese', 2, 2, '2425'), // E
+    p('12/04/2025', 'Lazio', 'Sampdoria', 1, 1, '2425'), // E
+  ];
+  const h = historialDe(hist, 'Lazio', 'Monza');
+  const pat = h.patrones.localCasa ?? []; // serie del local en casa
+  const txt = pat.join('\n');
+  console.log('patrones localCasa:', pat);
+  const pG = h.patrones.generalLocal ?? [];
+  const txtG = pG.join('\n');
+  console.log('patrones generalLocal:', pG);
+  // Zig-zag de goles (U-O-U-O sobre 2.5) en la serie del local
+  assert.match(txtG, /zig-zag de goles: U-O-U-O/);
+  // Gana por 1 gol (2 de 4): lo detecta en general (Lazio)
+  assert.match(txtG, /ganar por 1 gol/);
+  // Ambos marcan en cadena: al menos 3 seguidos en la cola
+  assert.match(txtG, /ambos marcan en cadena/);
+  // Empates seguidos en la serie de casa (E-E-E en los recientes)
+  assert.match(txt, /empates/);
+});

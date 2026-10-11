@@ -171,6 +171,41 @@ const patronesDe = (filas, equipo, { enCasa = null } = {}) => {
   if (filas.slice(0, 3).every(f => f.gc >= 1)) out.push(`${equipo}${contexto}: recibió gol en sus últimos ${Math.min(3, filas.length)}`);
   if (filas.slice(0, 2).every(f => f.gf >= 1 && f.gc >= 1)) out.push(`${equipo}${contexto}: ambos anotaron en sus últimos ${Math.min(2, filas.length)}`);
 
+  // Zig-zag: el signo del resultado alterna (G-P-G-P / P-G-P-G). Es un
+  // patron de escalera que en el estadio de casa aparece seguido.
+  if (filas.length >= 4 && filas.slice(0, 4).every(f => f.res !== 'E')) {
+    const seq = filas.slice(0, 4).map(f => f.res);
+    const alterna = seq[0] !== seq[1] && seq[1] === seq[3] && seq[0] === seq[2];
+    if (alterna) out.push(`${equipo}${contexto}: zig-zag en el resultado: ${seq.join('-')} (alterna ganar/perder)`);
+  }
+
+  // Zig-zag Over/Under en los goles totales (línea 2.5). El total se
+  // calcula con la misma linea en partidos de equipos de goles parejos.
+  if (filas.length >= 4) {
+    const seq = filas.slice(0, 4).map(f => ((f.gf ?? 0) + (f.gc ?? 0) > 2.5 ? 'O' : 'U'));
+    // zig-zag estricto: alterna en cada partido (O U O U o U O U O)
+    const alterna = seq[0] !== seq[1] && seq[1] === seq[3] && seq[0] === seq[2];
+    if (alterna) out.push(`${equipo}${contexto}: zig-zag de goles: ${seq.join('-')} (alterna over/under de 2.5)`);
+  }
+
+  // Gana por un gol: el equipo suele ganar de diferencia 1.
+  if (filas.length >= 4) {
+    const por1 = filas.filter(f => f.res === 'G' && (f.gf - f.gc) === 1);
+    if (por1.length >= 2) out.push(`${equipo}${contexto}: suele ganar por 1 gol (${por1.length} de los últimos ${Math.min(4, filas.length)})`);
+  }
+
+  // Empates frecuentes: (G=3 puntos, pero aqui solo repetimos el signo E)
+  if (filas.length >= 4) {
+    const empatados = filas.slice(0, 5).filter(f => f.res === 'E').length;
+    if (empatados >= 3) out.push(`${equipo}${contexto}: empates seguidos (${empatados} de los últimos ${Math.min(5, filas.length)})`);
+  }
+
+  // Ambos marcan en racha
+  if (filas.length >= 3) {
+    const btts = filas.slice(0, 3).filter(f => f.gf >= 1 && f.gc >= 1).length;
+    if (btts === 3) out.push(`${equipo}${contexto}: ambos marcan en cadena (últimos 3)`);
+  }
+
   // Momento goles a favor: ultimos 2 vs anteriores
   if (filas.length >= 4) {
     const reciente = filas.slice(0, 2);
