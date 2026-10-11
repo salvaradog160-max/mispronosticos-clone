@@ -13,6 +13,7 @@ import { fetchHistory, impliedProbs } from '../providers/footballdata.mjs';
 import { buildRatings, predictMatch } from '../engine/ratings.mjs';
 import { normalizeTeam, buildConsensusPicks } from '../engine/calibration.mjs';
 import { buildMercadoPicks } from '../engine/mercados.mjs';
+import { detectarMovimiento } from '../engine/movimiento.mjs';
 import { upcoming, implied, liveNow } from '../providers/espn.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
@@ -199,12 +200,34 @@ async function buildPicks(buckets, ratings) {
 }
 
 // ------------------------------------------------------------------------ run
+const leerAnterior = async () => {
+  try {
+    return JSON.parse(await readFile(join(DATA_DIR, 'picks-anterior.json'), 'utf8'));
+  } catch {
+    return null;
+  }
+};
+
 const calibration = await buildCalibration();
 const ratings = await buildRatingsCache();
 const { fixtures, picks, picksMercado, live, mercados } = await buildPicks(calibration.buckets, ratings);
 
+const todosPicks = [...picks, ...picksMercado];
+const anterior = await leerAnterior();
+
+const tramosPorMercado = {
+  '1X2': calibration.buckets,
+  TOTAL: mercados.overUnder25.fusionado,
+  BTTS: mercados.btts.buckets,
+};
+
+const alertas = anterior
+  ? detectarMovimiento([...(anterior.picks ?? []), ...(anterior.picksMercado ?? [])], todosPicks, tramosPorMercado)
+  : [];
+
 const payload = {
   generado: new Date().toISOString(),
+  anterior: anterior ? anterior.generado : null,
   fuente: 'football-data.co.uk + ESPN (sin claves)',
   calibracion: {
     partidos: calibration.partidos,
@@ -225,6 +248,12 @@ const payload = {
     picksMercado: picksMercado.length,
     enVivo: live.length,
   },
+  alertas,
+  resumenAlertas: {
+    alta: alertas.filter(a => a.severidad === 'alta').length,
+    media: alertas.filter(a => a.severidad === 'media').length,
+    baja: alertas.filter(a => a.severidad === 'baja').length,
+  },
   picks,
   picksMercado,
   live,
@@ -234,9 +263,18 @@ await mkdir(OUT_DIR, { recursive: true });
 const path = join(OUT_DIR, 'picks.json');
 await writeFile(path, JSON.stringify(payload, null, 2));
 
+// La corrida actual pasa a ser la referencia de la siguiente.
+await mkdir(DATA_DIR, { recursive: true });
+await writeFile(
+  join(DATA_DIR, 'picks-anterior.json'),
+  JSON.stringify({ generado: payload.generado, picks, picksMercado }, null, 2),
+);
+
 log(`fixtures con datos: ${fixtures}`);
 log(`picks de consenso: ${picks.length}`);
 log(`picks de mercado (O/U + BTTS): ${picksMercado.length}`);
+log(`alertas: ${alertas.length} (alta ${payload.resumenAlertas.alta} / media ${payload.resumenAlertas.media} / baja ${payload.resumenAlertas.baja})`);
+for (const a of alertas.slice(0, 5)) log(`  [${a.severidad}] ${a.tipo}: ${a.detalle}`);
 log(`partidos en vivo: ${live.length}`);
 log(`escrito: ${path}`);
 for (const p of picks.slice(0, 5)) {

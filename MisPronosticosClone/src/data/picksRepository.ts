@@ -11,6 +11,16 @@ export interface PicksQuery {
   limit?: number;
 }
 
+export interface Alerta {
+  tipo: 'SALTO_TRAMO' | 'CAMBIO_LADO' | 'LINEA_GOLES' | 'NUEVO_PICK' | 'PICK_RETIRADO';
+  severidad: 'alta' | 'media' | 'baja';
+  fixtureId: string;
+  partido: string;
+  mercado: string;
+  detalle: string;
+  delta?: number | null;
+}
+
 export interface MercadosInfo {
   overUnder25: boolean;
   handicap: boolean;
@@ -24,6 +34,7 @@ export interface PicksRepository {
   listLiveMatches(): Promise<Match[]>;
   listSpecials(): Promise<Pick[]>;
   listMercados?(): Promise<MercadosInfo | null>;
+  listAlertas?(): Promise<Alerta[]>;
 }
 
 export const gate = (pick: Pick, minConfidence: number, minStars: number): boolean =>

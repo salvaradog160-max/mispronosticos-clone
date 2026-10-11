@@ -1,16 +1,18 @@
-name: Picks diarios
+name: Picks y alertas
 
 on:
+  # Cada hora. El job tarda ~12 s, asi que 24 corridas diarias (~5 min)
+  # entran de sobra en los minutos de Actions de un repo publico.
   schedule:
-    - cron: '17 9 * * *'
+    - cron: '7 * * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: picks-diarios
-  cancel-in-progress: false
+  group: picks-horario
+  cancel-in-progress: true
 
 jobs:
   generar:
@@ -27,18 +29,20 @@ jobs:
         working-directory: server
         run: node --test engine/*.test.mjs
 
-      - name: Generar picks
+      - name: Generar picks y detectar movimiento
         working-directory: server
         run: node scripts/daily.mjs
 
-      - name: Subir picks.json
+      - name: Commit si hubo cambios materiales
+        working-directory: server
         run: |
-          if git diff --quiet -- server/public/picks.json; then
-            echo "sin cambios, nada que commitear"
-            exit 0
+          if node scripts/publicar-si-cambia.mjs; then
+            cd ..
+            git config user.name  'picks-bot'
+            git config user.email 'picks-bot@users.noreply.github.com'
+            git add server/public/picks.json server/data/picks-anterior.json
+            git commit -m "picks $(date -u +'%Y-%m-%d %H:%M') UTC"
+            git push
+          else
+            echo "nada que publicar"
           fi
-          git config user.name  'picks-bot'
-          git config user.email 'picks-bot@users.noreply.github.com'
-          git add server/public/picks.json
-          git commit -m "picks: actualiza $(date -u +%Y-%m-%d)"
-          git push

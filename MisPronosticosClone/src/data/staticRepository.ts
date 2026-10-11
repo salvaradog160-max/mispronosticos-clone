@@ -2,6 +2,16 @@ import type { AppConfig } from '../config';
 import type { Match, Pick } from '../domain/picks';
 import type { PicksQuery, PicksRepository } from './picksRepository';
 
+export interface Alerta {
+  tipo: 'SALTO_TRAMO' | 'CAMBIO_LADO' | 'LINEA_GOLES' | 'NUEVO_PICK' | 'PICK_RETIRADO';
+  severidad: 'alta' | 'media' | 'baja';
+  fixtureId: string;
+  partido: string;
+  mercado: string;
+  detalle: string;
+  delta?: number | null;
+}
+
 export interface DailyPayload {
   generado: string;
   fuente: string;
@@ -14,6 +24,7 @@ export interface DailyPayload {
   resumen: { partidosConDatos: number; picks: number; enVivo: number };
   picks: ServerPickShape[];
   picksMercado?: ServerPickShape[];
+  alertas?: Alerta[];
   live: ServerMatchShape[];
   mercados?: {
     overUnder25: boolean;
@@ -97,6 +108,10 @@ export const createStaticRepository = (config: AppConfig): PicksRepository => {
     listMercados: async () => {
       const data = await load();
       return data.mercados ?? null;
+    },
+    listAlertas: async () => {
+      const data = await load();
+      return data.alertas ?? [];
     },
     listLiveMatches: async () => {
       const data = await load();

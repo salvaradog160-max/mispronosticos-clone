@@ -5,7 +5,8 @@ import { palette, radius, spacing } from '../theme';
 import type { Pick, Market } from '../domain/picks';
 import type { AppConfig } from '../config';
 import { DEFAULTS } from '../config';
-import { usePicks } from '../data/usePicks';
+import { usePicks, useAlertas } from '../data/usePicks';
+import AlertasCard from '../components/AlertasCard';
 
 interface Props {
   config?: AppConfig;
@@ -24,6 +25,7 @@ const MERCADOS: { key: Market; label: string }[] = [
 export default function TopAiScreen({ config = DEFAULTS }: Props) {
   const [mercado, setMercado] = useState<Market>('1X2');
   const { data, loading, error, reload } = usePicks(config, { market: mercado });
+  const { data: alertas } = useAlertas(config);
   const visibles = useMemo(() => data.filter(p => p.market === mercado), [data, mercado]);
 
   return (
@@ -53,6 +55,7 @@ export default function TopAiScreen({ config = DEFAULTS }: Props) {
               </Chip>
             ))}
           </View>
+          <AlertasCard alertas={alertas} />
         </View>
       }
       ListEmptyComponent={
