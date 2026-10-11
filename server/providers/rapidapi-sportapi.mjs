@@ -22,7 +22,6 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const CACHE = join(ROOT, 'data', 'odds-sportapi.json');
-const HOST = process.env.SPORTAPI_HOST || 'sportapi7.p.rapidapi.com';
 const KEY = process.env.SPORTAPI_KEY || '';
 
 /** uniqueTournament id por liga, en el espacio de ids de Sofascore. */
@@ -41,24 +40,96 @@ export const CATEGORIAS = {
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
+/**
+ * Hosts a probar, en orden.
+ *
+ * RapidAPI da la cuota POR API, no por key: `sportapi7`, `sportapi1`,
+ * `sportapi2` y `sportapi3` son listados distintos con contadores
+ * distintos. Aguantan el mismo formato de endpoints, asi que si uno se
+ * queda sin cuota o esta caido, se puede probar el siguiente sin tocar
+ * nada mas.
+ *
+ *   - 429 con "quota"  -> cuota del mes agotada en ese host
+ *   - 403 "not subscribed" -> la key no esta suscrita a ese listado
+ *   - 502              -> el backend del proveedor esta caido
+ *
+ * SPORTAPI_HOSTS sobrescribe la lista entera. SPORTAPI_HOST solo pone
+ * el primero: los demas siguen de respaldo, para que fijar un host no
+ * deje al provider sin salida.
+ */
+const HOSTS_POR_DEFECTO = [
+  'sportapi7.p.rapidapi.com',
+  'sportapi1.p.rapidapi.com',
+  'sportapi2.p.rapidapi.com',
+  'sportapi3.p.rapidapi.com',
+];
+
+const construirHosts = () => {
+  const bruto = process.env.SPORTAPI_HOSTS;
+  if (bruto) return bruto.split(',').map(h => h.trim()).filter(Boolean);
+  const fijado = (process.env.SPORTAPI_HOST || '').trim();
+  return fijado ? [fijado, ...HOSTS_POR_DEFECTO.filter(h => h !== fijado)] : HOSTS_POR_DEFECTO;
+};
+
+const HOSTS = construirHosts();
+
+let hostActivo = HOSTS[0];
+const estadoHosts = Object.fromEntries(HOSTS.map(h => [h, { ok: null, error: null }]));
+
+export const estadoDeHosts = () => ({ activo: hostActivo, ...estadoHosts });
+
+const pedirEn = async (host, path) => {
+  const res = await fetch(`https://${host}${path}`, {
+    headers: { 'x-rapidapi-key': KEY, 'x-rapidapi-host': host },
+  });
+  if (res.ok) { estadoHosts[host] = { ok: true, error: null }; return res.json(); }
+
+  const cuerpo = await res.text().catch(() => '');
+  if (res.status === 429 && /quota/i.test(cuerpo)) {
+    estadoHosts[host] = { ok: false, error: 'CUOTA_AGOTADA' };
+    throw new Error('CUOTA_AGOTADA');
+  }
+  if (res.status === 403) {
+    estadoHosts[host] = { ok: false, error: 'NO_SUSCRITO' };
+    throw new Error(`NO_SUSCRITO: ${host}`);
+  }
+  if (res.status >= 500) {
+    estadoHosts[host] = { ok: false, error: `CAIDO_${res.status}` };
+    throw new Error(`CAIDO_${res.status}: ${host}`);
+  }
+  // 404 = el path no existe en ESTE listado. Puede ser otro layout.
+  estadoHosts[host] = { ok: false, error: `RUTA_${res.status}` };
+  throw new Error(`RUTA_${res.status}: ${cuerpo.slice(0, 100)}`);
+};
+
+/**
+ * Prueba los hosts en orden hasta que uno responda. Se recuerda el
+ * ultimo que sirvio, asi que en el uso normal no se reintenta la lista
+ * entera cada llamada.
+ */
 const pedir = async (path, intentos = 3) => {
   if (!KEY) throw new Error('SPORTAPI_KEY no configurada');
-  for (let i = 0; i < intentos; i++) {
-    const res = await fetch(`https://${HOST}${path}`, {
-      headers: { 'x-rapidapi-key': KEY, 'x-rapidapi-host': HOST },
-    });
-    if (res.ok) return res.json();
 
-    const cuerpo = await res.text().catch(() => '');
-    // La cuota mensual no se recupera reintentando: hay que decirlo de
-    // inmediato para no seguir gastando tiempo y requests en un 403.
-    if (res.status === 429 && /quota/i.test(cuerpo)) {
-      throw new Error('CUOTA_AGOTADA: plan sin requests disponibles este mes');
+  const orden = [hostActivo, ...HOSTS.filter(h => h !== hostActivo)];
+  const errores = [];
+
+  for (const host of orden) {
+    for (let i = 0; i < intentos; i++) {
+      try {
+        const datos = await pedirEn(host, path);
+        hostActivo = host;
+        return datos;
+      } catch (err) {
+        const msg = String(err.message || err);
+        errores.push(`${host}: ${msg}`);
+        // Cuota agotada, no suscrito o caido: cambiar de host es la
+        // unica salida, reintentar el mismo no sirve de nada.
+        if (/CUOTA_AGOTADA|NO_SUSCRITO|CAIDO_/.test(msg)) break;
+        await sleep(1200 * (i + 1));
+      }
     }
-    if (res.status === 429) { await sleep(1500 * (i + 1)); continue; }
-    throw new Error(`${path} -> HTTP ${res.status}: ${cuerpo.slice(0, 120)}`);
   }
-  throw new Error(`${path} -> sin respuesta tras ${intentos} intentos`);
+  throw new Error(errores.join(' | ').slice(0, 400));
 };
 
 /**
