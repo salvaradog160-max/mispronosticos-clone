@@ -160,13 +160,31 @@ const TarjetaPronostico = ({
 };
 
 /** Cuadro de patrones (igual que el HTML: titulo + lista de frases). */
+/** Iconito por tipo de patron, para leer la lista de un vistazo. */
+const iconoPatron = (t: string): string => {
+  if (t.includes('zig-zag')) return '⚡';
+  if (t.includes('ganar por 1')) return '🎯';
+  if (t.includes('empates')) return '🔁';
+  if (t.includes('marcan en cadena') || t.includes('ambos anotaron')) return '🤝';
+  if (t.includes('anotó')) return '⚽';
+  if (t.includes('recibe menos')) return '🛡️';
+  if (t.includes('recibe más') || t.includes('recibió')) return '⚠️';
+  if (t.includes('victorias seguidas') || t.includes('sin perder')) return '📈';
+  if (t.includes('derrotas seguidas') || t.includes('sin ganar')) return '📉';
+  if (t.includes('al alza') || t.includes('forma al alza')) return '🔺';
+  if (t.includes('a la baja') || t.includes('forma a la baja')) return '🔻';
+  if (t.includes('goles concentrados')) return '🎲';
+  if (t.includes('le pesa') || t.includes('no le pesa')) return '🏟️';
+  return '•';
+};
+
 const CuadroPatron = ({ titulo, items }: { titulo: string; items: string[] }) => (
   <View style={s.cuadroPatron}>
     <Text style={s.patronTitulo}>{titulo}</Text>
     {items.length ? (
       items.map((t, i) => (
-        <Text style={[s.bullet, { color: palette.text }]} key={i}>
-          • {t}
+        <Text style={[s.patronItem, { color: palette.text }]} key={i}>
+          {iconoPatron(t)} {t}
         </Text>
       ))
     ) : (
@@ -919,6 +937,7 @@ const s = StyleSheet.create({
     marginTop: spacing.sm,
   },
   patronTitulo: { color: palette.star, fontSize: fontSize.sm, fontWeight: '800', marginBottom: spacing.xs },
+  patronItem: { color: palette.text, fontSize: fontSize.sm, lineHeight: 21, marginTop: 3 },
 
   recomCaja: {
     backgroundColor: palette.surface,
