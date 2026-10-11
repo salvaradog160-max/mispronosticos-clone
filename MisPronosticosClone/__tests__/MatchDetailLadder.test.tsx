@@ -77,6 +77,7 @@ const FILA: AnalisisFila = {
     ],
     recomendacion: { tipo: '1X', nombre: 'Local o empate', p: 0.893, riesgo: 'bajo', cuotaJusta: 1.12 },
     pronosticos: [
+      { tipo: 'O2.5', nombre: 'Más de 2.5 goles', p: 0.709, riesgo: 'medio', cuotaJusta: 1.41, modelo: 0.6, historial: 0.818 },
       { tipo: '1X', nombre: 'Local o empate', p: 0.893, riesgo: 'bajo', cuotaJusta: 1.12 },
       { tipo: '1', nombre: 'Gana local', p: 0.664, riesgo: 'medio', cuotaJusta: 1.51 },
     ],
@@ -158,4 +159,6 @@ test('el detalle dibuja la escalera de cuota justa por mercado', async () => {
   expect(plano).toContain('CABLE DE LA CUOTA');
   expect(plano).toContain('apertura');
   expect(plano).toContain('cierre');
+  expect(plano).toContain('Más de 2.5 goles');
+  expect(plano).toContain('modelo');
 });

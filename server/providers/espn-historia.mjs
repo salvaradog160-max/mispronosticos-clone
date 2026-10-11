@@ -46,6 +46,13 @@ export const temporada = async (liga, anio, limite = 1000) => {
     if (!comp) continue;
     if (!comp.status?.type?.completed) continue;
 
+    // Solo partidos de LIGA, no copas: la decision del usuario es que
+    // copas alteran los resultados (rotaciones, motivacion distinta).
+    // ESPN marca el torneo en event.season.slug: "regular-season",
+    // "torneo-apertura", "torneo-clausura"... Los playoffs, copas y el
+    // all-star llevan otro slug. Se conservan solo los de liga.
+    if (!esLiga(event.season?.slug, liga)) continue;
+
     const local = comp.competitors.find(x => x.homeAway === 'home');
     const visita = comp.competitors.find(x => x.homeAway === 'away');
     if (!local || !visita) continue;
@@ -71,6 +78,19 @@ export const temporada = async (liga, anio, limite = 1000) => {
   }
 
   return out;
+};
+
+/** Slugs de liga (no copa/playoff). Acepta negado para robustez. */
+const esLiga = (slug, liga) => {
+  if (!slug) return true; // sin slug se conserva; mejor dato que nada
+  const s = String(slug).toLowerCase();
+  if (/playoff|cup|final|semifinal|quarter|wild-card|seed|all-star|8th|7th|9th|round-of-16/i.test(s)) return false;
+  if (s.includes('regular-season') || s.includes('torneo-')) return true;
+  // Colombia usa "apertura"/"clausura" para la liga
+  if (s === 'apertura' || s === 'clausura' || s === 'finalizacion' || s === 'inicial') return true;
+  // Argentina/Brasil/Colombia/Chile a veces usan el nombre de liga
+  const ligaSlug = String(liga).toLowerCase().replace('.', '');
+  return s.includes(ligaSlug) || s.includes('liga') || s.includes('serie') || s.includes('primera');
 };
 
 /** Varias temporadas, de la mas reciente hacia atras. */

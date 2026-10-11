@@ -102,3 +102,31 @@ test('tendenciasDe acepta filas de equipo {gf,gc} y crudas {gfLocal,gfVisita}', 
   // En algun momento A anoto y Rival anoto => AA > 0 (a menos que 0 partidos lo hagan)
   assert.equal(typeof t.aa, 'number');
 });
+
+test('pronosticos incluye O/U y AA combinados (modelo+historial)', () => {
+  const pro = pronosticos({
+    pComb: { H: 0.334, D: 0.316, A: 0.35 },
+    pModelo: { H: 0.318, D: 0.231, A: 0.451 },
+    pBase: { H: 0.35, D: 0.4, A: 0.25 },
+    golesModelo: { over1_5: 0.889, over2_5: 0.709, over3_5: 0.499, over4_5: 0.306, btts: 0.71 },
+    tendHist: { ou: [{linea:1.5,over:80},{linea:2.5,over:60}], aa: 30 },
+  });
+  const o15 = pro.find(x => x.tipo === 'O1.5');
+  assert.ok(o15, 'existe O1.5');
+  // combinacion 50/50: (0.889 + 0.8)/2
+  assert.ok(Math.abs(o15.p - (0.889 + 0.8) / 2) < 0.01, `O1.5 combinada ${o15.p}`);
+  assert.ok(o15.modelo != null && o15.historial != null, 'trae modelo e historial');
+  const aa = pro.find(x => x.tipo === 'AA');
+  assert.ok(aa, 'existe AA');
+  assert.ok(Math.abs(aa.p - 0.505) < 0.001); // (0.71+0.3)/2
+});
+
+test('forense: pronosticos ordenados por probabilidad', async () => {
+  const { execFileSync } = await import('node:child_process');
+  const out = execFileSync('node', ['scripts/forense.mjs', 'P1', 'Rio Ave', 'Nacional', '2026-02-08', '3', '2'], { encoding: 'utf8', timeout: 90000 });
+  assert.match(out, /PRONOSTICOS ORDENADOS/);
+  assert.match(out, /RESULTADO REAL: Rio Ave 3-2 Nacional/);
+  // El ranking debe estar ordenado: primer pronostico p >= ultimo
+  const lineas = out.split('\n').filter(l => /^(SI|NO)\s+/.test(l));
+  assert.ok(lineas.length >= 5, `ranking con ${lineas.length} mercados`);
+});

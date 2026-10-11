@@ -326,13 +326,20 @@ export default function MatchDetailScreen({
                   {fila.combinado.pronosticos.length > 0 && (
                     <>
                       <Text style={s.subEtiqueta}>Pronósticos (en orden de probabilidad)</Text>
-                      {fila.combinado.pronosticos.map(pr => (
-                        <Fila etiqueta={pr.nombre} key={pr.tipo}>
-                          <Text style={s.valor} numberOfLines={1}>
-                            {pct0(pr.p)} · {pr.riesgo} · @{pr.cuotaJusta}
-                          </Text>
-                        </Fila>
-                      ))}
+                      {fila.combinado.pronosticos.map(pr => {
+                        const deAmbasFuentes =
+                          typeof pr.modelo === 'number' && typeof pr.historial === 'number';
+                        return (
+                          <Fila etiqueta={pr.nombre} key={pr.tipo}>
+                            <Text style={s.valor} numberOfLines={1}>
+                              {pct0(pr.p)} · {pr.riesgo} · @{pr.cuotaJusta}
+                              {deAmbasFuentes
+                                ? ` · modelo ${pct0(pr.modelo)} / hist ${pct0(pr.historial)}`
+                                : ''}
+                            </Text>
+                          </Fila>
+                        );
+                      })}
                     </>
                   )}
 

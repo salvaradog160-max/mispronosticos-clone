@@ -154,7 +154,7 @@ const nombreLado = (lado, partido) => {
 export const LIGAS_SIN_CALIBRACION = new Set();
 
 import { goodToLine } from './valor.mjs';
-
+import { overProb, bttsProb } from './poisson.mjs';
 import { ladderMercados, desglosarTiempos, ladderTiempo } from './ladder.mjs';
 import { combinar, riesgoDe, pronosticos as pronosticosDe, cuotaJusta } from './historial.mjs';
 
@@ -297,7 +297,27 @@ const historialCombinado = (partido, probs) => {
 
   // Combinada pedida: 50% modelo, 30% cuadro base (ult.5 L/V), 20% H2H L/V.
   const { pComb, usados } = combinar(pModelo, pBase, pH2H);
-  const pro = pronosticosDe({ pComb, pModelo, pBase });
+  // Mercados de goles del modelo (Poisson con las lambdas) para anadir
+  // O/U y AA combinados al ranking, como hace la herramienta manual.
+  const lm = partido.lambdaHome;
+  const la = partido.lambdaAway;
+  const golesModelo =
+    lm != null && la != null
+      ? {
+          over25: overProb(lm, la, 2.5),
+          over1_5: overProb(lm, la, 1.5),
+          over3_5: overProb(lm, la, 3.5),
+          over4_5: overProb(lm, la, 4.5),
+          btts: bttsProb(lm, la),
+        }
+      : null;
+  const pro = pronosticosDe({
+    pComb,
+    pModelo,
+    pBase,
+    golesModelo,
+    tendHist: h.tendencias?.general ?? null,
+  });
   const inclina = [...['H', 'D', 'A']].sort((a, b) => (pComb[b] ?? 0) - (pComb[a] ?? 0))[0];
   const ladoNombre = { H: 'Local', D: 'Empate', A: 'Visita' };
 

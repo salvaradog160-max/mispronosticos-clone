@@ -85171,14 +85171,17 @@ __d(function (global, require, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, expor
                 children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.Text, {
                   style: s.subEtiqueta,
                   children: "Pron\xF3sticos (en orden de probabilidad)"
-                }), fila.combinado.pronosticos.map(pr => /*#__PURE__*/(0, _jsxRuntime.jsx)(Fila, {
-                  etiqueta: pr.nombre,
-                  children: /*#__PURE__*/(0, _jsxRuntime.jsxs)(_reactNative.Text, {
-                    style: s.valor,
-                    numberOfLines: 1,
-                    children: [pct0(pr.p), " \xB7 ", pr.riesgo, " \xB7 @", pr.cuotaJusta]
-                  })
-                }, pr.tipo))]
+                }), fila.combinado.pronosticos.map(pr => {
+                  var deAmbasFuentes = typeof pr.modelo === 'number' && typeof pr.historial === 'number';
+                  return /*#__PURE__*/(0, _jsxRuntime.jsx)(Fila, {
+                    etiqueta: pr.nombre,
+                    children: /*#__PURE__*/(0, _jsxRuntime.jsxs)(_reactNative.Text, {
+                      style: s.valor,
+                      numberOfLines: 1,
+                      children: [pct0(pr.p), " \xB7 ", pr.riesgo, " \xB7 @", pr.cuotaJusta, deAmbasFuentes ? ` · modelo ${pct0(pr.modelo)} / hist ${pct0(pr.historial)}` : '']
+                    })
+                  }, pr.tipo);
+                })]
               }), fila.combinado.oportunidades.length > 0 && /*#__PURE__*/(0, _jsxRuntime.jsxs)(_jsxRuntime.Fragment, {
                 children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.Text, {
                   style: s.subEtiqueta,

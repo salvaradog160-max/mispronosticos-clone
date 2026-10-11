@@ -213,8 +213,14 @@ export const cuotaJusta = p => (p > 0 ? Number((1 / p).toFixed(2)) : null);
 /**
  * Pronosticos ordenados por probabilidad. Mercados que se pueden
  * comparar con modelo e historial sin inventar.
+ *
+ * Ademas del 1X2 (combinada 50/30/20), acepta el modelo Poisson de
+ * goles (`golesModelo`: {over1_5, over2_5, over3_5, btts}) y las
+ * tendencias reales del historial (`tendHist`: {overPct por linea,
+ * aa}) para generar los mercados O/U y Ambos anotan combinados, como
+ * la herramienta manual.
  */
-export const pronosticos = ({ pComb, pModelo, pBase }) => {
+export const pronosticos = ({ pComb, pModelo, pBase, golesModelo, tendHist }) => {
   const out = [];
   const ladoNombre = { H: 'Gana local', D: 'Empate', A: 'Gana visita' };
   for (const lado of ['H', 'D', 'A']) {
@@ -238,8 +244,39 @@ export const pronosticos = ({ pComb, pModelo, pBase }) => {
   const p2x = (pComb.A ?? 0) + (pComb.D ?? 0);
   out.push({ tipo: 'X2', nombre: 'Visita o empate', p: p2x, riesgo: riesgoDe(p2x, pAhm, pAhmB), cuotaJusta: cuotaJusta(p2x) });
 
-  // Over/Under y AA salen del historial real; a falta de modelo de goles
-  // para el mismo mercado se usa el historial como fuente unica.
+  // Over/Under y AA combinados (50/50 modelo Poisson vs historial),
+  // siguiendo la herramienta manual: "Modelo X% · Historial Y%".
+  const lineas = [1.5, 2.5, 3.5, 4.5];
+  const f = (side, tipo, nombre, pModeloGol, pHist) => {
+    if (pModeloGol == null && pHist == null) return;
+    const pM = pModeloGol ?? 0.5;
+    const pH = pHist == null ? pModeloGol : pHist / 100;
+    // 50/50; si falta una fuente se usa la otra
+    const usado = pHist == null ? 1 : pModeloGol == null ? 1 : 2;
+    const p = pHist == null || pModeloGol == null ? Math.max(pM, pH) : (pM + pH) / 2;
+    out.push({
+      tipo,
+      nombre,
+      p,
+      riesgo: riesgoDe(p, pModeloGol ?? null, pHist == null ? null : pHist),
+      cuotaJusta: cuotaJusta(p),
+      modelo: pModeloGol == null ? null : Number(pModeloGol.toFixed(4)),
+      historial: pHist == null ? null : Number((pHist / 100).toFixed(4)),
+      fuente: usado,
+    });
+  };
+
+  for (const linea of lineas) {
+    const key = `over${String(linea).replace('.', '_')}`;
+    const pM = golesModelo?.[key] ?? (linea === 2.5 ? golesModelo?.over25 : null);
+    const pH = tendHist?.ou?.find(o => o.linea === linea)?.over ?? null;
+    f('over', `O${linea}`, `Más de ${linea} goles`, pM, pH);
+  }
+
+  const aaM = golesModelo?.btts ?? null;
+  const aaH = tendHist?.aa ?? null;
+  f('aa', 'AA', 'Ambos anotan: Sí', aaM, aaH);
+
   return out.sort((a, b) => b.p - a.p);
 };
 

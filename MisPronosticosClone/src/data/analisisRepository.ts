@@ -157,7 +157,15 @@ export interface AnalisisFila {
     pesos?: { modelo: number; base: number; h2h: number };
     tabla: Array<{ lado: 'H' | 'D' | 'A'; modelo: number; historial: number; combinada: number }>;
     recomendacion: { tipo: string; nombre: string; p: number; riesgo: string; cuotaJusta: number | null } | null;
-    pronosticos: Array<{ tipo: string; nombre: string; p: number; riesgo: string; cuotaJusta: number | null }>;
+    pronosticos: Array<{
+      tipo: string;
+      nombre: string;
+      p: number;
+      riesgo: string;
+      cuotaJusta: number | null;
+      modelo?: number | null;
+      historial?: number | null;
+    }>;
     oportunidades: string[];
     riesgos: string[];
     serieH2H?: string[];
