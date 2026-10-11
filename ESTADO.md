@@ -76,3 +76,18 @@ cambios de código hay que: `npx react-native bundle --platform android
 --assets-dest android/app/src/main/res` + `./gradlew app:assembleDebug` +
 `adb install -r`. Metro no manda mientras el APK tenga bundle embebido.
 En producción esto es lo correcto (release embebe igual).
+
+## Forense de partidos terminados + solo liga (11-oct, noche)
+
+- `scripts/forense.mjs`: reconstruye el análisis de un partido terminado
+  con SOLO la historia previa al kickoff (sin contaminar con partidos
+  posteriores) y SOLO liga. Marca cada pronóstico del ranking como
+  acierto/fallo contra el marcador real.
+  Uso: `node scripts/forense.mjs "P1" "Rio Ave" "Nacional" 2026-02-08 3 2`
+- **Solo liga:** `espn-historia` filtra por `event.season.slug` y descarta
+  playoffs/copas/all-star (decisión del usuario: las copas alteran la
+  muestra). MLS bajó 2969->2851, Argentina 2423->2351.
+- Ranking extendido: incluye **Over/Under y Ambos anotan combinados**
+  (50% modelo Poisson + 50% historial), como la herramienta manual,
+  con "modelo 72.7% · hist 100%" en cada uno.
+- Emulador: bundle embebido regenerado con el ranking completo.
