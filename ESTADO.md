@@ -45,3 +45,34 @@ Backend del clone = **server/** Node ESM, 100% fuentes públicas (football-data.
 - `adb reverse tcp:8081 tcp:8081` + `npx react-native start --host 0.0.0.0`
 - Tests server: `node --test engine/*.test.mjs` (124) · App: `npx jest` (20) en MisPronosticosClone/
 - Debug APK: `MisPronosticosClone/android/app/build/outputs/apk/debug/app-debug.apk`
+
+## Análisis combinado real (11-oct, tarde)
+
+**Ya no se captura nada a mano.** El motor `engine/historial.mjs` construye los
+cuadros que la herramienta manual pedía (General / L-V / H2H con promedio,
+mediana, DE y ≥1 gol) desde la historia descargada: **38,685 partidos**,
+football-data (Europa, 6 temporadas) + espn-historia (América, 6 años,
+`limit=1000` — antes 400 recortaba MLS y perdía H2H como Nashville–Sporting KC).
+
+- Combinada: **50% modelo · 30% base (últ.5 L/V) · 20% H2H L/V**; si falta
+  fuente, se reparte. Riesgo: bajo ≥75%, medio ≥60%, sube un nivel si el
+  modelo y el historial difieren ≥25 pp.
+- La pestaña **Análisis** (ya sin "IA", y sin la pestaña "IA en vivo" que no
+  existe) muestra: se inclina a, tabla 1X2 modelo/historial/combinada,
+  recomendación con cuota justa @, pronósticos ordenados, oportunidades,
+  riesgos, y tendencias O/U reales por línea.
+- **H2H real** (serie G/E/P, promedio, mediana, ≥1 gol) — ya no dice
+  "sin enfrentamientos" para partidos que sí los tienen.
+- **Cable de la cuota** (`line_series`, un INSERT por corrida de 30'): la
+  app dibuja apertura → lecturas → cierre, "de qué lado se va". 16/53
+  partidos lo traen hoy (el cron de líneas los va poblando).
+- Fix: tendencias O/U aceptaban solo filas crudas; con filas de equipo
+  {gf,gc} daban 0%. Corregido, test añadido. Server 131/131, app 20/20.
+
+### Nota sobre el emulador
+La app debug embebe `index.android.bundle` en el APK (2.1MB). Para ver
+cambios de código hay que: `npx react-native bundle --platform android
+--dev true --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle
+--assets-dest android/app/src/main/res` + `./gradlew app:assembleDebug` +
+`adb install -r`. Metro no manda mientras el APK tenga bundle embebido.
+En producción esto es lo correcto (release embebe igual).
