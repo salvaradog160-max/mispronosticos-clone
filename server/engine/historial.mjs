@@ -92,20 +92,28 @@ const probs1x2de = filas => {
   };
 };
 
-/** Tendencias O/U y AA de un conjunto de partidos (equipo + gustos). */
+/** Tendencias O/U y AA de un conjunto de partidos. Acepta las filas de
+ * equipo {gf, gc} (perspectiva de un equipo) o las crudas
+ * {gfLocal, gfVisita}: ambas se normalizan a {local, visita}. */
 const tendenciasDe = (partidos, lineas = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5]) => {
-  if (!partidos.length) return null;
-  const n = partidos.length;
+  if (!partidos?.length) return null;
+  const norm = partidos.map(p => ({
+    goles: (p.goles ?? (p.gf ?? 0) + (p.gc ?? 0)),
+    local: (p.gfLocal ?? p.gf ?? 0),
+    visita: (p.gfVisita ?? p.gc ?? 0),
+  })).filter(p => Number.isFinite(p.local) && Number.isFinite(p.visita));
+  if (!norm.length) return null;
+  const n = norm.length;
   const ou = lineas.map(linea => {
-    const over = partidos.filter(p => p.goles > linea).length / n;
-    const exacto = Number.isInteger(linea) ? partidos.filter(p => p.goles === linea).length / n : 0;
+    const over = norm.filter(p => p.goles > linea).length / n;
+    const exacto = Number.isInteger(linea) ? norm.filter(p => p.goles === linea).length / n : 0;
     return {
       linea,
       over: Number((over * 100).toFixed(0)),
       dev: Number((exacto * 100).toFixed(0)),
     };
   });
-  const aa = partidos.filter(p => p.gfLocal >= 1 && p.gfVisita >= 1).length / n;
+  const aa = norm.filter(p => p.local >= 1 && p.visita >= 1).length / n;
   return { ou, aa: Number((aa * 100).toFixed(0)), n };
 };
 

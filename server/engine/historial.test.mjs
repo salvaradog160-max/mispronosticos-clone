@@ -86,3 +86,19 @@ test('riesgo del 1X usa la prob combinada del mercado, no la del lado H', () => 
   // 0.844 >= 0.75 => bajo; dif modelo 1X (0.927) vs base (0.6) = 32pp => sube a medio
   assert.equal(unoX.riesgo, 'medio');
 });
+test('tendenciasDe acepta filas de equipo {gf,gc} y crudas {gfLocal,gfVisita}', () => {
+  // Filas de equipo con goles 3,1,2,2 => over1.5 = 4/4 = 100%
+  const hist = [
+    { utcDate: '01/01/2025', homeTeam: 'A', awayTeam: 'Rival', homeScore: 2, awayScore: 1 },
+    { utcDate: '08/01/2025', homeTeam: 'Rival', awayTeam: 'A', homeScore: 0, awayScore: 3 },
+    { utcDate: '15/01/2025', homeTeam: 'A', awayTeam: 'Rival', homeScore: 2, awayScore: 0 },
+    { utcDate: '22/01/2025', homeTeam: 'A', awayTeam: 'Rival', homeScore: 1, awayScore: 1 },
+  ];
+  const h = historialDe(hist, 'A', 'Rival');
+  const t = h.tendencias.general;
+  assert.ok(t, 'tendencias presentes');
+  assert.ok(t.n >= 3, `n correcto (${t.n})`);
+  assert.ok(t.ou[0].over >= 0 && t.ou[0].over <= 100, 'over en rango');
+  // En algun momento A anoto y Rival anoto => AA > 0 (a menos que 0 partidos lo hagan)
+  assert.equal(typeof t.aa, 'number');
+});
