@@ -1,6 +1,6 @@
 {
-  "generado": "2026-10-11T23:10:04.540Z",
-  "anterior": "2026-10-11T23:05:05.235Z",
+  "generado": "2026-10-11T23:15:04.725Z",
+  "anterior": "2026-10-11T23:10:04.540Z",
   "fuente": "football-data.co.uk + ESPN (sin claves)",
   "calibracion": {
     "partidos": 35973,
@@ -16,11 +16,11 @@
     "bttsNota": "Medido con probabilidad del modelo unicamente. Los tramos de abajo del 50% muestran que el modelo sobrevalora BTTS."
   },
   "resumen": {
-    "partidosConDatos": 39,
-    "picks": 3,
+    "partidosConDatos": 40,
+    "picks": 4,
     "picksMercado": 0,
     "descartados": 41,
-    "enVivo": 3
+    "enVivo": 5
   },
   "descarte": {
     "criterio": "Se publica solo lo que acierta mas de lo que la cuota cobra, con 5pp de margen.",
@@ -357,6 +357,795 @@
     ]
   },
   "analisis": [
+    {
+      "partido": "St. Louis CITY SC vs LA Galaxy",
+      "liga": "MLS",
+      "ligaKey": "usa.1",
+      "escudoLocal": "https://a.espncdn.com/i/teamlogos/soccer/500/21812.png",
+      "escudoVisita": "https://a.espncdn.com/i/teamlogos/soccer/500/187.png",
+      "colorLocal": "ec1458",
+      "colorVisita": "00235d",
+      "sede": "Energizer Park",
+      "calibracion": "propia",
+      "kickoff": "2026-10-11T23:00Z",
+      "favoritoMercado": "H",
+      "ladoMercado": "St. Louis CITY SC",
+      "probMercado": 0.631,
+      "cuotaMercado": 1.47,
+      "cuotaApertura": 1.61,
+      "ladoModelo": "St. Louis CITY SC",
+      "probModelo": 0.4618,
+      "coincide": true,
+      "movimiento": 5.97,
+      "cambioFavorito": false,
+      "goles": {
+        "linea": 3.5,
+        "overround": 1.0556,
+        "over": {
+          "lado": "Over",
+          "cuota": 2,
+          "probMercado": 0.4737,
+          "probMercadoPct": 47.4,
+          "probModelo": 54.1,
+          "margenPp": 6.7
+        },
+        "under": {
+          "lado": "Under",
+          "cuota": 1.8,
+          "probMercado": 0.5263,
+          "probMercadoPct": 52.6,
+          "probModelo": 45.9,
+          "margenPp": -6.8
+        }
+      },
+      "lineaGoles": 3.5,
+      "lambdaHome": 1.61868102941088,
+      "lambdaAway": 1.226166223068,
+      "ladder": {
+        "oneXTwo": {
+          "local": {
+            "p": 0.4618123733119979,
+            "cuotaJusta": 2.17
+          },
+          "empate": {
+            "p": 0.25205497510110697,
+            "cuotaJusta": 3.97
+          },
+          "visita": {
+            "p": 0.28613265158689516,
+            "cuotaJusta": 3.49
+          }
+        },
+        "overUnder": [
+          {
+            "linea": 0.5,
+            "over": {
+              "p": 0.9418568526931879,
+              "cuotaJusta": 1.06
+            },
+            "under": {
+              "p": 0.05814314730681214,
+              "cuotaJusta": 17.2
+            }
+          },
+          {
+            "linea": 1,
+            "over": {
+              "p": 0.7764484798941544,
+              "cuotaJusta": 1.29
+            },
+            "under": {
+              "p": 0.22355152010584556,
+              "cuotaJusta": 4.47
+            }
+          },
+          {
+            "linea": 1.5,
+            "over": {
+              "p": 0.7764484798941544,
+              "cuotaJusta": 1.29
+            },
+            "under": {
+              "p": 0.22355152010584556,
+              "cuotaJusta": 4.47
+            }
+          },
+          {
+            "linea": 2,
+            "over": {
+              "p": 0.5411677024469885,
+              "cuotaJusta": 1.85
+            },
+            "under": {
+              "p": 0.45883229755301147,
+              "cuotaJusta": 2.18
+            }
+          },
+          {
+            "linea": 2.5,
+            "over": {
+              "p": 0.5411677024469885,
+              "cuotaJusta": 1.85
+            },
+            "under": {
+              "p": 0.45883229755301147,
+              "cuotaJusta": 2.18
+            }
+          },
+          {
+            "linea": 3,
+            "over": {
+              "p": 0.31805507801976673,
+              "cuotaJusta": 3.14
+            },
+            "under": {
+              "p": 0.6819449219802333,
+              "cuotaJusta": 1.47
+            }
+          },
+          {
+            "linea": 3.5,
+            "over": {
+              "p": 0.31805507801976673,
+              "cuotaJusta": 3.14
+            },
+            "under": {
+              "p": 0.6819449219802333,
+              "cuotaJusta": 1.47
+            }
+          },
+          {
+            "linea": 4,
+            "over": {
+              "p": 0.15937474387098305,
+              "cuotaJusta": 6.27
+            },
+            "under": {
+              "p": 0.840625256129017,
+              "cuotaJusta": 1.19
+            }
+          },
+          {
+            "linea": 4.5,
+            "over": {
+              "p": 0.15937474387098305,
+              "cuotaJusta": 6.27
+            },
+            "under": {
+              "p": 0.840625256129017,
+              "cuotaJusta": 1.19
+            }
+          }
+        ],
+        "ambosAnotan": {
+          "si": {
+            "p": 0.5665679404137872,
+            "cuotaJusta": 1.77
+          },
+          "no": {
+            "p": 0.4334320595862128,
+            "cuotaJusta": 2.31
+          }
+        },
+        "marcadores": [
+          {
+            "marcador": "1-1",
+            "p": 0.11540089096283794,
+            "cuotaJusta": 8.67
+          },
+          {
+            "marcador": "1-0",
+            "p": 0.09411520949752838,
+            "cuotaJusta": 10.63
+          },
+          {
+            "marcador": "2-1",
+            "p": 0.09339861648932962,
+            "cuotaJusta": 10.71
+          },
+          {
+            "marcador": "2-0",
+            "p": 0.07617125209633994,
+            "cuotaJusta": 13.13
+          },
+          {
+            "marcador": "0-1",
+            "p": 0.07129316330150491,
+            "cuotaJusta": 14.03
+          },
+          {
+            "marcador": "1-2",
+            "p": 0.07075033730529254,
+            "cuotaJusta": 14.13
+          }
+        ]
+      },
+      "tiempos": {
+        "fraccion1T": 0.45,
+        "primerTiempo": {
+          "local": 0.728,
+          "visita": 0.552,
+          "overUnder": [
+            {
+              "linea": 0.5,
+              "over": {
+                "p": 0.7220130930257388,
+                "cuotaJusta": 1.39
+              },
+              "under": {
+                "p": 0.2779869069742612,
+                "cuotaJusta": 3.6
+              }
+            },
+            {
+              "linea": 1,
+              "over": {
+                "p": 0.36613946318686547,
+                "cuotaJusta": 2.73
+              },
+              "under": {
+                "p": 0.6338605368131345,
+                "cuotaJusta": 1.58
+              }
+            },
+            {
+              "linea": 1.5,
+              "over": {
+                "p": 0.36613946318686547,
+                "cuotaJusta": 2.73
+              },
+              "under": {
+                "p": 0.6338605368131345,
+                "cuotaJusta": 1.58
+              }
+            },
+            {
+              "linea": 2,
+              "over": {
+                "p": 0.13834808661958442,
+                "cuotaJusta": 7.23
+              },
+              "under": {
+                "p": 0.8616519133804156,
+                "cuotaJusta": 1.16
+              }
+            },
+            {
+              "linea": 2.5,
+              "over": {
+                "p": 0.13834808661958442,
+                "cuotaJusta": 7.23
+              },
+              "under": {
+                "p": 0.8616519133804156,
+                "cuotaJusta": 1.16
+              }
+            }
+          ]
+        },
+        "segundoTiempo": {
+          "local": 0.89,
+          "visita": 0.674,
+          "overUnder": [
+            {
+              "linea": 0.5,
+              "over": {
+                "p": 0.7908421374371924,
+                "cuotaJusta": 1.26
+              },
+              "under": {
+                "p": 0.20915786256280755,
+                "cuotaJusta": 4.78
+              }
+            },
+            {
+              "linea": 1,
+              "over": {
+                "p": 0.46357994358181315,
+                "cuotaJusta": 2.16
+              },
+              "under": {
+                "p": 0.5364200564181869,
+                "cuotaJusta": 1.86
+              }
+            },
+            {
+              "linea": 1.5,
+              "over": {
+                "p": 0.46357994358181315,
+                "cuotaJusta": 2.16
+              },
+              "under": {
+                "p": 0.5364200564181869,
+                "cuotaJusta": 1.86
+              }
+            },
+            {
+              "linea": 2,
+              "over": {
+                "p": 0.20755193149864834,
+                "cuotaJusta": 4.82
+              },
+              "under": {
+                "p": 0.7924480685013516,
+                "cuotaJusta": 1.26
+              }
+            },
+            {
+              "linea": 2.5,
+              "over": {
+                "p": 0.20755193149864834,
+                "cuotaJusta": 4.82
+              },
+              "under": {
+                "p": 0.7924480685013516,
+                "cuotaJusta": 1.26
+              }
+            }
+          ]
+        }
+      },
+      "estado": "programado",
+      "marcador": null,
+      "resultado": null,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.6309592854657231,
+        "necesita": 0.69,
+        "cuotaNecesaria": 1.4492753623188408,
+        "cuotaActual": 1.5848883169408956
+      },
+      "serie": null,
+      "combinado": {
+        "inclina": "Local",
+        "pCombinada": 0.45,
+        "confianza": "baja",
+        "fuentes": [
+          "modelo",
+          "base",
+          "h2h"
+        ],
+        "pesos": {
+          "modelo": 0.5,
+          "base": 0.3,
+          "h2h": 0.2
+        },
+        "tabla": [
+          {
+            "lado": "H",
+            "modelo": 0.4618,
+            "historial": 0.4444,
+            "combinada": 0.45
+          },
+          {
+            "lado": "D",
+            "modelo": 0.2521,
+            "historial": 0.2593,
+            "combinada": 0.3181
+          },
+          {
+            "lado": "A",
+            "modelo": 0.2861,
+            "historial": 0.2963,
+            "combinada": 0.232
+          }
+        ],
+        "recomendacion": {
+          "tipo": "O1.5",
+          "nombre": "Más de 1.5 goles",
+          "p": 0.8332242399470773,
+          "riesgo": "medio",
+          "cuotaJusta": 1.2,
+          "modelo": 0.7764,
+          "historial": 0.89,
+          "fuente": 2
+        },
+        "pronosticos": [
+          {
+            "tipo": "O1.5",
+            "nombre": "Más de 1.5 goles",
+            "p": 0.8332242399470773,
+            "riesgo": "medio",
+            "cuotaJusta": 1.2,
+            "modelo": 0.7764,
+            "historial": 0.89,
+            "fuente": 2
+          },
+          {
+            "tipo": "1X",
+            "nombre": "Local o empate",
+            "p": 0.7680447853176635,
+            "riesgo": "bajo",
+            "cuotaJusta": 1.3
+          },
+          {
+            "tipo": "AA",
+            "nombre": "Ambos anotan: Sí",
+            "p": 0.6482839702068937,
+            "riesgo": "alto",
+            "cuotaJusta": 1.54,
+            "modelo": 0.5666,
+            "historial": 0.73,
+            "fuente": 2
+          },
+          {
+            "tipo": "O2.5",
+            "nombre": "Más de 2.5 goles",
+            "p": 0.5705838512234942,
+            "riesgo": "alto",
+            "cuotaJusta": 1.75,
+            "modelo": 0.5412,
+            "historial": 0.6,
+            "fuente": 2
+          },
+          {
+            "tipo": "X2",
+            "nombre": "Visita o empate",
+            "p": 0.550046194296382,
+            "riesgo": "alto",
+            "cuotaJusta": 1.82
+          },
+          {
+            "tipo": "1",
+            "nombre": "Gana local",
+            "p": 0.449953805703618,
+            "riesgo": "alto",
+            "cuotaJusta": 2.22
+          },
+          {
+            "tipo": "O3.5",
+            "nombre": "Más de 3.5 goles",
+            "p": 0.33402753900988336,
+            "riesgo": "alto",
+            "cuotaJusta": 2.99,
+            "modelo": 0.3181,
+            "historial": 0.35,
+            "fuente": 2
+          },
+          {
+            "tipo": "X",
+            "nombre": "Empate",
+            "p": 0.31809097961404553,
+            "riesgo": "alto",
+            "cuotaJusta": 3.14
+          },
+          {
+            "tipo": "2",
+            "nombre": "Gana visita",
+            "p": 0.23195521468233646,
+            "riesgo": "alto",
+            "cuotaJusta": 4.31
+          },
+          {
+            "tipo": "O4.5",
+            "nombre": "Más de 4.5 goles",
+            "p": 0.15468737193549154,
+            "riesgo": "alto",
+            "cuotaJusta": 6.46,
+            "modelo": 0.1594,
+            "historial": 0.15,
+            "fuente": 2
+          }
+        ],
+        "oportunidades": [
+          "El local rinde mejor en casa (2.08 vs 1.74 pts por partido)."
+        ],
+        "riesgos": [],
+        "serieH2H": [
+          "G",
+          "E",
+          "G",
+          "G",
+          "E",
+          "E"
+        ],
+        "h2hPartidos": 7,
+        "serieH2HCasa": [
+          "E",
+          "G",
+          "E"
+        ],
+        "h2hCasaPartidos": 3,
+        "temporadaVigente": {
+          "local": "2026",
+          "visita": "2026"
+        },
+        "cuadros": {
+          "generalLocal": {
+            "n": 27,
+            "gfProm": 1.78,
+            "gcProm": 1.33,
+            "gfMed": 2,
+            "gcMed": 1,
+            "gfDe": 1.19,
+            "gcDe": 0.96,
+            "gfGe1": 85,
+            "gcGe1": 85
+          },
+          "generalVisita": {
+            "n": 28,
+            "gfProm": 1.32,
+            "gcProm": 1.57,
+            "gfMed": 1,
+            "gcMed": 1,
+            "gfDe": 0.86,
+            "gcDe": 1.07,
+            "gfGe1": 86,
+            "gcGe1": 86
+          },
+          "localCasa": {
+            "n": 13,
+            "gfProm": 2.15,
+            "gcProm": 1.31,
+            "gfMed": 2,
+            "gcMed": 1,
+            "gfDe": 1.14,
+            "gcDe": 0.95,
+            "gfGe1": 92,
+            "gcGe1": 85
+          },
+          "visitaFuera": {
+            "n": 14,
+            "gfProm": 1.36,
+            "gcProm": 1.86,
+            "gfMed": 1,
+            "gcMed": 2,
+            "gfDe": 0.84,
+            "gcDe": 1.1,
+            "gfGe1": 86,
+            "gcGe1": 93
+          },
+          "h2h": {
+            "n": 7,
+            "gfProm": 2.43,
+            "gcProm": 1.57,
+            "gfMed": 3,
+            "gcMed": 1,
+            "gfDe": 0.79,
+            "gcDe": 1.13,
+            "gfGe1": 100,
+            "gcGe1": 86
+          },
+          "h2hCasa": {
+            "n": 3,
+            "gfProm": 2,
+            "gcProm": 1.67,
+            "gfMed": 2,
+            "gcMed": 1,
+            "gfDe": 1,
+            "gcDe": 1.15,
+            "gfGe1": 100,
+            "gcGe1": 100
+          }
+        },
+        "puntos": {
+          "localCasa": {
+            "pts": 27,
+            "porPartido": 2.08,
+            "n": 13
+          },
+          "localGral": {
+            "pts": 47,
+            "porPartido": 1.74,
+            "n": 27
+          },
+          "visitaFuera": {
+            "pts": 16,
+            "porPartido": 1.14,
+            "n": 14
+          },
+          "visitaGral": {
+            "pts": 36,
+            "porPartido": 1.29,
+            "n": 28
+          }
+        },
+        "pesoEstadio": {
+          "local": {
+            "casa": 2.08,
+            "general": 1.74,
+            "dif": 0.34
+          },
+          "visita": {
+            "fuera": 1.14,
+            "general": 1.29,
+            "dif": -0.15
+          }
+        },
+        "patrones": {
+          "generalLocal": [
+            "St. Louis CITY SC: 3 victorias seguidas",
+            "St. Louis CITY SC: 5 sin perder",
+            "St. Louis CITY SC: anotó en sus últimos 3",
+            "Goles a favor al alza: 3.0 por partido en los últimos 2 contra 1.7 antes"
+          ],
+          "generalVisita": [
+            "LA Galaxy: 2 victorias seguidas",
+            "LA Galaxy: anotó en sus últimos 3",
+            "LA Galaxy: recibió gol en sus últimos 3",
+            "LA Galaxy: ambos anotaron en sus últimos 2",
+            "Goles a favor al alza: 3.0 por partido en los últimos 2 contra 1.2 antes"
+          ],
+          "localCasa": [
+            "St. Louis CITY SC en casa: 2 victorias seguidas",
+            "St. Louis CITY SC en casa: 5 sin perder",
+            "St. Louis CITY SC en casa: anotó en sus últimos 3",
+            "St. Louis CITY SC en casa: recibió gol en sus últimos 3",
+            "St. Louis CITY SC en casa: ambos anotaron en sus últimos 2",
+            "Goles a favor al alza: 3.5 por partido en los últimos 2 contra 1.9 antes"
+          ],
+          "visitaFuera": [
+            "LA Galaxy fuera: recibió gol en sus últimos 3"
+          ],
+          "h2h": [
+            "H2H: 5 sin perder",
+            "H2H: anotó en sus últimos 3",
+            "H2H: ambos anotaron en sus últimos 2"
+          ],
+          "h2hCasa": [
+            "H2H en casa del local: 3 sin perder",
+            "H2H en casa del local: anotó en sus últimos 3",
+            "H2H en casa del local: recibió gol en sus últimos 3",
+            "H2H en casa del local: ambos anotaron en sus últimos 2"
+          ]
+        },
+        "tendencias": {
+          "general": {
+            "ou": [
+              {
+                "linea": 0.5,
+                "over": 98,
+                "dev": 0
+              },
+              {
+                "linea": 1,
+                "over": 89,
+                "dev": 9
+              },
+              {
+                "linea": 1.5,
+                "over": 89,
+                "dev": 0
+              },
+              {
+                "linea": 2,
+                "over": 60,
+                "dev": 29
+              },
+              {
+                "linea": 2.5,
+                "over": 60,
+                "dev": 0
+              },
+              {
+                "linea": 3,
+                "over": 35,
+                "dev": 25
+              },
+              {
+                "linea": 3.5,
+                "over": 35,
+                "dev": 0
+              },
+              {
+                "linea": 4,
+                "over": 15,
+                "dev": 20
+              },
+              {
+                "linea": 4.5,
+                "over": 15,
+                "dev": 0
+              }
+            ],
+            "aa": 73,
+            "n": 55
+          },
+          "lv": {
+            "ou": [
+              {
+                "linea": 0.5,
+                "over": 100,
+                "dev": 0
+              },
+              {
+                "linea": 1,
+                "over": 89,
+                "dev": 11
+              },
+              {
+                "linea": 1.5,
+                "over": 89,
+                "dev": 0
+              },
+              {
+                "linea": 2,
+                "over": 70,
+                "dev": 19
+              },
+              {
+                "linea": 2.5,
+                "over": 70,
+                "dev": 0
+              },
+              {
+                "linea": 3,
+                "over": 44,
+                "dev": 26
+              },
+              {
+                "linea": 3.5,
+                "over": 44,
+                "dev": 0
+              },
+              {
+                "linea": 4,
+                "over": 22,
+                "dev": 22
+              },
+              {
+                "linea": 4.5,
+                "over": 22,
+                "dev": 0
+              }
+            ],
+            "aa": 78,
+            "n": 27
+          },
+          "h2h": {
+            "ou": [
+              {
+                "linea": 0.5,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 1,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 1.5,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 2,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 2.5,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 3,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 3.5,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 4,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 4.5,
+                "over": 0,
+                "dev": 0
+              }
+            ],
+            "aa": 86,
+            "n": 7
+          }
+        }
+      }
+    },
     {
       "partido": "Red Bull Bragantino vs Cruzeiro",
       "liga": "Brasileirão",
@@ -1686,6 +2475,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 3.55,
+          "current": 3,
+          "closed": 3,
+          "movePct": 5.1643,
+          "capturedAt": "2026-10-11T23:10:04.979Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 1.909,
@@ -1893,6 +2692,16 @@
           "closed": 2.2,
           "movePct": -6.9264,
           "capturedAt": "2026-10-11T23:05:05.590Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 1.909,
+          "current": 2.2,
+          "closed": 2.2,
+          "movePct": -6.9264,
+          "capturedAt": "2026-10-11T23:10:04.975Z"
         },
         {
           "market": "spread",
@@ -2106,6 +2915,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 1.8,
+          "current": 1.645,
+          "closed": 1.645,
+          "movePct": 5.2288,
+          "capturedAt": "2026-10-11T23:10:04.986Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -0.5,
           "opened": 1.833,
@@ -2313,6 +3132,16 @@
           "closed": 2.1,
           "movePct": -6.9264,
           "capturedAt": "2026-10-11T23:05:05.597Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 1.833,
+          "current": 2.1,
+          "closed": 2.1,
+          "movePct": -6.9264,
+          "capturedAt": "2026-10-11T23:10:04.982Z"
         },
         {
           "market": "total",
@@ -2526,6 +3355,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.625,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:10:04.990Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -2733,6 +3572,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-11T23:05:05.604Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.2,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:10:04.993Z"
         }
       ],
       "combinado": {
@@ -4516,6 +5365,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 3,
+          "current": 3.45,
+          "closed": null,
+          "movePct": -4.3478,
+          "capturedAt": "2026-10-11T23:10:05.975Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 2.4,
@@ -4723,6 +5582,16 @@
           "closed": null,
           "movePct": 3.7879,
           "capturedAt": "2026-10-11T23:05:06.957Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 2.4,
+          "current": 2.2,
+          "closed": null,
+          "movePct": 3.7879,
+          "capturedAt": "2026-10-11T23:10:05.971Z"
         },
         {
           "market": "spread",
@@ -4936,6 +5805,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 1.513,
+          "current": 1.645,
+          "closed": null,
+          "movePct": -5.3174,
+          "capturedAt": "2026-10-11T23:10:05.982Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -0.5,
           "opened": 2.25,
@@ -5143,6 +6022,16 @@
           "closed": null,
           "movePct": 3.1746,
           "capturedAt": "2026-10-11T23:05:06.966Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 2.25,
+          "current": 2.1,
+          "closed": null,
+          "movePct": 3.1746,
+          "capturedAt": "2026-10-11T23:10:05.978Z"
         },
         {
           "market": "total",
@@ -5356,6 +6245,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.3,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:10:05.985Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -5563,6 +6462,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-11T23:05:06.974Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.571,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:10:05.988Z"
         }
       ],
       "combinado": {
@@ -10659,22 +11568,22 @@
       "cambioFavorito": false,
       "goles": {
         "linea": 2.5,
-        "overround": 1.0796,
+        "overround": 1.0711,
         "over": {
           "lado": "Over",
-          "cuota": 1.69,
-          "probMercado": 0.5482,
-          "probMercadoPct": 54.8,
+          "cuota": 1.71,
+          "probMercado": 0.5446,
+          "probMercadoPct": 54.5,
           "probModelo": 49.6,
-          "margenPp": -5.2
+          "margenPp": -4.9
         },
         "under": {
           "lado": "Under",
           "cuota": 2.05,
-          "probMercado": 0.4518,
-          "probMercadoPct": 45.2,
+          "probMercado": 0.4554,
+          "probMercadoPct": 45.5,
           "probModelo": 50.4,
-          "margenPp": 5.2
+          "margenPp": 4.9
         }
       },
       "lineaGoles": 2.5,
@@ -11187,6 +12096,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 2.05,
+          "current": 2,
+          "closed": null,
+          "movePct": 1.2195,
+          "capturedAt": "2026-10-11T23:10:05.227Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 3.25,
@@ -11394,6 +12313,16 @@
           "closed": null,
           "movePct": -2.1978,
           "capturedAt": "2026-10-11T23:05:05.820Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 3.25,
+          "current": 3.5,
+          "closed": null,
+          "movePct": -2.1978,
+          "capturedAt": "2026-10-11T23:10:05.224Z"
         },
         {
           "market": "spread",
@@ -11607,6 +12536,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": 0.5,
+          "opened": 1.952,
+          "current": 1.952,
+          "closed": null,
+          "movePct": 0,
+          "capturedAt": "2026-10-11T23:10:05.232Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": 0.5,
           "opened": 1.69,
@@ -11814,6 +12753,16 @@
           "closed": null,
           "movePct": -1.7369,
           "capturedAt": "2026-10-11T23:05:05.825Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": 0.5,
+          "opened": 1.69,
+          "current": 1.741,
+          "closed": null,
+          "movePct": -1.7369,
+          "capturedAt": "2026-10-11T23:10:05.230Z"
         },
         {
           "market": "total",
@@ -12027,6 +12976,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.69,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:10:05.235Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -12234,6 +13193,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-11T23:05:05.835Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.05,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:10:05.238Z"
         }
       ],
       "combinado": {
@@ -15547,6 +16516,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 4.4,
+          "current": 4.7,
+          "closed": 4.7,
+          "movePct": -1.4507,
+          "capturedAt": "2026-10-11T23:10:06.763Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 1.69,
@@ -15754,6 +16733,16 @@
           "closed": 1.69,
           "movePct": 0,
           "capturedAt": "2026-10-11T23:05:07.721Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 1.69,
+          "current": 1.69,
+          "closed": 1.69,
+          "movePct": 0,
+          "capturedAt": "2026-10-11T23:10:06.760Z"
         },
         {
           "market": "spread",
@@ -15967,6 +16956,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 2.05,
+          "current": 2.15,
+          "closed": 2.15,
+          "movePct": -2.2689,
+          "capturedAt": "2026-10-11T23:10:06.771Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -0.5,
           "opened": 1.645,
@@ -16174,6 +17173,16 @@
           "closed": 1.625,
           "movePct": 0.7541,
           "capturedAt": "2026-10-11T23:05:07.726Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 1.645,
+          "current": 1.625,
+          "closed": 1.625,
+          "movePct": 0.7541,
+          "capturedAt": "2026-10-11T23:10:06.767Z"
         },
         {
           "market": "total",
@@ -16387,6 +17396,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.606,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:10:06.773Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -16594,6 +17613,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-11T23:05:07.741Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.25,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:10:06.776Z"
         }
       ],
       "combinado": {
@@ -22228,6 +23257,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 4.4,
+          "current": 4.5,
+          "closed": null,
+          "movePct": -0.5051,
+          "capturedAt": "2026-10-11T23:10:05.097Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 1.667,
@@ -22435,6 +23474,16 @@
           "closed": null,
           "movePct": -1.6667,
           "capturedAt": "2026-10-11T23:05:05.704Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 1.667,
+          "current": 1.714,
+          "closed": null,
+          "movePct": -1.6667,
+          "capturedAt": "2026-10-11T23:10:05.095Z"
         },
         {
           "market": "spread",
@@ -22648,6 +23697,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 2.05,
+          "current": 2.1,
+          "closed": null,
+          "movePct": -1.1614,
+          "capturedAt": "2026-10-11T23:10:05.119Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -0.5,
           "opened": 1.606,
@@ -22855,6 +23914,16 @@
           "closed": null,
           "movePct": -2.2642,
           "capturedAt": "2026-10-11T23:05:05.712Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 1.606,
+          "current": 1.667,
+          "closed": null,
+          "movePct": -2.2642,
+          "capturedAt": "2026-10-11T23:10:05.115Z"
         },
         {
           "market": "total",
@@ -23068,6 +24137,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.625,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:10:05.123Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -23275,6 +24354,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-11T23:05:05.718Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.2,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:10:05.126Z"
         }
       ],
       "combinado": {
@@ -28171,6 +29260,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 3.2,
+          "current": 3.2,
+          "closed": 3.2,
+          "movePct": 0,
+          "capturedAt": "2026-10-11T23:10:05.845Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 2.35,
@@ -28378,6 +29477,16 @@
           "closed": 2.35,
           "movePct": 0,
           "capturedAt": "2026-10-11T23:05:06.840Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 2.35,
+          "current": 2.35,
+          "closed": 2.35,
+          "movePct": 0,
+          "capturedAt": "2026-10-11T23:10:05.842Z"
         },
         {
           "market": "spread",
@@ -28591,6 +29700,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 1.541,
+          "current": 1.588,
+          "closed": 1.588,
+          "movePct": -1.9493,
+          "capturedAt": "2026-10-11T23:10:05.853Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -0.5,
           "opened": 2.2,
@@ -28798,6 +29917,16 @@
           "closed": 2.2,
           "movePct": 0,
           "capturedAt": "2026-10-11T23:05:06.848Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 2.2,
+          "current": 2.2,
+          "closed": 2.2,
+          "movePct": 0,
+          "capturedAt": "2026-10-11T23:10:05.849Z"
         },
         {
           "market": "total",
@@ -29011,6 +30140,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.2,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:10:05.856Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -29218,6 +30357,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-11T23:05:06.856Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.645,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-11T23:10:05.859Z"
         }
       ],
       "combinado": {
@@ -38239,11 +39388,25 @@
     "nota": "El margen de la casa se mide como ROI de apostar todos los picks de consenso, medido por el backtest.",
     "notaDrawdown": "Max drawdown: cuánto cayó el saldo acumulado desde su máximo, apostando 1 unidad por pick."
   },
-  "alertas": [],
+  "alertas": [
+    {
+      "tipo": "NUEVO_PICK",
+      "severidad": "baja",
+      "fixtureId": "761859",
+      "partido": "St. Louis CITY SC vs LA Galaxy",
+      "mercado": "1X2",
+      "detalle": "Nuevo 1X2: Gana St. Louis CITY SC al 74%",
+      "antes": null,
+      "ahora": {
+        "confianza": 74,
+        "probMercado": 0.631
+      }
+    }
+  ],
   "resumenAlertas": {
     "alta": 0,
     "media": 0,
-    "baja": 0
+    "baja": 1
   },
   "picks": [
     {
@@ -38266,10 +39429,36 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-11T23:10:02.214Z",
+      "createdAt": "2026-10-11T23:15:02.358Z",
       "roiUnit": 0.11948717948717946,
       "margen": 0.0789830508474576,
       "breakEven": 0.6610169491525424,
+      "rentable": true
+    },
+    {
+      "id": "761859-H",
+      "fixtureId": "761859",
+      "league": "usa.1",
+      "kickoff": "2026-10-11T23:00Z",
+      "homeTeam": "St. Louis CITY SC",
+      "awayTeam": "LA Galaxy",
+      "market": "1X2",
+      "selection": "Gana St. Louis CITY SC",
+      "odds": 1.4651162790697674,
+      "confidence": 74,
+      "stars": 4,
+      "isSpecial": false,
+      "isPremium": false,
+      "probMercado": 0.631,
+      "nMuestra": 5212,
+      "rango": [
+        72.9,
+        75.3
+      ],
+      "createdAt": "2026-10-11T23:15:02.358Z",
+      "roiUnit": 0.08418604651162787,
+      "margen": 0.057460317460317434,
+      "breakEven": 0.6825396825396826,
       "rentable": true
     },
     {
@@ -38292,7 +39481,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-11T23:10:02.214Z",
+      "createdAt": "2026-10-11T23:15:02.358Z",
       "roiUnit": 0.09238095238095245,
       "margen": 0.06258064516129036,
       "breakEven": 0.6774193548387096,
@@ -38318,7 +39507,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-11T23:10:02.214Z",
+      "createdAt": "2026-10-11T23:15:02.358Z",
       "roiUnit": 0.12947368421052619,
       "margen": 0.08482758620689645,
       "breakEven": 0.6551724137931035,
@@ -38334,8 +39523,8 @@
       "leagueKey": "mex.1",
       "kickoff": "2026-10-11T23:00Z",
       "status": "in",
-      "statusDetail": "10'",
-      "minute": "10'",
+      "statusDetail": "15'",
+      "minute": "15'",
       "period": 1,
       "homeTeam": "Atlético de San Luis",
       "awayTeam": "Santos",
@@ -38363,6 +39552,82 @@
         "line": 2.5,
         "over": 1.625,
         "under": 2.2
+      }
+    },
+    {
+      "id": "401876949",
+      "league": "mex.1",
+      "leagueName": "Liga MX",
+      "leagueKey": "mex.1",
+      "kickoff": "2026-10-11T23:10Z",
+      "status": "in",
+      "statusDetail": "4'",
+      "minute": "4'",
+      "period": 1,
+      "homeTeam": "Pachuca",
+      "awayTeam": "Necaxa",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/234.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/229.png",
+      "homeColor": "001C58",
+      "awayColor": "EF0107",
+      "homeKey": "pachuca",
+      "awayKey": "necaxa",
+      "homeScore": 0,
+      "awayScore": 0,
+      "venue": "Estadio Hidalgo",
+      "odds": {
+        "H": 1.7142857142857144,
+        "A": 4.5,
+        "D": 4,
+        "apertura": {
+          "H": 1.6666666666666665,
+          "A": 4.4,
+          "D": 4,
+          "over": 1.606060606060606,
+          "under": 2.15
+        },
+        "provider": "DraftKings",
+        "line": 2.5,
+        "over": 1.625,
+        "under": 2.2
+      }
+    },
+    {
+      "id": "761859",
+      "league": "usa.1",
+      "leagueName": "MLS",
+      "leagueKey": "usa.1",
+      "kickoff": "2026-10-11T23:00Z",
+      "status": "in",
+      "statusDetail": "2'",
+      "minute": "2'",
+      "period": 1,
+      "homeTeam": "St. Louis CITY SC",
+      "awayTeam": "LA Galaxy",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/21812.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/187.png",
+      "homeColor": "ec1458",
+      "awayColor": "00235d",
+      "homeKey": "stlouiscity",
+      "awayKey": "lagalaxy",
+      "homeScore": 1,
+      "awayScore": 0,
+      "venue": "Energizer Park",
+      "odds": {
+        "H": 1.4651162790697674,
+        "A": 5.5,
+        "D": 4.6,
+        "apertura": {
+          "H": 1.606060606060606,
+          "A": 4,
+          "D": 4.6,
+          "over": 1.9523809523809523,
+          "under": 1.7692307692307692
+        },
+        "provider": "DraftKings",
+        "line": 3.5,
+        "over": 2,
+        "under": 1.8
       }
     },
     {
@@ -38410,8 +39675,8 @@
       "leagueKey": "bra.1",
       "kickoff": "2026-10-11T22:30Z",
       "status": "in",
-      "statusDetail": "38'",
-      "minute": "38'",
+      "statusDetail": "43'",
+      "minute": "43'",
       "period": 1,
       "homeTeam": "Bahia",
       "awayTeam": "Mirassol",
@@ -38443,6 +39708,442 @@
     }
   ],
   "standings": {
+    "usa.1": {
+      "liga": "usa.1",
+      "ligaNombre": "MLS",
+      "grupos": [
+        {
+          "nombre": "Eastern Conference",
+          "equipos": [
+            {
+              "posicion": 1,
+              "equipo": "Nashville SC",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/18986.png",
+              "color": null,
+              "pj": 28,
+              "ganados": 19,
+              "empatados": 6,
+              "perdidos": 3,
+              "puntos": 63,
+              "diferencia": 37,
+              "aFavor": 59,
+              "enContra": 22
+            },
+            {
+              "posicion": 2,
+              "equipo": "Inter Miami CF",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/20232.png",
+              "color": null,
+              "pj": 28,
+              "ganados": 13,
+              "empatados": 10,
+              "perdidos": 5,
+              "puntos": 49,
+              "diferencia": 18,
+              "aFavor": 68,
+              "enContra": 50
+            },
+            {
+              "posicion": 3,
+              "equipo": "Chicago Fire FC",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/182.png",
+              "color": null,
+              "pj": 28,
+              "ganados": 14,
+              "empatados": 6,
+              "perdidos": 8,
+              "puntos": 48,
+              "diferencia": 11,
+              "aFavor": 51,
+              "enContra": 40
+            },
+            {
+              "posicion": 4,
+              "equipo": "Charlotte FC",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/21300.png",
+              "color": null,
+              "pj": 28,
+              "ganados": 13,
+              "empatados": 7,
+              "perdidos": 8,
+              "puntos": 46,
+              "diferencia": 10,
+              "aFavor": 50,
+              "enContra": 40
+            },
+            {
+              "posicion": 5,
+              "equipo": "New England Revolution",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/189.png",
+              "color": null,
+              "pj": 28,
+              "ganados": 14,
+              "empatados": 4,
+              "perdidos": 10,
+              "puntos": 46,
+              "diferencia": 6,
+              "aFavor": 45,
+              "enContra": 39
+            },
+            {
+              "posicion": 6,
+              "equipo": "Philadelphia Union",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/10739.png",
+              "color": null,
+              "pj": 28,
+              "ganados": 12,
+              "empatados": 6,
+              "perdidos": 10,
+              "puntos": 42,
+              "diferencia": 11,
+              "aFavor": 56,
+              "enContra": 45
+            },
+            {
+              "posicion": 7,
+              "equipo": "Orlando City SC",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/12011.png",
+              "color": null,
+              "pj": 28,
+              "ganados": 11,
+              "empatados": 4,
+              "perdidos": 13,
+              "puntos": 37,
+              "diferencia": -15,
+              "aFavor": 51,
+              "enContra": 66
+            },
+            {
+              "posicion": 8,
+              "equipo": "FC Cincinnati",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/18267.png",
+              "color": null,
+              "pj": 27,
+              "ganados": 9,
+              "empatados": 9,
+              "perdidos": 9,
+              "puntos": 36,
+              "diferencia": -7,
+              "aFavor": 58,
+              "enContra": 65
+            },
+            {
+              "posicion": 9,
+              "equipo": "Red Bull New York",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/190.png",
+              "color": null,
+              "pj": 28,
+              "ganados": 10,
+              "empatados": 6,
+              "perdidos": 12,
+              "puntos": 36,
+              "diferencia": -14,
+              "aFavor": 38,
+              "enContra": 52
+            },
+            {
+              "posicion": 10,
+              "equipo": "New York City FC",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/17606.png",
+              "color": null,
+              "pj": 28,
+              "ganados": 8,
+              "empatados": 9,
+              "perdidos": 11,
+              "puntos": 33,
+              "diferencia": 4,
+              "aFavor": 42,
+              "enContra": 38
+            },
+            {
+              "posicion": 11,
+              "equipo": "Toronto FC",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/7318.png",
+              "color": null,
+              "pj": 28,
+              "ganados": 7,
+              "empatados": 11,
+              "perdidos": 10,
+              "puntos": 32,
+              "diferencia": -11,
+              "aFavor": 41,
+              "enContra": 52
+            },
+            {
+              "posicion": 12,
+              "equipo": "D.C. United",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/193.png",
+              "color": null,
+              "pj": 27,
+              "ganados": 6,
+              "empatados": 12,
+              "perdidos": 9,
+              "puntos": 30,
+              "diferencia": -12,
+              "aFavor": 34,
+              "enContra": 46
+            },
+            {
+              "posicion": 13,
+              "equipo": "Columbus Crew",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/183.png",
+              "color": null,
+              "pj": 28,
+              "ganados": 8,
+              "empatados": 5,
+              "perdidos": 15,
+              "puntos": 29,
+              "diferencia": -5,
+              "aFavor": 41,
+              "enContra": 46
+            },
+            {
+              "posicion": 14,
+              "equipo": "Atlanta United FC",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/18418.png",
+              "color": null,
+              "pj": 28,
+              "ganados": 7,
+              "empatados": 6,
+              "perdidos": 15,
+              "puntos": 27,
+              "diferencia": -15,
+              "aFavor": 33,
+              "enContra": 48
+            },
+            {
+              "posicion": 15,
+              "equipo": "CF Montréal",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/9720.png",
+              "color": null,
+              "pj": 28,
+              "ganados": 6,
+              "empatados": 6,
+              "perdidos": 16,
+              "puntos": 24,
+              "diferencia": -21,
+              "aFavor": 35,
+              "enContra": 56
+            }
+          ]
+        },
+        {
+          "nombre": "Western Conference",
+          "equipos": [
+            {
+              "posicion": 1,
+              "equipo": "Vancouver Whitecaps",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/9727.png",
+              "color": null,
+              "pj": 28,
+              "ganados": 15,
+              "empatados": 6,
+              "perdidos": 7,
+              "puntos": 51,
+              "diferencia": 31,
+              "aFavor": 61,
+              "enContra": 30
+            },
+            {
+              "posicion": 2,
+              "equipo": "St. Louis CITY SC",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/21812.png",
+              "color": null,
+              "pj": 27,
+              "ganados": 13,
+              "empatados": 8,
+              "perdidos": 6,
+              "puntos": 47,
+              "diferencia": 12,
+              "aFavor": 48,
+              "enContra": 36
+            },
+            {
+              "posicion": 3,
+              "equipo": "FC Dallas",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/185.png",
+              "color": null,
+              "pj": 28,
+              "ganados": 13,
+              "empatados": 8,
+              "perdidos": 7,
+              "puntos": 47,
+              "diferencia": 7,
+              "aFavor": 52,
+              "enContra": 45
+            },
+            {
+              "posicion": 4,
+              "equipo": "San Jose Earthquakes",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/191.png",
+              "color": null,
+              "pj": 28,
+              "ganados": 13,
+              "empatados": 7,
+              "perdidos": 8,
+              "puntos": 46,
+              "diferencia": 10,
+              "aFavor": 50,
+              "enContra": 40
+            },
+            {
+              "posicion": 5,
+              "equipo": "Houston Dynamo FC",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/6077.png",
+              "color": null,
+              "pj": 28,
+              "ganados": 13,
+              "empatados": 6,
+              "perdidos": 9,
+              "puntos": 45,
+              "diferencia": 2,
+              "aFavor": 36,
+              "enContra": 34
+            },
+            {
+              "posicion": 6,
+              "equipo": "LAFC",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/18966.png",
+              "color": null,
+              "pj": 29,
+              "ganados": 11,
+              "empatados": 9,
+              "perdidos": 9,
+              "puntos": 42,
+              "diferencia": 13,
+              "aFavor": 44,
+              "enContra": 31
+            },
+            {
+              "posicion": 7,
+              "equipo": "Seattle Sounders FC",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/9726.png",
+              "color": null,
+              "pj": 28,
+              "ganados": 11,
+              "empatados": 8,
+              "perdidos": 9,
+              "puntos": 41,
+              "diferencia": 3,
+              "aFavor": 38,
+              "enContra": 35
+            },
+            {
+              "posicion": 8,
+              "equipo": "Colorado Rapids",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/184.png",
+              "color": null,
+              "pj": 28,
+              "ganados": 11,
+              "empatados": 4,
+              "perdidos": 13,
+              "puntos": 37,
+              "diferencia": 0,
+              "aFavor": 39,
+              "enContra": 39
+            },
+            {
+              "posicion": 9,
+              "equipo": "LA Galaxy",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/187.png",
+              "color": null,
+              "pj": 28,
+              "ganados": 9,
+              "empatados": 9,
+              "perdidos": 10,
+              "puntos": 36,
+              "diferencia": -7,
+              "aFavor": 37,
+              "enContra": 44
+            },
+            {
+              "posicion": 10,
+              "equipo": "Portland Timbers",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/9723.png",
+              "color": null,
+              "pj": 28,
+              "ganados": 9,
+              "empatados": 6,
+              "perdidos": 13,
+              "puntos": 33,
+              "diferencia": -3,
+              "aFavor": 51,
+              "enContra": 54
+            },
+            {
+              "posicion": 11,
+              "equipo": "San Diego FC",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/22529.png",
+              "color": null,
+              "pj": 28,
+              "ganados": 8,
+              "empatados": 8,
+              "perdidos": 12,
+              "puntos": 32,
+              "diferencia": -3,
+              "aFavor": 48,
+              "enContra": 51
+            },
+            {
+              "posicion": 12,
+              "equipo": "Real Salt Lake",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/4771.png",
+              "color": null,
+              "pj": 28,
+              "ganados": 9,
+              "empatados": 5,
+              "perdidos": 14,
+              "puntos": 32,
+              "diferencia": -5,
+              "aFavor": 41,
+              "enContra": 46
+            },
+            {
+              "posicion": 13,
+              "equipo": "Austin FC",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/20906.png",
+              "color": null,
+              "pj": 28,
+              "ganados": 7,
+              "empatados": 10,
+              "perdidos": 11,
+              "puntos": 31,
+              "diferencia": -15,
+              "aFavor": 36,
+              "enContra": 51
+            },
+            {
+              "posicion": 14,
+              "equipo": "Minnesota United FC",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/17362.png",
+              "color": null,
+              "pj": 28,
+              "ganados": 7,
+              "empatados": 9,
+              "perdidos": 12,
+              "puntos": 30,
+              "diferencia": -9,
+              "aFavor": 42,
+              "enContra": 51
+            },
+            {
+              "posicion": 15,
+              "equipo": "Sporting Kansas City",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/186.png",
+              "color": null,
+              "pj": 28,
+              "ganados": 6,
+              "empatados": 4,
+              "perdidos": 18,
+              "puntos": 22,
+              "diferencia": -33,
+              "aFavor": 35,
+              "enContra": 68
+            }
+          ]
+        }
+      ]
+    },
     "bra.1": {
       "liga": "bra.1",
       "ligaNombre": "Brasileirão",
@@ -39107,14 +40808,14 @@
               "equipo": "Deportes Tolima",
               "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/5489.png",
               "color": null,
-              "pj": 13,
+              "pj": 14,
               "ganados": 5,
               "empatados": 5,
-              "perdidos": 3,
+              "perdidos": 4,
               "puntos": 20,
-              "diferencia": 2,
-              "aFavor": 15,
-              "enContra": 13
+              "diferencia": 1,
+              "aFavor": 17,
+              "enContra": 16
             },
             {
               "posicion": 9,
@@ -39244,6 +40945,20 @@
             },
             {
               "posicion": 18,
+              "equipo": "Jaguares de Córdoba",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/10309.png",
+              "color": null,
+              "pj": 12,
+              "ganados": 2,
+              "empatados": 4,
+              "perdidos": 6,
+              "puntos": 10,
+              "diferencia": -8,
+              "aFavor": 14,
+              "enContra": 22
+            },
+            {
+              "posicion": 19,
               "equipo": "Deportivo Pasto",
               "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/5485.png",
               "color": null,
@@ -39257,7 +40972,7 @@
               "enContra": 18
             },
             {
-              "posicion": 19,
+              "posicion": 20,
               "equipo": "Deportivo Pereira",
               "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/5486.png",
               "color": null,
@@ -39269,20 +40984,6 @@
               "diferencia": -10,
               "aFavor": 7,
               "enContra": 17
-            },
-            {
-              "posicion": 20,
-              "equipo": "Jaguares de Córdoba",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/10309.png",
-              "color": null,
-              "pj": 11,
-              "ganados": 1,
-              "empatados": 4,
-              "perdidos": 6,
-              "puntos": 7,
-              "diferencia": -9,
-              "aFavor": 11,
-              "enContra": 20
             }
           ]
         }
@@ -40245,442 +41946,6 @@
               "diferencia": -9,
               "aFavor": 4,
               "enContra": 13
-            }
-          ]
-        }
-      ]
-    },
-    "usa.1": {
-      "liga": "usa.1",
-      "ligaNombre": "MLS",
-      "grupos": [
-        {
-          "nombre": "Eastern Conference",
-          "equipos": [
-            {
-              "posicion": 1,
-              "equipo": "Nashville SC",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/18986.png",
-              "color": null,
-              "pj": 28,
-              "ganados": 19,
-              "empatados": 6,
-              "perdidos": 3,
-              "puntos": 63,
-              "diferencia": 37,
-              "aFavor": 59,
-              "enContra": 22
-            },
-            {
-              "posicion": 2,
-              "equipo": "Inter Miami CF",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/20232.png",
-              "color": null,
-              "pj": 28,
-              "ganados": 13,
-              "empatados": 10,
-              "perdidos": 5,
-              "puntos": 49,
-              "diferencia": 18,
-              "aFavor": 68,
-              "enContra": 50
-            },
-            {
-              "posicion": 3,
-              "equipo": "Chicago Fire FC",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/182.png",
-              "color": null,
-              "pj": 28,
-              "ganados": 14,
-              "empatados": 6,
-              "perdidos": 8,
-              "puntos": 48,
-              "diferencia": 11,
-              "aFavor": 51,
-              "enContra": 40
-            },
-            {
-              "posicion": 4,
-              "equipo": "Charlotte FC",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/21300.png",
-              "color": null,
-              "pj": 28,
-              "ganados": 13,
-              "empatados": 7,
-              "perdidos": 8,
-              "puntos": 46,
-              "diferencia": 10,
-              "aFavor": 50,
-              "enContra": 40
-            },
-            {
-              "posicion": 5,
-              "equipo": "New England Revolution",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/189.png",
-              "color": null,
-              "pj": 28,
-              "ganados": 14,
-              "empatados": 4,
-              "perdidos": 10,
-              "puntos": 46,
-              "diferencia": 6,
-              "aFavor": 45,
-              "enContra": 39
-            },
-            {
-              "posicion": 6,
-              "equipo": "Philadelphia Union",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/10739.png",
-              "color": null,
-              "pj": 28,
-              "ganados": 12,
-              "empatados": 6,
-              "perdidos": 10,
-              "puntos": 42,
-              "diferencia": 11,
-              "aFavor": 56,
-              "enContra": 45
-            },
-            {
-              "posicion": 7,
-              "equipo": "Orlando City SC",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/12011.png",
-              "color": null,
-              "pj": 28,
-              "ganados": 11,
-              "empatados": 4,
-              "perdidos": 13,
-              "puntos": 37,
-              "diferencia": -15,
-              "aFavor": 51,
-              "enContra": 66
-            },
-            {
-              "posicion": 8,
-              "equipo": "FC Cincinnati",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/18267.png",
-              "color": null,
-              "pj": 27,
-              "ganados": 9,
-              "empatados": 9,
-              "perdidos": 9,
-              "puntos": 36,
-              "diferencia": -7,
-              "aFavor": 58,
-              "enContra": 65
-            },
-            {
-              "posicion": 9,
-              "equipo": "Red Bull New York",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/190.png",
-              "color": null,
-              "pj": 28,
-              "ganados": 10,
-              "empatados": 6,
-              "perdidos": 12,
-              "puntos": 36,
-              "diferencia": -14,
-              "aFavor": 38,
-              "enContra": 52
-            },
-            {
-              "posicion": 10,
-              "equipo": "New York City FC",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/17606.png",
-              "color": null,
-              "pj": 28,
-              "ganados": 8,
-              "empatados": 9,
-              "perdidos": 11,
-              "puntos": 33,
-              "diferencia": 4,
-              "aFavor": 42,
-              "enContra": 38
-            },
-            {
-              "posicion": 11,
-              "equipo": "Toronto FC",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/7318.png",
-              "color": null,
-              "pj": 28,
-              "ganados": 7,
-              "empatados": 11,
-              "perdidos": 10,
-              "puntos": 32,
-              "diferencia": -11,
-              "aFavor": 41,
-              "enContra": 52
-            },
-            {
-              "posicion": 12,
-              "equipo": "D.C. United",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/193.png",
-              "color": null,
-              "pj": 27,
-              "ganados": 6,
-              "empatados": 12,
-              "perdidos": 9,
-              "puntos": 30,
-              "diferencia": -12,
-              "aFavor": 34,
-              "enContra": 46
-            },
-            {
-              "posicion": 13,
-              "equipo": "Columbus Crew",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/183.png",
-              "color": null,
-              "pj": 28,
-              "ganados": 8,
-              "empatados": 5,
-              "perdidos": 15,
-              "puntos": 29,
-              "diferencia": -5,
-              "aFavor": 41,
-              "enContra": 46
-            },
-            {
-              "posicion": 14,
-              "equipo": "Atlanta United FC",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/18418.png",
-              "color": null,
-              "pj": 28,
-              "ganados": 7,
-              "empatados": 6,
-              "perdidos": 15,
-              "puntos": 27,
-              "diferencia": -15,
-              "aFavor": 33,
-              "enContra": 48
-            },
-            {
-              "posicion": 15,
-              "equipo": "CF Montréal",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/9720.png",
-              "color": null,
-              "pj": 28,
-              "ganados": 6,
-              "empatados": 6,
-              "perdidos": 16,
-              "puntos": 24,
-              "diferencia": -21,
-              "aFavor": 35,
-              "enContra": 56
-            }
-          ]
-        },
-        {
-          "nombre": "Western Conference",
-          "equipos": [
-            {
-              "posicion": 1,
-              "equipo": "Vancouver Whitecaps",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/9727.png",
-              "color": null,
-              "pj": 28,
-              "ganados": 15,
-              "empatados": 6,
-              "perdidos": 7,
-              "puntos": 51,
-              "diferencia": 31,
-              "aFavor": 61,
-              "enContra": 30
-            },
-            {
-              "posicion": 2,
-              "equipo": "St. Louis CITY SC",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/21812.png",
-              "color": null,
-              "pj": 27,
-              "ganados": 13,
-              "empatados": 8,
-              "perdidos": 6,
-              "puntos": 47,
-              "diferencia": 12,
-              "aFavor": 48,
-              "enContra": 36
-            },
-            {
-              "posicion": 3,
-              "equipo": "FC Dallas",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/185.png",
-              "color": null,
-              "pj": 28,
-              "ganados": 13,
-              "empatados": 8,
-              "perdidos": 7,
-              "puntos": 47,
-              "diferencia": 7,
-              "aFavor": 52,
-              "enContra": 45
-            },
-            {
-              "posicion": 4,
-              "equipo": "San Jose Earthquakes",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/191.png",
-              "color": null,
-              "pj": 28,
-              "ganados": 13,
-              "empatados": 7,
-              "perdidos": 8,
-              "puntos": 46,
-              "diferencia": 10,
-              "aFavor": 50,
-              "enContra": 40
-            },
-            {
-              "posicion": 5,
-              "equipo": "Houston Dynamo FC",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/6077.png",
-              "color": null,
-              "pj": 28,
-              "ganados": 13,
-              "empatados": 6,
-              "perdidos": 9,
-              "puntos": 45,
-              "diferencia": 2,
-              "aFavor": 36,
-              "enContra": 34
-            },
-            {
-              "posicion": 6,
-              "equipo": "LAFC",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/18966.png",
-              "color": null,
-              "pj": 29,
-              "ganados": 11,
-              "empatados": 9,
-              "perdidos": 9,
-              "puntos": 42,
-              "diferencia": 13,
-              "aFavor": 44,
-              "enContra": 31
-            },
-            {
-              "posicion": 7,
-              "equipo": "Seattle Sounders FC",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/9726.png",
-              "color": null,
-              "pj": 28,
-              "ganados": 11,
-              "empatados": 8,
-              "perdidos": 9,
-              "puntos": 41,
-              "diferencia": 3,
-              "aFavor": 38,
-              "enContra": 35
-            },
-            {
-              "posicion": 8,
-              "equipo": "Colorado Rapids",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/184.png",
-              "color": null,
-              "pj": 28,
-              "ganados": 11,
-              "empatados": 4,
-              "perdidos": 13,
-              "puntos": 37,
-              "diferencia": 0,
-              "aFavor": 39,
-              "enContra": 39
-            },
-            {
-              "posicion": 9,
-              "equipo": "LA Galaxy",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/187.png",
-              "color": null,
-              "pj": 28,
-              "ganados": 9,
-              "empatados": 9,
-              "perdidos": 10,
-              "puntos": 36,
-              "diferencia": -7,
-              "aFavor": 37,
-              "enContra": 44
-            },
-            {
-              "posicion": 10,
-              "equipo": "Portland Timbers",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/9723.png",
-              "color": null,
-              "pj": 28,
-              "ganados": 9,
-              "empatados": 6,
-              "perdidos": 13,
-              "puntos": 33,
-              "diferencia": -3,
-              "aFavor": 51,
-              "enContra": 54
-            },
-            {
-              "posicion": 11,
-              "equipo": "San Diego FC",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/22529.png",
-              "color": null,
-              "pj": 28,
-              "ganados": 8,
-              "empatados": 8,
-              "perdidos": 12,
-              "puntos": 32,
-              "diferencia": -3,
-              "aFavor": 48,
-              "enContra": 51
-            },
-            {
-              "posicion": 12,
-              "equipo": "Real Salt Lake",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/4771.png",
-              "color": null,
-              "pj": 28,
-              "ganados": 9,
-              "empatados": 5,
-              "perdidos": 14,
-              "puntos": 32,
-              "diferencia": -5,
-              "aFavor": 41,
-              "enContra": 46
-            },
-            {
-              "posicion": 13,
-              "equipo": "Austin FC",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/20906.png",
-              "color": null,
-              "pj": 28,
-              "ganados": 7,
-              "empatados": 10,
-              "perdidos": 11,
-              "puntos": 31,
-              "diferencia": -15,
-              "aFavor": 36,
-              "enContra": 51
-            },
-            {
-              "posicion": 14,
-              "equipo": "Minnesota United FC",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/17362.png",
-              "color": null,
-              "pj": 28,
-              "ganados": 7,
-              "empatados": 9,
-              "perdidos": 12,
-              "puntos": 30,
-              "diferencia": -9,
-              "aFavor": 42,
-              "enContra": 51
-            },
-            {
-              "posicion": 15,
-              "equipo": "Sporting Kansas City",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/186.png",
-              "color": null,
-              "pj": 28,
-              "ganados": 6,
-              "empatados": 4,
-              "perdidos": 18,
-              "puntos": 22,
-              "diferencia": -33,
-              "aFavor": 35,
-              "enContra": 68
             }
           ]
         }
