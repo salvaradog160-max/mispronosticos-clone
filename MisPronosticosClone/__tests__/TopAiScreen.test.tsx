@@ -12,10 +12,10 @@ import React from 'react';
 import ReactTestRenderer from 'react-test-renderer';
 import type { AnalisisFila } from '../src/data/analisisRepository';
 
-const useAnalisisMock = jest.fn();
+const mockUseAnalisis = jest.fn();
 
 jest.mock('../src/data/usePicks', () => ({
-  useAnalisis: () => useAnalisisMock(),
+  useAnalisis: () => mockUseAnalisis(),
 }));
 
 // Se importa DESPUES del mock (jest.mock se hoist-ea por encima).
@@ -47,12 +47,36 @@ const FILA: AnalisisFila = {
   goodToLine: null,
 };
 
+/**
+ * Recoge todo el texto del arbol sin serializarlo entero.
+ *
+ * `JSON.stringify(arbol.toJSON())` revienta con "Converting circular
+ * structure to JSON": React Native mete props que se referencian entre
+ * si (ListHeaderComponent). Se recorre a mano y se corta el ciclo con
+ * un WeakSet.
+ */
+const textos = (nodo: any, visto = new WeakSet()): string[] => {
+  if (nodo === null || nodo === undefined) return [];
+  if (typeof nodo === 'string') return [nodo];
+  if (typeof nodo === 'number') return [String(nodo)];
+  if (typeof nodo !== 'object') return [];
+  if (visto.has(nodo)) return [];
+  visto.add(nodo);
+  if (Array.isArray(nodo)) return nodo.flatMap(n => textos(n, visto));
+  const hijos = nodo.children ?? nodo.props?.children;
+  const propios = hijos ? textos(hijos, visto) : [];
+  return propios;
+};
+
+// Se busca por la PROPIEDAD, no por el tipo: en el test renderer de RN
+// `Pressable` se aplana a un `View` y `Modal` no siempre conserva el
+// nombre, asi que `n.type === 'Pressable'` devuelve 0 sin avisar.
 const visibles = (arbol: any) =>
-  arbol.root.findAll((n: any) => n.type === 'Modal' && n.props?.visible === true);
+  arbol.root.findAll((n: any) => n.props?.visible === true && n.props?.onRequestClose);
 
 const tarjetas = (arbol: any) =>
   arbol.root.findAll(
-    (n: any) => n.type === 'Pressable' && typeof n.props?.onPress === 'function',
+    (n: any) => typeof n.props?.onPress === 'function' && n.props?.onPress.length === 0,
   );
 
 const montar = async () => {
@@ -64,7 +88,7 @@ const montar = async () => {
 };
 
 beforeEach(() => {
-  useAnalisisMock.mockReturnValue({
+  mockUseAnalisis.mockReturnValue({
     data: [FILA],
     stats: null,
     loading: false,
@@ -77,9 +101,9 @@ afterEach(() => jest.clearAllMocks());
 
 test('la pantalla monta la tarjeta del partido', async () => {
   const arbol = await montar();
-  const plano = JSON.stringify(arbol.toJSON());
-  expect(plano).toContain('Aberdeen vs St Johnstone');
-  expect(plano).toContain('Premiership Scotland');
+  const texto = textos(arbol.toJSON()).join(' | ');
+  expect(texto).toContain('Aberdeen vs St Johnstone');
+  expect(texto).toContain('Premiership Scotland');
   expect(tarjetas(arbol).length).toBeGreaterThan(0);
 });
 
@@ -118,7 +142,7 @@ test('el detalle muestra los dos lados de Over/Under con su cuota', async () => 
     t[0].props.onPress();
   });
 
-  const plano = JSON.stringify(visibles(arbol)[0]);
-  expect(plano).toContain('Over');
-  expect(plano).toContain('Under');
+  const texto = textos(visibles(arbol)[0].toJSON ? visibles(arbol)[0].toJSON() : visibles(arbol)[0]).join(' | ');
+  expect(texto).toContain('Over');
+  expect(texto).toContain('Under');
 });
