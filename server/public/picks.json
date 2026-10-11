@@ -1,6 +1,6 @@
 {
-  "generado": "2026-10-11T17:30:23.524Z",
-  "anterior": "2026-10-11T16:23:44.585Z",
+  "generado": "2026-10-11T17:43:27.199Z",
+  "anterior": "2026-10-11T17:30:23.524Z",
   "fuente": "football-data.co.uk + ESPN (sin claves)",
   "calibracion": {
     "partidos": 35973,
@@ -19,7 +19,7 @@
     "partidosConDatos": 56,
     "picks": 6,
     "picksMercado": 0,
-    "descartados": 55,
+    "descartados": 54,
     "enVivo": 2
   },
   "descarte": {
@@ -267,14 +267,6 @@
         "necesita": 39
       },
       {
-        "partido": "San Lorenzo vs Deportivo Riestra",
-        "mercado": "1X2",
-        "seleccion": "Gana San Lorenzo",
-        "cuota": 2.7,
-        "confianza": 37,
-        "necesita": 37
-      },
-      {
         "partido": "Chicago Fire FC vs Philadelphia Union",
         "mercado": "1X2",
         "seleccion": "Gana Chicago Fire FC",
@@ -398,9 +390,9 @@
         "partido": "Cagliari vs Juventus",
         "mercado": "TOTAL",
         "seleccion": "Menos de 2.5 goles",
-        "cuota": 1.7692307692307692,
+        "cuota": 1.8,
         "confianza": 53,
-        "necesita": 57
+        "necesita": 56
       },
       {
         "partido": "Torino vs Udinese",
@@ -511,6 +503,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.567760246208,
+      "lambdaAway": 1.0955225947079998,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -723,6 +717,8 @@
         }
       },
       "lineaGoles": 3.5,
+      "lambdaHome": 1.61868102941088,
+      "lambdaAway": 1.226166223068,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -935,6 +931,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.3799088586512,
+      "lambdaAway": 1.21710338016,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -1147,6 +1145,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.4753078036927998,
+      "lambdaAway": 1.1635233108479999,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -1359,6 +1359,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.5720536817547202,
+      "lambdaAway": 1.2405587020919997,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -1571,6 +1573,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.5707830707575998,
+      "lambdaAway": 1.086174666072,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -1783,6 +1787,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.666257197472,
+      "lambdaAway": 1.731314460528,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -1954,6 +1960,220 @@
       }
     },
     {
+      "partido": "Coquimbo Unido vs Colo Colo",
+      "liga": "Liga Chile",
+      "ligaKey": "chi.1",
+      "escudoLocal": "https://a.espncdn.com/i/teamlogos/soccer/500/8186.png",
+      "escudoVisita": "https://a.espncdn.com/i/teamlogos/soccer/500/2688.png",
+      "colorLocal": "000000",
+      "colorVisita": "050505",
+      "sede": "Estadio Francisco Sánchez Rumoroso",
+      "calibracion": "propia",
+      "kickoff": "2026-10-11T18:00Z",
+      "favoritoMercado": "A",
+      "ladoMercado": "Colo Colo",
+      "probMercado": 0.3845,
+      "cuotaMercado": 2.45,
+      "cuotaApertura": 2.25,
+      "ladoModelo": "Coquimbo Unido",
+      "probModelo": 0.4011,
+      "coincide": false,
+      "movimiento": -3.4,
+      "cambioFavorito": false,
+      "goles": {
+        "linea": 2.5,
+        "overround": 1.0678,
+        "over": {
+          "lado": "Over",
+          "cuota": 1.8,
+          "probMercado": 0.5203,
+          "probMercadoPct": 52,
+          "probModelo": 41.3,
+          "margenPp": -10.7
+        },
+        "under": {
+          "lado": "Under",
+          "cuota": 1.95,
+          "probMercado": 0.4797,
+          "probMercadoPct": 48,
+          "probModelo": 58.7,
+          "margenPp": 10.7
+        }
+      },
+      "lineaGoles": 2.5,
+      "lambdaHome": 1.25867406978432,
+      "lambdaAway": 1.0756029303359997,
+      "ladder": {
+        "oneXTwo": {
+          "local": {
+            "p": 0.40107906884404365,
+            "cuotaJusta": 2.49
+          },
+          "empate": {
+            "p": 0.287576960132988,
+            "cuotaJusta": 3.48
+          },
+          "visita": {
+            "p": 0.31134397102296835,
+            "cuotaJusta": 3.21
+          }
+        },
+        "overUnder": [
+          {
+            "linea": 0.5,
+            "over": {
+              "p": 0.9031194981967698,
+              "cuotaJusta": 1.11
+            },
+            "under": {
+              "p": 0.09688050180323016,
+              "cuotaJusta": 10.32
+            }
+          },
+          {
+            "linea": 1,
+            "over": {
+              "p": 0.6769735710788627,
+              "cuotaJusta": 1.48
+            },
+            "under": {
+              "p": 0.3230264289211373,
+              "cuotaJusta": 3.1
+            }
+          },
+          {
+            "linea": 1.5,
+            "over": {
+              "p": 0.6769735710788627,
+              "cuotaJusta": 1.48
+            },
+            "under": {
+              "p": 0.3230264289211373,
+              "cuotaJusta": 3.1
+            }
+          },
+          {
+            "linea": 2,
+            "over": {
+              "p": 0.4130299529077546,
+              "cuotaJusta": 2.42
+            },
+            "under": {
+              "p": 0.5869700470922454,
+              "cuotaJusta": 1.7
+            }
+          },
+          {
+            "linea": 2.5,
+            "over": {
+              "p": 0.4130299529077546,
+              "cuotaJusta": 2.42
+            },
+            "under": {
+              "p": 0.5869700470922454,
+              "cuotaJusta": 1.7
+            }
+          },
+          {
+            "linea": 3,
+            "over": {
+              "p": 0.20765744716596818,
+              "cuotaJusta": 4.82
+            },
+            "under": {
+              "p": 0.7923425528340318,
+              "cuotaJusta": 1.26
+            }
+          },
+          {
+            "linea": 3.5,
+            "over": {
+              "p": 0.20765744716596818,
+              "cuotaJusta": 4.82
+            },
+            "under": {
+              "p": 0.7923425528340318,
+              "cuotaJusta": 1.26
+            }
+          },
+          {
+            "linea": 4,
+            "over": {
+              "p": 0.08780836801343599,
+              "cuotaJusta": 11.39
+            },
+            "under": {
+              "p": 0.912191631986564,
+              "cuotaJusta": 1.1
+            }
+          },
+          {
+            "linea": 4.5,
+            "over": {
+              "p": 0.08780836801343599,
+              "cuotaJusta": 11.39
+            },
+            "under": {
+              "p": 0.912191631986564,
+              "cuotaJusta": 1.1
+            }
+          }
+        ],
+        "ambosAnotan": {
+          "si": {
+            "p": 0.47175808184987933,
+            "cuotaJusta": 2.12
+          },
+          "no": {
+            "p": 0.5282419181501207,
+            "cuotaJusta": 1.89
+          }
+        },
+        "marcadores": [
+          {
+            "marcador": "1-1",
+            "p": 0.13116007056143494,
+            "cuotaJusta": 7.62
+          },
+          {
+            "marcador": "1-0",
+            "p": 0.12194097548661642,
+            "cuotaJusta": 8.2
+          },
+          {
+            "marcador": "0-1",
+            "p": 0.10420495163129075,
+            "cuotaJusta": 9.6
+          },
+          {
+            "marcador": "0-0",
+            "p": 0.09688050180259264,
+            "cuotaJusta": 10.32
+          },
+          {
+            "marcador": "2-1",
+            "p": 0.08254388990337995,
+            "cuotaJusta": 12.11
+          },
+          {
+            "marcador": "2-0",
+            "p": 0.07674197194460475,
+            "cuotaJusta": 13.03
+          }
+        ]
+      },
+      "estado": "programado",
+      "marcador": null,
+      "resultado": null,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.38445952791003946,
+        "necesita": 0.32,
+        "cuotaNecesaria": 3.125,
+        "cuotaActual": 2.601054018445323
+      }
+    },
+    {
       "partido": "Mallorca vs Las Palmas",
       "liga": "LaLiga 2",
       "ligaKey": "esp.2",
@@ -1995,6 +2215,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.14005941515936,
+      "lambdaAway": 0.8841928053599999,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -2207,6 +2429,8 @@
         }
       },
       "lineaGoles": 3.5,
+      "lambdaHome": 1.6995292336742402,
+      "lambdaAway": 0.6591897404159999,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -2378,218 +2602,6 @@
       }
     },
     {
-      "partido": "San Lorenzo vs Deportivo Riestra",
-      "liga": "Liga Profesional",
-      "ligaKey": "arg.1",
-      "escudoLocal": "https://a.espncdn.com/i/teamlogos/soccer/500/18.png",
-      "escudoVisita": "https://a.espncdn.com/i/teamlogos/soccer/500/17702.png",
-      "colorLocal": "0060f0",
-      "colorVisita": "212121",
-      "sede": "Estadio Pedro Bidegain",
-      "calibracion": "propia",
-      "kickoff": "2026-10-11T17:45Z",
-      "favoritoMercado": "H",
-      "ladoMercado": "San Lorenzo",
-      "probMercado": 0.3522,
-      "cuotaMercado": 2.7,
-      "cuotaApertura": 2.45,
-      "ladoModelo": "San Lorenzo",
-      "probModelo": 0.4003,
-      "coincide": true,
-      "movimiento": -2.91,
-      "cambioFavorito": false,
-      "goles": {
-        "linea": 1.5,
-        "overround": 1.0651,
-        "over": {
-          "lado": "Over",
-          "cuota": 1.67,
-          "probMercado": 0.5633,
-          "probMercadoPct": 56.3,
-          "probModelo": 29.7,
-          "margenPp": -26.6
-        },
-        "under": {
-          "lado": "Under",
-          "cuota": 2.15,
-          "probMercado": 0.4367,
-          "probMercadoPct": 43.7,
-          "probModelo": 70.3,
-          "margenPp": 26.6
-        }
-      },
-      "lineaGoles": 1.5,
-      "ladder": {
-        "oneXTwo": {
-          "local": {
-            "p": 0.40031846254829606,
-            "cuotaJusta": 2.5
-          },
-          "empate": {
-            "p": 0.3228577484435925,
-            "cuotaJusta": 3.1
-          },
-          "visita": {
-            "p": 0.2768237890081115,
-            "cuotaJusta": 3.61
-          }
-        },
-        "overUnder": [
-          {
-            "linea": 0.5,
-            "over": {
-              "p": 0.8509036123921503,
-              "cuotaJusta": 1.18
-            },
-            "under": {
-              "p": 0.1490963876078497,
-              "cuotaJusta": 6.71
-            }
-          },
-          {
-            "linea": 1,
-            "over": {
-              "p": 0.5671489905945594,
-              "cuotaJusta": 1.76
-            },
-            "under": {
-              "p": 0.43285100940544063,
-              "cuotaJusta": 2.31
-            }
-          },
-          {
-            "linea": 1.5,
-            "over": {
-              "p": 0.5671489905945594,
-              "cuotaJusta": 1.76
-            },
-            "under": {
-              "p": 0.43285100940544063,
-              "cuotaJusta": 2.31
-            }
-          },
-          {
-            "linea": 2,
-            "over": {
-              "p": 0.29713344332558533,
-              "cuotaJusta": 3.37
-            },
-            "under": {
-              "p": 0.7028665566744147,
-              "cuotaJusta": 1.42
-            }
-          },
-          {
-            "linea": 2.5,
-            "over": {
-              "p": 0.29713344332558533,
-              "cuotaJusta": 3.37
-            },
-            "under": {
-              "p": 0.7028665566744147,
-              "cuotaJusta": 1.42
-            }
-          },
-          {
-            "linea": 3,
-            "over": {
-              "p": 0.12583897463972352,
-              "cuotaJusta": 7.95
-            },
-            "under": {
-              "p": 0.8741610253602765,
-              "cuotaJusta": 1.14
-            }
-          },
-          {
-            "linea": 3.5,
-            "over": {
-              "p": 0.12583897463972352,
-              "cuotaJusta": 7.95
-            },
-            "under": {
-              "p": 0.8741610253602765,
-              "cuotaJusta": 1.14
-            }
-          },
-          {
-            "linea": 4,
-            "over": {
-              "p": 0.04433868151083485,
-              "cuotaJusta": 22.55
-            },
-            "under": {
-              "p": 0.9556613184891651,
-              "cuotaJusta": 1.05
-            }
-          },
-          {
-            "linea": 4.5,
-            "over": {
-              "p": 0.04433868151083485,
-              "cuotaJusta": 22.55
-            },
-            "under": {
-              "p": 0.9556613184891651,
-              "cuotaJusta": 1.05
-            }
-          }
-        ],
-        "ambosAnotan": {
-          "si": {
-            "p": 0.3716494097587001,
-            "cuotaJusta": 2.69
-          },
-          "no": {
-            "p": 0.6283505902412999,
-            "cuotaJusta": 1.59
-          }
-        },
-        "marcadores": [
-          {
-            "marcador": "1-0",
-            "p": 0.15914815620037878,
-            "cuotaJusta": 6.28
-          },
-          {
-            "marcador": "0-0",
-            "p": 0.1490963876077983,
-            "cuotaJusta": 6.71
-          },
-          {
-            "marcador": "1-1",
-            "p": 0.1330071745440797,
-            "cuotaJusta": 7.52
-          },
-          {
-            "marcador": "0-1",
-            "p": 0.12460646559721181,
-            "cuotaJusta": 8.03
-          },
-          {
-            "marcador": "2-0",
-            "p": 0.08493879707067901,
-            "cuotaJusta": 11.77
-          },
-          {
-            "marcador": "2-1",
-            "p": 0.07098712091467561,
-            "cuotaJusta": 14.09
-          }
-        ]
-      },
-      "estado": "programado",
-      "marcador": null,
-      "resultado": null,
-      "goodToLine": {
-        "ejecutable": false,
-        "probActual": 0.35224153705397987,
-        "necesita": 0.32,
-        "cuotaNecesaria": 3.125,
-        "cuotaActual": 2.838961038961039
-      }
-    },
-    {
       "partido": "Atlético Junior vs Deportivo Pereira",
       "liga": "Liga BetPlay",
       "ligaKey": "col.1",
@@ -2631,6 +2643,8 @@
         }
       },
       "lineaGoles": 3.5,
+      "lambdaHome": 1.819587490452,
+      "lambdaAway": 1.12314182136,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -2843,6 +2857,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.9173676663267198,
+      "lambdaAway": 1.2405587020919997,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -3055,6 +3071,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.53948056631264,
+      "lambdaAway": 1.4554971967800001,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -3267,6 +3285,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 2.0577186376704,
+      "lambdaAway": 1.147663785888,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -3479,6 +3499,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.3651936956359998,
+      "lambdaAway": 1.3968515509199997,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -3691,6 +3713,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.97740138055328,
+      "lambdaAway": 1.1795815934400002,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -3903,6 +3927,8 @@
         }
       },
       "lineaGoles": 1.5,
+      "lambdaHome": 1.4657154204887999,
+      "lambdaAway": 1.03764419826,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -4115,6 +4141,8 @@
         }
       },
       "lineaGoles": 3.5,
+      "lambdaHome": 1.70571169224,
+      "lambdaAway": 1.218191761872,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -4327,6 +4355,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.5525797387760003,
+      "lambdaAway": 1.104012801024,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -4539,6 +4569,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.70626274213472,
+      "lambdaAway": 1.0330296086759998,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -4710,6 +4742,220 @@
       }
     },
     {
+      "partido": "Troyes vs Marseille",
+      "liga": "Ligue 1",
+      "ligaKey": "fra.1",
+      "escudoLocal": "https://a.espncdn.com/i/teamlogos/soccer/500/170.png",
+      "escudoVisita": "https://a.espncdn.com/i/teamlogos/soccer/500/176.png",
+      "colorLocal": "0000bf",
+      "colorVisita": "ffffff",
+      "sede": "Stade de l'Aube",
+      "calibracion": "propia",
+      "kickoff": "2026-10-11T18:45Z",
+      "favoritoMercado": "A",
+      "ladoMercado": "Marseille",
+      "probMercado": 0.4754,
+      "cuotaMercado": 2,
+      "cuotaApertura": 1.91,
+      "ladoModelo": "Troyes",
+      "probModelo": 0.4418,
+      "coincide": false,
+      "movimiento": -0.98,
+      "cambioFavorito": false,
+      "goles": {
+        "linea": 2.5,
+        "overround": 1.0624,
+        "over": {
+          "lado": "Over",
+          "cuota": 1.65,
+          "probMercado": 0.5721,
+          "probMercadoPct": 57.2,
+          "probModelo": 59.3,
+          "margenPp": 2.1
+        },
+        "under": {
+          "lado": "Under",
+          "cuota": 2.2,
+          "probMercado": 0.4279,
+          "probMercadoPct": 42.8,
+          "probModelo": 40.7,
+          "margenPp": -2.1
+        }
+      },
+      "lineaGoles": 2.5,
+      "lambdaHome": 1.6830204949684797,
+      "lambdaAway": 1.39012209216,
+      "ladder": {
+        "oneXTwo": {
+          "local": {
+            "p": 0.4417748999031027,
+            "cuotaJusta": 2.26
+          },
+          "empate": {
+            "p": 0.24347241577598264,
+            "cuotaJusta": 4.11
+          },
+          "visita": {
+            "p": 0.3147526843209145,
+            "cuotaJusta": 3.18
+          }
+        },
+        "overUnder": [
+          {
+            "linea": 0.5,
+            "over": {
+              "p": 0.9537244986386324,
+              "cuotaJusta": 1.05
+            },
+            "under": {
+              "p": 0.0462755013613676,
+              "cuotaJusta": 21.61
+            }
+          },
+          {
+            "linea": 1,
+            "over": {
+              "p": 0.8115132847974826,
+              "cuotaJusta": 1.23
+            },
+            "under": {
+              "p": 0.18848671520251736,
+              "cuotaJusta": 5.31
+            }
+          },
+          {
+            "linea": 1.5,
+            "over": {
+              "p": 0.8115132847974826,
+              "cuotaJusta": 1.23
+            },
+            "under": {
+              "p": 0.18848671520251736,
+              "cuotaJusta": 5.31
+            }
+          },
+          {
+            "linea": 2,
+            "over": {
+              "p": 0.5929956159862466,
+              "cuotaJusta": 1.69
+            },
+            "under": {
+              "p": 0.4070043840137534,
+              "cuotaJusta": 2.46
+            }
+          },
+          {
+            "linea": 2.5,
+            "over": {
+              "p": 0.5929956159862466,
+              "cuotaJusta": 1.69
+            },
+            "under": {
+              "p": 0.4070043840137534,
+              "cuotaJusta": 2.46
+            }
+          },
+          {
+            "linea": 3,
+            "over": {
+              "p": 0.36915029796496457,
+              "cuotaJusta": 2.71
+            },
+            "under": {
+              "p": 0.6308497020350354,
+              "cuotaJusta": 1.59
+            }
+          },
+          {
+            "linea": 3.5,
+            "over": {
+              "p": 0.36915029796496457,
+              "cuotaJusta": 2.71
+            },
+            "under": {
+              "p": 0.6308497020350354,
+              "cuotaJusta": 1.59
+            }
+          },
+          {
+            "linea": 4,
+            "over": {
+              "p": 0.19717315302983443,
+              "cuotaJusta": 5.07
+            },
+            "under": {
+              "p": 0.8028268469701656,
+              "cuotaJusta": 1.25
+            }
+          },
+          {
+            "linea": 4.5,
+            "over": {
+              "p": 0.19717315302983443,
+              "cuotaJusta": 5.07
+            },
+            "under": {
+              "p": 0.8028268469701656,
+              "cuotaJusta": 1.25
+            }
+          }
+        ],
+        "ambosAnotan": {
+          "si": {
+            "p": 0.6114187212635548,
+            "cuotaJusta": 1.64
+          },
+          "no": {
+            "p": 0.3885812787364452,
+            "cuotaJusta": 2.57
+          }
+        },
+        "marcadores": [
+          {
+            "marcador": "1-1",
+            "p": 0.10826634667207358,
+            "cuotaJusta": 9.24
+          },
+          {
+            "marcador": "2-1",
+            "p": 0.09110724018223115,
+            "cuotaJusta": 10.98
+          },
+          {
+            "marcador": "1-0",
+            "p": 0.07788261713318081,
+            "cuotaJusta": 12.84
+          },
+          {
+            "marcador": "1-2",
+            "p": 0.07525172017315138,
+            "cuotaJusta": 13.29
+          },
+          {
+            "marcador": "2-0",
+            "p": 0.0655390204184633,
+            "cuotaJusta": 15.26
+          },
+          {
+            "marcador": "0-1",
+            "p": 0.06432859670796892,
+            "cuotaJusta": 15.55
+          }
+        ]
+      },
+      "estado": "programado",
+      "marcador": null,
+      "resultado": null,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.4753979739507959,
+        "necesita": 0.42,
+        "cuotaNecesaria": 2.380952380952381,
+        "cuotaActual": 2.103500761035008
+      }
+    },
+    {
       "partido": "Racing Club vs Belgrano (Córdoba)",
       "liga": "Liga Profesional",
       "ligaKey": "arg.1",
@@ -4751,6 +4997,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 2.24922377307168,
+      "lambdaAway": 1.299515003424,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -4963,6 +5211,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.1691549994752,
+      "lambdaAway": 1.1311734640439999,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -5175,6 +5425,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.41255942017616,
+      "lambdaAway": 0.99021419616,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -5387,6 +5639,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.4715542263161603,
+      "lambdaAway": 1.0922241339839998,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -5599,6 +5853,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.53885119063616,
+      "lambdaAway": 1.4513473699199997,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -5770,6 +6026,220 @@
       }
     },
     {
+      "partido": "San Lorenzo vs Deportivo Riestra",
+      "liga": "Liga Profesional",
+      "ligaKey": "arg.1",
+      "escudoLocal": "https://a.espncdn.com/i/teamlogos/soccer/500/18.png",
+      "escudoVisita": "https://a.espncdn.com/i/teamlogos/soccer/500/17702.png",
+      "colorLocal": "0060f0",
+      "colorVisita": "212121",
+      "sede": "Estadio Pedro Bidegain",
+      "calibracion": "propia",
+      "kickoff": "2026-10-11T17:45Z",
+      "favoritoMercado": "D",
+      "ladoMercado": "Empate",
+      "probMercado": 0.3505,
+      "cuotaMercado": 2.7,
+      "cuotaApertura": 2.7,
+      "ladoModelo": "San Lorenzo",
+      "probModelo": 0.4003,
+      "coincide": false,
+      "movimiento": 0.67,
+      "cambioFavorito": true,
+      "goles": {
+        "linea": 1.5,
+        "overround": 1.0711,
+        "over": {
+          "lado": "Over",
+          "cuota": 1.71,
+          "probMercado": 0.5446,
+          "probMercadoPct": 54.5,
+          "probModelo": 29.7,
+          "margenPp": -24.7
+        },
+        "under": {
+          "lado": "Under",
+          "cuota": 2.05,
+          "probMercado": 0.4554,
+          "probMercadoPct": 45.5,
+          "probModelo": 70.3,
+          "margenPp": 24.7
+        }
+      },
+      "lineaGoles": 1.5,
+      "lambdaHome": 1.0674179217475201,
+      "lambdaAway": 0.8357443637399999,
+      "ladder": {
+        "oneXTwo": {
+          "local": {
+            "p": 0.40031846254829606,
+            "cuotaJusta": 2.5
+          },
+          "empate": {
+            "p": 0.3228577484435925,
+            "cuotaJusta": 3.1
+          },
+          "visita": {
+            "p": 0.2768237890081115,
+            "cuotaJusta": 3.61
+          }
+        },
+        "overUnder": [
+          {
+            "linea": 0.5,
+            "over": {
+              "p": 0.8509036123921503,
+              "cuotaJusta": 1.18
+            },
+            "under": {
+              "p": 0.1490963876078497,
+              "cuotaJusta": 6.71
+            }
+          },
+          {
+            "linea": 1,
+            "over": {
+              "p": 0.5671489905945594,
+              "cuotaJusta": 1.76
+            },
+            "under": {
+              "p": 0.43285100940544063,
+              "cuotaJusta": 2.31
+            }
+          },
+          {
+            "linea": 1.5,
+            "over": {
+              "p": 0.5671489905945594,
+              "cuotaJusta": 1.76
+            },
+            "under": {
+              "p": 0.43285100940544063,
+              "cuotaJusta": 2.31
+            }
+          },
+          {
+            "linea": 2,
+            "over": {
+              "p": 0.29713344332558533,
+              "cuotaJusta": 3.37
+            },
+            "under": {
+              "p": 0.7028665566744147,
+              "cuotaJusta": 1.42
+            }
+          },
+          {
+            "linea": 2.5,
+            "over": {
+              "p": 0.29713344332558533,
+              "cuotaJusta": 3.37
+            },
+            "under": {
+              "p": 0.7028665566744147,
+              "cuotaJusta": 1.42
+            }
+          },
+          {
+            "linea": 3,
+            "over": {
+              "p": 0.12583897463972352,
+              "cuotaJusta": 7.95
+            },
+            "under": {
+              "p": 0.8741610253602765,
+              "cuotaJusta": 1.14
+            }
+          },
+          {
+            "linea": 3.5,
+            "over": {
+              "p": 0.12583897463972352,
+              "cuotaJusta": 7.95
+            },
+            "under": {
+              "p": 0.8741610253602765,
+              "cuotaJusta": 1.14
+            }
+          },
+          {
+            "linea": 4,
+            "over": {
+              "p": 0.04433868151083485,
+              "cuotaJusta": 22.55
+            },
+            "under": {
+              "p": 0.9556613184891651,
+              "cuotaJusta": 1.05
+            }
+          },
+          {
+            "linea": 4.5,
+            "over": {
+              "p": 0.04433868151083485,
+              "cuotaJusta": 22.55
+            },
+            "under": {
+              "p": 0.9556613184891651,
+              "cuotaJusta": 1.05
+            }
+          }
+        ],
+        "ambosAnotan": {
+          "si": {
+            "p": 0.3716494097587001,
+            "cuotaJusta": 2.69
+          },
+          "no": {
+            "p": 0.6283505902412999,
+            "cuotaJusta": 1.59
+          }
+        },
+        "marcadores": [
+          {
+            "marcador": "1-0",
+            "p": 0.15914815620037878,
+            "cuotaJusta": 6.28
+          },
+          {
+            "marcador": "0-0",
+            "p": 0.1490963876077983,
+            "cuotaJusta": 6.71
+          },
+          {
+            "marcador": "1-1",
+            "p": 0.1330071745440797,
+            "cuotaJusta": 7.52
+          },
+          {
+            "marcador": "0-1",
+            "p": 0.12460646559721181,
+            "cuotaJusta": 8.03
+          },
+          {
+            "marcador": "2-0",
+            "p": 0.08493879707067901,
+            "cuotaJusta": 11.77
+          },
+          {
+            "marcador": "2-1",
+            "p": 0.07098712091467561,
+            "cuotaJusta": 14.09
+          }
+        ]
+      },
+      "estado": "programado",
+      "marcador": null,
+      "resultado": null,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.35053453947368424,
+        "necesita": 0.32,
+        "cuotaNecesaria": 3.125,
+        "cuotaActual": 2.8527859237536655
+      }
+    },
+    {
       "partido": "Toronto FC vs Orlando City SC",
       "liga": "MLS",
       "ligaKey": "usa.1",
@@ -5811,6 +6281,8 @@
         }
       },
       "lineaGoles": 3.5,
+      "lambdaHome": 1.4520454537780803,
+      "lambdaAway": 1.51269735456,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -6004,25 +6476,27 @@
       "cambioFavorito": false,
       "goles": {
         "linea": 1.5,
-        "overround": 1.0644,
+        "overround": 1.0699,
         "over": {
           "lado": "Over",
-          "cuota": 1.59,
-          "probMercado": 0.5915,
-          "probMercadoPct": 59.2,
+          "cuota": 1.63,
+          "probMercado": 0.5752,
+          "probMercadoPct": 57.5,
           "probModelo": 39.9,
-          "margenPp": -19.3
+          "margenPp": -17.6
         },
         "under": {
           "lado": "Under",
-          "cuota": 2.3,
-          "probMercado": 0.4085,
-          "probMercadoPct": 40.8,
+          "cuota": 2.2,
+          "probMercado": 0.4248,
+          "probMercadoPct": 42.5,
           "probModelo": 60.1,
-          "margenPp": 19.3
+          "margenPp": 17.6
         }
       },
       "lineaGoles": 1.5,
+      "lambdaHome": 1.1635881183460801,
+      "lambdaAway": 1.1171887595999999,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -6235,6 +6709,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.3160058051916803,
+      "lambdaAway": 1.1054541563759999,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -6447,6 +6923,8 @@
         }
       },
       "lineaGoles": 1.5,
+      "lambdaHome": 1.91809680637248,
+      "lambdaAway": 1.2459887924999997,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -6659,6 +7137,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.70680468551696,
+      "lambdaAway": 1.3211881286999998,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -6871,6 +7351,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.19931689286864,
+      "lambdaAway": 0.877586941752,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -7083,6 +7565,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.5663349711152004,
+      "lambdaAway": 1.1496631924439997,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -7295,6 +7779,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.5631550388619202,
+      "lambdaAway": 1.054370061432,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -7507,6 +7993,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 0.9491781491712002,
+      "lambdaAway": 1.155239970528,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -7700,25 +8188,27 @@
       "cambioFavorito": false,
       "goles": {
         "linea": 2.5,
-        "overround": 1.0652,
+        "overround": 1.0556,
         "over": {
           "lado": "Over",
           "cuota": 2,
-          "probMercado": 0.4694,
-          "probMercadoPct": 46.9,
+          "probMercado": 0.4737,
+          "probMercadoPct": 47.4,
           "probModelo": 39.9,
-          "margenPp": -7
+          "margenPp": -7.4
         },
         "under": {
           "lado": "Under",
-          "cuota": 1.77,
-          "probMercado": 0.5306,
-          "probMercadoPct": 53.1,
+          "cuota": 1.8,
+          "probMercado": 0.5263,
+          "probMercadoPct": 52.6,
           "probModelo": 60.1,
-          "margenPp": 7
+          "margenPp": 7.4
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.3874302840752,
+      "lambdaAway": 0.8956591196159998,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -7931,6 +8421,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.8647172810907204,
+      "lambdaAway": 1.13152696938,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -8143,6 +8635,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.4216694677424002,
+      "lambdaAway": 1.092648342804,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -8314,218 +8808,6 @@
       }
     },
     {
-      "partido": "Coquimbo Unido vs Colo Colo",
-      "liga": "Liga Chile",
-      "ligaKey": "chi.1",
-      "escudoLocal": "https://a.espncdn.com/i/teamlogos/soccer/500/8186.png",
-      "escudoVisita": "https://a.espncdn.com/i/teamlogos/soccer/500/2688.png",
-      "colorLocal": "000000",
-      "colorVisita": "050505",
-      "sede": "Estadio Francisco Sánchez Rumoroso",
-      "calibracion": "propia",
-      "kickoff": "2026-10-11T18:00Z",
-      "favoritoMercado": "A",
-      "ladoMercado": "Colo Colo",
-      "probMercado": 0.4205,
-      "cuotaMercado": 2.25,
-      "cuotaApertura": 2.25,
-      "ladoModelo": "Coquimbo Unido",
-      "probModelo": 0.4011,
-      "coincide": false,
-      "movimiento": 0.21,
-      "cambioFavorito": false,
-      "goles": {
-        "linea": 2.5,
-        "overround": 1.0678,
-        "over": {
-          "lado": "Over",
-          "cuota": 1.8,
-          "probMercado": 0.5203,
-          "probMercadoPct": 52,
-          "probModelo": 41.3,
-          "margenPp": -10.7
-        },
-        "under": {
-          "lado": "Under",
-          "cuota": 1.95,
-          "probMercado": 0.4797,
-          "probMercadoPct": 48,
-          "probModelo": 58.7,
-          "margenPp": 10.7
-        }
-      },
-      "lineaGoles": 2.5,
-      "ladder": {
-        "oneXTwo": {
-          "local": {
-            "p": 0.40107906884404365,
-            "cuotaJusta": 2.49
-          },
-          "empate": {
-            "p": 0.287576960132988,
-            "cuotaJusta": 3.48
-          },
-          "visita": {
-            "p": 0.31134397102296835,
-            "cuotaJusta": 3.21
-          }
-        },
-        "overUnder": [
-          {
-            "linea": 0.5,
-            "over": {
-              "p": 0.9031194981967698,
-              "cuotaJusta": 1.11
-            },
-            "under": {
-              "p": 0.09688050180323016,
-              "cuotaJusta": 10.32
-            }
-          },
-          {
-            "linea": 1,
-            "over": {
-              "p": 0.6769735710788627,
-              "cuotaJusta": 1.48
-            },
-            "under": {
-              "p": 0.3230264289211373,
-              "cuotaJusta": 3.1
-            }
-          },
-          {
-            "linea": 1.5,
-            "over": {
-              "p": 0.6769735710788627,
-              "cuotaJusta": 1.48
-            },
-            "under": {
-              "p": 0.3230264289211373,
-              "cuotaJusta": 3.1
-            }
-          },
-          {
-            "linea": 2,
-            "over": {
-              "p": 0.4130299529077546,
-              "cuotaJusta": 2.42
-            },
-            "under": {
-              "p": 0.5869700470922454,
-              "cuotaJusta": 1.7
-            }
-          },
-          {
-            "linea": 2.5,
-            "over": {
-              "p": 0.4130299529077546,
-              "cuotaJusta": 2.42
-            },
-            "under": {
-              "p": 0.5869700470922454,
-              "cuotaJusta": 1.7
-            }
-          },
-          {
-            "linea": 3,
-            "over": {
-              "p": 0.20765744716596818,
-              "cuotaJusta": 4.82
-            },
-            "under": {
-              "p": 0.7923425528340318,
-              "cuotaJusta": 1.26
-            }
-          },
-          {
-            "linea": 3.5,
-            "over": {
-              "p": 0.20765744716596818,
-              "cuotaJusta": 4.82
-            },
-            "under": {
-              "p": 0.7923425528340318,
-              "cuotaJusta": 1.26
-            }
-          },
-          {
-            "linea": 4,
-            "over": {
-              "p": 0.08780836801343599,
-              "cuotaJusta": 11.39
-            },
-            "under": {
-              "p": 0.912191631986564,
-              "cuotaJusta": 1.1
-            }
-          },
-          {
-            "linea": 4.5,
-            "over": {
-              "p": 0.08780836801343599,
-              "cuotaJusta": 11.39
-            },
-            "under": {
-              "p": 0.912191631986564,
-              "cuotaJusta": 1.1
-            }
-          }
-        ],
-        "ambosAnotan": {
-          "si": {
-            "p": 0.47175808184987933,
-            "cuotaJusta": 2.12
-          },
-          "no": {
-            "p": 0.5282419181501207,
-            "cuotaJusta": 1.89
-          }
-        },
-        "marcadores": [
-          {
-            "marcador": "1-1",
-            "p": 0.13116007056143494,
-            "cuotaJusta": 7.62
-          },
-          {
-            "marcador": "1-0",
-            "p": 0.12194097548661642,
-            "cuotaJusta": 8.2
-          },
-          {
-            "marcador": "0-1",
-            "p": 0.10420495163129075,
-            "cuotaJusta": 9.6
-          },
-          {
-            "marcador": "0-0",
-            "p": 0.09688050180259264,
-            "cuotaJusta": 10.32
-          },
-          {
-            "marcador": "2-1",
-            "p": 0.08254388990337995,
-            "cuotaJusta": 12.11
-          },
-          {
-            "marcador": "2-0",
-            "p": 0.07674197194460475,
-            "cuotaJusta": 13.03
-          }
-        ]
-      },
-      "estado": "programado",
-      "marcador": null,
-      "resultado": null,
-      "goodToLine": {
-        "ejecutable": false,
-        "probActual": 0.4205249189029785,
-        "necesita": 0.38,
-        "cuotaNecesaria": 2.6315789473684212,
-        "cuotaActual": 2.3779803646563815
-      }
-    },
-    {
       "partido": "LAFC vs Austin FC",
       "liga": "MLS",
       "ligaKey": "usa.1",
@@ -8567,6 +8849,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.3998288904156804,
+      "lambdaAway": 0.8740723345199999,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -8738,218 +9022,6 @@
       }
     },
     {
-      "partido": "Troyes vs Marseille",
-      "liga": "Ligue 1",
-      "ligaKey": "fra.1",
-      "escudoLocal": "https://a.espncdn.com/i/teamlogos/soccer/500/170.png",
-      "escudoVisita": "https://a.espncdn.com/i/teamlogos/soccer/500/176.png",
-      "colorLocal": "0000bf",
-      "colorVisita": "ffffff",
-      "sede": "Stade de l'Aube",
-      "calibracion": "propia",
-      "kickoff": "2026-10-11T18:45Z",
-      "favoritoMercado": "A",
-      "ladoMercado": "Marseille",
-      "probMercado": 0.4865,
-      "cuotaMercado": 1.95,
-      "cuotaApertura": 1.91,
-      "ladoModelo": "Troyes",
-      "probModelo": 0.4418,
-      "coincide": false,
-      "movimiento": -0.04,
-      "cambioFavorito": false,
-      "goles": {
-        "linea": 2.5,
-        "overround": 1.0523,
-        "over": {
-          "lado": "Over",
-          "cuota": 1.65,
-          "probMercado": 0.5776,
-          "probMercadoPct": 57.8,
-          "probModelo": 59.3,
-          "margenPp": 1.5
-        },
-        "under": {
-          "lado": "Under",
-          "cuota": 2.25,
-          "probMercado": 0.4224,
-          "probMercadoPct": 42.2,
-          "probModelo": 40.7,
-          "margenPp": -1.5
-        }
-      },
-      "lineaGoles": 2.5,
-      "ladder": {
-        "oneXTwo": {
-          "local": {
-            "p": 0.4417748999031027,
-            "cuotaJusta": 2.26
-          },
-          "empate": {
-            "p": 0.24347241577598264,
-            "cuotaJusta": 4.11
-          },
-          "visita": {
-            "p": 0.3147526843209145,
-            "cuotaJusta": 3.18
-          }
-        },
-        "overUnder": [
-          {
-            "linea": 0.5,
-            "over": {
-              "p": 0.9537244986386324,
-              "cuotaJusta": 1.05
-            },
-            "under": {
-              "p": 0.0462755013613676,
-              "cuotaJusta": 21.61
-            }
-          },
-          {
-            "linea": 1,
-            "over": {
-              "p": 0.8115132847974826,
-              "cuotaJusta": 1.23
-            },
-            "under": {
-              "p": 0.18848671520251736,
-              "cuotaJusta": 5.31
-            }
-          },
-          {
-            "linea": 1.5,
-            "over": {
-              "p": 0.8115132847974826,
-              "cuotaJusta": 1.23
-            },
-            "under": {
-              "p": 0.18848671520251736,
-              "cuotaJusta": 5.31
-            }
-          },
-          {
-            "linea": 2,
-            "over": {
-              "p": 0.5929956159862466,
-              "cuotaJusta": 1.69
-            },
-            "under": {
-              "p": 0.4070043840137534,
-              "cuotaJusta": 2.46
-            }
-          },
-          {
-            "linea": 2.5,
-            "over": {
-              "p": 0.5929956159862466,
-              "cuotaJusta": 1.69
-            },
-            "under": {
-              "p": 0.4070043840137534,
-              "cuotaJusta": 2.46
-            }
-          },
-          {
-            "linea": 3,
-            "over": {
-              "p": 0.36915029796496457,
-              "cuotaJusta": 2.71
-            },
-            "under": {
-              "p": 0.6308497020350354,
-              "cuotaJusta": 1.59
-            }
-          },
-          {
-            "linea": 3.5,
-            "over": {
-              "p": 0.36915029796496457,
-              "cuotaJusta": 2.71
-            },
-            "under": {
-              "p": 0.6308497020350354,
-              "cuotaJusta": 1.59
-            }
-          },
-          {
-            "linea": 4,
-            "over": {
-              "p": 0.19717315302983443,
-              "cuotaJusta": 5.07
-            },
-            "under": {
-              "p": 0.8028268469701656,
-              "cuotaJusta": 1.25
-            }
-          },
-          {
-            "linea": 4.5,
-            "over": {
-              "p": 0.19717315302983443,
-              "cuotaJusta": 5.07
-            },
-            "under": {
-              "p": 0.8028268469701656,
-              "cuotaJusta": 1.25
-            }
-          }
-        ],
-        "ambosAnotan": {
-          "si": {
-            "p": 0.6114187212635548,
-            "cuotaJusta": 1.64
-          },
-          "no": {
-            "p": 0.3885812787364452,
-            "cuotaJusta": 2.57
-          }
-        },
-        "marcadores": [
-          {
-            "marcador": "1-1",
-            "p": 0.10826634667207358,
-            "cuotaJusta": 9.24
-          },
-          {
-            "marcador": "2-1",
-            "p": 0.09110724018223115,
-            "cuotaJusta": 10.98
-          },
-          {
-            "marcador": "1-0",
-            "p": 0.07788261713318081,
-            "cuotaJusta": 12.84
-          },
-          {
-            "marcador": "1-2",
-            "p": 0.07525172017315138,
-            "cuotaJusta": 13.29
-          },
-          {
-            "marcador": "2-0",
-            "p": 0.0655390204184633,
-            "cuotaJusta": 15.26
-          },
-          {
-            "marcador": "0-1",
-            "p": 0.06432859670796892,
-            "cuotaJusta": 15.55
-          }
-        ]
-      },
-      "estado": "programado",
-      "marcador": null,
-      "resultado": null,
-      "goodToLine": {
-        "ejecutable": false,
-        "probActual": 0.4865372573575455,
-        "necesita": 0.42,
-        "cuotaNecesaria": 2.380952380952381,
-        "cuotaActual": 2.0553410553410547
-      }
-    },
-    {
       "partido": "Tenerife vs Girona",
       "liga": "LaLiga 2",
       "ligaKey": "esp.2",
@@ -8991,6 +9063,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 0.95003192951568,
+      "lambdaAway": 1.2658818720719998,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -9203,6 +9277,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.6099512072494402,
+      "lambdaAway": 1.348752614832,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -9415,6 +9491,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.9967956456204803,
+      "lambdaAway": 1.23798000066,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -9627,6 +9705,8 @@
         }
       },
       "lineaGoles": 3.5,
+      "lambdaHome": 1.6095008665857602,
+      "lambdaAway": 1.041710355504,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -9839,6 +9919,8 @@
         }
       },
       "lineaGoles": 3.5,
+      "lambdaHome": 1.5439736446329602,
+      "lambdaAway": 1.025803412928,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -10051,6 +10133,8 @@
         }
       },
       "lineaGoles": 3.5,
+      "lambdaHome": 1.5140014566739202,
+      "lambdaAway": 1.119701941584,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -10263,6 +10347,8 @@
         }
       },
       "lineaGoles": 3.5,
+      "lambdaHome": 1.95386930518752,
+      "lambdaAway": 1.0987618679999998,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -10475,6 +10561,8 @@
         }
       },
       "lineaGoles": 3.5,
+      "lambdaHome": 2.4774246023904,
+      "lambdaAway": 0.96852861228,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -10687,6 +10775,8 @@
         }
       },
       "lineaGoles": 3.5,
+      "lambdaHome": 1.81964926486224,
+      "lambdaAway": 1.27405527216,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -10899,6 +10989,8 @@
         }
       },
       "lineaGoles": 3.5,
+      "lambdaHome": 1.7926113450988803,
+      "lambdaAway": 0.9670905558599998,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -11111,6 +11203,8 @@
         }
       },
       "lineaGoles": 3.5,
+      "lambdaHome": 1.27232878838112,
+      "lambdaAway": 1.4616465631200002,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -11323,6 +11417,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.6373606368824003,
+      "lambdaAway": 1.2232963818239997,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -11535,6 +11631,8 @@
         }
       },
       "lineaGoles": 3.5,
+      "lambdaHome": 1.462201267824,
+      "lambdaAway": 1.4924397973799999,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -11747,6 +11845,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.8259982960400003,
+      "lambdaAway": 0.8926771751039999,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -11959,6 +12059,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.65090957983424,
+      "lambdaAway": 1.134414477432,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -12171,6 +12273,8 @@
         }
       },
       "lineaGoles": 2.5,
+      "lambdaHome": 1.4248969037352004,
+      "lambdaAway": 1.09434202416,
       "ladder": {
         "oneXTwo": {
           "local": {
@@ -12357,25 +12461,11 @@
     "nota": "El margen de la casa se mide como ROI de apostar todos los picks de consenso, medido por el backtest.",
     "notaDrawdown": "Max drawdown: cuánto cayó el saldo acumulado desde su máximo, apostando 1 unidad por pick."
   },
-  "alertas": [
-    {
-      "tipo": "NUEVO_PICK",
-      "severidad": "baja",
-      "fixtureId": "761861",
-      "partido": "Inter Miami CF vs New York City FC",
-      "mercado": "1X2",
-      "detalle": "Nuevo 1X2: Gana Inter Miami CF al 74%",
-      "antes": null,
-      "ahora": {
-        "confianza": 74,
-        "probMercado": 0.619
-      }
-    }
-  ],
+  "alertas": [],
   "resumenAlertas": {
     "alta": 0,
     "media": 0,
-    "baja": 1
+    "baja": 0
   },
   "picks": [
     {
@@ -12398,7 +12488,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-11T17:30:23.394Z",
+      "createdAt": "2026-10-11T17:43:27.078Z",
       "roiUnit": 0.14,
       "margen": 0.09087719298245611,
       "breakEven": 0.6491228070175439,
@@ -12424,7 +12514,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-11T17:30:23.394Z",
+      "createdAt": "2026-10-11T17:43:27.078Z",
       "roiUnit": 0.11948717948717946,
       "margen": 0.0789830508474576,
       "breakEven": 0.6610169491525424,
@@ -12450,7 +12540,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-11T17:30:23.394Z",
+      "createdAt": "2026-10-11T17:43:27.078Z",
       "roiUnit": 0.10097560975609754,
       "margen": 0.06786885245901642,
       "breakEven": 0.6721311475409836,
@@ -12476,7 +12566,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-11T17:30:23.394Z",
+      "createdAt": "2026-10-11T17:43:27.078Z",
       "roiUnit": 0.09238095238095245,
       "margen": 0.06258064516129036,
       "breakEven": 0.6774193548387096,
@@ -12502,7 +12592,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-11T17:30:23.394Z",
+      "createdAt": "2026-10-11T17:43:27.078Z",
       "roiUnit": 0.09238095238095245,
       "margen": 0.06258064516129036,
       "breakEven": 0.6774193548387096,
@@ -12528,7 +12618,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-11T17:30:23.394Z",
+      "createdAt": "2026-10-11T17:43:27.079Z",
       "roiUnit": 0.11948717948717946,
       "margen": 0.0789830508474576,
       "breakEven": 0.6610169491525424,
@@ -12544,9 +12634,9 @@
       "leagueKey": "esp.1",
       "kickoff": "2026-10-11T16:30Z",
       "status": "in",
-      "statusDetail": "HT",
-      "minute": "45'+3'",
-      "period": 1,
+      "statusDetail": "49'",
+      "minute": "49'",
+      "period": 2,
       "homeTeam": "Real Betis",
       "awayTeam": "Osasuna",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/244.png",
@@ -12555,7 +12645,7 @@
       "awayColor": "cd0000",
       "homeKey": "realbetis",
       "awayKey": "osasuna",
-      "homeScore": 2,
+      "homeScore": 3,
       "awayScore": 0,
       "venue": "Estadio La Cartuja",
       "odds": {
@@ -12582,8 +12672,8 @@
       "leagueKey": "ita.1",
       "kickoff": "2026-10-11T16:00Z",
       "status": "in",
-      "statusDetail": "65'",
-      "minute": "65'",
+      "statusDetail": "78'",
+      "minute": "78'",
       "period": 2,
       "homeTeam": "Sassuolo",
       "awayTeam": "AC Milan",
@@ -12593,7 +12683,7 @@
       "awayColor": "e4002b",
       "homeKey": "sassuolo",
       "awayKey": "acmilan",
-      "homeScore": 0,
+      "homeScore": 1,
       "awayScore": 1,
       "venue": "Mapei Stadium",
       "odds": {
@@ -14069,6 +14159,241 @@
         }
       ]
     },
+    "chi.1": {
+      "liga": "chi.1",
+      "ligaNombre": "Liga Chile",
+      "grupos": [
+        {
+          "nombre": "2026",
+          "equipos": [
+            {
+              "posicion": 1,
+              "equipo": "Colo Colo",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/2688.png",
+              "color": null,
+              "pj": 23,
+              "ganados": 17,
+              "empatados": 3,
+              "perdidos": 3,
+              "puntos": 54,
+              "diferencia": 26,
+              "aFavor": 48,
+              "enContra": 22
+            },
+            {
+              "posicion": 2,
+              "equipo": "Universidad Católica",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/885.png",
+              "color": null,
+              "pj": 23,
+              "ganados": 13,
+              "empatados": 3,
+              "perdidos": 7,
+              "puntos": 42,
+              "diferencia": 17,
+              "aFavor": 50,
+              "enContra": 33
+            },
+            {
+              "posicion": 3,
+              "equipo": "Universidad de Chile",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/4139.png",
+              "color": null,
+              "pj": 23,
+              "ganados": 12,
+              "empatados": 6,
+              "perdidos": 5,
+              "puntos": 42,
+              "diferencia": 16,
+              "aFavor": 35,
+              "enContra": 19
+            },
+            {
+              "posicion": 4,
+              "equipo": "Everton CD",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/4129.png",
+              "color": null,
+              "pj": 24,
+              "ganados": 11,
+              "empatados": 6,
+              "perdidos": 7,
+              "puntos": 39,
+              "diferencia": 13,
+              "aFavor": 40,
+              "enContra": 27
+            },
+            {
+              "posicion": 5,
+              "equipo": "Palestino",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/4422.png",
+              "color": null,
+              "pj": 23,
+              "ganados": 11,
+              "empatados": 3,
+              "perdidos": 9,
+              "puntos": 36,
+              "diferencia": 3,
+              "aFavor": 36,
+              "enContra": 33
+            },
+            {
+              "posicion": 6,
+              "equipo": "Huachipato",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/4134.png",
+              "color": null,
+              "pj": 24,
+              "ganados": 10,
+              "empatados": 4,
+              "perdidos": 10,
+              "puntos": 34,
+              "diferencia": -5,
+              "aFavor": 34,
+              "enContra": 39
+            },
+            {
+              "posicion": 7,
+              "equipo": "Deportes Limache",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/19195.png",
+              "color": null,
+              "pj": 23,
+              "ganados": 10,
+              "empatados": 3,
+              "perdidos": 10,
+              "puntos": 33,
+              "diferencia": 8,
+              "aFavor": 43,
+              "enContra": 35
+            },
+            {
+              "posicion": 8,
+              "equipo": "Ñublense",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/7427.png",
+              "color": null,
+              "pj": 23,
+              "ganados": 8,
+              "empatados": 8,
+              "perdidos": 7,
+              "puntos": 32,
+              "diferencia": -3,
+              "aFavor": 28,
+              "enContra": 31
+            },
+            {
+              "posicion": 9,
+              "equipo": "Deportes Concepcion",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/8110.png",
+              "color": null,
+              "pj": 23,
+              "ganados": 9,
+              "empatados": 4,
+              "perdidos": 10,
+              "puntos": 31,
+              "diferencia": -1,
+              "aFavor": 25,
+              "enContra": 26
+            },
+            {
+              "posicion": 10,
+              "equipo": "La Serena",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/4137.png",
+              "color": null,
+              "pj": 24,
+              "ganados": 7,
+              "empatados": 9,
+              "perdidos": 8,
+              "puntos": 30,
+              "diferencia": -5,
+              "aFavor": 36,
+              "enContra": 41
+            },
+            {
+              "posicion": 11,
+              "equipo": "Coquimbo Unido",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/8186.png",
+              "color": null,
+              "pj": 23,
+              "ganados": 8,
+              "empatados": 5,
+              "perdidos": 10,
+              "puntos": 29,
+              "diferencia": -1,
+              "aFavor": 31,
+              "enContra": 32
+            },
+            {
+              "posicion": 12,
+              "equipo": "Audax Italiano",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/4138.png",
+              "color": null,
+              "pj": 23,
+              "ganados": 7,
+              "empatados": 7,
+              "perdidos": 9,
+              "puntos": 28,
+              "diferencia": -5,
+              "aFavor": 26,
+              "enContra": 31
+            },
+            {
+              "posicion": 13,
+              "equipo": "O'Higgins",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/6072.png",
+              "color": null,
+              "pj": 24,
+              "ganados": 8,
+              "empatados": 3,
+              "perdidos": 13,
+              "puntos": 27,
+              "diferencia": -10,
+              "aFavor": 28,
+              "enContra": 38
+            },
+            {
+              "posicion": 14,
+              "equipo": "Cobresal",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/4133.png",
+              "color": null,
+              "pj": 24,
+              "ganados": 7,
+              "empatados": 4,
+              "perdidos": 13,
+              "puntos": 25,
+              "diferencia": -10,
+              "aFavor": 35,
+              "enContra": 45
+            },
+            {
+              "posicion": 15,
+              "equipo": "Universidad de Concepción",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/5362.png",
+              "color": null,
+              "pj": 24,
+              "ganados": 6,
+              "empatados": 5,
+              "perdidos": 13,
+              "puntos": 23,
+              "diferencia": -22,
+              "aFavor": 18,
+              "enContra": 40
+            },
+            {
+              "posicion": 16,
+              "equipo": "Unión La Calera",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/10144.png",
+              "color": null,
+              "pj": 23,
+              "ganados": 4,
+              "empatados": 5,
+              "perdidos": 14,
+              "puntos": 17,
+              "diferencia": -21,
+              "aFavor": 19,
+              "enContra": 40
+            }
+          ]
+        }
+      ]
+    },
     "esp.2": {
       "liga": "esp.2",
       "ligaNombre": "LaLiga 2",
@@ -15205,236 +15530,264 @@
         }
       ]
     },
-    "chi.1": {
-      "liga": "chi.1",
-      "ligaNombre": "Liga Chile",
+    "fra.1": {
+      "liga": "fra.1",
+      "ligaNombre": "Ligue 1",
       "grupos": [
         {
-          "nombre": "2026",
+          "nombre": "French Ligue 1 2026-27",
           "equipos": [
             {
               "posicion": 1,
-              "equipo": "Colo Colo",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/2688.png",
+              "equipo": "AS Monaco",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/174.png",
               "color": null,
-              "pj": 23,
-              "ganados": 17,
-              "empatados": 3,
-              "perdidos": 3,
-              "puntos": 54,
-              "diferencia": 26,
-              "aFavor": 48,
-              "enContra": 22
+              "pj": 6,
+              "ganados": 4,
+              "empatados": 2,
+              "perdidos": 0,
+              "puntos": 14,
+              "diferencia": 5,
+              "aFavor": 10,
+              "enContra": 5
             },
             {
               "posicion": 2,
-              "equipo": "Universidad Católica",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/885.png",
+              "equipo": "Lille",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/166.png",
               "color": null,
-              "pj": 23,
-              "ganados": 13,
-              "empatados": 3,
-              "perdidos": 7,
-              "puntos": 42,
-              "diferencia": 17,
-              "aFavor": 50,
-              "enContra": 33
+              "pj": 6,
+              "ganados": 4,
+              "empatados": 1,
+              "perdidos": 1,
+              "puntos": 13,
+              "diferencia": 5,
+              "aFavor": 9,
+              "enContra": 4
             },
             {
               "posicion": 3,
-              "equipo": "Universidad de Chile",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/4139.png",
+              "equipo": "Stade Rennais",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/169.png",
               "color": null,
-              "pj": 23,
-              "ganados": 12,
-              "empatados": 6,
-              "perdidos": 5,
-              "puntos": 42,
-              "diferencia": 16,
-              "aFavor": 35,
-              "enContra": 19
+              "pj": 6,
+              "ganados": 4,
+              "empatados": 1,
+              "perdidos": 1,
+              "puntos": 13,
+              "diferencia": 2,
+              "aFavor": 12,
+              "enContra": 10
             },
             {
               "posicion": 4,
-              "equipo": "Everton CD",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/4129.png",
+              "equipo": "Lyon",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/167.png",
               "color": null,
-              "pj": 23,
-              "ganados": 10,
-              "empatados": 6,
-              "perdidos": 7,
-              "puntos": 36,
-              "diferencia": 12,
-              "aFavor": 37,
-              "enContra": 25
+              "pj": 6,
+              "ganados": 3,
+              "empatados": 2,
+              "perdidos": 1,
+              "puntos": 11,
+              "diferencia": 7,
+              "aFavor": 11,
+              "enContra": 4
             },
             {
               "posicion": 5,
-              "equipo": "Palestino",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/4422.png",
+              "equipo": "Paris FC",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/6851.png",
               "color": null,
-              "pj": 23,
-              "ganados": 11,
-              "empatados": 3,
-              "perdidos": 9,
-              "puntos": 36,
-              "diferencia": 3,
-              "aFavor": 36,
-              "enContra": 33
+              "pj": 6,
+              "ganados": 3,
+              "empatados": 2,
+              "perdidos": 1,
+              "puntos": 11,
+              "diferencia": 4,
+              "aFavor": 8,
+              "enContra": 4
             },
             {
               "posicion": 6,
-              "equipo": "Huachipato",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/4134.png",
+              "equipo": "Paris Saint-Germain",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/160.png",
               "color": null,
-              "pj": 24,
-              "ganados": 10,
-              "empatados": 4,
-              "perdidos": 10,
-              "puntos": 34,
-              "diferencia": -5,
-              "aFavor": 34,
-              "enContra": 39
+              "pj": 6,
+              "ganados": 3,
+              "empatados": 2,
+              "perdidos": 1,
+              "puntos": 11,
+              "diferencia": 3,
+              "aFavor": 11,
+              "enContra": 8
             },
             {
               "posicion": 7,
-              "equipo": "Deportes Limache",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/19195.png",
+              "equipo": "Brest",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/6997.png",
               "color": null,
-              "pj": 23,
-              "ganados": 10,
-              "empatados": 3,
-              "perdidos": 10,
-              "puntos": 33,
-              "diferencia": 8,
-              "aFavor": 43,
-              "enContra": 35
+              "pj": 6,
+              "ganados": 2,
+              "empatados": 2,
+              "perdidos": 2,
+              "puntos": 8,
+              "diferencia": 3,
+              "aFavor": 12,
+              "enContra": 9
             },
             {
               "posicion": 8,
-              "equipo": "Ñublense",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/7427.png",
+              "equipo": "Lorient",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/273.png",
               "color": null,
-              "pj": 23,
-              "ganados": 8,
-              "empatados": 8,
-              "perdidos": 7,
-              "puntos": 32,
-              "diferencia": -3,
-              "aFavor": 28,
-              "enContra": 31
+              "pj": 6,
+              "ganados": 2,
+              "empatados": 2,
+              "perdidos": 2,
+              "puntos": 8,
+              "diferencia": 0,
+              "aFavor": 6,
+              "enContra": 6
             },
             {
               "posicion": 9,
-              "equipo": "Deportes Concepcion",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/8110.png",
+              "equipo": "Nice",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/2502.png",
               "color": null,
-              "pj": 23,
-              "ganados": 9,
-              "empatados": 4,
-              "perdidos": 10,
-              "puntos": 31,
-              "diferencia": -1,
-              "aFavor": 25,
-              "enContra": 26
+              "pj": 6,
+              "ganados": 2,
+              "empatados": 2,
+              "perdidos": 2,
+              "puntos": 8,
+              "diferencia": -2,
+              "aFavor": 5,
+              "enContra": 7
             },
             {
               "posicion": 10,
-              "equipo": "La Serena",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/4137.png",
+              "equipo": "Lens",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/175.png",
               "color": null,
-              "pj": 23,
-              "ganados": 7,
-              "empatados": 9,
-              "perdidos": 7,
-              "puntos": 30,
-              "diferencia": -4,
-              "aFavor": 34,
-              "enContra": 38
+              "pj": 6,
+              "ganados": 2,
+              "empatados": 1,
+              "perdidos": 3,
+              "puntos": 7,
+              "diferencia": 1,
+              "aFavor": 11,
+              "enContra": 10
             },
             {
               "posicion": 11,
-              "equipo": "Coquimbo Unido",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/8186.png",
+              "equipo": "Strasbourg",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/180.png",
               "color": null,
-              "pj": 23,
-              "ganados": 8,
-              "empatados": 5,
-              "perdidos": 10,
-              "puntos": 29,
+              "pj": 6,
+              "ganados": 2,
+              "empatados": 1,
+              "perdidos": 3,
+              "puntos": 7,
               "diferencia": -1,
-              "aFavor": 31,
-              "enContra": 32
+              "aFavor": 11,
+              "enContra": 12
             },
             {
               "posicion": 12,
-              "equipo": "Audax Italiano",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/4138.png",
+              "equipo": "Angers",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/7868.png",
               "color": null,
-              "pj": 23,
-              "ganados": 7,
-              "empatados": 7,
-              "perdidos": 9,
-              "puntos": 28,
-              "diferencia": -5,
-              "aFavor": 26,
-              "enContra": 31
+              "pj": 6,
+              "ganados": 2,
+              "empatados": 1,
+              "perdidos": 3,
+              "puntos": 7,
+              "diferencia": -3,
+              "aFavor": 7,
+              "enContra": 10
             },
             {
               "posicion": 13,
-              "equipo": "O'Higgins",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/6072.png",
+              "equipo": "Le Mans",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/2697.png",
               "color": null,
-              "pj": 24,
-              "ganados": 8,
+              "pj": 6,
+              "ganados": 1,
               "empatados": 3,
-              "perdidos": 13,
-              "puntos": 27,
-              "diferencia": -10,
-              "aFavor": 28,
-              "enContra": 38
+              "perdidos": 2,
+              "puntos": 6,
+              "diferencia": -2,
+              "aFavor": 10,
+              "enContra": 12
             },
             {
               "posicion": 14,
-              "equipo": "Cobresal",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/4133.png",
+              "equipo": "Toulouse",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/179.png",
               "color": null,
-              "pj": 24,
-              "ganados": 7,
-              "empatados": 4,
-              "perdidos": 13,
-              "puntos": 25,
-              "diferencia": -10,
-              "aFavor": 35,
-              "enContra": 45
+              "pj": 6,
+              "ganados": 1,
+              "empatados": 3,
+              "perdidos": 2,
+              "puntos": 6,
+              "diferencia": -2,
+              "aFavor": 9,
+              "enContra": 11
             },
             {
               "posicion": 15,
-              "equipo": "Universidad de Concepción",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/5362.png",
+              "equipo": "AJ Auxerre",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/172.png",
               "color": null,
-              "pj": 24,
-              "ganados": 6,
-              "empatados": 5,
-              "perdidos": 13,
-              "puntos": 23,
-              "diferencia": -22,
-              "aFavor": 18,
-              "enContra": 40
+              "pj": 6,
+              "ganados": 2,
+              "empatados": 0,
+              "perdidos": 4,
+              "puntos": 6,
+              "diferencia": -8,
+              "aFavor": 8,
+              "enContra": 16
             },
             {
               "posicion": 16,
-              "equipo": "Unión La Calera",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/10144.png",
+              "equipo": "Troyes",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/170.png",
               "color": null,
-              "pj": 23,
-              "ganados": 4,
-              "empatados": 5,
-              "perdidos": 14,
-              "puntos": 17,
-              "diferencia": -21,
-              "aFavor": 19,
-              "enContra": 40
+              "pj": 5,
+              "ganados": 1,
+              "empatados": 1,
+              "perdidos": 3,
+              "puntos": 4,
+              "diferencia": -7,
+              "aFavor": 4,
+              "enContra": 11
+            },
+            {
+              "posicion": 17,
+              "equipo": "Marseille",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/176.png",
+              "color": null,
+              "pj": 5,
+              "ganados": 1,
+              "empatados": 0,
+              "perdidos": 4,
+              "puntos": 3,
+              "diferencia": -1,
+              "aFavor": 7,
+              "enContra": 8
+            },
+            {
+              "posicion": 18,
+              "equipo": "Le Havre AC",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/3236.png",
+              "color": null,
+              "pj": 6,
+              "ganados": 0,
+              "empatados": 2,
+              "perdidos": 4,
+              "puntos": 2,
+              "diferencia": -4,
+              "aFavor": 4,
+              "enContra": 8
             }
           ]
         }
@@ -15989,269 +16342,6 @@
               "diferencia": -8,
               "aFavor": 4,
               "enContra": 12
-            }
-          ]
-        }
-      ]
-    },
-    "fra.1": {
-      "liga": "fra.1",
-      "ligaNombre": "Ligue 1",
-      "grupos": [
-        {
-          "nombre": "French Ligue 1 2026-27",
-          "equipos": [
-            {
-              "posicion": 1,
-              "equipo": "AS Monaco",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/174.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 4,
-              "empatados": 2,
-              "perdidos": 0,
-              "puntos": 14,
-              "diferencia": 5,
-              "aFavor": 10,
-              "enContra": 5
-            },
-            {
-              "posicion": 2,
-              "equipo": "Lille",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/166.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 4,
-              "empatados": 1,
-              "perdidos": 1,
-              "puntos": 13,
-              "diferencia": 5,
-              "aFavor": 9,
-              "enContra": 4
-            },
-            {
-              "posicion": 3,
-              "equipo": "Stade Rennais",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/169.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 4,
-              "empatados": 1,
-              "perdidos": 1,
-              "puntos": 13,
-              "diferencia": 2,
-              "aFavor": 12,
-              "enContra": 10
-            },
-            {
-              "posicion": 4,
-              "equipo": "Lyon",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/167.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 3,
-              "empatados": 2,
-              "perdidos": 1,
-              "puntos": 11,
-              "diferencia": 7,
-              "aFavor": 11,
-              "enContra": 4
-            },
-            {
-              "posicion": 5,
-              "equipo": "Paris FC",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/6851.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 3,
-              "empatados": 2,
-              "perdidos": 1,
-              "puntos": 11,
-              "diferencia": 4,
-              "aFavor": 8,
-              "enContra": 4
-            },
-            {
-              "posicion": 6,
-              "equipo": "Paris Saint-Germain",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/160.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 3,
-              "empatados": 2,
-              "perdidos": 1,
-              "puntos": 11,
-              "diferencia": 3,
-              "aFavor": 11,
-              "enContra": 8
-            },
-            {
-              "posicion": 7,
-              "equipo": "Brest",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/6997.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 2,
-              "empatados": 2,
-              "perdidos": 2,
-              "puntos": 8,
-              "diferencia": 3,
-              "aFavor": 12,
-              "enContra": 9
-            },
-            {
-              "posicion": 8,
-              "equipo": "Lorient",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/273.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 2,
-              "empatados": 2,
-              "perdidos": 2,
-              "puntos": 8,
-              "diferencia": 0,
-              "aFavor": 6,
-              "enContra": 6
-            },
-            {
-              "posicion": 9,
-              "equipo": "Nice",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/2502.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 2,
-              "empatados": 2,
-              "perdidos": 2,
-              "puntos": 8,
-              "diferencia": -2,
-              "aFavor": 5,
-              "enContra": 7
-            },
-            {
-              "posicion": 10,
-              "equipo": "Lens",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/175.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 2,
-              "empatados": 1,
-              "perdidos": 3,
-              "puntos": 7,
-              "diferencia": 1,
-              "aFavor": 11,
-              "enContra": 10
-            },
-            {
-              "posicion": 11,
-              "equipo": "Strasbourg",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/180.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 2,
-              "empatados": 1,
-              "perdidos": 3,
-              "puntos": 7,
-              "diferencia": -1,
-              "aFavor": 11,
-              "enContra": 12
-            },
-            {
-              "posicion": 12,
-              "equipo": "Angers",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/7868.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 2,
-              "empatados": 1,
-              "perdidos": 3,
-              "puntos": 7,
-              "diferencia": -3,
-              "aFavor": 7,
-              "enContra": 10
-            },
-            {
-              "posicion": 13,
-              "equipo": "Le Mans",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/2697.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 1,
-              "empatados": 3,
-              "perdidos": 2,
-              "puntos": 6,
-              "diferencia": -2,
-              "aFavor": 10,
-              "enContra": 12
-            },
-            {
-              "posicion": 14,
-              "equipo": "Toulouse",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/179.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 1,
-              "empatados": 3,
-              "perdidos": 2,
-              "puntos": 6,
-              "diferencia": -2,
-              "aFavor": 9,
-              "enContra": 11
-            },
-            {
-              "posicion": 15,
-              "equipo": "AJ Auxerre",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/172.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 2,
-              "empatados": 0,
-              "perdidos": 4,
-              "puntos": 6,
-              "diferencia": -8,
-              "aFavor": 8,
-              "enContra": 16
-            },
-            {
-              "posicion": 16,
-              "equipo": "Troyes",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/170.png",
-              "color": null,
-              "pj": 5,
-              "ganados": 1,
-              "empatados": 1,
-              "perdidos": 3,
-              "puntos": 4,
-              "diferencia": -7,
-              "aFavor": 4,
-              "enContra": 11
-            },
-            {
-              "posicion": 17,
-              "equipo": "Marseille",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/176.png",
-              "color": null,
-              "pj": 5,
-              "ganados": 1,
-              "empatados": 0,
-              "perdidos": 4,
-              "puntos": 3,
-              "diferencia": -1,
-              "aFavor": 7,
-              "enContra": 8
-            },
-            {
-              "posicion": 18,
-              "equipo": "Le Havre AC",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/3236.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 0,
-              "empatados": 2,
-              "perdidos": 4,
-              "puntos": 2,
-              "diferencia": -4,
-              "aFavor": 4,
-              "enContra": 8
             }
           ]
         }

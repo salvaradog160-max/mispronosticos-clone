@@ -223,6 +223,12 @@ export const analizar = (partido, probs, confianza = null) => {
     goles: mercadoGoles(o, partido.probOver ?? null),
     lineaGoles: o?.line ?? null,
 
+    // Goles esperados del modelo. Antes se calculaban adentro pero no
+    // salian en el payload: la tarjeta "GOLES ESPERADOS (MODELO)" de la
+    // app estaba muerta. Ahora viajan.
+    lambdaHome: partido.lambdaHome ?? null,
+    lambdaAway: partido.lambdaAway ?? null,
+
     // Escalera de cuota justa por mercado (1X2, O/U 0.5-4.5, AA y
     // marcadores), sacada de las lambdas reales del modelo. Es la misma
     // cuenta que la herramienta manual, pero con datos reales. Si el
