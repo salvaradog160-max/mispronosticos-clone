@@ -121,6 +121,13 @@ export const scoreboard = async (league, yyyymmdd) => {
       period: event.status?.period ?? null,
       homeTeam: home?.team?.displayName ?? null,
       awayTeam: away?.team?.displayName ?? null,
+      // Escudo y color. La app de referencia es guiada visualmente por
+      // los escudos; sin esto la lista es una tabla de texto. ESPN los
+      // da gratis en la misma respuesta, asi que no cuesta una llamada.
+      homeLogo: home?.team?.logo ?? null,
+      awayLogo: away?.team?.logo ?? null,
+      homeColor: home?.team?.color ?? null,
+      awayColor: away?.team?.color ?? null,
       homeKey: norm(home?.team?.displayName ?? ''),
       awayKey: norm(away?.team?.displayName ?? ''),
       homeScore: home?.score != null ? Number(home.score) : null,
@@ -156,4 +163,72 @@ export const liveNow = async (leagues = Object.keys(LEAGUES)) => {
     if (r.status === 'fulfilled') rows.push(...r.value.filter(m => m.status === 'in'));
   }
   return rows;
+};
+/**
+ * Tabla de posiciones, con grupos.
+ *
+ * La app de referencia tiene una pestana "Posiciones" con # / EQUIPO /
+ * PTS / PJ / G / E / P. ESPN la da gratis y ya trae los grupos, que es
+ * justo lo que la referencia muestra como "Clausura - Group A".
+ *
+ * OJO con los nombres: ESPN llama `ties` a los EMPATES, no a las
+ * derrotas. En una liga de puntos (Argentina) eso encaja, pero el
+ * nombre engaña: `losses` son las derrotas de verdad.
+ */
+const num = v => {
+  const n = Number(v);
+  return Number.isFinite(n) ? n : 0;
+};
+
+/** Una fila de standings tal cual la manda ESPN, a formato plano. */
+export const mapearFila = e => {
+  const s = Object.fromEntries((e.stats ?? []).map(x => [x.name, x]));
+  return {
+    posicion: num(s.rank?.value),
+    equipo: e.team?.displayName ?? null,
+    // OJO: en scoreboard el escudo es `team.logo` (string), pero en
+    // standings viene en `team.logos[0].href` (array). Formas distintas
+    // para el mismo dato.
+    escudo: e.team?.logos?.[0]?.href ?? e.team?.logo ?? null,
+    color: e.team?.color ?? null,
+    pj: num(s.gamesPlayed?.value),
+    ganados: num(s.wins?.value),
+    // `ties` de ESPN son los EMPATES, no las derrotas. Nombre que engaña.
+    empatados: num(s.ties?.value),
+    perdidos: num(s.losses?.value),
+    puntos: num(s.points?.value),
+    diferencia: num(s.pointDifferential?.value),
+    aFavor: num(s.pointsFor?.value),
+    enContra: num(s.pointsAgainst?.value),
+  };
+};
+
+/** ESPN NO entrega la tabla ordenada (llegan 3, 9, 8, 5, 6). */
+export const ordenarTabla = filas =>
+  [...filas]
+    .sort((a, b) => b.puntos - a.puntos || b.diferencia - a.diferencia || b.ganados - a.ganados)
+    .map((e, i) => ({ ...e, posicion: i + 1 }));
+
+export const standings = async league => {
+  const url = `https://site.api.espn.com/apis/v2/sports/soccer/${league}/standings`;
+  let data;
+  try {
+    const r = await fetch(url);
+    if (!r.ok) return null;
+    data = await r.json();
+  } catch {
+    return null;
+  }
+
+  const grupos = (data?.children ?? []).map(g => ({
+    nombre: g.name ?? null,
+    equipos: ordenarTabla((g?.standings?.entries ?? []).map(mapearFila)),
+  }));
+
+  if (!grupos.length) return null;
+  return {
+    liga: league,
+    ligaNombre: NOMBRES_LIGA[league] ?? league,
+    grupos,
+  };
 };
