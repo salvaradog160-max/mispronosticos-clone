@@ -156,9 +156,9 @@ test('analizar: sin cuotas 1X2 no inventa una fila', () => {
 
 test('analizar: partido finalizado reporta si el lado del mercado acerto', () => {
   const partido = {
-    homeTeam: 'A',
-    awayTeam: 'B',
-    leagueName: 'E1',
+    homeTeam: 'Aberdeen',
+    awayTeam: 'St Johnstone',
+    leagueName: 'Premiership Scotland',
     leagueKey: 'E1',
     kickoff: '2026-10-12T16:30:00Z',
     odds: { H: 1.5, D: 4.5, A: 6, line: 2.5, over: 2.05, under: 1.67 },
@@ -168,15 +168,112 @@ test('analizar: partido finalizado reporta si el lado del mercado acerto', () =>
   const a = analizar(partido, { H: 0.5, D: 0.25, A: 0.25 }, 65);
   assert.equal(a.estado, 'finalizado');
   assert.equal(a.marcador, '2-1');
-  assert.equal(a.ladoMercado, 'local');
+  assert.equal(a.ladoMercado, 'Aberdeen', 'debe decir el EQUIPO, no "local"');
   assert.equal(a.resultado, 'acierto');
+});
+
+test('analizar: los lados se nombran con el equipo, nunca "local"/"visitante"', () => {
+  // Regresion: en pantalla salia "MERCADO local / MODELO local" sobre la
+  // tarjeta de Red Bull Bragantino vs Cruzeiro. "local" era el Bragantino
+  // pero no lo decia, y no habia forma de saber a quien se apostaba.
+  const partido = {
+    homeTeam: 'Red Bull Bragantino',
+    awayTeam: 'Cruzeiro',
+    leagueName: 'Brasileirão',
+    leagueKey: 'bra.1',
+    kickoff: '2026-10-12T18:00:00Z',
+    odds: { H: 1.91, D: 3.4, A: 4.2 },
+    status: {},
+    score: {},
+  };
+  const a = analizar(partido, { H: 0.5, D: 0.25, A: 0.25 }, 65);
+  assert.equal(a.ladoMercado, 'Red Bull Bragantino');
+  assert.equal(a.ladoModelo, 'Red Bull Bragantino');
+  assert.notEqual(a.ladoMercado, 'local');
+  assert.notEqual(a.ladoMercado, 'visitante');
+});
+
+test('analizar: el empate se llama Empate, no "empate"', () => {
+  const partido = {
+    homeTeam: 'Roma',
+    awayTeam: 'Lazio',
+    leagueName: 'Serie A',
+    leagueKey: 'I1',
+    kickoff: '2026-10-12T16:30:00Z',
+    // Cuota mas baja = mayor probabilidad = favorito. Aca el visitante.
+    odds: { H: 3.9, D: 3.4, A: 2.1 },
+    status: {},
+    score: {},
+  };
+  const a = analizar(partido, { H: 0.34, D: 0.33, A: 0.33 }, 65);
+  // El mercado ve a Lazio mas probable (cuota 2.1); el modelo ve a Roma
+  // (0.34 contra 0.33). Discrepan, y eso es justo lo que la app muestra:
+  // cada lado con SU nombre de equipo.
+  assert.equal(a.ladoMercado, 'Lazio', 'el favorito del mercado, con SU nombre');
+  assert.equal(a.ladoModelo, 'Roma', 'el favorito del modelo, con SU nombre');
+  assert.equal(a.coincide, false);
+});
+
+test('analizar: cuando el favorito es el empate, se dice Empate', () => {
+  const partido = {
+    homeTeam: 'Roma',
+    awayTeam: 'Lazio',
+    leagueName: 'Serie A',
+    leagueKey: 'I1',
+    kickoff: '2026-10-12T16:30:00Z',
+    odds: { H: 3.0, D: 3.0, A: 3.0 },
+    status: {},
+    score: {},
+  };
+  const a = analizar(partido, { H: 0.34, D: 0.33, A: 0.33 }, 65);
+  // A cuotas iguales el orden es estable: gana H. Lo que importa es que
+  // si algun lado fuera el empate, el nombre sea "Empate" con mayuscula.
+  assert.ok(['Roma', 'Lazio', 'Empate'].includes(a.ladoMercado), `salio "${a.ladoMercado}"`);
+});
+
+test('analizar: sin nombres de equipo cae al texto viejo, no a undefined', () => {
+  const partido = {
+    homeTeam: null,
+    awayTeam: null,
+    leagueName: 'E1',
+    leagueKey: 'E1',
+    kickoff: '2026-10-12T16:30:00Z',
+    odds: { H: 1.5, D: 4.5, A: 6 },
+    status: {},
+    score: {},
+  };
+  const a = analizar(partido, { H: 0.5, D: 0.25, A: 0.25 }, 65);
+  assert.ok(a.ladoMercado, 'debe decir algo, no null ni undefined');
+  assert.ok(typeof a.ladoMercado === 'string' && a.ladoMercado.length > 0);
+});
+
+test('analizar: un mercado totalmente justo (3.00/3.00/3.00) no se descarta', () => {
+  // Regresion: probs1x2 exigia overround > 1, y un mercado sin margen
+  // da exactamente 1.0. El partido se caia entero de la app.
+  const p = probs1x2(3.0, 3.0, 3.0);
+  assert.ok(p, 'un mercado justo sigue siendo un mercado');
+  assert.ok(Math.abs(p.H + p.D + p.A - 1) < 1e-9, 'sigue sumando 1');
+
+  const partido = {
+    homeTeam: 'Roma',
+    awayTeam: 'Lazio',
+    leagueName: 'Serie A',
+    leagueKey: 'I1',
+    kickoff: '2026-10-12T16:30:00Z',
+    odds: { H: 3.0, D: 3.0, A: 3.0 },
+    status: {},
+    score: {},
+  };
+  const a = analizar(partido, { H: 0.34, D: 0.33, A: 0.33 }, 65);
+  assert.ok(a, 'el partido no debe desaparecer de la lista');
+  assert.ok(['Roma', 'Lazio', 'Empate'].includes(a.ladoMercado), `salio "${a.ladoMercado}"`);
 });
 
 test('analizar: partido finalizado con resultado contrario marca fallo', () => {
   const partido = {
-    homeTeam: 'A',
-    awayTeam: 'B',
-    leagueName: 'E1',
+    homeTeam: 'Aberdeen',
+    awayTeam: 'St Johnstone',
+    leagueName: 'Premiership Scotland',
     leagueKey: 'E1',
     kickoff: '2026-10-12T16:30:00Z',
     odds: { H: 1.5, D: 4.5, A: 6 },

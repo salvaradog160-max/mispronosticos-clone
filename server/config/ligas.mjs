@@ -29,7 +29,25 @@ export const LEAGUES_HISTORIA = [
 ];
 
 export const NOMBRES_LIGA = {
-  // ESPN
+  // ESPN (slugs). Sin estos, `NOMBRES_LIGA[league] ?? league` se escapaba
+  // crudo y en pantalla salia "sco.1" en vez de "Premiership Scotland".
+  // Ojo: son claves DISTINTAS a las de football-data (sco.1 != SC0), por
+  // eso hacen falta las dos familias.
+  'eng.1': 'Premier League',
+  'esp.1': 'La Liga',
+  'esp.2': 'LaLiga 2',
+  'ita.1': 'Serie A',
+  'ita.2': 'Serie B',
+  'ger.1': 'Bundesliga',
+  'ger.2': '2. Bundesliga',
+  'fra.1': 'Ligue 1',
+  'ned.1': 'Eredivisie',
+  'por.1': 'Primeira Liga',
+  'bel.1': 'Belgian Pro League',
+  'tur.1': 'Super Lig',
+  'sco.1': 'Premiership Scotland',
+
+  // ESPN — america
   'mex.1': 'Liga MX',
   'bra.1': 'Brasileirão',
   'usa.1': 'MLS',

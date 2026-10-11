@@ -12,7 +12,10 @@ export const probs1x2 = (H, D, A) => {
   if (!H || !D || !A) return null;
   const raw = { H: 1 / H, D: 1 / D, A: 1 / A };
   const overround = raw.H + raw.D + raw.A;
-  if (!(overround > 1)) return null;
+  // `> 0` y no `> 1`: un mercado totalmente justo (3.00/3.00/3.00) da
+  // overround 1.0 exacto y es perfectamente valido, solo que sin margen.
+  // Con `> 1` el partido se descartaba entero y no salia en la app.
+  if (!(overround > 0)) return null;
   return { H: raw.H / overround, D: raw.D / overround, A: raw.A / overround, overround };
 };
 
@@ -123,6 +126,21 @@ export const estadoPartido = partido => {
 const NOMBRE = { H: 'local', D: 'empate', A: 'visitante' };
 
 /**
+ * Nombre real del lado, no "local"/"visitante".
+ *
+ * En pantalla salia "MERCADO local / MODELO local" sobre la tarjeta de
+ * Red Bull Bragantino vs Cruzeiro. "local" SI era Bragantino, pero no lo
+ * decia, y al lado del otro no habia forma de saber a quien jugaba uno.
+ * Cuando hay nombres se usan; si faltan, se avisa con el texto viejo.
+ */
+const nombreLado = (lado, partido) => {
+  if (lado === 'D') return 'Empate';
+  if (lado === 'H') return partido.homeTeam || NOMBRE.H;
+  if (lado === 'A') return partido.awayTeam || NOMBRE.A;
+  return NOMBRE[lado] ?? lado;
+};
+
+/**
  * @param partido  { homeTeam, awayTeam, kickoff, leagueName, odds }
  * @param probs    probabilidades del modelo (ya sin margen)
  */
@@ -166,13 +184,13 @@ export const analizar = (partido, probs, confianza = null) => {
 
     // Que dice el mercado
     favoritoMercado: ladoMercado,
-    ladoMercado: NOMBRE[ladoMercado],
+    ladoMercado: nombreLado(ladoMercado, partido),
     probMercado: Number(cuotaProbAhora.toFixed(4)),
     cuotaMercado: Number(cuotaAhora.toFixed(2)),
     cuotaApertura: cuotaAbierta === null ? null : Number(cuotaAbierta.toFixed(2)),
 
     // Que dice el modelo
-    ladoModelo: NOMBRE[ladoModelo],
+    ladoModelo: nombreLado(ladoModelo, partido),
     probModelo: Number(probs[ladoModelo].toFixed(4)),
     coincide: ladoMercado === ladoModelo,
 
