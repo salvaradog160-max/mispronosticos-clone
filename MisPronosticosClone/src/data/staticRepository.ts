@@ -13,7 +13,15 @@ export interface DailyPayload {
   };
   resumen: { partidosConDatos: number; picks: number; enVivo: number };
   picks: ServerPickShape[];
+  picksMercado?: ServerPickShape[];
   live: ServerMatchShape[];
+  mercados?: {
+    overUnder25: boolean;
+    handicap: boolean;
+    handicapMotivo?: string;
+    btts: boolean;
+    bttsNota?: string;
+  };
 }
 
 interface ServerPickShape {
@@ -24,6 +32,7 @@ interface ServerPickShape {
   homeTeam: string;
   awayTeam: string;
   market: string;
+  linea?: number | null;
   selection: string;
   odds: number | null;
   confidence: number;
@@ -49,9 +58,10 @@ interface ServerMatchShape {
 const toPick = (raw: ServerPickShape): Pick => ({
   id: raw.id,
   fixtureId: raw.fixtureId,
-  market: '1X2',
+  market: (raw.market ?? '1X2') as Pick['market'],
   selection: raw.selection,
-  odds: raw.odds ?? 1,
+  line: raw.linea ?? undefined,
+  odds: raw.odds ?? 0,
   confidence: raw.confidence,
   stars: raw.stars,
   isSpecial: raw.isSpecial,
@@ -77,11 +87,16 @@ export const createStaticRepository = (config: AppConfig): PicksRepository => {
   return {
     listTopPicks: async (query: PicksQuery) => {
       const data = await load();
-      let picks = data.picks.map(toPick);
-      if (query.leagueId) picks = picks.filter(p => p.fixtureId && p.selection.includes(query.leagueId!));
+      const todos = [...data.picks, ...(data.picksMercado ?? [])];
+      let picks = todos.map(toPick);
+      if (query.market) picks = picks.filter(p => p.market === query.market);
       if (query.minConfidence) picks = picks.filter(p => p.confidence >= query.minConfidence!);
-      if (query.maxOdds) picks = picks.filter(p => p.odds <= query.maxOdds!);
-      return picks.slice(0, query.limit ?? 50);
+      if (query.maxOdds) picks = picks.filter(p => p.odds > 0 && p.odds <= query.maxOdds!);
+      return picks.sort((a, b) => b.confidence - a.confidence).slice(0, query.limit ?? 60);
+    },
+    listMercados: async () => {
+      const data = await load();
+      return data.mercados ?? null;
     },
     listLiveMatches: async () => {
       const data = await load();

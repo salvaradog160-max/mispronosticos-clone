@@ -10,6 +10,22 @@
  */
 
 /** Normaliza nombres de equipo para poder emparejar entre fuentes. */
+/**
+ * Busca el tramo de confianza que contiene `probMercado` y devuelve la
+ * confianza medida. Igual que la 1X2 pero para O/U y BTTS.
+ */
+export const lookupBucket = (buckets, probMercado) => {
+  if (!buckets || buckets.length === 0) return null;
+  const b = buckets.find(x => probMercado >= x.lo && probMercado < x.hi);
+  if (!b) return null;
+  return {
+    confidence: Math.round(b.accuracy * 100),
+    stars: Math.max(1, Math.min(5, Math.round(b.accuracy * 5))),
+    nMuestra: b.n,
+    rango: [Number((b.ci95[0] * 100).toFixed(1)), Number((b.ci95[1] * 100).toFixed(1))],
+  };
+};
+
 export const normalizeTeam = name =>
   String(name)
     .toLowerCase()

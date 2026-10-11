@@ -131,6 +131,46 @@ export const handicapProb = (lambdaHome, lambdaAway, line = 0) => {
 };
 
 /**
+ * Liquida un handicap asiatico. `line` positivo = el local resta esa
+ * cantidad de goles. Devuelve 1 (gana), 0 (empate/void), -1 (pierde), y
+ * +-0.5 para medio-ganeo / media-pérdida en líneas de cuarto.
+ */
+export const settleAsian = (homeScore, awayScore, line) => {
+  const quarter = Math.abs(line * 2) % 1 !== 0;
+  if (quarter) {
+    // x.25 -> (x.0, x.5) ; x.75 -> (x.5, x+1.0)
+    const lower = Math.floor(line * 2) / 2;
+    return (settleAsian(homeScore, awayScore, lower) + settleAsian(homeScore, awayScore, lower + 0.5)) / 2;
+  }
+  const diff = homeScore - awayScore - line;
+  if (diff > 0) return 1;
+  if (diff === 0) return 0;
+  return -1;
+};
+
+/**
+ * Probabilidad de que el local cubra un handicap asiatico, contando el
+ * empate como 0.5. Maneja lineas de cuarto partiendo el stake.
+ */
+export const asianCoverProb = (lambdaHome, lambdaAway, line) => {
+  const quarter = Math.abs(line * 2) % 1 !== 0;
+  if (quarter) {
+    const lower = Math.floor(line * 2) / 2;
+    return (asianCoverProb(lambdaHome, lambdaAway, lower) + asianCoverProb(lambdaHome, lambdaAway, lower + 0.5)) / 2;
+  }
+  const matrix = scoreMatrix(lambdaHome, lambdaAway);
+  let cover = 0;
+  for (let h = 0; h <= MAX_GOALS; h++) {
+    for (let a = 0; a <= MAX_GOALS; a++) {
+      const diff = h - a - line;
+      if (diff > 0) cover += matrix[h][a];
+      else if (diff === 0) cover += matrix[h][a] / 2;
+    }
+  }
+  return cover;
+};
+
+/**
  * Goles esperados (xG) de un partido a partir de los ratings de equipo.
  *
  * attack  = poder ofensivo relativo a la media de la liga (>1 mejor)

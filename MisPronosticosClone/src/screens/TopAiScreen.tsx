@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { ActivityIndicator, Chip, ProgressBar, Surface, Text } from 'react-native-paper';
 import { palette, radius, spacing } from '../theme';
-import type { Pick } from '../domain/picks';
+import type { Pick, Market } from '../domain/picks';
 import type { AppConfig } from '../config';
 import { DEFAULTS } from '../config';
 import { usePicks } from '../data/usePicks';
@@ -15,12 +15,20 @@ const Stars = ({ value }: { value: number }) => (
   <Text style={styles.stars}>{'\u2605'.repeat(value)}{'\u2606'.repeat(5 - value)}</Text>
 );
 
+const MERCADOS: { key: Market; label: string }[] = [
+  { key: '1X2', label: '1X2' },
+  { key: 'TOTAL', label: 'Goles' },
+  { key: 'BTTS', label: 'Ambos' },
+];
+
 export default function TopAiScreen({ config = DEFAULTS }: Props) {
-  const { data, loading, error, reload } = usePicks(config);
+  const [mercado, setMercado] = useState<Market>('1X2');
+  const { data, loading, error, reload } = usePicks(config, { market: mercado });
+  const visibles = useMemo(() => data.filter(p => p.market === mercado), [data, mercado]);
 
   return (
     <FlatList
-      data={data}
+      data={visibles}
       keyExtractor={item => item.id}
       style={styles.list}
       contentContainerStyle={styles.content}
@@ -32,15 +40,18 @@ export default function TopAiScreen({ config = DEFAULTS }: Props) {
             {config.minStarsTopAi} estrellas o más · mínimo {config.minConfidenceTopAi}%
           </Text>
           <View style={styles.chips}>
-            <Chip icon="filter-variant" compact style={styles.chip}>
-              Probabilidad
-            </Chip>
-            <Chip icon="cash" compact style={styles.chip}>
-              Cuota máx
-            </Chip>
-            <Chip icon="trophy" compact style={styles.chip}>
-              Liga
-            </Chip>
+            {MERCADOS.map(m => (
+              <Chip
+                key={m.key}
+                compact
+                style={[styles.chip, mercado === m.key && styles.chipOn]}
+                selected={mercado === m.key}
+                onPress={() => setMercado(m.key)}
+                showSelectedCheck={false}
+              >
+                {m.label}
+              </Chip>
+            ))}
           </View>
         </View>
       }
@@ -98,6 +109,7 @@ const styles = StyleSheet.create({
   header: { gap: spacing.xs, marginBottom: spacing.sm },
   subtitle: { color: palette.textMuted },
   chips: { flexDirection: 'row', gap: spacing.sm, marginTop: spacing.sm },
+  chipOn: { backgroundColor: palette.accent, opacity: 0.85 },
   chip: { backgroundColor: palette.surfaceAlt },
   card: {
     backgroundColor: palette.surface,

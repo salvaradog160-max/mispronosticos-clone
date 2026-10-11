@@ -12,6 +12,7 @@ import { readFile } from 'node:fs/promises';
 import { fetchHistory, impliedProbs } from '../providers/footballdata.mjs';
 import { buildRatings, predictMatch } from '../engine/ratings.mjs';
 import { normalizeTeam, buildConsensusPicks } from '../engine/calibration.mjs';
+import { buildMercadoPicks } from '../engine/mercados.mjs';
 import { upcoming, implied, liveNow } from '../providers/espn.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
@@ -174,12 +175,18 @@ async function buildPicks(buckets, ratings) {
       return {
         ...row,
         market,
+        rawOdds: row.odds,
         prediction: predictMatch(ratings, { homeTeam: home, awayTeam: away }),
       };
     })
     .filter(Boolean);
 
   const picks = buildConsensusPicks(withData, buckets, { limit: 40 });
+
+  const mercados = JSON.parse(
+    await readFile(join(DATA_DIR, 'calibration-mercados.json'), 'utf8'),
+  );
+  const picksMercado = buildMercadoPicks(withData, mercados, { limit: 25 });
 
   let live = [];
   try {
@@ -188,13 +195,13 @@ async function buildPicks(buckets, ratings) {
     /* sin partidos en vivo */
   }
 
-  return { fixtures: withData.length, picks, live };
+  return { fixtures: withData.length, picks, picksMercado, live, mercados };
 }
 
 // ------------------------------------------------------------------------ run
 const calibration = await buildCalibration();
 const ratings = await buildRatingsCache();
-const { fixtures, picks, live } = await buildPicks(calibration.buckets, ratings);
+const { fixtures, picks, picksMercado, live, mercados } = await buildPicks(calibration.buckets, ratings);
 
 const payload = {
   generado: new Date().toISOString(),
@@ -205,8 +212,21 @@ const payload = {
     consensoN: calibration.consensoN,
     nota: 'Acierto empirico de los picks de consenso, medido sobre partidos ya jugados.',
   },
-  resumen: { partidosConDatos: fixtures, picks: picks.length, enVivo: live.length },
+  mercados: {
+    overUnder25: mercados.overUnder25.operativo,
+    handicap: mercados.handicap.operativo,
+    handicapMotivo: mercados.handicap.motivo,
+    btts: mercados.btts.operativo,
+    bttsNota: mercados.btts.nota,
+  },
+  resumen: {
+    partidosConDatos: fixtures,
+    picks: picks.length,
+    picksMercado: picksMercado.length,
+    enVivo: live.length,
+  },
   picks,
+  picksMercado,
   live,
 };
 
@@ -216,6 +236,7 @@ await writeFile(path, JSON.stringify(payload, null, 2));
 
 log(`fixtures con datos: ${fixtures}`);
 log(`picks de consenso: ${picks.length}`);
+log(`picks de mercado (O/U + BTTS): ${picksMercado.length}`);
 log(`partidos en vivo: ${live.length}`);
 log(`escrito: ${path}`);
 for (const p of picks.slice(0, 5)) {

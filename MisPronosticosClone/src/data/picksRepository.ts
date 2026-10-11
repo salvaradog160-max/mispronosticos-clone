@@ -5,15 +5,25 @@ export type MatchStatus = 'not-started' | 'live' | 'finished';
 
 export interface PicksQuery {
   leagueId?: string;
+  market?: Pick['market'];
   minConfidence?: number;
   maxOdds?: number;
   limit?: number;
+}
+
+export interface MercadosInfo {
+  overUnder25: boolean;
+  handicap: boolean;
+  handicapMotivo?: string;
+  btts: boolean;
+  bttsNota?: string;
 }
 
 export interface PicksRepository {
   listTopPicks(query: PicksQuery): Promise<Pick[]>;
   listLiveMatches(): Promise<Match[]>;
   listSpecials(): Promise<Pick[]>;
+  listMercados?(): Promise<MercadosInfo | null>;
 }
 
 export const gate = (pick: Pick, minConfidence: number, minStars: number): boolean =>
@@ -27,6 +37,7 @@ export const filterPicks = (
 ): Pick[] =>
   picks
     .filter(pick => gate(pick, minConfidence, minStars))
+    .filter(pick => (query.market ? pick.market === query.market : true))
     .filter(pick => (query.minConfidence ? pick.confidence >= query.minConfidence : true))
     .filter(pick => (query.maxOdds ? pick.odds <= query.maxOdds : true))
     .filter(pick => (query.leagueId ? true : true))

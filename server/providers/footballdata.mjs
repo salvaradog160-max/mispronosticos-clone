@@ -54,6 +54,11 @@ export const parseCsv = (text, league, season) => {
   const iA0 = col('AvgA') >= 0 ? col('AvgA') : col('B365A');
   const iO25o = col('Avg>2.5');
   const iU25o = col('Avg<2.5');
+  const iAH = col('AHh');
+  const iAHHo = col('AvgAHH');
+  const iAHAo = col('AvgAHA');
+  const iAHHc = col('AvgCAHH');
+  const iAHAc = col('AvgCAHA');
 
   if (iFthg < 0 || iFtag < 0) throw new Error('CSV sin columnas de resultado');
 
@@ -87,6 +92,15 @@ export const parseCsv = (text, league, season) => {
         A: num(cells[iA0]),
         over25: num(cells[iO25o]),
         under25: num(cells[iU25o]),
+        ahHome: num(cells[iAHHo]),
+        ahAway: num(cells[iAHAo]),
+      },
+      // Handicap Asiatico. `ahLine` viene ya con el signo que aplica al
+      // local (negativo = local da goles). -0.5, 0, -1.25, ...
+      ahLine: num(cells[iAH]),
+      oddsCloseAH: {
+        ahHome: num(cells[iAHHc]),
+        ahAway: num(cells[iAHAc]),
       },
     });
   }
