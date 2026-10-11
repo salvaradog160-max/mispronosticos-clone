@@ -40,6 +40,13 @@ const scoreboard = async league => {
     const h = c.competitors?.find(x => x.homeAway === 'home');
     const a = c.competitors?.find(x => x.homeAway === 'away');
     const provider = (c.odds?.[0]?.provider?.id) ?? '100';
+    const state = c.status?.type?.state ?? null;
+
+    // ESPN devuelve score "0" en partidos POR JUGAR. No es un cero real,
+    // es un valor por defecto. Guardarlo como 0-0 hacia que un partido sin
+    // jugar se cuente como empate. Solo hay marcador si empezo.
+    const empezada = state === 'in' || state === 'post';
+
     return {
       eventId: String(e.id),
       league,
@@ -48,9 +55,10 @@ const scoreboard = async league => {
       homeId: h?.team?.id ?? null,
       awayId: a?.team?.id ?? null,
       commenceTime: e.date,
-      status: c.status?.type?.state ?? null,
-      scoreHome: h?.score != null ? Number(h.score) : null,
-      scoreAway: a?.score != null ? Number(a.score) : null,
+      status: state,
+      scoreHome: empezada && h?.score != null ? Number(h.score) : null,
+      scoreAway: empezada && a?.score != null ? Number(a.score) : null,
+      bookmaker: 'draftkings',
       provider,
     };
   });
@@ -76,33 +84,58 @@ const lineaEvento = async (league, ev) => {
   }
 
   const quotes = [];
-  const push = (market, side, line, node) => {
-    const opened = toDecimal(node?.open?.moneyLine?.american);
-    const current = toDecimal(node?.moneyLine);
-    const closed = toDecimal(node?.close?.moneyLine?.american);
+
+  // Cada mercado lee SU PROPIO campo. Antes se usaba `moneyLine` para los
+  // dos y por eso el handicap salia copia del 1X2:
+  //   moneyLine    = 225   <- precio del 1X2 (local gana)
+  //   spreadOdds   = -145  <- precio del handicap (local -0.5)
+  const push = (market, side, line, node, campo) => {
+    const f = campo ?? 'moneyLine';
+    const opened = toDecimal(node?.open?.[f]?.american);
+    const current = toDecimal(node?.[f]);
+    const closed = toDecimal(node?.close?.[f]?.american);
     if (opened == null && current == null && closed == null) return;
     quotes.push({ market, side, line: line ?? null, opened, current, closed });
   };
 
-  push('moneyline', 'home', null, o.homeTeamOdds);
-  push('moneyline', 'away', null, o.awayTeamOdds);
+  push('moneyline', 'home', null, o.homeTeamOdds, 'moneyLine');
+  push('moneyline', 'away', null, o.awayTeamOdds, 'moneyLine');
+
+  // Handicap: el precio va en spreadOdds y la linea en pointSpread.
+  // La linea de apertura puede diferir de la actual (p. ej. abrio en
+  // -0.5 y esta en -1.0), asi que se guarda la que corresponda.
+  const lineaActual = o.spread ?? null;
+  const lineaApertura = Number(o.open?.pointSpread?.american);
+  const lineaCierre = Number(o.close?.pointSpread?.american);
+
+  for (const [side, node] of [['home', o.homeTeamOdds], ['away', o.awayTeamOdds]]) {
+    const sp = node?.spreadOdds ?? node?.open?.spread;
+    if (sp == null) continue;
+    quotes.push({
+      market: 'spread',
+      side,
+      line: lineaActual,
+      opened: toDecimal(node?.open?.spread?.american),
+      current: toDecimal(node?.spreadOdds),
+      closed: toDecimal(node?.close?.spread?.american),
+    });
+  }
+  void lineaApertura;
+  void lineaCierre;
 
   // Total de goles: over/under salen como numero plano, no como objeto.
+  // OJO: `open.overOdds` llega NULL en ESPN, asi que el mercado total no
+  // tiene apertura. No se inventa: se guarda lo que hay.
   const ou = o.overOdds != null ? toDecimal(o.overOdds) : null;
-  const ouOpen = toDecimal(o.open?.overOdds);
-  const ouClose = toDecimal(o.close?.overOdds);
-  if (ou != null || ouOpen != null || ouClose != null) {
-    quotes.push({ market: 'total', side: 'over', line: o.overUnder ?? null, opened: ouOpen, current: ou, closed: ouClose });
-  }
   const un = o.underOdds != null ? toDecimal(o.underOdds) : null;
-  if (un != null || toDecimal(o.open?.underOdds) != null) {
-    quotes.push({ market: 'total', side: 'under', line: o.overUnder ?? null, opened: toDecimal(o.open?.underOdds), current: un, closed: toDecimal(o.close?.underOdds) });
+  if (ou != null || toDecimal(o.open?.overOdds) != null || toDecimal(o.close?.overOdds) != null) {
+    quotes.push({ market: 'total', side: 'over', line: o.overUnder ?? null,
+      opened: toDecimal(o.open?.overOdds), current: ou, closed: toDecimal(o.close?.overOdds) });
   }
-
-  // Handicap.
-  const sp = o.spread ?? null;
-  push('spread', 'home', sp, o.homeTeamOdds);
-  push('spread', 'away', sp, o.awayTeamOdds);
+  if (un != null || toDecimal(o.open?.underOdds) != null || toDecimal(o.close?.underOdds) != null) {
+    quotes.push({ market: 'total', side: 'under', line: o.overUnder ?? null,
+      opened: toDecimal(o.open?.underOdds), current: un, closed: toDecimal(o.close?.underOdds) });
+  }
 
   return { ...ev, quotes };
 };
