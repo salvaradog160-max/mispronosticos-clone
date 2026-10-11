@@ -23,9 +23,25 @@ export const margen = (confidence, odds) => confidence - breakEven(odds);
 /** Filtro de produccion: EV+5pp. El unico que dio dinero en el backtest. */
 export const MARGEN_MINIMO = 0.05;
 
+/**
+ * Margen maximo razonable.
+ *
+ * Sale de la leccion del motor del producto de referencia: entre su
+ * sweet spot (1.5-6pp) y su extremo (12pp) el edge es sospechoso, y mas
+ * alla de 12pp casi siempre es un ERROR DE DATO, no una ganga (cuota
+ * vieja, probabilidad duplicada, partido suspendido). Un margen "tan
+ * bueno que ni las casas lo ven" no existe en la realidad.
+ *
+ * Aqui no se castiga progresivamente: se RECHAZA de plano por arriba,
+ * que es mas simple y mas seguro que publicar un pick absurdamente
+ * bueno que luego no significa nada.
+ */
+export const MARGEN_MAXIMO = 0.15;
+
 export const esRentable = (confidence, odds, margenMinimo = MARGEN_MINIMO) => {
   if (!odds || odds <= 1) return false;
-  return margen(confidence, odds) >= margenMinimo;
+  const m = margen(confidence, odds);
+  return m >= margenMinimo && m <= MARGEN_MAXIMO;
 };
 
 /**
@@ -43,7 +59,7 @@ export const evaluarPick = (confidence, odds, margenMinimo = MARGEN_MINIMO) => {
     roiUnit,
     margen: confidence - be,
     breakEven: be,
-    rentable: margen(confidence, odds) >= margenMinimo,
+    rentable: margen(confidence, odds) >= margenMinimo && margen(confidence, odds) <= MARGEN_MAXIMO,
   };
 };
 

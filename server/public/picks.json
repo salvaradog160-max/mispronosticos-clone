@@ -1,6 +1,6 @@
 {
-  "generado": "2026-10-11T16:10:20.958Z",
-  "anterior": "2026-10-11T14:37:58.925Z",
+  "generado": "2026-10-11T16:23:44.585Z",
+  "anterior": "2026-10-11T16:10:20.958Z",
   "fuente": "football-data.co.uk + ESPN (sin claves)",
   "calibracion": {
     "partidos": 35973,
@@ -20,7 +20,7 @@
     "picks": 5,
     "picksMercado": 0,
     "descartados": 50,
-    "enVivo": 5
+    "enVivo": 4
   },
   "descarte": {
     "criterio": "Se publica solo lo que acierta mas de lo que la cuota cobra, con 5pp de margen.",
@@ -823,22 +823,22 @@
       "cambioFavorito": false,
       "goles": {
         "linea": 2.5,
-        "overround": 1.0794,
+        "overround": 1.0693,
         "over": {
           "lado": "Over",
-          "cuota": 1.8,
-          "probMercado": 0.5147,
-          "probMercadoPct": 51.5,
+          "cuota": 1.83,
+          "probMercado": 0.5101,
+          "probMercadoPct": 51,
           "probModelo": 33,
-          "margenPp": -18.5
+          "margenPp": -18
         },
         "under": {
           "lado": "Under",
           "cuota": 1.91,
-          "probMercado": 0.4853,
-          "probMercadoPct": 48.5,
+          "probMercado": 0.4899,
+          "probMercadoPct": 49,
           "probModelo": 67,
-          "margenPp": 18.5
+          "margenPp": 18
         }
       },
       "lineaGoles": 2.5,
@@ -904,6 +904,59 @@
         "necesita": 0.42,
         "cuotaNecesaria": 2.380952380952381,
         "cuotaActual": 2.0244233378561733
+      }
+    },
+    {
+      "partido": "Boyacá Chicó FC vs Cúcuta Deportivo",
+      "liga": "Liga BetPlay",
+      "ligaKey": "col.1",
+      "escudoLocal": "https://a.espncdn.com/i/teamlogos/soccer/500/5480.png",
+      "escudoVisita": "https://a.espncdn.com/i/teamlogos/soccer/500/6101.png",
+      "colorLocal": "0202db",
+      "colorVisita": "320101",
+      "sede": "La Independencia",
+      "calibracion": "propia",
+      "kickoff": "2026-10-11T23:10Z",
+      "favoritoMercado": "H",
+      "ladoMercado": "Boyacá Chicó FC",
+      "probMercado": 0.4618,
+      "cuotaMercado": 2,
+      "cuotaApertura": 2.15,
+      "ladoModelo": "Cúcuta Deportivo",
+      "probModelo": 0.3974,
+      "coincide": false,
+      "movimiento": 3.32,
+      "cambioFavorito": false,
+      "goles": {
+        "linea": 2.5,
+        "overround": 1.0762,
+        "over": {
+          "lado": "Over",
+          "cuota": 2.1,
+          "probMercado": 0.4425,
+          "probMercadoPct": 44.2,
+          "probModelo": 66,
+          "margenPp": 21.7
+        },
+        "under": {
+          "lado": "Under",
+          "cuota": 1.67,
+          "probMercado": 0.5575,
+          "probMercadoPct": 55.8,
+          "probModelo": 34,
+          "margenPp": -21.7
+        }
+      },
+      "lineaGoles": 2.5,
+      "estado": "programado",
+      "marcador": null,
+      "resultado": null,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.46177847113884557,
+        "necesita": 0.42,
+        "cuotaNecesaria": 2.380952380952381,
+        "cuotaActual": 2.1655405405405403
       }
     },
     {
@@ -1487,59 +1540,6 @@
         "necesita": 0.42,
         "cuotaNecesaria": 2.380952380952381,
         "cuotaActual": 2.126984126984127
-      }
-    },
-    {
-      "partido": "Boyacá Chicó FC vs Cúcuta Deportivo",
-      "liga": "Liga BetPlay",
-      "ligaKey": "col.1",
-      "escudoLocal": "https://a.espncdn.com/i/teamlogos/soccer/500/5480.png",
-      "escudoVisita": "https://a.espncdn.com/i/teamlogos/soccer/500/6101.png",
-      "colorLocal": "0202db",
-      "colorVisita": "320101",
-      "sede": "La Independencia",
-      "calibracion": "propia",
-      "kickoff": "2026-10-11T23:10Z",
-      "favoritoMercado": "H",
-      "ladoMercado": "Boyacá Chicó FC",
-      "probMercado": 0.4412,
-      "cuotaMercado": 2.1,
-      "cuotaApertura": 2.15,
-      "ladoModelo": "Cúcuta Deportivo",
-      "probModelo": 0.3974,
-      "coincide": false,
-      "movimiento": 1.46,
-      "cambioFavorito": false,
-      "goles": {
-        "linea": 2.5,
-        "overround": 1.0762,
-        "over": {
-          "lado": "Over",
-          "cuota": 2.1,
-          "probMercado": 0.4425,
-          "probMercadoPct": 44.2,
-          "probModelo": 66,
-          "margenPp": 21.7
-        },
-        "under": {
-          "lado": "Under",
-          "cuota": 1.67,
-          "probMercado": 0.5575,
-          "probMercadoPct": 55.8,
-          "probModelo": 34,
-          "margenPp": -21.7
-        }
-      },
-      "lineaGoles": 2.5,
-      "estado": "programado",
-      "marcador": null,
-      "resultado": null,
-      "goodToLine": {
-        "ejecutable": false,
-        "probActual": 0.4411764705882353,
-        "necesita": 0.38,
-        "cuotaNecesaria": 2.6315789473684212,
-        "cuotaActual": 2.2666666666666666
       }
     },
     {
@@ -2908,7 +2908,7 @@
         73.2,
         75.5
       ],
-      "createdAt": "2026-10-11T16:10:20.902Z",
+      "createdAt": "2026-10-11T16:23:44.470Z",
       "roiUnit": 0.14,
       "margen": 0.09087719298245611,
       "breakEven": 0.6491228070175439,
@@ -2934,7 +2934,7 @@
         73.2,
         75.5
       ],
-      "createdAt": "2026-10-11T16:10:20.902Z",
+      "createdAt": "2026-10-11T16:23:44.470Z",
       "roiUnit": 0.10999999999999999,
       "margen": 0.07333333333333336,
       "breakEven": 0.6666666666666666,
@@ -2960,7 +2960,7 @@
         73.2,
         75.5
       ],
-      "createdAt": "2026-10-11T16:10:20.902Z",
+      "createdAt": "2026-10-11T16:23:44.470Z",
       "roiUnit": 0.10097560975609754,
       "margen": 0.06786885245901642,
       "breakEven": 0.6721311475409836,
@@ -2986,7 +2986,7 @@
         73.2,
         75.5
       ],
-      "createdAt": "2026-10-11T16:10:20.902Z",
+      "createdAt": "2026-10-11T16:23:44.470Z",
       "roiUnit": 0.09238095238095245,
       "margen": 0.06258064516129036,
       "breakEven": 0.6774193548387096,
@@ -3012,7 +3012,7 @@
         73.2,
         75.5
       ],
-      "createdAt": "2026-10-11T16:10:20.902Z",
+      "createdAt": "2026-10-11T16:23:44.470Z",
       "roiUnit": 0.11948717948717946,
       "margen": 0.0789830508474576,
       "breakEven": 0.6610169491525424,
@@ -3028,8 +3028,8 @@
       "leagueKey": "eng.1",
       "kickoff": "2026-10-11T15:30Z",
       "status": "in",
-      "statusDetail": "39'",
-      "minute": "39'",
+      "statusDetail": "HT",
+      "minute": "45'+1'",
       "period": 1,
       "homeTeam": "Liverpool",
       "awayTeam": "Manchester City",
@@ -3060,52 +3060,14 @@
       }
     },
     {
-      "id": "401882847",
-      "league": "esp.1",
-      "leagueName": "La Liga",
-      "leagueKey": "esp.1",
-      "kickoff": "2026-10-11T14:15Z",
-      "status": "in",
-      "statusDetail": "90'+5'",
-      "minute": "90'+5'",
-      "period": 2,
-      "homeTeam": "Real Sociedad",
-      "awayTeam": "Deportivo",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/89.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/90.png",
-      "homeColor": "3366CC",
-      "awayColor": "3366CC",
-      "homeKey": "realsociedad",
-      "awayKey": "",
-      "homeScore": 3,
-      "awayScore": 2,
-      "venue": "Reale Arena",
-      "odds": {
-        "H": 1.7692307692307692,
-        "A": 4.5,
-        "D": 3.8,
-        "apertura": {
-          "H": 1.8695652173913042,
-          "A": 3.95,
-          "D": 3.8,
-          "over": 1.8,
-          "under": 1.9090909090909092
-        },
-        "provider": "DraftKings",
-        "line": 2.5,
-        "over": 1.7692307692307692,
-        "under": 2.05
-      }
-    },
-    {
       "id": "401874789",
       "league": "ita.1",
       "leagueName": "Serie A",
       "leagueKey": "ita.1",
       "kickoff": "2026-10-11T16:00Z",
       "status": "in",
-      "statusDetail": "9'",
-      "minute": "9'",
+      "statusDetail": "23'",
+      "minute": "23'",
       "period": 1,
       "homeTeam": "Sassuolo",
       "awayTeam": "AC Milan",
@@ -3142,8 +3104,8 @@
       "leagueKey": "ger.1",
       "kickoff": "2026-10-11T15:30Z",
       "status": "in",
-      "statusDetail": "41'",
-      "minute": "41'",
+      "statusDetail": "HT",
+      "minute": "45'+4'",
       "period": 1,
       "homeTeam": "SC Freiburg",
       "awayTeam": "Schalke 04",
@@ -3180,9 +3142,9 @@
       "leagueKey": "fra.1",
       "kickoff": "2026-10-11T15:15Z",
       "status": "in",
-      "statusDetail": "HT",
-      "minute": "45'+3'",
-      "period": 1,
+      "statusDetail": "51'",
+      "minute": "51'",
+      "period": 2,
       "homeTeam": "Stade Rennais",
       "awayTeam": "AJ Auxerre",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/169.png",
@@ -4953,6 +4915,20 @@
             },
             {
               "posicion": 2,
+              "equipo": "Almería",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/6832.png",
+              "color": null,
+              "pj": 9,
+              "ganados": 7,
+              "empatados": 0,
+              "perdidos": 2,
+              "puntos": 21,
+              "diferencia": 11,
+              "aFavor": 16,
+              "enContra": 5
+            },
+            {
+              "posicion": 3,
               "equipo": "Castellón",
               "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/4438.png",
               "color": null,
@@ -4964,20 +4940,6 @@
               "diferencia": 11,
               "aFavor": 15,
               "enContra": 4
-            },
-            {
-              "posicion": 3,
-              "equipo": "Almería",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/6832.png",
-              "color": null,
-              "pj": 8,
-              "ganados": 6,
-              "empatados": 0,
-              "perdidos": 2,
-              "puntos": 18,
-              "diferencia": 8,
-              "aFavor": 13,
-              "enContra": 5
             },
             {
               "posicion": 4,
@@ -5138,14 +5100,14 @@
               "equipo": "Leganés",
               "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/17534.png",
               "color": null,
-              "pj": 8,
+              "pj": 9,
               "ganados": 3,
               "empatados": 2,
-              "perdidos": 3,
+              "perdidos": 4,
               "puntos": 11,
-              "diferencia": -5,
+              "diferencia": -8,
               "aFavor": 6,
-              "enContra": 11
+              "enContra": 14
             },
             {
               "posicion": 16,
@@ -6934,6 +6896,20 @@
             },
             {
               "posicion": 6,
+              "equipo": "Real Sociedad",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/89.png",
+              "color": null,
+              "pj": 8,
+              "ganados": 4,
+              "empatados": 1,
+              "perdidos": 3,
+              "puntos": 13,
+              "diferencia": -3,
+              "aFavor": 12,
+              "enContra": 15
+            },
+            {
+              "posicion": 7,
               "equipo": "Alavés",
               "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/96.png",
               "color": null,
@@ -6947,32 +6923,18 @@
               "enContra": 8
             },
             {
-              "posicion": 7,
+              "posicion": 8,
               "equipo": "Deportivo",
               "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/90.png",
               "color": null,
-              "pj": 7,
+              "pj": 8,
               "ganados": 2,
               "empatados": 4,
-              "perdidos": 1,
+              "perdidos": 2,
               "puntos": 10,
-              "diferencia": 2,
-              "aFavor": 10,
-              "enContra": 8
-            },
-            {
-              "posicion": 8,
-              "equipo": "Real Sociedad",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/89.png",
-              "color": null,
-              "pj": 7,
-              "ganados": 3,
-              "empatados": 1,
-              "perdidos": 3,
-              "puntos": 10,
-              "diferencia": -4,
-              "aFavor": 9,
-              "enContra": 13
+              "diferencia": 1,
+              "aFavor": 12,
+              "enContra": 11
             },
             {
               "posicion": 9,

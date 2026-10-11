@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { breakEven, margen, esRentable, evaluarPick, anotarValor, MARGEN_MINIMO } from './valor.mjs';
+import { breakEven, margen, esRentable, evaluarPick, anotarValor, MARGEN_MINIMO, MARGEN_MAXIMO } from './valor.mjs';
 
 test('breakEven: a cuota 2.00 necesitas 50%', () => {
   assert.equal(breakEven(2), 0.5);
@@ -49,6 +49,23 @@ test('esRentable exige el margen minimo de 5pp', () => {
   assert.equal(MARGEN_MINIMO, 0.05);
 });
 
+test('esRentable: margen extremo se rechaza, casi siempre es error de dato', () => {
+  // Leccion del motor de referencia: >12pp de edge no existe en la
+  // realidad, es cuota vieja o dato roto. Rechazo de plano.
+  // 0.90 a 1.20 -> break-even 83.3%, margen 6.7pp: normal, pasa.
+  assert.equal(esRentable(0.90, 1.20), true, 'dentro del rango sano');
+  // 0.90 a 1.05 -> break-even 95.2%, margen -5.2pp: ni siquiera llega al minimo.
+  // 0.99 a 1.10 -> break-even 90.9%, margen 8.1pp: pasa.
+  assert.equal(esRentable(0.99, 1.10), true);
+  // 0.98 a 1.06 -> break-even 94.3%, margen 3.7pp: no llega al minimo.
+  // 0.80 a 1.10 -> break-even 90.9%, margen negativo: se va.
+  assert.equal(esRentable(0.80, 1.10), false);
+  // Un 78% a 1.05 -> break-even 95.2%: margen -17pp, imposible.
+  assert.equal(esRentable(0.78, 1.05), false);
+  // MARGEN_MAXIMO esta definido y es razonable.
+  assert.ok(MARGEN_MAXIMO >= 0.10 && MARGEN_MAXIMO <= 0.20, 'tope sano');
+});
+
 test('esRentable: margen menor a 5pp se descarta', () => {
   // 0.58 a 1.50: break-even 66.7%, margen muy negativo
   assert.equal(esRentable(0.58, 1.5), false);
@@ -66,14 +83,15 @@ test('sin cuota no se puede evaluar, no se cuela como rentable', () => {
 
 test('anotarValor separa lo que es rentable de lo que no', () => {
   const picks = [
-    { id: 'a', confidence: 73, odds: 1.54 }, // rentable
-    { id: 'b', confidence: 57, odds: 1.63 }, // no
-    { id: 'c', confidence: 60, odds: 1.30 }, // no, cuota muy baja
-    { id: 'd', confidence: 76, odds: 1.67 }, // rentable
+    { id: 'a', confidence: 73, odds: 1.54 }, // 73 vs 64.9 -> +8.1pp, rentable
+    { id: 'b', confidence: 57, odds: 1.63 }, // -4.3pp, no
+    { id: 'c', confidence: 60, odds: 1.30 }, // cuota muy baja, no
+    { id: 'd', confidence: 76, odds: 1.67 }, // +16.1pp: EXTREMO, se rechaza (cuota sospechosa)
+    { id: 'e', confidence: 70, odds: 1.55 }, // 70 vs 64.5 -> +5.5pp, rentable
   ];
   const { rented, descartados } = anotarValor(picks);
-  assert.deepEqual(rented.map(p => p.id), ['a', 'd']);
-  assert.deepEqual(descartados.map(p => p.id), ['b', 'c']);
+  assert.deepEqual(rented.map(p => p.id), ['a', 'e'], 'rentables dentro del rango sano');
+  assert.deepEqual(descartados.map(p => p.id).sort(), ['b', 'c', 'd'], 'd cae por margen extremo');
 });
 
 test('anotarValor agrega las metricas al pick', () => {
