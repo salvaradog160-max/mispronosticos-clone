@@ -10,5 +10,8 @@
     "test": "node --test engine/",
     "backtest": "node scripts/backtest.mjs",
     "start": "node src/index.mjs"
+  },
+  "dependencies": {
+    "pg": "^8.23.1"
   }
 }
