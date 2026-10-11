@@ -2,6 +2,7 @@
  * Proveedor ESPN — resultados en vivo y fixtures, sin key.
  * Cubre 500+ competiciones, incluida Liga MX.
  */
+import { NOMBRES_LIGA } from '../config/ligas.mjs';
 const BASE = 'https://site.api.espn.com/apis/site/v2/sports/soccer';
 
 export const LEAGUES = {
@@ -111,7 +112,8 @@ export const scoreboard = async (league, yyyymmdd) => {
     return {
       id: String(event.id),
       league,
-      leagueName: LEAGUES[league] ?? league,
+      leagueName: NOMBRES_LIGA[league] ?? league,
+      leagueKey: league,
       kickoff: event.date,
       status: event.status?.type?.state ?? 'pre',
       statusDetail: event.status?.type?.shortDetail ?? '',

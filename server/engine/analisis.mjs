@@ -22,6 +22,13 @@ const NOMBRE = { H: 'local', D: 'empate', A: 'visitante' };
  * @param partido  { homeTeam, awayTeam, kickoff, leagueName, odds }
  * @param probs    probabilidades del modelo (ya sin margen)
  */
+/**
+ * Las ligas de america se analizan con ratings propios (ESPN da
+ * resultados historicos), pero SIN cuotas historicas, asi que no tienen
+ * calibracion propia. Se marca para que la app no lo esconda.
+ */
+export const LIGAS_SIN_CALIBRACION = new Set(['mex.1', 'bra.1', 'usa.1', 'arg.1', 'col.1', 'chi.1']);
+
 export const analizar = (partido, probs) => {
   const o = partido.odds;
   const actual = o ? probs1x2(o.H, o.D, o.A) : null;
@@ -46,6 +53,7 @@ export const analizar = (partido, probs) => {
   return {
     partido: `${partido.homeTeam} vs ${partido.awayTeam}`,
     liga: partido.leagueName,
+    calibracion: LIGAS_SIN_CALIBRACION.has(partido.leagueKey) ? 'europea' : 'propia',
     kickoff: partido.kickoff,
 
     // Que dice el mercado

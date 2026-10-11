@@ -63,6 +63,7 @@ interface ServerPickShape {
 interface AnalisisFila {
   partido: string;
   liga: string;
+  calibracion: 'propia' | 'europea';
   kickoff: string;
   favoritoMercado: string;
   ladoMercado: string;

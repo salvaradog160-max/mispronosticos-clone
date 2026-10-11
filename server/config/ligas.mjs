@@ -29,6 +29,16 @@ export const LEAGUES_HISTORIA = [
 ];
 
 export const NOMBRES_LIGA = {
+  // ESPN
+  'mex.1': 'Liga MX',
+  'bra.1': 'Brasileirão',
+  'usa.1': 'MLS',
+  'arg.1': 'Liga Profesional',
+  'col.1': 'Liga BetPlay',
+  'chi.1': 'Liga Chile',
+  'per.1': 'Liga Peruana',
+  'uru.1': 'Liga Uruguaya',
+  // football-data.co.uk
   E1: 'Premier League',
   SP1: 'La Liga',
   I1: 'Serie A',
@@ -46,6 +56,13 @@ export const NOMBRES_LIGA = {
 };
 
 /** Divisiones de ESPN para los partidos por venir (con su clave propia). */
+/**
+ * ligas de america: ESPN da resultados historicos, NO cuotas
+ * historicas. El modelo se construye igual; la calibracion es la
+ * europea y por eso el analisis las marca distinto.
+ */
+export const LIGAS_AMERICA = ['mex.1', 'bra.1', 'usa.1', 'arg.1', 'col.1', 'chi.1'];
+
 export const LIGAS_ESPIN = [
   'eng.1', 'esp.1', 'ita.1', 'ger.1', 'fra.1',
   'ned.1', 'por.1', 'bel.1', 'tur.1', 'sco.1',

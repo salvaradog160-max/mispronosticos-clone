@@ -114,7 +114,10 @@ export default function TopAiScreen({ config = DEFAULTS }: Props) {
             </View>
           </View>
 
-          <Text style={styles.liga}>{item.liga}</Text>
+          <Text style={styles.liga}>
+            {item.liga}
+            {item.calibracion === 'europea' ? '  ·  calibración heredada de Europa' : ''}
+          </Text>
 
           <View style={styles.cifras}>
             <View style={styles.cifra}>

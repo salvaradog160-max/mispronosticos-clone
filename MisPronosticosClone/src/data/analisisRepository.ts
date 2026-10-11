@@ -3,6 +3,7 @@ import type { AppConfig } from '../config';
 export interface AnalisisFila {
   partido: string;
   liga: string;
+  calibracion: 'propia' | 'europea';
   kickoff: string;
   ladoMercado: string;
   probMercado: number;

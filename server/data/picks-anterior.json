@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-11T02:42:10.010Z",
+  "generado": "2026-10-11T02:59:07.626Z",
   "picks": [
     {
       "id": "401875005-H",
@@ -21,7 +21,7 @@
         73.1,
         75.5
       ],
-      "createdAt": "2026-10-11T02:42:09.910Z",
+      "createdAt": "2026-10-11T02:59:07.551Z",
       "roiUnit": 0.14,
       "margen": 0.09087719298245611,
       "breakEven": 0.6491228070175439,
@@ -47,7 +47,7 @@
         73.1,
         75.5
       ],
-      "createdAt": "2026-10-11T02:42:09.910Z",
+      "createdAt": "2026-10-11T02:59:07.551Z",
       "roiUnit": 0.10999999999999999,
       "margen": 0.07333333333333336,
       "breakEven": 0.6666666666666666,
@@ -73,10 +73,88 @@
         73.1,
         75.5
       ],
-      "createdAt": "2026-10-11T02:42:09.910Z",
+      "createdAt": "2026-10-11T02:59:07.551Z",
       "roiUnit": 0.1628571428571428,
       "margen": 0.10363636363636364,
       "breakEven": 0.6363636363636364,
+      "rentable": true
+    },
+    {
+      "id": "401841263-H",
+      "fixtureId": "401841263",
+      "league": "bra.1",
+      "kickoff": "2026-10-11T20:30Z",
+      "homeTeam": "Flamengo",
+      "awayTeam": "Fluminense",
+      "market": "1X2",
+      "selection": "Gana Flamengo",
+      "odds": 1.4545454545454546,
+      "confidence": 74,
+      "stars": 4,
+      "isSpecial": false,
+      "isPremium": false,
+      "probMercado": 0.646,
+      "nMuestra": 5320,
+      "rango": [
+        73.1,
+        75.5
+      ],
+      "createdAt": "2026-10-11T02:59:07.551Z",
+      "roiUnit": 0.07636363636363636,
+      "margen": 0.05249999999999999,
+      "breakEven": 0.6875,
+      "rentable": true
+    },
+    {
+      "id": "761859-H",
+      "fixtureId": "761859",
+      "league": "usa.1",
+      "kickoff": "2026-10-11T23:00Z",
+      "homeTeam": "St. Louis CITY SC",
+      "awayTeam": "LA Galaxy",
+      "market": "1X2",
+      "selection": "Gana St. Louis CITY SC",
+      "odds": 1.526315789473684,
+      "confidence": 74,
+      "stars": 4,
+      "isSpecial": false,
+      "isPremium": false,
+      "probMercado": 0.609,
+      "nMuestra": 5320,
+      "rango": [
+        73.1,
+        75.5
+      ],
+      "createdAt": "2026-10-11T02:59:07.551Z",
+      "roiUnit": 0.12947368421052619,
+      "margen": 0.08482758620689645,
+      "breakEven": 0.6551724137931035,
+      "rentable": true
+    },
+    {
+      "id": "401850662-H",
+      "fixtureId": "401850662",
+      "league": "chi.1",
+      "kickoff": "2026-10-12T20:00Z",
+      "homeTeam": "Universidad de Chile",
+      "awayTeam": "Ñublense",
+      "market": "1X2",
+      "selection": "Gana Universidad de Chile",
+      "odds": 1.5128205128205128,
+      "confidence": 74,
+      "stars": 4,
+      "isSpecial": false,
+      "isPremium": false,
+      "probMercado": 0.612,
+      "nMuestra": 5320,
+      "rango": [
+        73.1,
+        75.5
+      ],
+      "createdAt": "2026-10-11T02:59:07.551Z",
+      "roiUnit": 0.11948717948717946,
+      "margen": 0.0789830508474576,
+      "breakEven": 0.6610169491525424,
       "rentable": true
     }
   ],

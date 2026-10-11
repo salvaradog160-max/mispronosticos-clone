@@ -9,7 +9,7 @@ import { writeFile, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { readFile } from 'node:fs/promises';
-import { LEAGUES_HISTORIA, LIGAS_ESPIN } from '../config/ligas.mjs';
+import { LEAGUES_HISTORIA, LIGAS_ESPIN, LIGAS_AMERICA, NOMBRES_LIGA } from '../config/ligas.mjs';
 import { fetchHistory, impliedProbs } from '../providers/footballdata.mjs';
 import { buildRatings, predictMatch } from '../engine/ratings.mjs';
 import { normalizeTeam, buildConsensusPicks } from '../engine/calibration.mjs';
@@ -162,7 +162,9 @@ async function buildRatingsCache() {
 
 // ---------------------------------------------------------------------- picks
 async function buildPicks(buckets, ratings) {
-  const targets = LIGAS_ESPIN;
+  // Sin esto, las ligas de america salen dos veces: ya estan en
+  // LIGAS_ESPIN y LIGAS_AMERICA las repite.
+  const targets = [...new Set([...LIGAS_ESPIN, ...LIGAS_AMERICA])];
   const results = await Promise.allSettled(targets.map(l => upcoming(l, 4)));
   const fixtures = results
     .filter(r => r.status === 'fulfilled')
@@ -212,7 +214,7 @@ async function buildPicks(buckets, ratings) {
     .map(f => {
       const p = f.prediction.oneXTwo;
       const total = p.H + p.D + p.A;
-      return analizar(f, total > 0 ? { H: p.H / total, D: p.D / total, A: p.A / total } : null);
+      return analizar({ ...f, leagueKey: f.leagueKey }, total > 0 ? { H: p.H / total, D: p.D / total, A: p.A / total } : null);
     })
     .filter(Boolean)
     .sort((a, b) => Math.abs(b.movimiento ?? 0) - Math.abs(a.movimiento ?? 0));
