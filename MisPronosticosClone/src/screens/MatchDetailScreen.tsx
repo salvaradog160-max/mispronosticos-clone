@@ -60,26 +60,56 @@ const Fila = ({ etiqueta, children }: { etiqueta: string; children: React.ReactN
 const color = (c?: string | null) => (c ? (c.startsWith('#') ? c : `#${c}`) : null);
 
 /**
- * Color de fondo tipo formato condicional de Excel (escala 3 colores),
- * igual que el `tint(d)` del HTML de referencia:
- *   d >= 0 -> verde (accent/success), d < 0 -> rojo (danger)
- * La intensidad crece con |d| hasta un tope. Sobre fondos oscuros.
+ * Color de fondo tipo formato condicional de Excel (escala 3 colores) en
+ * contraste con el promedio del bloque: por arriba del promedio queda verde,
+ * por abajo rojo; el mas alto es el verde mas fuerte y el mas bajo el rojo
+ * mas fuerte, neutro en el promedio. Sobre fondos oscuros.
  */
-const tintBg = (d: number, max = 40) => {
-  const alpha = Math.min(1, Math.abs(d)) * max;
-  return {
-    backgroundColor: d >= 0 ? `rgba(74,222,128,${alpha})` : `rgba(239,68,68,${alpha})`,
-  };
+const tintEscala = (p: number, prom: number, min: number, max: number) => {
+  if (p >= prom) {
+    const denom = max - prom;
+    const a = denom <= 0 ? 0 : Math.min(1, (p - prom) / denom);
+    return { backgroundColor: `rgba(74,222,128,${Math.round(a * 40) / 100})` };
+  }
+  const denom = prom - min;
+  const a = denom <= 0 ? 0 : Math.min(1, (prom - p) / denom);
+  return { backgroundColor: `rgba(239,68,68,${Math.round(a * 40) / 100})` };
 };
 
-/** Celdilla "X%" con fondo verde/rojo segun que tan cerca/fuerte de la
- * tendencia queda. p es 0..100 (% over) o el valor a colorear. */
-const CeldaPct = ({ p, tendencia }: { p: number; tendencia: 'over' | 'under' | 'neutro' }) => {
-  const d = tendencia === 'neutro' ? 0 : tendencia === 'over' ? (p - 50) / 50 : (50 - p) / 50;
+/** Celdilla "X%" coloreada contra el promedio del bloque. */
+const CeldaEscala = ({ p, prom, min, max }: { p: number; prom: number; min: number; max: number }) => (
+  <View style={[s.celdaPct, tintEscala(p, prom, min, max)]}>
+    <Text style={s.celdaPctTxt}>{Math.round(p)}%</Text>
+  </View>
+);
+
+type TendenciasCuadroT = {
+  ou: Array<{ linea: number; over: number; dev: number }>;
+  aa: number;
+  n: number;
+};
+
+/** Bloque completo de tendencias con escala por promedio (uno por contexto).
+ * Ambos anotan va como fila propia, destacada, con su celdilla. */
+const BloqueTendencias = ({ titulo, c }: { titulo: string; c: TendenciasCuadroT }) => {
+  const valores = [...c.ou.map(t => t.over), c.aa];
+  const min = Math.min(...valores);
+  const max = Math.max(...valores);
+  const prom = valores.reduce((s, v) => s + v, 0) / valores.length;
   return (
-    <View style={[s.celdaPct, d !== 0 ? tintBg(d * 2) : null]}>
-      <Text style={s.celdaPctTxt}>{Math.round(p)}%</Text>
-    </View>
+    <>
+      <Text style={s.subEtiqueta}>{titulo}</Text>
+      {c.ou.map(t => (
+        <Fila etiqueta={`O/U ${t.linea}`} key={`${titulo}-${t.linea}`}>
+          <CeldaEscala p={t.over} prom={prom} min={min} max={max} />
+          {t.dev ? <Text style={s.pie}> dev {t.dev}%</Text> : null}
+        </Fila>
+      ))}
+      <View style={s.filaAA}>
+        <Text style={s.aaEtiqueta}>Ambos anotan</Text>
+        <CeldaEscala p={c.aa} prom={prom} min={min} max={max} />
+      </View>
+    </>
   );
 };
 
@@ -634,52 +664,22 @@ export default function MatchDetailScreen({
             <>
               <Text style={s.seccion}>TENDENCIAS OVER/UNDER (HISTORIAL REAL)</Text>
               <Text style={s.aviso}>
-                % de partidos del historial que pasaron la línea. Verde = tendencia a Over, rojo = a Under.
-                En líneas enteras, dev = % que cayó justo en la línea. Últ.5 L/V junta al local y a la visita.
+                % de partidos del historial que pasaron la línea. Cada celda se compara contra el promedio del
+                bloque: por arriba del promedio verde, por abajo rojo (el más alto es el verde más fuerte). En
+                líneas enteras, dev = % que cayó justo en la línea. Últ.5 L/V junta al local y a la visita.
               </Text>
 
               {fila.combinado?.tendencias?.general ? (
                 <>
-                  <Text style={s.subEtiqueta}>General (últ. X de ambos)</Text>
-                  {fila.combinado.tendencias.general.ou.map(t => (
-                    <Fila etiqueta={`O/U ${t.linea}`} key={`g${t.linea}`}>
-                      <CeldaPct p={t.over} tendencia={t.over >= 50 ? 'over' : 'under'} />
-                      {t.dev ? <Text style={s.pie}> dev {t.dev}%</Text> : null}
-                    </Fila>
-                  ))}
-                  <Fila etiqueta="Ambos anotan">
-                    <CeldaPct p={fila.combinado.tendencias.general.aa} tendencia={fila.combinado.tendencias.general.aa >= 50 ? 'over' : 'under'} />
-                  </Fila>
+                  <BloqueTendencias titulo="General" c={fila.combinado.tendencias.general} />
                   <Text style={s.pie}>n = {fila.combinado.tendencias.general.n} partidos</Text>
 
                   {fila.combinado.tendencias.lv && (
-                    <>
-                      <Text style={s.subEtiqueta}>Últ. 5 L/V</Text>
-                      {fila.combinado.tendencias.lv.ou.map(t => (
-                        <Fila etiqueta={`O/U ${t.linea}`} key={`l${t.linea}`}>
-                          <CeldaPct p={t.over} tendencia={t.over >= 50 ? 'over' : 'under'} />
-                          {t.dev ? <Text style={s.pie}> dev {t.dev}%</Text> : null}
-                        </Fila>
-                      ))}
-                      <Fila etiqueta="Ambos anotan">
-                        <CeldaPct p={fila.combinado.tendencias.lv.aa} tendencia={fila.combinado.tendencias.lv.aa >= 50 ? 'over' : 'under'} />
-                      </Fila>
-                    </>
+                    <BloqueTendencias titulo="Últ. 5 L/V" c={fila.combinado.tendencias.lv} />
                   )}
 
                   {fila.combinado.tendencias.h2h && (
-                    <>
-                      <Text style={s.subEtiqueta}>H2H</Text>
-                      {fila.combinado.tendencias.h2h.ou.map(t => (
-                        <Fila etiqueta={`O/U ${t.linea}`} key={`h${t.linea}`}>
-                          <CeldaPct p={t.over} tendencia={t.over >= 50 ? 'over' : 'under'} />
-                          {t.dev ? <Text style={s.pie}> dev {t.dev}%</Text> : null}
-                        </Fila>
-                      ))}
-                      <Fila etiqueta="Ambos anotan">
-                        <CeldaPct p={fila.combinado.tendencias.h2h.aa} tendencia={fila.combinado.tendencias.h2h.aa >= 50 ? 'over' : 'under'} />
-                      </Fila>
-                    </>
+                    <BloqueTendencias titulo="H2H" c={fila.combinado.tendencias.h2h} />
                   )}
                 </>
               ) : (
@@ -834,6 +834,18 @@ const s = StyleSheet.create({
     alignItems: 'center',
   },
   celdaPctTxt: { color: palette.text, fontSize: fontSize.sm, fontWeight: '800' },
+
+  filaAA: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingVertical: spacing.sm,
+    marginTop: spacing.sm,
+    borderTopWidth: 2,
+    borderTopColor: palette.accent,
+    paddingTop: spacing.sm,
+  },
+  aaEtiqueta: { color: palette.accent, fontSize: fontSize.md, fontWeight: '900' },
 
   tarjetaPk: {
     backgroundColor: palette.surface,
