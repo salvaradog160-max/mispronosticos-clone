@@ -17,6 +17,12 @@ export interface LadoGoles {
 export interface AnalisisFila {
   partido: string;
   liga: string;
+  /** Escudos de cada equipo. Sin ellos la lista es una tabla de texto. */
+  escudoLocal?: string | null;
+  escudoVisita?: string | null;
+  colorLocal?: string | null;
+  colorVisita?: string | null;
+  sede?: string | null;
   calibracion: 'propia' | 'europea';
   kickoff: string;
   ladoMercado: string;

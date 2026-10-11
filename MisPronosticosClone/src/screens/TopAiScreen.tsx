@@ -44,6 +44,7 @@ export default function TopAiScreen({ config = DEFAULTS }: Props) {
   const discrepantes = data.filter(a => !a.coincide).length;
 
   return (
+    <>
     <FlatList
       data={ordenados}
       keyExtractor={(item, i) => `${item.partido}-${i}`}
@@ -107,7 +108,12 @@ export default function TopAiScreen({ config = DEFAULTS }: Props) {
         )
       }
       renderItem={({ item }: { item: AnalisisFila }) => (
-        <Pressable onPress={() => setDetalle(item)}>
+        <Pressable
+          onPress={() => setDetalle(item)}
+          android_ripple={{ color: palette.accentTint }}
+          accessibilityRole="button"
+          accessibilityLabel={`Ver detalle de ${item.partido}`}
+        >
         <Surface elevation={1} style={styles.card}>
           <View style={styles.row}>
             <Text variant="titleSmall" style={styles.partido} numberOfLines={2}>
@@ -116,6 +122,9 @@ export default function TopAiScreen({ config = DEFAULTS }: Props) {
             <View style={[styles.mov, item.movimiento !== null && Math.abs(item.movimiento) >= 3 ? styles.movFuerte : null]}>
               <Text style={styles.movTexto}>{pp(item.movimiento)}</Text>
             </View>
+            {/* Flecha de "aqui hay mas". Sin esto la tarjeta parece un
+                bloque de texto y no se sabe que se puede abrir. */}
+            <Text style={styles.chevron}>›</Text>
           </View>
 
           <Text style={styles.liga}>
@@ -186,6 +195,10 @@ export default function TopAiScreen({ config = DEFAULTS }: Props) {
         </Pressable>
       )}
     />
+    {/* Se importaba pero NUNCA se monto: el Pressable guardaba el estado y
+        no habia nada que lo mostrara. Por eso al tocar no pasaba nada. */}
+    <DetalleModal fila={detalle} onCerrar={() => setDetalle(null)} />
+    </>
   );
 }
 
@@ -214,6 +227,7 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: spacing.sm },
   partido: { color: palette.text, fontSize: fontSize.md, fontWeight: '600', flex: 1 },
   mov: { paddingHorizontal: spacing.sm, paddingVertical: 3, borderRadius: 999, backgroundColor: 'rgba(77,214,168,0.15)' },
+  chevron: { color: palette.textMuted, fontSize: 26, lineHeight: 28, marginLeft: 2 },
   movFuerte: { backgroundColor: 'rgba(255,184,77,0.20)' },
   movTexto: { color: palette.accent, fontSize: fontSize.sm, fontWeight: '700' },
   liga: { color: palette.textMuted, fontSize: fontSize.sm, marginTop: 3 },

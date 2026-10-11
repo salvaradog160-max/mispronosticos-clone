@@ -179,6 +179,14 @@ export const analizar = (partido, probs, confianza = null) => {
   return {
     partido: `${partido.homeTeam} vs ${partido.awayTeam}`,
     liga: partido.leagueName,
+    // Escudos. La app de referencia es guiada visualmente por los
+    // escudos; sin ellos la lista es una tabla de texto. Vienen en la
+    // misma respuesta del scoreboard, asi que no cuestan nada extra.
+    escudoLocal: partido.homeLogo ?? null,
+    escudoVisita: partido.awayLogo ?? null,
+    colorLocal: partido.homeColor ?? null,
+    colorVisita: partido.awayColor ?? null,
+    sede: partido.venue ?? null,
     calibracion: LIGAS_SIN_CALIBRACION.has(partido.leagueKey) ? 'europea' : 'propia',
     kickoff: partido.kickoff,
 

@@ -3,6 +3,7 @@ import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { PaperProvider } from 'react-native-paper';
 import { MaterialDesignIcons } from '@react-native-vector-icons/material-design-icons';
+import PartidosScreen from '../screens/PartidosScreen';
 import TopAiScreen from '../screens/TopAiScreen';
 import LiveScreen from '../screens/LiveScreen';
 import SpecialsScreen from '../screens/SpecialsScreen';
@@ -53,6 +54,16 @@ export default function RootNavigator({ config = DEFAULTS }: { config?: AppConfi
             tabBarInactiveTintColor: palette.textMuted,
           }}
         >
+          <Tab.Screen
+            name="Partidos"
+            component={PartidosScreen}
+            options={{
+              title: 'Partidos',
+              tabBarIcon: ({ color, size }) => (
+                <MaterialDesignIcons name="soccer" color={color} size={size} />
+              ),
+            }}
+          />
           <Tab.Screen
             name="TopAi"
             component={TopAiScreen}
