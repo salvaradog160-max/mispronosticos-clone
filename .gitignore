@@ -1,0 +1,33 @@
+# recon/ = APK original decompilado (327 MB, código de un tercero).
+# NO se sube a un repo público. Los hallazgos están en HALLAZGOS.md.
+recon/
+
+# keystores
+*.keystore
+*.jks
+*.p12
+MisPronosticosClone/android/app/debug.keystore
+MisPronosticosClone/android/app/upload-keystore.jks
+
+node_modules/
+.env
+.env.*
+!.env.example
+data/cache/
+*.log
+.DS_Store
+
+# NOTA: data/ratings.json y data/calibrated-buckets.json SI se versionan
+# (24 KB en total). Así el CI no recalcula 13,958 partidos en cada corrida
+# y no depende de que football-data.co.uk no limite el rate.
+server/.cache/
+server/data/cache/
+
+# artefactos de build
+MisPronosticosClone/android/app/build/
+MisPronosticosClone/android/build/
+MisPronosticosClone/android/.gradle/
+MisPronosticosClone/android/app/google-services.json
+
+# esto SÍ se versiona:
+!server/public/picks.json

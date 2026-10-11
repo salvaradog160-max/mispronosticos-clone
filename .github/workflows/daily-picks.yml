@@ -1,0 +1,44 @@
+name: Picks diarios
+
+on:
+  schedule:
+    - cron: '17 9 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: picks-diarios
+  cancel-in-progress: false
+
+jobs:
+  generar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Correr tests del motor
+        working-directory: server
+        run: node --test engine/*.test.mjs
+
+      - name: Generar picks
+        working-directory: server
+        run: node scripts/daily.mjs
+
+      - name: Subir picks.json
+        run: |
+          if git diff --quiet -- server/public/picks.json; then
+            echo "sin cambios, nada que commitear"
+            exit 0
+          fi
+          git config user.name  'picks-bot'
+          git config user.email 'picks-bot@users.noreply.github.com'
+          git add server/public/picks.json
+          git commit -m "picks: actualiza $(date -u +%Y-%m-%d)"
+          git push
