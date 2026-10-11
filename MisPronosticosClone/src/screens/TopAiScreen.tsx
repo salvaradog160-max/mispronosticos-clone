@@ -1,7 +1,9 @@
 import React, { useMemo } from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
+import { FlatList, Pressable, StyleSheet, View } from 'react-native';
 import { ActivityIndicator, ProgressBar, Surface, Text } from 'react-native-paper';
-import { palette, radius, spacing } from '../theme';
+import { palette, radius, spacing, fontSize } from '../theme';
+import { LadoGolesFila, EstadoBadge, formatKickoff, tiempoPara } from '../components/PartidoDetalle';
+import DetalleModal from './DetalleModal';
 import type { AppConfig } from '../config';
 import { DEFAULTS } from '../config';
 import { useAnalisis } from '../data/usePicks';
@@ -31,6 +33,7 @@ interface Estadisticas {
  * dice, arriba, que no hay ventaja demostrada.
  */
 export default function TopAiScreen({ config = DEFAULTS }: Props) {
+  const [detalle, setDetalle] = React.useState<AnalisisFila | null>(null);
   const { data, stats, loading, error, reload } = useAnalisis(config);
 
   const ordenados = useMemo(
@@ -104,6 +107,7 @@ export default function TopAiScreen({ config = DEFAULTS }: Props) {
         )
       }
       renderItem={({ item }: { item: AnalisisFila }) => (
+        <Pressable onPress={() => setDetalle(item)}>
         <Surface elevation={1} style={styles.card}>
           <View style={styles.row}>
             <Text variant="titleSmall" style={styles.partido} numberOfLines={2}>
@@ -115,9 +119,10 @@ export default function TopAiScreen({ config = DEFAULTS }: Props) {
           </View>
 
           <Text style={styles.liga}>
-            {item.liga}
-            {item.calibracion === 'europea' ? '  ·  calibración heredada de Europa' : ''}
+            {item.liga}  ·  {formatKickoff(item.kickoff)}
+            {tiempoPara(item.kickoff) ? `  ·  ${tiempoPara(item.kickoff)}` : ''}
           </Text>
+          <EstadoBadge fila={item} />
 
           <View style={styles.cifras}>
             <View style={styles.cifra}>
@@ -170,13 +175,15 @@ export default function TopAiScreen({ config = DEFAULTS }: Props) {
           {item.cambioFavorito ? (
             <Text style={styles.giro}>El favorito cambió desde la apertura</Text>
           ) : null}
-          {item.lineaGoles ? (
-            <Text style={styles.goles}>
-              Línea de goles {item.lineaGoles}
-              {item.cuotaGoles ? ` · más ${item.cuotaGoles.toFixed(2)}` : ''}
-            </Text>
+          {item.goles ? (
+            <>
+              <Text style={styles.golesTitulo}>GOLES · LÍNEA {item.goles.linea}</Text>
+              <LadoGolesFila lado={item.goles.over} compacto />
+              <LadoGolesFila lado={item.goles.under} compacto />
+            </>
           ) : null}
         </Surface>
+        </Pressable>
       )}
     />
   );
@@ -192,42 +199,50 @@ const Fila = ({ etiqueta, valor, rojo }: { etiqueta: string; valor: string; rojo
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: palette.bg },
   content: { padding: spacing.md, paddingBottom: spacing.xl },
-  title: { color: palette.text, fontWeight: '700', marginBottom: spacing.md },
+  title: { color: palette.text, fontSize: fontSize.lg, fontWeight: '700', marginBottom: spacing.md },
   stats: { backgroundColor: palette.surface, borderRadius: radius.lg, padding: spacing.md, marginBottom: spacing.md },
-  statsTitulo: { color: palette.text, fontWeight: '700', marginBottom: spacing.sm },
-  fila: { flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 3 },
-  filaEtiqueta: { color: palette.textMuted, fontSize: 13 },
-  filaValor: { color: palette.text, fontSize: 13, fontWeight: '600' },
+  statsTitulo: { color: palette.text, fontSize: fontSize.md, fontWeight: '700', marginBottom: spacing.sm },
+  fila: { flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 4 },
+  filaEtiqueta: { color: palette.textMuted, fontSize: fontSize.md },
+  filaValor: { color: palette.text, fontSize: fontSize.md, fontWeight: '700' },
   rojo: { color: '#ff6b6b' },
   aviso: { marginTop: spacing.md, padding: spacing.sm, backgroundColor: 'rgba(255,107,107,0.10)', borderRadius: radius.sm },
-  avisoTitulo: { color: '#ff6b6b', fontWeight: '700', fontSize: 13, marginBottom: 3 },
-  avisoTexto: { color: palette.textMuted, fontSize: 12, lineHeight: 17 },
-  nota: { color: palette.textMuted, marginBottom: spacing.sm, lineHeight: 17 },
+  avisoTitulo: { color: '#ff6b6b', fontWeight: '700', fontSize: fontSize.sm, marginBottom: 4 },
+  avisoTexto: { color: palette.textMuted, fontSize: fontSize.sm, lineHeight: 20 },
+  nota: { color: palette.textMuted, fontSize: fontSize.sm, marginBottom: spacing.sm, lineHeight: 20 },
   card: { backgroundColor: palette.surface, borderRadius: radius.lg, padding: spacing.md, marginBottom: spacing.sm },
   row: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: spacing.sm },
-  partido: { color: palette.text, fontWeight: '600', flex: 1 },
+  partido: { color: palette.text, fontSize: fontSize.md, fontWeight: '600', flex: 1 },
   mov: { paddingHorizontal: spacing.sm, paddingVertical: 3, borderRadius: 999, backgroundColor: 'rgba(77,214,168,0.15)' },
   movFuerte: { backgroundColor: 'rgba(255,184,77,0.20)' },
-  movTexto: { color: palette.accent, fontSize: 12, fontWeight: '700' },
-  liga: { color: palette.textMuted, fontSize: 12, marginTop: 2 },
+  movTexto: { color: palette.accent, fontSize: fontSize.sm, fontWeight: '700' },
+  liga: { color: palette.textMuted, fontSize: fontSize.sm, marginTop: 3 },
   cifras: { flexDirection: 'row', marginTop: spacing.sm, alignItems: 'stretch' },
   cifra: { flex: 1 },
   sep: { width: 1, backgroundColor: palette.surfaceAlt, marginHorizontal: spacing.sm },
-  etiqueta: { color: palette.textMuted, fontSize: 11, textTransform: 'uppercase', letterSpacing: 0.5 },
-  valor: { color: palette.text, fontSize: 16, fontWeight: '700', marginTop: 2 },
-  sub: { color: palette.textMuted, fontSize: 12, marginTop: 1 },
-  cuota: { color: '#4da3ff', fontSize: 12, marginTop: 1, fontWeight: '600' },
+  etiqueta: { color: palette.textMuted, fontSize: fontSize.xs, textTransform: 'uppercase', letterSpacing: 0.5 },
+  valor: { color: palette.text, fontSize: fontSize.lg, fontWeight: '700', marginTop: 2 },
+  sub: { color: palette.textMuted, fontSize: fontSize.sm, marginTop: 1 },
+  cuota: { color: '#4da3ff', fontSize: fontSize.sm, marginTop: 1, fontWeight: '700' },
   barraWrap: { marginTop: spacing.sm },
   barra: { height: 3, backgroundColor: palette.surfaceAlt },
-  veredicto: { fontSize: 12, marginTop: 6 },
+  veredicto: { fontSize: fontSize.sm, marginTop: 6, lineHeight: 19 },
   ok: { color: palette.accent },
   avisoColor: { color: '#ffb84d' },
-  giro: { color: '#ffb84d', fontSize: 12, marginTop: 6, fontWeight: '600' },
+  giro: { color: '#ffb84d', fontSize: fontSize.sm, marginTop: 6, fontWeight: '600' },
   gtl: { marginTop: 6, padding: spacing.xs, backgroundColor: 'rgba(255,184,77,0.10)', borderRadius: radius.sm },
   gtlOk: { backgroundColor: 'rgba(0,224,184,0.10)' },
-  gtlTexto: { color: '#ffb84d', fontSize: 12 },
-  gtlTextoOk: { color: palette.accent, fontSize: 12 },
-  goles: { color: palette.textMuted, fontSize: 12, marginTop: 4 },
+  gtlTexto: { color: '#ffb84d', fontSize: fontSize.sm, lineHeight: 20 },
+  gtlTextoOk: { color: palette.accent, fontSize: fontSize.sm, lineHeight: 20 },
+  golesTitulo: {
+    color: palette.textMuted,
+    fontSize: fontSize.xs,
+    fontWeight: '700',
+    letterSpacing: 0.5,
+    marginTop: spacing.sm,
+    marginBottom: spacing.xs,
+  },
+  goles: { color: palette.textMuted, fontSize: fontSize.xs, marginTop: 4 },
   vacio: { color: palette.textMuted, textAlign: 'center', marginTop: spacing.xl, lineHeight: 20 },
   loader: { marginTop: spacing.xl },
 });

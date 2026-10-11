@@ -16,6 +16,110 @@ export const probs1x2 = (H, D, A) => {
   return { H: raw.H / overround, D: raw.D / overround, A: raw.A / overround, overround };
 };
 
+/** Probabilidad de un lado del mercado de goles quitando el margen. */
+const probLado = cuota => {
+  if (!Number.isFinite(cuota) || cuota <= 1) return null;
+  return 1 / cuota;
+};
+
+/**
+ * Mercado de goles, con los dos lados explicitos.
+ *
+ * Antes se publicaba `lineaGoles` y `cuotaGoles` (que era SIEMPRE el
+ * over) sin decir nada: en pantalla salia "Línea de goles 2.5 · más
+ * 1.67" y no se podia saber si habia que jugar Over o Under. Aqui van
+ * los dos lados, con su probabilidad de mercado y la del modelo.
+ */
+export const mercadoGoles = (o, probOverModelo) => {
+  if (!o?.line || !Number.isFinite(o.over) || !Number.isFinite(o.under)) return null;
+  const rOver = probLado(o.over);
+  const rUnder = probLado(o.under);
+  if (rOver === null || rUnder === null) return null;
+
+  // Sin esto el mercado miente por dos lados. Las cuotas de un mercado de
+  // dos lados suman 1/cuota entre 105% y 110% (el margen del bookmaker).
+  // Si se comparan contra el modelo SIN quitarlo, el mercado parece peor
+  // en los dos lados a la vez: con cuotas 3.40/1.25 un modelo que dice
+  // 50/50 (moneda) sacaba "+20.6 pp a favor del Over" y "-30.0 pp a
+  // favor del Under". Eso no es una ventaja, es el vig disfrazado de
+  // analisis. Se divide entre el overround igual que probs1x2.
+  const overround = rOver + rUnder;
+  // `> 0` y no `> 1` a proposito: un mercado justo (2.00/2.00) da
+  // overround exactamente 1.0 y es un mercado valido, solo que sin
+  // margen. Solo hay que evitar dividir entre cero.
+  if (!(overround > 0)) return null;
+  const pOver = rOver / overround;
+  const pUnder = rUnder / overround;
+
+  const cuota = v => Number(v.toFixed(2));
+  const prob = v => Number(v.toFixed(4));
+  const p4 = v => (v === null ? null : Number((v * 100).toFixed(1)));
+
+  const lado = (nombre, pMercado, cuotaMercado, pModelo) => ({
+    lado: nombre,
+    cuota: cuota(cuotaMercado),
+    probMercado: prob(pMercado),
+    probMercadoPct: p4(pMercado),
+    probModelo: p4(pModelo),
+    // Margen a favor de apostar este lado: lo que el modelo dice menos
+    // lo que cuesta la cuota. Positivo = el modelo lo ve mejor.
+    margenPp: pModelo === null ? null : Number(((pModelo - pMercado) * 100).toFixed(1)),
+  });
+
+  return {
+    linea: o.line,
+    /** Cuanto suma el mercado por encima de 100%. 1.08 = 8% de margen. */
+    overround: Number(overround.toFixed(4)),
+    over: lado('Over', pOver, o.over, probOverModelo ?? null),
+    under: lado('Under', pUnder, o.under, probOverModelo === null || probOverModelo === undefined
+      ? null
+      : Number((1 - probOverModelo).toFixed(4))),
+  };
+};
+
+/**
+ * Estado del partido mas el resultado del lado que eligio el mercado.
+ * El usuario necesita saber tres cosas: si ya se jogo, como quedo, y si
+ * el lado que marco el mercado acertó.
+ */
+const estadoConResultado = (partido, ladoMercado) => {
+  const base = estadoPartido(partido);
+  const sgL = partido.score?.home;
+  const sgV = partido.score?.away;
+  const out = {
+    estado: base.estado,
+    marcador: base.marcador,
+    resultado: null,
+  };
+  if (base.estado !== 'finalizado' || !Number.isFinite(sgL) || !Number.isFinite(sgV)) {
+    return out;
+  }
+  const real = sgL > sgV ? 'H' : sgL < sgV ? 'A' : 'D';
+  out.resultado =
+    real === ladoMercado ? 'acierto' : real === 'D' || ladoMercado === 'D' ? 'empate' : 'fallo';
+  return out;
+};
+
+/** Estado del partido: lo que el usuario necesita para saber si ya ocurrio. */
+export const estadoPartido = partido => {
+  const s = partido.status || {};
+  const tipo = s.type || null;
+  const sgLocal = partido.score?.home;
+  const sgVisita = partido.score?.away;
+
+  let estado = 'programado';
+  if (tipo === 'in') estado = 'en vivo';
+  else if (tipo === 'post' || Number.isFinite(sgLocal) && Number.isFinite(sgVisita)) {
+    estado = 'finalizado';
+  }
+
+  const out = { estado, tipo, marcador: null };
+  if (estado === 'finalizado' && Number.isFinite(sgLocal) && Number.isFinite(sgVisita)) {
+    out.marcador = `${sgLocal}-${sgVisita}`;
+  }
+  return out;
+};
+
 const NOMBRE = { H: 'local', D: 'empate', A: 'visitante' };
 
 /**
@@ -81,8 +185,16 @@ export const analizar = (partido, probs, confianza = null) => {
       Object.entries({ H: apertura.H, D: apertura.D, A: apertura.A })
         .sort((a, b) => b[1] - a[1])[0][0] !== ladoMercado,
 
+    // Mercado de goles con los dos lados declarados. Antes solo se
+    // publicaba la cuota del over sin etiqueta y en pantalla se leia
+    // "Linea de goles 2.5 - mas 1.67", sin poder saber si era Over o
+    // Under.
+    goles: mercadoGoles(o, partido.probOver ?? null),
     lineaGoles: o?.line ?? null,
-    cuotaGoles: o?.over ?? null,
+
+    // Estado: si ya se jogo, con que marcador quedo y si el lado que
+    // eligio el mercado acertó.
+    ...estadoConResultado(partido, ladoMercado),
 
     // A que precio volveria a valer. `confianza` viene de la tabla
     // calibrada segun la probabilidad de mercado actual.

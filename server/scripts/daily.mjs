@@ -222,7 +222,19 @@ async function buildPicks(buckets, ratings) {
       // de 105%. Por eso H/D/A van aparte.
       const lado = ['H', 'D', 'A'].sort((a, b) => f.market[b] - f.market[a])[0];
       const cal = lookupBucket(calibration.buckets, f.market[lado]);
-      return analizar(f, probs, cal ? cal.confidence / 100 : null);
+      // El modelo calcula su propio Over/Under y los goles esperados.
+      // Sin esto la tarjeta no puede decir "Over 2.5 a 1.69, el modelo
+      // lo pone en 58%", que es justo lo que el usuario pedia.
+      const pred = f.prediction;
+      const conGoles = {
+        ...f,
+        probOver: pred.over25 ?? null,
+        lambdaHome: pred.lambdaHome ?? null,
+        lambdaAway: pred.lambdaAway ?? null,
+        score: f.score ?? null,
+        status: f.status ?? null,
+      };
+      return analizar(conGoles, probs, cal ? cal.confidence / 100 : null);
     })
     .filter(Boolean)
     .sort((a, b) => Math.abs(b.movimiento ?? 0) - Math.abs(a.movimiento ?? 0));

@@ -31,3 +31,18 @@ export const radius = {
   lg: 20,
   pill: 999,
 };
+/**
+ * Escala tipografica.
+ *
+ * Antes el texto usaba 11-13 px, que en un telefono de 6" se leia
+ * solo con esfuerzo. Estos valores suben el cuerpo de texto a 15-16 px y
+ * lostitulares a 19-22, que es lo que se lee bien a una mano.
+ */
+export const fontSize = {
+  xs: 13,
+  sm: 14,
+  md: 16,
+  lg: 19,
+  xl: 22,
+  xxl: 28,
+};

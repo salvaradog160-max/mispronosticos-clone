@@ -1,5 +1,6 @@
 import type { AppConfig } from '../config';
 import type { Match, Pick } from '../domain/picks';
+import type { AnalisisFila, AnalisisStats } from './analisisRepository';
 import type { PicksQuery, PicksRepository } from './picksRepository';
 
 export interface Alerta {
@@ -58,46 +59,6 @@ interface ServerPickShape {
   breakEven?: number | null;
   nMuestra?: number;
   rango?: number[];
-}
-
-interface AnalisisFila {
-  partido: string;
-  liga: string;
-  calibracion: 'propia' | 'europea';
-  kickoff: string;
-  favoritoMercado: string;
-  ladoMercado: string;
-  probMercado: number;
-  cuotaMercado: number;
-  cuotaApertura?: number | null;
-  ladoModelo: string;
-  probModelo: number;
-  coincide: boolean;
-  movimiento: number | null;
-  cambioFavorito: boolean;
-  lineaGoles: number | null;
-  cuotaGoles: number | null;
-  goodToLine: {
-    ejecutable: boolean;
-    probActual: number;
-    necesita: number | null;
-    cuotaNecesaria: number | null;
-    cuotaActual: number;
-    inalcanzable?: boolean;
-  } | null;
-}
-
-interface AnalisisStats {
-  partidosHistorico: number;
-  ligas: number;
-  /** En puntos porcentuales, no en fracción. */
-  derivaMediana: number | null;
-  /** En puntos porcentuales. */
-  derivaP90: number | null;
-  cambioFavorito: number | null;
-  consensoAcierto: number | null;
-  margenCasa: number;
-  nota: string;
 }
 
 interface ServerMatchShape {
