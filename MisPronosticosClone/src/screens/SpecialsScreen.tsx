@@ -18,9 +18,15 @@ const Stars = ({ value }: { value: number }) => (
 const pct = (v: number | null | undefined) => (v === null || v === undefined ? '\u2014' : `${(v * 100).toFixed(1)}%`);
 
 /**
- * "Especiales" = los picks con mejor margen sobre lo que cuesta la
- * cuota, ordenados por valor esperado. No hay ningun tipster detras:
- * todo lo que se muestra sale del modelo y del backtest.
+ * "Especiales" = donde el modelo mas se aleja de la cuota, ordenado por
+ * esa diferencia.
+ *
+ * OJO con el nombre: esto NO es "las mejores apuestas". El margen que se
+ * ve es la diferencia entre lo que dice el modelo y lo que dice el
+ * mercado, y el backtest completo (22,833 partidos) da ROI de -4.6% al
+ * seguir esas diferencias. Se muestran porque son los partidos donde el
+ * modelo y el mercado mas discrepan, que es informacion; no porque sean
+ * recomendaciones.
  */
 export default function SpecialsScreen({ config = DEFAULTS }: Props) {
   const { data, loading, error, reload } = usePicks(config);
@@ -45,13 +51,20 @@ export default function SpecialsScreen({ config = DEFAULTS }: Props) {
       ListHeaderComponent={
         <View style={styles.header}>
           <Text variant="titleMedium" style={styles.title}>
-            Los que más margen tienen
+            Donde más difieren del mercado
           </Text>
-          <Text variant="bodyMedium" style={styles.muted}>
-            Ordenados por cuánto le ganan a la cuota. Sin tipsters y sin
-            números inventados: cada porcentaje viene de{' '}
-            {data.length > 0 ? 'partidos ya jugados.' : 'la calibración.'}
+          <Text style={styles.muted}>
+            Ordenados por cuánto le ganan a la cuota. Cada porcentaje sale
+            del modelo y de partidos ya jugados, no de tipsters.
           </Text>
+          <View style={styles.aviso}>
+            <Text style={styles.avisoTitulo}>No son recomendaciones</Text>
+            <Text style={styles.avisoTexto}>
+              Seguir estas diferencias dio -4.6% en el backtest de 22,833
+              partidos. Se muestran como análisis de dónde está el
+              desacuerdo, no como apuestas.
+            </Text>
+          </View>
         </View>
       }
       ListEmptyComponent={
@@ -117,6 +130,16 @@ const styles = StyleSheet.create({
   bar: { height: 5, borderRadius: 3, backgroundColor: palette.surfaceAlt, marginTop: 4 },
   odds: { color: '#4da3ff', fontSize: 16, fontWeight: '600' },
   margen: { color: palette.accent, fontSize: 14, fontWeight: '700' },
+  aviso: {
+    backgroundColor: palette.surface,
+    borderRadius: radius.md,
+    padding: spacing.md,
+    marginTop: spacing.md,
+    borderLeftWidth: 3,
+    borderLeftColor: palette.accent,
+  },
+  avisoTitulo: { color: palette.text, fontWeight: '700', marginBottom: 4 },
+  avisoTexto: { color: palette.textMuted, lineHeight: 18 },
   empty: { color: palette.textMuted, textAlign: 'center', marginTop: spacing.xl, lineHeight: 20 },
   loader: { marginTop: spacing.xl },
 });

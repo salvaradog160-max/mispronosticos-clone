@@ -123,6 +123,23 @@ const tabla = sel => {
 const consensoCierre = rows.filter(r => r.modelTop === r.ciTop);
 const consensoApertura = rows.filter(r => r.modelTop === r.apTop);
 
+// Cuanto se movio la probabilidad del favorito entre apertura y cierre,
+// en puntos porcentuales. Antes esto se llamaba "mediana" pero era la
+// media: son estadisticas distintas y la media queda arrastrada por los
+// partidos con derivas grandes.
+const derivas = rows
+  .map(r => Math.abs(r.ci[r.modelTop] - r.ap[r.modelTop]) * 100)
+  .sort((a, b) => a - b);
+
+const percentil = (lista, p) => {
+  if (!lista.length) return null;
+  const i = (lista.length - 1) * p;
+  const bajo = Math.floor(i);
+  const alto = Math.ceil(i);
+  if (bajo === alto) return Number(lista[bajo].toFixed(2));
+  return Number((lista[bajo] + (lista[alto] - lista[bajo]) * (i - bajo)).toFixed(2));
+};
+
 const payload = {
   generado: new Date().toISOString(),
   partidos: rows.length,
@@ -130,9 +147,9 @@ const payload = {
   america: america.length,
   nota: 'Una sola tabla para todas las ligas. Con apertura y cierre propios.',
   deriva: {
-    mediana: Math.abs(
-      rows.reduce((s, r) => s + Math.abs(r.ci[r.modelTop] - r.ap[r.modelTop]), 0) / rows.length,
-    ),
+    mediana: percentil(derivas, 0.5),
+    media: Number((derivas.reduce((s, v) => s + v, 0) / derivas.length).toFixed(2)),
+    p90: percentil(derivas, 0.9),
     cambioFavorito: rows.filter(r => r.apTop !== r.ciTop).length / rows.length,
   },
   consensoAcierto: consensoCierre.filter(r => r.actual === r.modelTop).length / consensoCierre.length,

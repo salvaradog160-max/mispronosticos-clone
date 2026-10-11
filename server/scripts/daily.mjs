@@ -248,6 +248,17 @@ const leerAnterior = async () => {
 };
 
 const calibration = await buildCalibration();
+
+// ROI real medido por el backtest, no un numero fijo en el codigo.
+const roiBacktest = await (async () => {
+  try {
+    const bt = JSON.parse(await readFile(join(DATA_DIR, 'ev-backtest.json'), 'utf8'));
+    const todos = bt.resultados?.find(r => /todos los picks/.test(r.nombre));
+    return todos ? { ...todos, generado: bt.generado } : null;
+  } catch {
+    return null;
+  }
+})();
 const ratings = await buildRatingsCache();
 const { fixtures, picks, picksMercado, live, mercados, descartados, analisis } = await buildPicks(calibration.buckets, ratings);
 
@@ -306,10 +317,15 @@ const payload = {
     ligas: LEAGUES.length,
     derivaMediana: calibration.deriva?.mediana ?? null,
     derivaP90: calibration.deriva?.p90 ?? null,
-    cambioFavorito: calibration.deriva?.pctCambioFavorito ?? null,
+    cambioFavorito: calibration.deriva?.cambioFavorito ?? null,
     consensoAcierto: calibration.consensoAcierto,
-    margenCasa: -0.0457,
-    nota: 'El margen de la casa se mide como ROI de apostar todos los picks de consenso.',
+    // El margen de la casa se lee del backtest, no va fijo en el codigo:
+    // si el backtest se vuelve a correr con mas partidos, la app tiene
+    // que reflejar el numero nuevo y no el de la vez pasada.
+    margenCasa: roiBacktest?.roi ?? null,
+    margenCasaN: roiBacktest?.n ?? null,
+    backtestGenerado: roiBacktest?.generado ?? null,
+    nota: 'El margen de la casa se mide como ROI de apostar todos los picks de consenso, medido por el backtest.',
   },
   alertas,
   resumenAlertas: {

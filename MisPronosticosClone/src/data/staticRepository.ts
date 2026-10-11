@@ -90,7 +90,9 @@ interface AnalisisFila {
 interface AnalisisStats {
   partidosHistorico: number;
   ligas: number;
+  /** En puntos porcentuales, no en fracción. */
   derivaMediana: number | null;
+  /** En puntos porcentuales. */
   derivaP90: number | null;
   cambioFavorito: number | null;
   consensoAcierto: number | null;

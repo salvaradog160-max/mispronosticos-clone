@@ -27,7 +27,30 @@ jobs:
 
       - name: Correr tests del motor
         working-directory: server
-        run: node --test engine/*.test.mjs
+        run: node --test engine/*.test.mjs providers/*.test.mjs
+
+      # Cuotas de las ligas no europeas. Si el secret no esta, o la cuota
+      # mensual del plan se agoto, el paso falla sin tumbar el workflow:
+      # la calibracion europea sigue siendo valida.
+      - name: Preparar .env si hay secrets
+        working-directory: server
+        env:
+          SPORTAPI_KEY: ${{ secrets.SPORTAPI_KEY }}
+        run: |
+          if [ -n "$SPORTAPI_KEY" ]; then
+            {
+              echo "SPORTAPI_KEY=$SPORTAPI_KEY"
+              echo "SPORTAPI_HOST=sportapi7.p.rapidapi.com"
+            } > .env
+            echo "secret disponible"
+          else
+            echo "sin secret SPORTAPI_KEY: se usara solo la calibracion europea"
+          fi
+
+      - name: Refrescar cuotas de las ligas de america (opcional)
+        working-directory: server
+        continue-on-error: true
+        run: node --env-file=.env scripts/descargar-odds-sportapi.mjs 3
 
       - name: Generar picks y detectar movimiento
         working-directory: server

@@ -24,10 +24,12 @@ const NOMBRE = { H: 'local', D: 'empate', A: 'visitante' };
  */
 /**
  * Las ligas de america se analizan con ratings propios (ESPN da
- * resultados historicos), pero SIN cuotas historicas, asi que no tienen
- * calibracion propia. Se marca para que la app no lo esconda.
+ * resultados historicos) y ademas con cuotas propias (la tabla
+ * unificada incluye sus 2,082 partidos con apertura y cierre), asi que
+ * ya no hay ninguna liga que herede calibracion de otra. La tabla es
+ * una sola para todos: por eso `calibracion` siempre dice "propia".
  */
-export const LIGAS_SIN_CALIBRACION = new Set(['mex.1', 'bra.1', 'usa.1', 'arg.1', 'col.1', 'chi.1']);
+export const LIGAS_SIN_CALIBRACION = new Set();
 
 import { goodToLine } from './valor.mjs';
 

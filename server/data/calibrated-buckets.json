@@ -1,11 +1,13 @@
 {
-  "generado": "2026-10-11T03:24:32.075Z",
+  "generado": "2026-10-11T04:34:37.648Z",
   "partidos": 35973,
   "europa": 34452,
   "america": 2082,
   "nota": "Una sola tabla para todas las ligas. Con apertura y cierre propios.",
   "deriva": {
-    "mediana": 0.023405420417158613,
+    "mediana": 1.79,
+    "media": 2.34,
+    "p90": 5.11,
     "cambioFavorito": 0.061184777471992885
   },
   "consensoAcierto": 0.520690091534146,

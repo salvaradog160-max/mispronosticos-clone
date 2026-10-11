@@ -64,11 +64,11 @@ export default function TopAiScreen({ config = DEFAULTS }: Props) {
               <Fila etiqueta="Margen de la casa" valor={`${(stats.margenCasa * 100).toFixed(2)}%`} rojo />
               <Fila
                 etiqueta="La línea se mueve (mediana)"
-                valor={stats.derivaMediana === null ? '—' : `${(stats.derivaMediana * 100).toFixed(1)} pp`}
+                valor={stats.derivaMediana === null ? '—' : `${stats.derivaMediana.toFixed(1)} pp`}
               />
               <Fila
                 etiqueta="Movimiento extremo (p90)"
-                valor={stats.derivaP90 === null ? '—' : `${(stats.derivaP90 * 100).toFixed(1)} pp`}
+                valor={stats.derivaP90 === null ? '—' : `${stats.derivaP90.toFixed(1)} pp`}
               />
               <Fila
                 etiqueta="Cambia el favorito"

@@ -29,7 +29,9 @@ export interface AnalisisFila {
 export interface AnalisisStats {
   partidosHistorico: number;
   ligas: number;
+  /** Deriva de la probabilidad del favorito entre apertura y cierre, en PUNTOS PORCENTUALES (no en fracción). */
   derivaMediana: number | null;
+  /** Igual que derivaMediana, en puntos porcentuales: el 90% de los partidos se mueven menos que esto. */
   derivaP90: number | null;
   cambioFavorito: number | null;
   consensoAcierto: number | null;
