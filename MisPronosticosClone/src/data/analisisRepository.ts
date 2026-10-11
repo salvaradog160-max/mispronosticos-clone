@@ -102,6 +102,25 @@ export interface AnalisisFila {
     marcadores: Array<{ marcador: string; p: number; cuotaJusta: number | null }>;
   } | null;
 
+  /**
+   * Goles esperados desglosados en primer y segundo tiempo, con la
+   * fraccion real de goles por tiempo de esa liga (medida en
+   * football-data HTHG/HTAG). Incluye el ladder O/U de cada mitad.
+   */
+  tiempos?: {
+    fraccion1T: number;
+    primerTiempo: {
+      local: number;
+      visita: number;
+      overUnder: Array<{ linea: number; over: { p: number; cuotaJusta: number | null }; under: { p: number; cuotaJusta: number | null } }>;
+    };
+    segundoTiempo: {
+      local: number;
+      visita: number;
+      overUnder: Array<{ linea: number; over: { p: number; cuotaJusta: number | null }; under: { p: number; cuotaJusta: number | null } }>;
+    };
+  } | null;
+
   /** Para saber si el partido ya se jugo y como quedo. */
   estado?: 'programado' | 'en vivo' | 'finalizado' | null;
   marcador?: string | null;

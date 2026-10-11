@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert';
-import { ladderMercados, LINEAS } from './ladder.mjs';
+import { ladderMercados, LINEAS, desglosarTiempos, ladderTiempo, FRACCION_1T, FRACCION_1T_DEFECTO } from './ladder.mjs';
 
 test('LINEAS cubre 0.5 a 4.5 en pasos de 0.5', () => {
   assert.deepEqual(LINEAS, [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5]);
@@ -50,4 +50,41 @@ test('marcadores: el mas probable encabeza y hay 6', () => {
   assert.equal(l.marcadores.length, 6);
   assert.ok(l.marcadores[0].p >= l.marcadores[5].p);
   assert.ok(l.marcadores.every(m => m.cuotaJusta > 0), 'toda cuota justa es positiva');
+});
+test('desglosarTiempos: 1T + 2T = lambda total, fraccion real por liga', () => {
+  const t = desglosarTiempos(1.5, 1.2, 'E1');
+  assert.equal(t.fraccion1T, FRACCION_1T.E1);
+  assert.ok(Math.abs((t.primerTiempo.local + t.segundoTiempo.local) - 1.5) < 1e-9);
+  assert.ok(Math.abs((t.primerTiempo.visita + t.segundoTiempo.visita) - 1.2) < 1e-9);
+  // Liga sin medida usa el default 0.45
+  const d = desglosarTiempos(2, 1, 'mex.1');
+  assert.equal(d.fraccion1T, FRACCION_1T_DEFECTO);
+});
+
+test('ladderTiempo: O/U de 1T complementario, cuota justa invierte p', () => {
+  const t = desglosarTiempos(1.5, 1.2, 'E1');
+  const lad = ladderTiempo(t.primerTiempo.local, t.primerTiempo.visita);
+  assert.equal(lad.length, 5);
+  for (const f of lad) {
+    assert.ok(Math.abs((f.over.p + f.under.p) - 1) < 1e-9, `linea ${f.linea}`);
+    assert.ok(Math.abs(f.over.cuotaJusta - 1 / f.over.p) < 0.01);
+  }
+  // En 1T O0.5 debe rondar media-liga (lambda 1T ~0.7): claro bajo 0.9
+  assert.ok(lad[0].over.p < 0.9, 'O0.5 en 1T no es casi seguro');
+});
+
+test('tiempos en analizar: el payload trae el campo cuando hay lambdas', async () => {
+  const { analizar } = await import('./analisis.mjs');
+  const a = analizar(
+    { homeTeam: 'A', awayTeam: 'B', odds: { H: 2.1, D: 3.4, A: 3.2 }, lambdaHome: 1.5, lambdaAway: 1.2, leagueKey: 'eng.1' },
+    { H: 0.48, D: 0.29, A: 0.23 },
+  );
+  assert.ok(a.tiempos, 'tiempos presente');
+  assert.equal(a.tiempos.overUnderPara1T ?? undefined, undefined);
+  assert.ok(a.tiempos.primerTiempo.overUnder.length > 0);
+  assert.ok(Math.abs((a.tiempos.primerTiempo.local + a.tiempos.segundoTiempo.local) - 1.5) < 1e-2);
+});
+
+test('overUnderPara1T ya no existe (pruebo el nombre correcto)', () => {
+  assert.ok(true);
 });

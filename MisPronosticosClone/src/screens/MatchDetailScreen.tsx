@@ -277,6 +277,42 @@ export default function MatchDetailScreen({
                 </>
               )}
 
+              {fila.tiempos && (
+                <>
+                  <Text style={s.seccion}>GOLES ESPERADOS POR TIEMPO</Text>
+                  <Text style={s.aviso}>
+                    Del total, un {Math.round(fila.tiempos.fraccion1T * 100)}% cae en el primer tiempo según la
+                    media real de la liga (medida en football-data).
+                  </Text>
+
+                  {(
+                    [
+                      ['PRIMER TIEMPO', fila.tiempos.primerTiempo],
+                      ['SEGUNDO TIEMPO', fila.tiempos.segundoTiempo],
+                    ] as Array<[string, typeof fila.tiempos.primerTiempo]>
+                  ).map(([nombre, t]) => (
+                      <React.Fragment key={String(nombre)}>
+                        <Text style={s.subEtiqueta}>{nombre}</Text>
+                        <Fila etiqueta={`${local ?? 'Local'} (goles esperados)`}>
+                          <Text style={s.valor}>{t.local.toFixed(2)}</Text>
+                        </Fila>
+                        <Fila etiqueta={`${visita ?? 'Visita'} (goles esperados)`}>
+                          <Text style={s.valor}>{t.visita.toFixed(2)}</Text>
+                        </Fila>
+                        {t.overUnder.map((f: any) => (
+                          <Fila etiqueta={`${f.linea} goles`} key={`${nombre}-${f.linea}`}>
+                            <Text style={s.valor} numberOfLines={1}>
+                              O@{f.over.cuotaJusta?.toFixed(2) ?? '—'} · U@
+                              {f.under.cuotaJusta?.toFixed(2) ?? '—'}
+                            </Text>
+                          </Fila>
+                        ))}
+                      </React.Fragment>
+                    ),
+                  )}
+                </>
+              )}
+
               {fila.ladder && (
                 <>
                   <Text style={s.seccion}>CUOTA JUSTA DEL MODELO POR MERCADO</Text>

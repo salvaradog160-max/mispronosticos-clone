@@ -155,7 +155,27 @@ export const LIGAS_SIN_CALIBRACION = new Set();
 
 import { goodToLine } from './valor.mjs';
 
-import { ladderMercados } from './ladder.mjs';
+import { ladderMercados, desglosarTiempos, ladderTiempo } from './ladder.mjs';
+
+/** Ladder por tiempo: divide lambdas y arma el O/U de cada mitad. */
+const tiemposLadder = (lambdaHome, lambdaAway, ligaKey) => {
+  const t = desglosarTiempos(lambdaHome, lambdaAway, ligaKey);
+  if (!t) return null;
+  return {
+    fraccion1T: t.fraccion1T,
+    primerTiempo: {
+      local: Number(t.primerTiempo.local.toFixed(3)),
+      visita: Number(t.primerTiempo.visita.toFixed(3)),
+      overUnder: ladderTiempo(t.primerTiempo.local, t.primerTiempo.visita),
+    },
+    segundoTiempo: {
+      local: Number(t.segundoTiempo.local.toFixed(3)),
+      visita: Number(t.segundoTiempo.visita.toFixed(3)),
+      // En 2T las lambdas son mas altas que en 1T: entra la linea 2.5.
+      overUnder: ladderTiempo(t.segundoTiempo.local, t.segundoTiempo.visita, [0.5, 1, 1.5, 2, 2.5]),
+    },
+  };
+};
 
 export const analizar = (partido, probs, confianza = null) => {
   const o = partido.odds;
@@ -234,6 +254,11 @@ export const analizar = (partido, probs, confianza = null) => {
     // cuenta que la herramienta manual, pero con datos reales. Si el
     // partido no trae lambdas, null.
     ladder: ladderMercados(partido.lambdaHome, partido.lambdaAway),
+
+    // Goles esperados desglosados en primer y segundo tiempo, con la
+    // fraccion real de goles por tiempo medida por liga (HTHG/HTAG de
+    // football-data). De ahi sale tambien el ladder O/U de cada tiempo.
+    tiempos: tiemposLadder(partido.lambdaHome, partido.lambdaAway, partido.leagueKey),
 
     // Estado: si ya se jogo, con que marcador quedo y si el lado que
     // eligio el mercado acertó.

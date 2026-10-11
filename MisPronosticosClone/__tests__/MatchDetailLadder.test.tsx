@@ -60,6 +60,24 @@ const FILA: AnalisisFila = {
     ],
   },
   goodToLine: null,
+  tiempos: {
+    fraccion1T: 0.454,
+    primerTiempo: {
+      local: 0.64,
+      visita: 0.54,
+      overUnder: [
+        { linea: 0.5, over: { p: 0.66, cuotaJusta: 1.52 }, under: { p: 0.34, cuotaJusta: 2.94 } },
+        { linea: 1.5, over: { p: 0.26, cuotaJusta: 3.85 }, under: { p: 0.74, cuotaJusta: 1.35 } },
+      ],
+    },
+    segundoTiempo: {
+      local: 0.78,
+      visita: 0.64,
+      overUnder: [
+        { linea: 0.5, over: { p: 0.73, cuotaJusta: 1.37 }, under: { p: 0.27, cuotaJusta: 3.7 } },
+      ],
+    },
+  },
 };
 
 let mockUseAnalisis: any = jest.fn();
@@ -92,4 +110,7 @@ test('el detalle dibuja la escalera de cuota justa por mercado', async () => {
   expect(plano).toContain('Ambos anotan');
   expect(plano).toContain('Marcadores más probables');
   expect(plano).toContain('1-1');
+  expect(plano).toContain('GOLES ESPERADOS POR TIEMPO');
+  expect(plano).toContain('PRIMER TIEMPO');
+  expect(plano).toContain('SEGUNDO TIEMPO');
 });
