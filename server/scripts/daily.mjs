@@ -292,7 +292,7 @@ async function buildPicks(buckets, ratings, history) {
       // lo pone en 58%", que es justo lo que el usuario pedia.
       const pred = f.prediction;
       const historial = history
-        ? historialDe(history, f.homeTeam, f.awayTeam, { limite: 5 })
+        ? historialDe(history, f.homeTeam, f.awayTeam)
         : null;
       const conGoles = {
         ...f,

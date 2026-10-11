@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert';
 import { historialDe, combinar, riesgoDe, cuotaJusta, pronosticos } from './historial.mjs';
 
-const p = (d, h, a, hs, as) => ({ utcDate: d, homeTeam: h, awayTeam: a, homeScore: hs, awayScore: as });
+const p = (d, h, a, hs, as, season) => ({ utcDate: d, homeTeam: h, awayTeam: a, homeScore: hs, awayScore: as, season });
 
 test('historialDe: cuadros reales desde la historia, sin captura', () => {
   const hist = [
@@ -173,4 +173,32 @@ test('forense: pronosticos ordenados por probabilidad', async () => {
     if (previos) await writeFile(cachePath, JSON.stringify(previos));
     else await rm(cachePath, { force: true });
   }
+});
+
+test('historialDe: general/L-V usan SOLO la temporada vigente y el H2H el historial completo', () => {
+  const hist = [
+    // Temporada pasada del local (fuera del analisis): 5 partidos 2425
+    p('01/09/2024', 'Lazio', 'Salernitana', 3, 0, '2425'),
+    p('22/09/2024', 'Torino', 'Lazio', 1, 2, '2425'),
+    p('06/10/2024', 'Lazio', 'Verona', 2, 0, '2425'),
+    p('27/10/2024', 'Bologna', 'Lazio', 1, 1, '2425'),
+    p('10/11/2024', 'Lazio', 'Udinese', 4, 1, '2425'),
+    // Temporada vigente (2526): 3 partidos
+    p('24/08/2025', 'Lazio', 'Cagliari', 2, 1, '2526'),
+    p('13/09/2025', 'Atalanta', 'Lazio', 0, 0, '2526'),
+    p('28/09/2025', 'Lazio', 'Sampdoria', 3, 1, '2526'),
+    // H2H historico Lazio-Monza en temporadas distintas
+    p('02/11/2022', 'Lazio', 'Monza', 2, 1, '2223'),
+    p('15/04/2023', 'Monza', 'Lazio', 1, 2, '2223'),
+    p('07/01/2024', 'Lazio', 'Monza', 4, 2, '2324'),
+    p('20/10/2024', 'Monza', 'Lazio', 0, 1, '2425'),
+    p('30/03/2025', 'Lazio', 'Monza', 1, 1, '2425'),
+  ];
+  const h = historialDe(hist, 'Lazio', 'Monza');
+  // General local: SOLO 3 de la temporada vigente, no los 8 de Lazio
+  assert.equal(h.cuadros.generalLocal.n, 3, 'general local usa solo la temporada vigente');
+  assert.equal(h.temporadaVigente.local, '2526', 'temporada vigente detectada');
+  // H2H: historial completo (5 enfrentamientos), no solo la temporada
+  assert.equal(h.h2hPartidos, 5, 'H2H usa el historial completo');
+  assert.equal(h.cuadros.h2h.n, 5, 'cuadro H2H con todo el historial');
 });

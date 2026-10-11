@@ -170,12 +170,16 @@ export interface AnalisisFila {
     riesgos: string[];
     serieH2H?: string[];
     h2hPartidos?: number;
+    serieH2HCasa?: string[];
+    h2hCasaPartidos?: number;
+    temporadaVigente?: { local: string | null; visita: string | null } | null;
     cuadros?: {
       generalLocal: CifrasCuadro;
       generalVisita: CifrasCuadro;
       localCasa: CifrasCuadro;
       visitaFuera: CifrasCuadro;
       h2h: CifrasCuadro;
+      h2hCasa?: CifrasCuadro;
     };
     puntos?: {
       localCasa: PuntosCuadro | null;

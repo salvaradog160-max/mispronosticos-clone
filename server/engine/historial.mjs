@@ -62,19 +62,23 @@ const desdeEquipo = (p, equipo) => {
     gc: local ? p.awayScore : p.homeScore,
     fecha: p.utcDate,
     key: p.key,
+    season: p.season ?? null,
     local,
     rival: local ? p.awayTeam : p.homeTeam,
   };
 };
 
-/** Ultimos `n` partidos de un equipo (G general; enCasa separa L/V). */
-const ultimosDe = (partidos, equipo, { n = 5, enCasa = null } = {}) => {
+/**
+ * Partidos de un equipo. G general, enCasa separa L/V, season filtra a
+ * una temporada concreta. Si de define season se devuelven TODOS los de
+ * esa temporada (la ventana es la temporada vigente, no un tope fijo).
+ */
+const partidosDe = (partidos, equipo, { enCasa = null, season = null } = {}) => {
   const filtrados = partidos
     .map(p => desdeEquipo(p, equipo))
-    .filter(p => p && (enCasa === null || p.local === enCasa))
-    .sort((a, b) => String(b.key).localeCompare(String(a.key)))
-    .slice(0, n);
-  return filtrados.map(p => ({ gf: p.gf, gc: p.gc, res: p.res, fecha: p.fecha }));
+    .filter(p => p && (enCasa === null || p.local === enCasa) && (season === null || String(p.season ?? '') === String(season)))
+    .sort((a, b) => String(b.key).localeCompare(String(a.key)));
+  return filtrados;
 };
 
 /** Prs de 1X2 desde resultados (G/E/P): proporcion de partidos. */
@@ -285,7 +289,7 @@ export const pronosticos = ({ pComb, pModelo, pBase, golesModelo, tendHist }) =>
  * `home/away` = nombres normalizados. Devuelve cuadros, probs, combinada,
  * riesgo, pronosticos y tendencias; null si no hay suficiente historia.
  */
-export const historialDe = (history, homeRaw, awayRaw, { limite = 5 } = {}) => {
+export const historialDe = (history, homeRaw, awayRaw) => {
   if (!history?.length) return null;
   const norm = n => String(n).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     .replace(/\b(fc|cf|afc|as|ac|ss|us|ud|cd|rc|sc|ca|sv|vfl|vfb|tsg|bsc|1\.?\s*fc)\b/g, '')
@@ -315,24 +319,42 @@ export const historialDe = (history, homeRaw, awayRaw, { limite = 5 } = {}) => {
     goles: (p.homeScore ?? 0) + (p.awayScore ?? 0),
     gfLocal: p.homeScore ?? 0,
     gfVisita: p.awayScore ?? 0,
+    season: p.season ?? null,
   })).filter(p => Number.isFinite(p.homeScore) && Number.isFinite(p.awayScore));
 
-  // Cuadros
-  const cuadroGeneralL = ultimosDe(partidos, home, { n: limite });
-  const cuadroGeneralV = ultimosDe(partidos, away, { n: limite });
-  const cuadroLocalCasa = ultimosDe(partidos, home, { n: limite, enCasa: true });
-  const cuadroVisitaFuera = ultimosDe(partidos, away, { n: limite, enCasa: false });
+  // La temporada vigente de cada equipo es la mas reciente en la que
+  // jugo dentro de la base. General / Local-en-casa / Visita-fuera se
+  // calculan SOLO con esa temporada (todos sus partidos, sin tope); el
+  // H2H usa el historial completo de enfrentamientos directos.
+  const temporadaVigenteDe = equipo => {
+    const seasons = partidos
+      .filter(p => p.homeNorm === equipo || p.awayNorm === equipo)
+      .map(p => String(p.season ?? ''))
+      .filter(Boolean);
+    if (!seasons.length) return null;
+    return seasons.sort().pop();
+  };
+  const tempHome = temporadaVigenteDe(home);
+  const tempAway = temporadaVigenteDe(away);
 
-  // H2H directo (solo enfrentamientos entre ambos)
+  const cuadroGeneralL = partidosDe(partidos, home, { season: tempHome });
+  const cuadroGeneralV = partidosDe(partidos, away, { season: tempAway });
+  const cuadroLocalCasa = partidosDe(partidos, home, { enCasa: true, season: tempHome });
+  const cuadroVisitaFuera = partidosDe(partidos, away, { enCasa: false, season: tempAway });
+
+  // H2H directo: historial COMPLETO de enfrentamientos directos (todas
+  // las temporadas en la base), dividido en: todos, y los que el local
+  // jugo en su cancha. Se leen desde la perspectiva del local.
   const h2h = partidos
     .filter(p => (p.homeNorm === home && p.awayNorm === away) ||
                   (p.homeNorm === away && p.awayNorm === home))
-    .sort((a, b) => String(b.key).localeCompare(String(a.key)))
-    .slice(0, limite);
-  const h2hLocalVisto = h2h.map(p =>
+    .sort((a, b) => String(b.key).localeCompare(String(a.key)));
+  const leerDesdeLocal = p =>
     p.homeNorm === home
       ? { gf: p.homeScore, gc: p.awayScore, res: p.homeScore > p.awayScore ? 'G' : p.homeScore < p.awayScore ? 'P' : 'E' }
-      : { gf: p.awayScore, gc: p.homeScore, res: p.awayScore > p.homeScore ? 'G' : p.awayScore < p.homeScore ? 'P' : 'E' });
+      : { gf: p.awayScore, gc: p.homeScore, res: p.awayScore > p.homeScore ? 'G' : p.awayScore < p.homeScore ? 'P' : 'E' };
+  const h2hLocalVisto = h2h.map(leerDesdeLocal);
+  const h2hCasaVisto = h2h.filter(p => p.homeNorm === home).map(leerDesdeLocal);
 
   const pBase = probs1x2de([...cuadroLocalCasa, ...cuadroVisitaFuera]);
   const pH2H = probs1x2de(h2hLocalVisto);
@@ -351,12 +373,14 @@ export const historialDe = (history, homeRaw, awayRaw, { limite = 5 } = {}) => {
   return {
     home: homeRaw,
     away: awayRaw,
+    temporadaVigente: { local: tempHome, visita: tempAway },
     cuadros: {
       generalLocal: metricasGoles(cuadroGeneralL),
       generalVisita: metricasGoles(cuadroGeneralV),
       localCasa: metricasGoles(cuadroLocalCasa),
       visitaFuera: metricasGoles(cuadroVisitaFuera),
       h2h: metricasGoles(h2hLocalVisto),
+      h2hCasa: metricasGoles(h2hCasaVisto),
     },
     puntos: {
       localCasa: ptsLocalCasa,
@@ -371,6 +395,7 @@ export const historialDe = (history, homeRaw, awayRaw, { limite = 5 } = {}) => {
       localCasa: patronesDe(cuadroLocalCasa, `${homeRaw} en casa`),
       visitaFuera: patronesDe(cuadroVisitaFuera, `${awayRaw} fuera`),
       h2h: patronesDe(h2hLocalVisto, 'H2H'),
+      h2hCasa: patronesDe(h2hCasaVisto, 'H2H en casa del local'),
     },
     pesoEstadio: {
       local: {
@@ -384,12 +409,14 @@ export const historialDe = (history, homeRaw, awayRaw, { limite = 5 } = {}) => {
         dif: ptsVisitaFuera && ptsVisitaGral ? Number((ptsVisitaFuera.porPartido - ptsVisitaGral.porPartido).toFixed(2)) : null,
       },
     },
-    serieH2H: h2hLocalVisto.slice(0, 5).map(f => f.res),
+    serieH2H: h2hLocalVisto.slice(0, 6).map(f => f.res),
+    serieH2HCasa: h2hCasaVisto.slice(0, 6).map(f => f.res),
     h2hPartidos: h2h.length,
+    h2hCasaPartidos: h2hCasaVisto.length,
     tendencias: {
       general: tendenciasDe([...cuadroGeneralL, ...cuadroGeneralV]),
       lv: tendenciasDe([...cuadroLocalCasa, ...cuadroVisitaFuera]),
-      h2h: tendenciasDe(h2h),
+      h2h: tendenciasDe(h2h.map(p => ({ gfLocal: p.homeScore, gfVisita: p.awayScore }))),
     },
   };
 };

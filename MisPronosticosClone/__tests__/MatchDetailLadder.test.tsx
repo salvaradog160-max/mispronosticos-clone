@@ -159,6 +159,6 @@ test('el detalle dibuja la escalera de cuota justa por mercado', async () => {
   expect(plano).toContain('CABLE DE LA CUOTA');
   expect(plano).toContain('apertura');
   expect(plano).toContain('cierre');
-  expect(plano).toContain('Más de 2.5 goles');
+  expect(plano).toContain('4.5 goles');
   expect(plano).toContain('modelo');
 });

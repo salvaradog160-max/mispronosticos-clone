@@ -66,7 +66,7 @@ if (!ratings.teams[home] || !ratings.teams[away]) {
 // 3) Modelo Poisson y el analisis combinado con historia previa.
 const pred = predictMatch(ratings, { homeTeam: home, awayTeam: away });
 const pModelo = pred.oneXTwo;
-const h = historialDe(previos, local, visita, { limite: 5 });
+const h = historialDe(previos, local, visita);
 const { pBase, pH2H } = h?.probs ?? {};
 const { pComb, usados } = combinar(pModelo, pBase, pH2H);
 const golesModelo = {

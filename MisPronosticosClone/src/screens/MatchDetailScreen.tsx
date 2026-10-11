@@ -442,23 +442,6 @@ export default function MatchDetailScreen({
                     </>
                   )}
 
-                  {fila.combinado.pronosticos.length > 0 && (
-                    <>
-                      <Text style={s.subEtiqueta}>Pronósticos (en orden de probabilidad)</Text>
-                      {fila.combinado.pronosticos.map(pr => (
-                        <TarjetaPronostico
-                          nombre={pr.nombre}
-                          p={pr.p}
-                          riesgo={pr.riesgo}
-                          cuotaJusta={pr.cuotaJusta}
-                          modelo={pr.modelo}
-                          historial={pr.historial}
-                          key={pr.tipo}
-                        />
-                      ))}
-                    </>
-                  )}
-
                   {fila.combinado.oportunidades.length > 0 && (
                     <>
                       <Text style={s.subEtiqueta}>Oportunidades</Text>
@@ -709,8 +692,10 @@ export default function MatchDetailScreen({
                             : k === 'visitaFuera'
                               ? 'Visita fuera'
                               : k === 'h2h'
-                                ? 'H2H'
-                                : k
+                                ? 'H2H (histórico)'
+                                : k === 'h2hCasa'
+                                  ? 'H2H en casa del local'
+                                  : k
                     }
                     items={items}
                   />
@@ -724,9 +709,22 @@ export default function MatchDetailScreen({
           {pestana === 'h2h' && (
             <>
               <Text style={s.seccion}>ENFRENTAMIENTOS DIRECTOS</Text>
+              {(() => {
+                const tv = fila.combinado?.temporadaVigente;
+                if (tv) {
+                  return (
+                    <Text style={s.aviso}>
+                      General/L-V usan SOLO la temporada vigente (local {tv.local ?? '—'}, visita{' '}
+                      {tv.visita ?? '—'}). Aquí el H2H es el historial COMPLETO de enfrentamientos directos, no
+                      solo de esta temporada — así se ven patrones que en 1 año no salen.
+                    </Text>
+                  );
+                }
+                return null;
+              })()}
               {fila.combinado?.h2hPartidos && fila.combinado.h2hPartidos > 0 ? (
                 <>
-                  <Fila etiqueta="Partidos">
+                  <Fila etiqueta="Partidos (histórico)">
                     <Text style={s.valor}>{fila.combinado.h2hPartidos}</Text>
                   </Fila>
                   <Fila etiqueta="Serie (desde el local)">
@@ -755,6 +753,42 @@ export default function MatchDetailScreen({
                       </>
                     );
                   })()}
+
+                  {fila.combinado.h2hCasaPartidos && fila.combinado.h2hCasaPartidos > 0 ? (
+                    <>
+                      <Text style={s.subEtiqueta}>H2H jugado en casa del local</Text>
+                      <Fila etiqueta="Partidos">
+                        <Text style={s.valor}>{fila.combinado.h2hCasaPartidos}</Text>
+                      </Fila>
+                      <Fila etiqueta="Serie">
+                        <Text style={s.valor}>
+                          {fila.combinado.serieH2HCasa?.join(' · ') ?? '—'}
+                        </Text>
+                      </Fila>
+                      {(() => {
+                        const cc = fila.combinado?.cuadros?.h2hCasa;
+                        if (!cc) return null;
+                        return (
+                          <>
+                            <Fila etiqueta="Promedio">
+                              <Text style={s.valor}>
+                                {cc.gfProm.toFixed(2)} a favor · {cc.gcProm.toFixed(2)} en contra
+                              </Text>
+                            </Fila>
+                            <Fila etiqueta="≥1 gol">
+                              <Text style={s.valor}>
+                                {cc.gfGe1}% a favor · {cc.gcGe1}% en contra
+                              </Text>
+                            </Fila>
+                          </>
+                        );
+                      })()}
+                    </>
+                  ) : (
+                    <Text style={s.aviso}>
+                      Sin enfrentamientos históricos jugados en casa del local.
+                    </Text>
+                  )}
                 </>
               ) : (
                 <Text style={s.aviso}>

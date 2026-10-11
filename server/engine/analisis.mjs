@@ -367,6 +367,9 @@ const historialCombinado = (partido, probs) => {
       cuotaJusta: cuotaJusta,
       serieH2H: h.serieH2H ?? [],
       h2hPartidos: h.h2hPartidos ?? 0,
+      serieH2HCasa: h.serieH2HCasa ?? [],
+      h2hCasaPartidos: h.h2hCasaPartidos ?? 0,
+      temporadaVigente: h.temporadaVigente ?? null,
       // Datos de base (cuadros reales)
       cuadros: h.cuadros,
       puntos: h.puntos,
