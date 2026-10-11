@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-11T01:54:51.192Z",
+  "generado": "2026-10-11T02:33:45.283Z",
   "picks": [
     {
       "id": "401875005-H",
@@ -11,20 +11,72 @@
       "market": "1X2",
       "selection": "Gana Atalanta",
       "odds": 1.5405405405405406,
-      "confidence": 73,
+      "confidence": 74,
       "stars": 4,
       "isSpecial": false,
       "isPremium": false,
       "probMercado": 0.601,
-      "nMuestra": 2411,
+      "nMuestra": 5320,
       "rango": [
-        71.4,
-        75
+        73.1,
+        75.5
       ],
-      "createdAt": "2026-10-11T01:54:50.857Z",
-      "roiUnit": 0.1245945945945946,
-      "margen": 0.0808771929824561,
+      "createdAt": "2026-10-11T02:33:45.065Z",
+      "roiUnit": 0.14,
+      "margen": 0.09087719298245611,
       "breakEven": 0.6491228070175439,
+      "rentable": true
+    },
+    {
+      "id": "401875587-H",
+      "fixtureId": "401875587",
+      "league": "ned.1",
+      "kickoff": "2026-10-11T10:15Z",
+      "homeTeam": "FC Utrecht",
+      "awayTeam": "Willem II",
+      "market": "1X2",
+      "selection": "Gana FC Utrecht",
+      "odds": 1.5,
+      "confidence": 74,
+      "stars": 4,
+      "isSpecial": false,
+      "isPremium": false,
+      "probMercado": 0.633,
+      "nMuestra": 5320,
+      "rango": [
+        73.1,
+        75.5
+      ],
+      "createdAt": "2026-10-11T02:33:45.065Z",
+      "roiUnit": 0.10999999999999999,
+      "margen": 0.07333333333333336,
+      "breakEven": 0.6666666666666666,
+      "rentable": true
+    },
+    {
+      "id": "401883183-H",
+      "fixtureId": "401883183",
+      "league": "esp.2",
+      "kickoff": "2026-10-11T16:30Z",
+      "homeTeam": "Mallorca",
+      "awayTeam": "Las Palmas",
+      "market": "1X2",
+      "selection": "Gana Mallorca",
+      "odds": 1.5714285714285714,
+      "confidence": 74,
+      "stars": 4,
+      "isSpecial": false,
+      "isPremium": false,
+      "probMercado": 0.602,
+      "nMuestra": 5320,
+      "rango": [
+        73.1,
+        75.5
+      ],
+      "createdAt": "2026-10-11T02:33:45.065Z",
+      "roiUnit": 0.1628571428571428,
+      "margen": 0.10363636363636364,
+      "breakEven": 0.6363636363636364,
       "rentable": true
     }
   ],

@@ -1,112 +1,155 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
-import { ActivityIndicator, Chip, ProgressBar, Surface, Text } from 'react-native-paper';
+import { ActivityIndicator, ProgressBar, Surface, Text } from 'react-native-paper';
 import { palette, radius, spacing } from '../theme';
-import type { Pick, Market } from '../domain/picks';
 import type { AppConfig } from '../config';
 import { DEFAULTS } from '../config';
-import { usePicks, useAlertas } from '../data/usePicks';
-import AlertasCard from '../components/AlertasCard';
+import { useAnalisis } from '../data/usePicks';
+import type { AnalisisFila } from '../data/analisisRepository';
 
 interface Props {
   config?: AppConfig;
 }
 
-const Stars = ({ value }: { value: number }) => (
-  <Text style={styles.stars}>{'\u2605'.repeat(value)}{'\u2606'.repeat(5 - value)}</Text>
-);
+const pct = (v: number | null | undefined) => (v === null || v === undefined ? '—' : `${(v * 100).toFixed(1)}%`);
+const pp = (v: number | null | undefined) => (v === null || v === undefined ? '—' : `${v > 0 ? '+' : ''}${v.toFixed(1)} pp`);
 
-const MERCADOS: { key: Market; label: string }[] = [
-  { key: '1X2', label: '1X2' },
-  { key: 'TOTAL', label: 'Goles' },
-];
+interface Estadisticas {
+  partidosHistorico: number;
+  ligas: number;
+  derivaMediana: number | null;
+  derivaP90: number | null;
+  cambioFavorito: number | null;
+  consensoAcierto: number | null;
+  margenCasa: number;
+  nota: string;
+}
 
+/**
+ * Analizador. NO decide si apostar: enseña las tres cosas que hay que
+ * mirar para decidir (mercado, modelo y movimiento de la linea) y
+ * dice, arriba, que no hay ventaja demostrada.
+ */
 export default function TopAiScreen({ config = DEFAULTS }: Props) {
-  const [mercado, setMercado] = useState<Market>('1X2');
-  const { data, loading, error, reload } = usePicks(config, { market: mercado });
-  const { data: alertas } = useAlertas(config);
-  const visibles = useMemo(() => data.filter(p => p.market === mercado), [data, mercado]);
+  const { data, stats, loading, error, reload } = useAnalisis(config);
+
+  const ordenados = useMemo(
+    () => [...data].sort((a, b) => Math.abs(b.movimiento ?? 0) - Math.abs(a.movimiento ?? 0)),
+    [data],
+  );
+
+  const discrepantes = data.filter(a => !a.coincide).length;
 
   return (
     <FlatList
-      data={visibles}
-      keyExtractor={item => item.id}
-      style={styles.list}
+      data={ordenados}
+      keyExtractor={(item, i) => `${item.partido}-${i}`}
+      style={styles.screen}
       contentContainerStyle={styles.content}
       onRefresh={reload}
       refreshing={loading}
       ListHeaderComponent={
-        <View style={styles.header}>
-          <Text variant="bodyMedium" style={styles.subtitle}>
-            {config.minStarsTopAi} estrellas o más · mínimo {config.minConfidenceTopAi}%
+        <View>
+          <Text variant="titleLarge" style={styles.title}>
+            Análisis
           </Text>
-          <View style={styles.chips}>
-            {MERCADOS.map(m => (
-              <Chip
-                key={m.key}
-                compact
-                style={[styles.chip, mercado === m.key && styles.chipOn]}
-                selected={mercado === m.key}
-                onPress={() => setMercado(m.key)}
-                showSelectedCheck={false}
-              >
-                {m.label}
-              </Chip>
-            ))}
-          </View>
-          <AlertasCard alertas={alertas} />
+
+          {stats ? (
+            <Surface elevation={1} style={styles.stats}>
+              <Text variant="titleSmall" style={styles.statsTitulo}>
+                Lo que dicen los datos
+              </Text>
+              <Fila etiqueta="Ligas / partidos" valor={`${stats.ligas} · ${stats.partidosHistorico.toLocaleString('es-MX')}`} />
+              <Fila etiqueta="Acierto del consenso" valor={pct(stats.consensoAcierto)} />
+              <Fila etiqueta="Margen de la casa" valor={`${(stats.margenCasa * 100).toFixed(2)}%`} rojo />
+              <Fila
+                etiqueta="La línea se mueve (mediana)"
+                valor={stats.derivaMediana === null ? '—' : `${(stats.derivaMediana * 100).toFixed(1)} pp`}
+              />
+              <Fila
+                etiqueta="Movimiento extremo (p90)"
+                valor={stats.derivaP90 === null ? '—' : `${(stats.derivaP90 * 100).toFixed(1)} pp`}
+              />
+              <Fila
+                etiqueta="Cambia el favorito"
+                valor={stats.cambioFavorito === null ? '—' : pct(stats.cambioFavorito)}
+              />
+
+              <View style={styles.aviso}>
+                <Text style={styles.avisoTitulo}>No hay ventaja demostrada</Text>
+                <Text style={styles.avisoTexto}>
+                  El modelo acierta más que el azar, pero el mercado ya lo tiene en
+                  la cuota: apostar todo da −4.57%, que es el margen de la casa.
+                  Estos números sirven para analizar, no para apostar en automático.
+                </Text>
+              </View>
+            </Surface>
+          ) : null}
+
+          {data.length > 0 ? (
+            <Text variant="bodySmall" style={styles.nota}>
+              Ordenados por movimiento de línea. {discrepantes} de {data.length} tienen
+              modelo y mercado en desacuerdo.
+            </Text>
+          ) : null}
         </View>
       }
       ListEmptyComponent={
         loading ? (
           <ActivityIndicator color={palette.accent} style={styles.loader} />
         ) : error ? (
-          <Text style={styles.error}>No se pudo cargar: {error}</Text>
+          <Text style={styles.vacio}>No se pudo cargar: {error}</Text>
         ) : (
-          <Text style={styles.empty}>Sin picks que cumplan el filtro.</Text>
+          <Text style={styles.vacio}>No hay partidos con cuotas en este momento.</Text>
         )
       }
-      renderItem={({ item }: { item: Pick }) => (
+      renderItem={({ item }: { item: AnalisisFila }) => (
         <Surface elevation={1} style={styles.card}>
           <View style={styles.row}>
-            <Text variant="titleMedium" style={styles.market}>
-              {item.selection}
+            <Text variant="titleSmall" style={styles.partido} numberOfLines={2}>
+              {item.partido}
             </Text>
-            <Stars value={item.stars} />
+            <View style={[styles.mov, item.movimiento !== null && Math.abs(item.movimiento) >= 3 ? styles.movFuerte : null]}>
+              <Text style={styles.movTexto}>{pp(item.movimiento)}</Text>
+            </View>
           </View>
-          <Text variant="bodySmall" style={styles.muted}>
-            {/* En 1X2 la seleccion ya trae el equipo ("Gana X"), asi que
-                repetir el partido seria redundante. En goles si hace falta. */}
-            {item.homeTeam && item.awayTeam && !item.selection.includes(item.homeTeam)
-              ? `${item.homeTeam} vs ${item.awayTeam}`
-              : item.line
-                ? `${item.market} · línea ${item.line}`
-                : item.market}
-          </Text>
-          <View style={styles.progressWrap}>
-            <Text style={styles.confidence}>{item.confidence}%</Text>
+
+          <Text style={styles.liga}>{item.liga}</Text>
+
+          <View style={styles.cifras}>
+            <View style={styles.cifra}>
+              <Text style={styles.etiqueta}>Mercado</Text>
+              <Text style={styles.valor}>{item.ladoMercado}</Text>
+              <Text style={styles.sub}>{pct(item.probMercado)} · cuota {item.cuotaMercado.toFixed(2)}</Text>
+            </View>
+            <View style={styles.sep} />
+            <View style={styles.cifra}>
+              <Text style={styles.etiqueta}>Modelo</Text>
+              <Text style={styles.valor}>{item.ladoModelo}</Text>
+              <Text style={styles.sub}>{pct(item.probModelo)}</Text>
+            </View>
+          </View>
+
+          <View style={styles.barraWrap}>
             <ProgressBar
-              progress={item.confidence / 100}
-              color={palette.accent}
-              style={styles.bar}
+              progress={item.coincide ? 1 : 0}
+              color={item.coincide ? palette.accent : '#ffb84d'}
+              style={styles.barra}
             />
-          </View>
-          <View style={styles.row}>
-            <Text style={styles.odds}>
-              Cuota {item.odds.toFixed(2)}
-              {item.margen !== null && item.margen !== undefined
-                ? `  ·  margen +${(item.margen * 100).toFixed(1)}pp`
-                : ''}
+            <Text style={[styles.veredicto, item.coincide ? styles.ok : styles.avisoColor]}>
+              {item.coincide
+                ? 'Mercado y modelo coinciden'
+                : `Discrepan: mercado ve ${item.ladoMercado}, modelo ve ${item.ladoModelo}`}
             </Text>
-            {item.isSpecial ? (
-              <Chip icon="shield-check" compact style={styles.special}>
-                Validado
-              </Chip>
-            ) : null}
           </View>
-          {item.analysis ? (
-            <Text variant="bodySmall" style={styles.muted}>
-              {item.analysis}
+
+          {item.cambioFavorito ? (
+            <Text style={styles.giro}>El favorito cambió desde la apertura</Text>
+          ) : null}
+          {item.lineaGoles ? (
+            <Text style={styles.goles}>
+              Línea de goles {item.lineaGoles}
+              {item.cuotaGoles ? ` · más ${item.cuotaGoles.toFixed(2)}` : ''}
             </Text>
           ) : null}
         </Surface>
@@ -115,30 +158,47 @@ export default function TopAiScreen({ config = DEFAULTS }: Props) {
   );
 }
 
+const Fila = ({ etiqueta, valor, rojo }: { etiqueta: string; valor: string; rojo?: boolean }) => (
+  <View style={styles.fila}>
+    <Text style={styles.filaEtiqueta}>{etiqueta}</Text>
+    <Text style={[styles.filaValor, rojo ? styles.rojo : null]}>{valor}</Text>
+  </View>
+);
+
 const styles = StyleSheet.create({
-  list: { flex: 1, backgroundColor: palette.bg },
-  content: { padding: spacing.md, gap: spacing.md },
-  header: { gap: spacing.xs, marginBottom: spacing.sm },
-  subtitle: { color: palette.textMuted },
-  chips: { flexDirection: 'row', gap: spacing.sm, marginTop: spacing.sm },
-  chipOn: { backgroundColor: palette.accent, opacity: 0.85 },
-  chip: { backgroundColor: palette.surfaceAlt },
-  card: {
-    backgroundColor: palette.surface,
-    borderRadius: radius.lg,
-    padding: spacing.md,
-    gap: spacing.sm,
-  },
-  row: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  market: { color: palette.text, fontWeight: '600' },
-  stars: { color: palette.star, fontSize: 14, letterSpacing: 1 },
-  muted: { color: palette.textMuted },
-  progressWrap: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
-  confidence: { color: palette.accent, fontWeight: '700', width: 56 },
-  bar: { flex: 1, height: 8, borderRadius: radius.pill, backgroundColor: palette.border },
-  odds: { color: palette.blue, fontWeight: '600' },
-  special: { backgroundColor: palette.accentTint },
+  screen: { flex: 1, backgroundColor: palette.bg },
+  content: { padding: spacing.md, paddingBottom: spacing.xl },
+  title: { color: palette.text, fontWeight: '700', marginBottom: spacing.md },
+  stats: { backgroundColor: palette.surface, borderRadius: radius.lg, padding: spacing.md, marginBottom: spacing.md },
+  statsTitulo: { color: palette.text, fontWeight: '700', marginBottom: spacing.sm },
+  fila: { flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 3 },
+  filaEtiqueta: { color: palette.textMuted, fontSize: 13 },
+  filaValor: { color: palette.text, fontSize: 13, fontWeight: '600' },
+  rojo: { color: '#ff6b6b' },
+  aviso: { marginTop: spacing.md, padding: spacing.sm, backgroundColor: 'rgba(255,107,107,0.10)', borderRadius: radius.sm },
+  avisoTitulo: { color: '#ff6b6b', fontWeight: '700', fontSize: 13, marginBottom: 3 },
+  avisoTexto: { color: palette.textMuted, fontSize: 12, lineHeight: 17 },
+  nota: { color: palette.textMuted, marginBottom: spacing.sm, lineHeight: 17 },
+  card: { backgroundColor: palette.surface, borderRadius: radius.lg, padding: spacing.md, marginBottom: spacing.sm },
+  row: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: spacing.sm },
+  partido: { color: palette.text, fontWeight: '600', flex: 1 },
+  mov: { paddingHorizontal: spacing.sm, paddingVertical: 3, borderRadius: 999, backgroundColor: 'rgba(77,214,168,0.15)' },
+  movFuerte: { backgroundColor: 'rgba(255,184,77,0.20)' },
+  movTexto: { color: palette.accent, fontSize: 12, fontWeight: '700' },
+  liga: { color: palette.textMuted, fontSize: 12, marginTop: 2 },
+  cifras: { flexDirection: 'row', marginTop: spacing.sm, alignItems: 'stretch' },
+  cifra: { flex: 1 },
+  sep: { width: 1, backgroundColor: palette.surfaceAlt, marginHorizontal: spacing.sm },
+  etiqueta: { color: palette.textMuted, fontSize: 11, textTransform: 'uppercase', letterSpacing: 0.5 },
+  valor: { color: palette.text, fontSize: 16, fontWeight: '700', marginTop: 2 },
+  sub: { color: palette.textMuted, fontSize: 12, marginTop: 1 },
+  barraWrap: { marginTop: spacing.sm },
+  barra: { height: 3, backgroundColor: palette.surfaceAlt },
+  veredicto: { fontSize: 12, marginTop: 6 },
+  ok: { color: palette.accent },
+  avisoColor: { color: '#ffb84d' },
+  giro: { color: '#ffb84d', fontSize: 12, marginTop: 6, fontWeight: '600' },
+  goles: { color: palette.textMuted, fontSize: 12, marginTop: 4 },
+  vacio: { color: palette.textMuted, textAlign: 'center', marginTop: spacing.xl, lineHeight: 20 },
   loader: { marginTop: spacing.xl },
-  error: { color: palette.danger, marginTop: spacing.lg },
-  empty: { color: palette.textMuted, marginTop: spacing.lg },
 });

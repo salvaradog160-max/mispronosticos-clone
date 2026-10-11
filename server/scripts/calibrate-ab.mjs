@@ -12,12 +12,13 @@
 import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { LEAGUES_HISTORIA } from '../config/ligas.mjs';
 import { fetchHistory, impliedProbs } from '../providers/footballdata.mjs';
 import { buildRatings, predictMatch } from '../engine/ratings.mjs';
 import { normalizeTeam } from '../engine/calibration.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
-const LEAGUES = ['E1', 'SP1', 'I1', 'D1', 'F1'];
+const LEAGUES = LEAGUES_HISTORIA;
 const SEASONS = 8;
 const EDGES = [0.3, 0.4, 0.45, 0.5, 0.55, 0.6, 1.01];
 

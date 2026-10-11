@@ -1,62 +1,87 @@
-import React from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
-import { Button, ProgressBar, Surface, Text } from 'react-native-paper';
+import React, { useMemo } from 'react';
+import { RefreshControl, ScrollView, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Surface, Text } from 'react-native-paper';
 import { palette, radius, spacing } from '../theme';
+import type { Match } from '../domain/picks';
 import type { AppConfig } from '../config';
 import { DEFAULTS } from '../config';
+import { useLiveMatches } from '../data/usePicks';
 
 interface Props {
   config?: AppConfig;
 }
 
-const phases = [
-  { id: 'p30', label: 'Minuto 30', done: true },
-  { id: 'p60', label: 'Minuto 60', done: false },
-  { id: 'p90', label: 'Final', done: false },
-];
-
+/**
+ * En vivo muestra SOLO partidos que estan jugando de verdad, con el
+ * marcador real de ESPN.
+ *
+ * No recalcula probabilidades durante el partido: no hay feed de
+ * estadisticas por minuto en las fuentes publicas que usamos, y
+ * prefiero una pantalla vacia a una que finja.
+ */
 export default function LiveScreen({ config = DEFAULTS }: Props) {
+  const { data, loading, error, reload } = useLiveMatches(config);
+
+  const enJuego = useMemo(() => data.filter(m => m.status === 'live'), [data]);
+
   return (
-    <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
-      <Text variant="bodyMedium" style={styles.muted}>
-        La IA recalcula probabilidades mientras se juega el partido
-      </Text>
+    <ScrollView
+      style={styles.screen}
+      contentContainerStyle={styles.content}
+      refreshControl={
+        <RefreshControl refreshing={loading} onRefresh={reload} tintColor={palette.accent} />
+      }
+    >
+      <View style={styles.header}>
+        <Text variant="titleMedium" style={styles.title}>
+          Partidos en juego
+        </Text>
+        <Text variant="bodyMedium" style={styles.muted}>
+          Marcador real de ESPN, actualizado cada hora.
+        </Text>
+      </View>
+
+      {loading ? (
+        <ActivityIndicator color={palette.accent} style={styles.loader} />
+      ) : error ? (
+        <Text style={styles.vacio}>No se pudo cargar: {error}</Text>
+      ) : enJuego.length === 0 ? (
+        <Surface elevation={1} style={styles.card}>
+          <Text variant="bodyMedium" style={styles.vacioTitulo}>
+            No hay partidos en juego ahora mismo
+          </Text>
+          <Text style={styles.muted}>
+            Esta pantalla solo muestra partidos que ya empezaron. Vuelve
+            durante un horario de liga.
+          </Text>
+        </Surface>
+      ) : (
+        enJuego.map(m => (
+          <Surface key={m.id} elevation={1} style={styles.card}>
+            <View style={styles.row}>
+              <Text style={styles.liga}>{m.leagueName ?? ''}</Text>
+              {m.minute ? <Text style={styles.minuto}>{m.minute}'</Text> : null}
+            </View>
+            <View style={styles.marcador}>
+              <Text style={styles.equipo}>{m.homeTeam}</Text>
+              <Text style={styles.marcadorTexto}>
+                {m.homeScore ?? '-'} - {m.awayScore ?? '-'}
+              </Text>
+              <Text style={styles.equipo}>{m.awayTeam}</Text>
+            </View>
+          </Surface>
+        ))
+      )}
 
       <Surface elevation={1} style={styles.card}>
-        <View style={styles.row}>
-          <Text style={styles.league}>Premier League</Text>
-          <Text style={styles.minute}>67'</Text>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.team}>Arsenal</Text>
-          <Text style={styles.score}>1 - 1</Text>
-          <Text style={styles.team}>Chelsea</Text>
-        </View>
-        <Text style={styles.muted}>Posesión · tiros · contexto H2H</Text>
-      </Surface>
-
-      <Text variant="titleSmall" style={styles.section}>
-        Fases del analisis
-      </Text>
-      {phases.map(phase => (
-        <View key={phase.id} style={styles.phase}>
-          <Text style={styles.phaseLabel}>{phase.label}</Text>
-          <ProgressBar
-            progress={phase.done ? 1 : 0}
-            color={phase.done ? palette.accent : palette.surfaceAlt}
-            style={styles.bar}
-          />
-        </View>
-      ))}
-
-      <Surface elevation={1} style={styles.card}>
-        <Text style={styles.market}>Over 2.5 goles</Text>
-        <Text style={styles.confidence}>87%</Text>
-        <Button mode="contained" style={styles.cta} textColor={palette.bg}>
-          Ver pick con contexto
-        </Button>
-        <Text variant="bodySmall" style={styles.locked}>
-          El razonamiento en vivo es Premium
+        <Text variant="titleSmall" style={styles.tituloSeccion}>
+          Lo que esta pantalla NO hace
+        </Text>
+        <Text style={styles.muted}>
+          No recalcula probabilidades mientras se juega. Necesitaríamos
+          estadísticas por minuto y las fuentes públicas que usamos no las
+          dan. Cuando haya datos de verdad, se agrega; mientras tanto, mejor
+          vacío que inventado.
         </Text>
       </Surface>
     </ScrollView>
@@ -65,26 +90,19 @@ export default function LiveScreen({ config = DEFAULTS }: Props) {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: palette.bg },
-  content: { padding: spacing.md, gap: spacing.md },
-  title: { color: palette.text, fontWeight: '700' },
-  muted: { color: palette.textMuted },
-  card: {
-    backgroundColor: palette.surface,
-    borderRadius: radius.lg,
-    padding: spacing.md,
-    gap: spacing.sm,
-  },
-  row: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  league: { color: palette.textMuted, fontSize: 12 },
-  minute: { color: palette.accent, fontWeight: '700' },
-  team: { color: palette.text, fontWeight: '600', flex: 1, textAlign: 'center' },
-  score: { color: palette.text, fontWeight: '800', fontSize: 18 },
-  section: { color: palette.textMuted, marginTop: spacing.sm },
-  phase: { gap: spacing.xs },
-  phaseLabel: { color: palette.text },
-  bar: { height: 6, borderRadius: radius.pill, backgroundColor: palette.surfaceAlt },
-  market: { color: palette.text, fontWeight: '600', fontSize: 16 },
-  confidence: { color: palette.accent, fontWeight: '800', fontSize: 32 },
-  cta: { backgroundColor: palette.accent, borderRadius: radius.md },
-  locked: { color: palette.textMuted, textAlign: 'center' },
+  content: { padding: spacing.md, paddingBottom: spacing.xl },
+  header: { marginBottom: spacing.md },
+  title: { color: palette.text, fontWeight: '700', marginBottom: spacing.xs },
+  muted: { color: palette.textMuted, lineHeight: 18 },
+  card: { backgroundColor: palette.surface, borderRadius: radius.lg, padding: spacing.md, marginBottom: spacing.sm },
+  row: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  liga: { color: palette.textMuted, fontSize: 13 },
+  minuto: { color: palette.accent, fontWeight: '700' },
+  marcador: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: spacing.sm },
+  equipo: { color: palette.text, fontSize: 16, fontWeight: '600', flex: 1 },
+  marcadorTexto: { color: palette.accent, fontSize: 22, fontWeight: '800', paddingHorizontal: spacing.sm },
+  vacio: { color: palette.textMuted, textAlign: 'center', marginTop: spacing.lg, lineHeight: 19 },
+  vacioTitulo: { color: palette.text, fontWeight: '600', marginBottom: spacing.xs },
+  tituloSeccion: { color: palette.text, fontWeight: '700', marginBottom: spacing.xs },
+  loader: { marginTop: spacing.xl },
 });

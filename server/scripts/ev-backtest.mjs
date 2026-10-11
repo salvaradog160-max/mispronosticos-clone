@@ -12,13 +12,14 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { LEAGUES_HISTORIA } from '../config/ligas.mjs';
 import { fetchHistory, impliedProbs } from '../providers/footballdata.mjs';
 import { buildRatings, predictMatch } from '../engine/ratings.mjs';
 import { normalizeTeam } from '../engine/calibration.mjs';
 import { lookupBucket } from '../engine/calibration.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
-const LEAGUES = ['E1', 'SP1', 'I1', 'D1', 'F1'];
+const LEAGUES = LEAGUES_HISTORIA;
 const SEASONS = 8;
 
 const parseDate = raw => {
@@ -59,6 +60,7 @@ for (let i = 300; i < history.length; i++) {
   const won = actual === sel;
 
   picks.push({
+    liga: fx.league,
     odds,
     confidence: cal.confidence / 100,
     won,
@@ -76,17 +78,20 @@ const evaluar = (nombre, filtro) => {
   const roi = usados.reduce((s, p) => s + p.roi, 0) / usados.length;
   const acierto = usados.filter(p => p.won).length / usados.length;
   const bajo = usados.filter(p => !p.won).length;
-  const sesgo = Math.sqrt((acierto * (1 - acierto)) / usados.length);
-  // ROI en unidades por unidad apostada. Sin Interés compuesto.
+  // La varianza del ROI NO es la binomial del acierto: cada pick aporta
+  // una cantidad distinta de dinero. Se calcula sobre los retornos
+  // individuales, que es lo unico honesto.
+  const retornos = usados.map(p => p.roi);
+  const media = roi;
+  const varianza = retornos.reduce((s, r) => s + (r - media) ** 2, 0) / usados.length;
+  const se = Math.sqrt(varianza / usados.length);
   return {
     nombre,
     n: usados.length,
     acierto,
     roi,
-    errores: bajo,
-    z: (roi / (Math.sqrt(acierto * (1 - acierto)) / usados.length)) || 0,
-    ic: [roi - 1.96 * Math.sqrt(acierto * (1 - acierto)) / usados.length,
-          roi + 1.96 * Math.sqrt(acierto * (1 - acierto)) / usados.length],
+    z: se > 0 ? roi / se : 0,
+    ic: se > 0 ? [roi - 1.96 * se, roi + 1.96 * se] : [roi, roi],
     cobertura: usados.length / picks.length,
   };
 };
@@ -103,6 +108,21 @@ const reglas = [
 ];
 
 const resultados = reglas.map(([n, f]) => evaluar(n, f));
+
+// Desglose por liga para el filtro de produccion.
+const porLiga = {};
+for (const p of picks.filter(p => p.confidence > 1 / p.odds + 0.05)) {
+  porLiga[p.liga] = porLiga[p.liga] ?? { n: 0, roi: 0, gana: 0 };
+  porLiga[p.liga].n++;
+  porLiga[p.liga].roi += p.roi;
+  if (p.roi > 0) porLiga[p.liga].gana++;
+}
+console.log('\nEV+5pp POR LIGA (solo lo que pasa el filtro)');
+console.log('liga      n     ROI      acierto');
+for (const [k, v] of Object.entries(porLiga).sort((a, b) => b[1].n - a[1].n)) {
+  const roi = v.roi / v.n;
+  console.log(`${k.padEnd(8)} ${String(v.n).padEnd(5)} ${(roi * 100).toFixed(2).padStart(7)}%   ${(100 * v.gana / v.n).toFixed(0)}%`);
+}
 
 console.log('\nregla                      n      acierto    ROI      z      cobertura');
 console.log('-'.repeat(76));

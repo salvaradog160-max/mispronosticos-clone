@@ -1,11 +1,11 @@
 {
-  "generado": "2026-10-11T01:54:51.192Z",
-  "anterior": "2026-10-11T01:54:15.853Z",
+  "generado": "2026-10-11T02:33:45.283Z",
+  "anterior": "2026-10-11T01:54:51.192Z",
   "fuente": "football-data.co.uk + ESPN (sin claves)",
   "calibracion": {
-    "partidos": 13559,
-    "consensoAcierto": 0.5303652474605576,
-    "consensoN": 9217,
+    "partidos": 33882,
+    "consensoAcierto": 0.5209876543209877,
+    "consensoN": 22828,
     "nota": "Acierto empirico de los picks de consenso, medido sobre partidos ya jugados."
   },
   "mercados": {
@@ -16,10 +16,10 @@
     "bttsNota": "Medido con probabilidad del modelo unicamente. Los tramos de abajo del 50% muestran que el modelo sobrevalora BTTS."
   },
   "resumen": {
-    "partidosConDatos": 11,
-    "picks": 1,
+    "partidosConDatos": 25,
+    "picks": 3,
     "picksMercado": 0,
-    "descartados": 13,
+    "descartados": 28,
     "enVivo": 0
   },
   "descarte": {
@@ -27,11 +27,19 @@
     "motivo": "Un pick puede acertar el 57% y aun asi perder dinero si la cuota exige 61%.",
     "descartados": [
       {
+        "partido": "Besiktas vs Kocaelispor",
+        "mercado": "1X2",
+        "seleccion": "Gana Besiktas",
+        "cuota": 1.2564102564102564,
+        "confianza": 74,
+        "necesita": 80
+      },
+      {
         "partido": "Lazio vs Monza",
         "mercado": "1X2",
         "seleccion": "Gana Lazio",
         "cuota": 1.625,
-        "confianza": 57,
+        "confianza": 59,
         "necesita": 62
       },
       {
@@ -39,13 +47,37 @@
         "mercado": "1X2",
         "seleccion": "Gana SC Freiburg",
         "cuota": 1.606060606060606,
-        "confianza": 57,
+        "confianza": 59,
         "necesita": 62
       },
       {
-        "partido": "Lecce vs Bologna",
+        "partido": "Almería vs Leganés",
         "mercado": "1X2",
-        "seleccion": "Gana Bologna",
+        "seleccion": "Gana Almería",
+        "cuota": 1.6451612903225805,
+        "confianza": 59,
+        "necesita": 61
+      },
+      {
+        "partido": "FC Famalicao vs Alverca",
+        "mercado": "1X2",
+        "seleccion": "Gana FC Famalicao",
+        "cuota": 1.8695652173913042,
+        "confianza": 52,
+        "necesita": 53
+      },
+      {
+        "partido": "Arouca vs Estrela",
+        "mercado": "1X2",
+        "seleccion": "Gana Arouca",
+        "cuota": 2.05,
+        "confianza": 47,
+        "necesita": 49
+      },
+      {
+        "partido": "Padova vs Carrarese",
+        "mercado": "1X2",
+        "seleccion": "Gana Padova",
         "cuota": 1.9090909090909092,
         "confianza": 47,
         "necesita": 52
@@ -55,7 +87,7 @@
         "mercado": "1X2",
         "seleccion": "Gana Torino",
         "cuota": 2.3,
-        "confianza": 44,
+        "confianza": 43,
         "necesita": 43
       },
       {
@@ -63,23 +95,55 @@
         "mercado": "1X2",
         "seleccion": "Gana Nice",
         "cuota": 2.35,
-        "confianza": 44,
+        "confianza": 43,
         "necesita": 43
+      },
+      {
+        "partido": "Aberdeen vs St Johnstone",
+        "mercado": "1X2",
+        "seleccion": "Gana Aberdeen",
+        "cuota": 2.2,
+        "confianza": 43,
+        "necesita": 45
+      },
+      {
+        "partido": "Catanzaro vs Mantova",
+        "mercado": "1X2",
+        "seleccion": "Gana Catanzaro",
+        "cuota": 2.35,
+        "confianza": 43,
+        "necesita": 43
+      },
+      {
+        "partido": "FC Andorra vs Castellón",
+        "mercado": "1X2",
+        "seleccion": "Gana Castellón",
+        "cuota": 2.25,
+        "confianza": 43,
+        "necesita": 44
       },
       {
         "partido": "Como vs AS Roma",
         "mercado": "1X2",
         "seleccion": "Gana Como",
         "cuota": 2.45,
-        "confianza": 38,
+        "confianza": 37,
         "necesita": 41
+      },
+      {
+        "partido": "Tenerife vs Girona",
+        "mercado": "1X2",
+        "seleccion": "Gana Girona",
+        "cuota": 2.55,
+        "confianza": 37,
+        "necesita": 39
       },
       {
         "partido": "Lecce vs Bologna",
         "mercado": "TOTAL",
         "seleccion": "Menos de 2.5 goles",
         "cuota": 1.7142857142857144,
-        "confianza": 60,
+        "confianza": 59,
         "necesita": 58
       },
       {
@@ -87,7 +151,7 @@
         "mercado": "TOTAL",
         "seleccion": "Menos de 2.5 goles",
         "cuota": 1.7142857142857144,
-        "confianza": 60,
+        "confianza": 59,
         "necesita": 58
       },
       {
@@ -95,7 +159,7 @@
         "mercado": "TOTAL",
         "seleccion": "Más de 2.5 goles",
         "cuota": 1.625,
-        "confianza": 60,
+        "confianza": 59,
         "necesita": 62
       },
       {
@@ -103,7 +167,7 @@
         "mercado": "TOTAL",
         "seleccion": "Más de 2.5 goles",
         "cuota": 1.6666666666666665,
-        "confianza": 60,
+        "confianza": 59,
         "necesita": 60
       },
       {
@@ -111,8 +175,40 @@
         "mercado": "TOTAL",
         "seleccion": "Más de 2.5 goles",
         "cuota": 1.5714285714285714,
-        "confianza": 60,
+        "confianza": 59,
         "necesita": 64
+      },
+      {
+        "partido": "Almería vs Leganés",
+        "mercado": "TOTAL",
+        "seleccion": "Más de 2.5 goles",
+        "cuota": 1.6896551724137931,
+        "confianza": 59,
+        "necesita": 59
+      },
+      {
+        "partido": "Burgos vs Granada",
+        "mercado": "TOTAL",
+        "seleccion": "Menos de 2.5 goles",
+        "cuota": 1.6451612903225805,
+        "confianza": 59,
+        "necesita": 61
+      },
+      {
+        "partido": "Tenerife vs Girona",
+        "mercado": "TOTAL",
+        "seleccion": "Menos de 2.5 goles",
+        "cuota": 1.6451612903225805,
+        "confianza": 59,
+        "necesita": 61
+      },
+      {
+        "partido": "Levante vs Sevilla",
+        "mercado": "TOTAL",
+        "seleccion": "Menos de 2.5 goles",
+        "cuota": 1.7692307692307692,
+        "confianza": 53,
+        "necesita": 57
       },
       {
         "partido": "Sassuolo vs AC Milan",
@@ -129,14 +225,477 @@
         "cuota": 1.8,
         "confianza": 53,
         "necesita": 56
+      },
+      {
+        "partido": "FC Famalicao vs Alverca",
+        "mercado": "TOTAL",
+        "seleccion": "Menos de 2.5 goles",
+        "cuota": 1.7407407407407407,
+        "confianza": 53,
+        "necesita": 57
+      },
+      {
+        "partido": "Aberdeen vs St Johnstone",
+        "mercado": "TOTAL",
+        "seleccion": "Menos de 2.5 goles",
+        "cuota": 1.8,
+        "confianza": 53,
+        "necesita": 56
+      },
+      {
+        "partido": "Catanzaro vs Mantova",
+        "mercado": "TOTAL",
+        "seleccion": "Más de 2.5 goles",
+        "cuota": 1.7407407407407407,
+        "confianza": 53,
+        "necesita": 57
       }
     ]
   },
-  "alertas": [],
+  "analisis": [
+    {
+      "partido": "Padova vs Carrarese",
+      "liga": "ita.2",
+      "kickoff": "2026-10-11T15:15Z",
+      "favoritoMercado": "H",
+      "ladoMercado": "local",
+      "probMercado": 0.494,
+      "cuotaMercado": 0.46,
+      "ladoModelo": "local",
+      "probModelo": 0.4178,
+      "coincide": true,
+      "movimiento": 3.46,
+      "cambioFavorito": false,
+      "lineaGoles": 2.5,
+      "cuotaGoles": 1.8695652173913042
+    },
+    {
+      "partido": "FC Andorra vs Castellón",
+      "liga": "esp.2",
+      "kickoff": "2026-10-11T12:00Z",
+      "favoritoMercado": "A",
+      "ladoMercado": "visitante",
+      "probMercado": 0.4226,
+      "cuotaMercado": 0.45,
+      "ladoModelo": "visitante",
+      "probModelo": 0.3922,
+      "coincide": true,
+      "movimiento": -2.66,
+      "cambioFavorito": false,
+      "lineaGoles": 2.5,
+      "cuotaGoles": 1.6666666666666665
+    },
+    {
+      "partido": "Excelsior vs FC Groningen",
+      "liga": "ned.1",
+      "kickoff": "2026-10-11T14:45Z",
+      "favoritoMercado": "A",
+      "ladoMercado": "visitante",
+      "probMercado": 0.3752,
+      "cuotaMercado": 0.35,
+      "ladoModelo": "local",
+      "probModelo": 0.5522,
+      "coincide": false,
+      "movimiento": 2.48,
+      "cambioFavorito": true,
+      "lineaGoles": 3.5,
+      "cuotaGoles": 2.3
+    },
+    {
+      "partido": "Nice vs Strasbourg",
+      "liga": "Ligue 1",
+      "kickoff": "2026-10-11T13:00Z",
+      "favoritoMercado": "H",
+      "ladoMercado": "local",
+      "probMercado": 0.4083,
+      "cuotaMercado": 0.43,
+      "ladoModelo": "local",
+      "probModelo": 0.3727,
+      "coincide": true,
+      "movimiento": -1.83,
+      "cambioFavorito": false,
+      "lineaGoles": 2.5,
+      "cuotaGoles": 1.6666666666666665
+    },
+    {
+      "partido": "Lazio vs Monza",
+      "liga": "Serie A",
+      "kickoff": "2026-10-11T13:00Z",
+      "favoritoMercado": "H",
+      "ladoMercado": "local",
+      "probMercado": 0.5706,
+      "cuotaMercado": 0.55,
+      "ladoModelo": "local",
+      "probModelo": 0.4698,
+      "coincide": true,
+      "movimiento": 1.78,
+      "cambioFavorito": false,
+      "lineaGoles": 2.5,
+      "cuotaGoles": 1.8333333333333335
+    },
+    {
+      "partido": "Arouca vs Estrela",
+      "liga": "por.1",
+      "kickoff": "2026-10-11T19:30Z",
+      "favoritoMercado": "H",
+      "ladoMercado": "local",
+      "probMercado": 0.4587,
+      "cuotaMercado": 0.44,
+      "ladoModelo": "local",
+      "probModelo": 0.4875,
+      "coincide": true,
+      "movimiento": 1.72,
+      "cambioFavorito": false,
+      "lineaGoles": 2.5,
+      "cuotaGoles": 1.8333333333333335
+    },
+    {
+      "partido": "Atalanta vs Venezia",
+      "liga": "Serie A",
+      "kickoff": "2026-10-12T16:30Z",
+      "favoritoMercado": "H",
+      "ladoMercado": "local",
+      "probMercado": 0.6005,
+      "cuotaMercado": 0.58,
+      "ladoModelo": "local",
+      "probModelo": 0.4848,
+      "coincide": true,
+      "movimiento": 1.69,
+      "cambioFavorito": false,
+      "lineaGoles": 3.5,
+      "cuotaGoles": 2.35
+    },
+    {
+      "partido": "Burgos vs Granada",
+      "liga": "esp.2",
+      "kickoff": "2026-10-12T14:15Z",
+      "favoritoMercado": "H",
+      "ladoMercado": "local",
+      "probMercado": 0.3992,
+      "cuotaMercado": 0.38,
+      "ladoModelo": "visitante",
+      "probModelo": 0.4002,
+      "coincide": false,
+      "movimiento": 1.57,
+      "cambioFavorito": false,
+      "lineaGoles": 2.5,
+      "cuotaGoles": 2.1
+    },
+    {
+      "partido": "Mallorca vs Las Palmas",
+      "liga": "esp.2",
+      "kickoff": "2026-10-11T16:30Z",
+      "favoritoMercado": "H",
+      "ladoMercado": "local",
+      "probMercado": 0.6025,
+      "cuotaMercado": 0.59,
+      "ladoModelo": "local",
+      "probModelo": 0.4111,
+      "coincide": true,
+      "movimiento": 1.55,
+      "cambioFavorito": false,
+      "lineaGoles": 2.5,
+      "cuotaGoles": 1.7692307692307692
+    },
+    {
+      "partido": "Aberdeen vs St Johnstone",
+      "liga": "sco.1",
+      "kickoff": "2026-10-11T13:00Z",
+      "favoritoMercado": "H",
+      "ladoMercado": "local",
+      "probMercado": 0.4286,
+      "cuotaMercado": 0.42,
+      "ladoModelo": "local",
+      "probModelo": 0.5198,
+      "coincide": true,
+      "movimiento": 1.32,
+      "cambioFavorito": false,
+      "lineaGoles": 2.5,
+      "cuotaGoles": 1.9090909090909092
+    },
+    {
+      "partido": "Almería vs Leganés",
+      "liga": "esp.2",
+      "kickoff": "2026-10-11T14:15Z",
+      "favoritoMercado": "H",
+      "ladoMercado": "local",
+      "probMercado": 0.5757,
+      "cuotaMercado": 0.56,
+      "ladoModelo": "local",
+      "probModelo": 0.6375,
+      "coincide": true,
+      "movimiento": 1.29,
+      "cambioFavorito": false,
+      "lineaGoles": 2.5,
+      "cuotaGoles": 1.6896551724137931
+    },
+    {
+      "partido": "Motherwell vs Celtic",
+      "liga": "sco.1",
+      "kickoff": "2026-10-11T11:00Z",
+      "favoritoMercado": "A",
+      "ladoMercado": "visitante",
+      "probMercado": 0.5914,
+      "cuotaMercado": 0.6,
+      "ladoModelo": "local",
+      "probModelo": 0.4553,
+      "coincide": false,
+      "movimiento": -1.25,
+      "cambioFavorito": false,
+      "lineaGoles": 3.5,
+      "cuotaGoles": 2.15
+    },
+    {
+      "partido": "Torino vs Udinese",
+      "liga": "Serie A",
+      "kickoff": "2026-10-12T18:45Z",
+      "favoritoMercado": "H",
+      "ladoMercado": "local",
+      "probMercado": 0.4025,
+      "cuotaMercado": 0.41,
+      "ladoModelo": "local",
+      "probModelo": 0.3636,
+      "coincide": true,
+      "movimiento": -0.87,
+      "cambioFavorito": false,
+      "lineaGoles": 2.5,
+      "cuotaGoles": 2.1
+    },
+    {
+      "partido": "Levante vs Sevilla",
+      "liga": "La Liga",
+      "kickoff": "2026-10-12T19:00Z",
+      "favoritoMercado": "A",
+      "ladoMercado": "visitante",
+      "probMercado": 0.3614,
+      "cuotaMercado": 0.35,
+      "ladoModelo": "local",
+      "probModelo": 0.455,
+      "coincide": false,
+      "movimiento": 0.71,
+      "cambioFavorito": true,
+      "lineaGoles": 2.5,
+      "cuotaGoles": 2.05
+    },
+    {
+      "partido": "FC Utrecht vs Willem II",
+      "liga": "ned.1",
+      "kickoff": "2026-10-11T10:15Z",
+      "favoritoMercado": "H",
+      "ladoMercado": "local",
+      "probMercado": 0.6329,
+      "cuotaMercado": 0.64,
+      "ladoModelo": "local",
+      "probModelo": 0.5731,
+      "coincide": true,
+      "movimiento": -0.71,
+      "cambioFavorito": false,
+      "lineaGoles": 3.5,
+      "cuotaGoles": 2.15
+    },
+    {
+      "partido": "Sassuolo vs AC Milan",
+      "liga": "Serie A",
+      "kickoff": "2026-10-11T16:00Z",
+      "favoritoMercado": "A",
+      "ladoMercado": "visitante",
+      "probMercado": 0.5131,
+      "cuotaMercado": 0.52,
+      "ladoModelo": "local",
+      "probModelo": 0.5559,
+      "coincide": false,
+      "movimiento": -0.58,
+      "cambioFavorito": false,
+      "lineaGoles": 2.5,
+      "cuotaGoles": 1.7407407407407407
+    },
+    {
+      "partido": "Como vs AS Roma",
+      "liga": "Serie A",
+      "kickoff": "2026-10-11T10:30Z",
+      "favoritoMercado": "H",
+      "ladoMercado": "local",
+      "probMercado": 0.3796,
+      "cuotaMercado": 0.37,
+      "ladoModelo": "local",
+      "probModelo": 0.4712,
+      "coincide": true,
+      "movimiento": 0.52,
+      "cambioFavorito": false,
+      "lineaGoles": 2.5,
+      "cuotaGoles": 1.6451612903225805
+    },
+    {
+      "partido": "FC Famalicao vs Alverca",
+      "liga": "por.1",
+      "kickoff": "2026-10-12T19:15Z",
+      "favoritoMercado": "H",
+      "ladoMercado": "local",
+      "probMercado": 0.5022,
+      "cuotaMercado": 0.5,
+      "ladoModelo": "local",
+      "probModelo": 0.4103,
+      "coincide": true,
+      "movimiento": 0.52,
+      "cambioFavorito": false,
+      "lineaGoles": 2.5,
+      "cuotaGoles": 1.9523809523809523
+    },
+    {
+      "partido": "Catanzaro vs Mantova",
+      "liga": "ita.2",
+      "kickoff": "2026-10-11T13:00Z",
+      "favoritoMercado": "H",
+      "ladoMercado": "local",
+      "probMercado": 0.4014,
+      "cuotaMercado": 0.4,
+      "ladoModelo": "local",
+      "probModelo": 0.4883,
+      "coincide": true,
+      "movimiento": 0.46,
+      "cambioFavorito": false,
+      "lineaGoles": 2.5,
+      "cuotaGoles": 1.7407407407407407
+    },
+    {
+      "partido": "Cagliari vs Juventus",
+      "liga": "Serie A",
+      "kickoff": "2026-10-11T18:45Z",
+      "favoritoMercado": "A",
+      "ladoMercado": "visitante",
+      "probMercado": 0.5995,
+      "cuotaMercado": 0.6,
+      "ladoModelo": "local",
+      "probModelo": 0.4797,
+      "coincide": false,
+      "movimiento": 0.21,
+      "cambioFavorito": false,
+      "lineaGoles": 2.5,
+      "cuotaGoles": 2
+    },
+    {
+      "partido": "Troyes vs Marseille",
+      "liga": "Ligue 1",
+      "kickoff": "2026-10-11T18:45Z",
+      "favoritoMercado": "A",
+      "ladoMercado": "visitante",
+      "probMercado": 0.4913,
+      "cuotaMercado": 0.49,
+      "ladoModelo": "local",
+      "probModelo": 0.4418,
+      "coincide": false,
+      "movimiento": -0.2,
+      "cambioFavorito": false,
+      "lineaGoles": 2.5,
+      "cuotaGoles": 1.5714285714285714
+    },
+    {
+      "partido": "Besiktas vs Kocaelispor",
+      "liga": "tur.1",
+      "kickoff": "2026-10-11T16:00Z",
+      "favoritoMercado": "H",
+      "ladoMercado": "local",
+      "probMercado": 0.7555,
+      "cuotaMercado": 0.76,
+      "ladoModelo": "local",
+      "probModelo": 0.622,
+      "coincide": true,
+      "movimiento": -0.2,
+      "cambioFavorito": false,
+      "lineaGoles": 3.5,
+      "cuotaGoles": 2.3
+    },
+    {
+      "partido": "Lecce vs Bologna",
+      "liga": "Serie A",
+      "kickoff": "2026-10-11T13:00Z",
+      "favoritoMercado": "A",
+      "ladoMercado": "visitante",
+      "probMercado": 0.4875,
+      "cuotaMercado": 0.49,
+      "ladoModelo": "local",
+      "probModelo": 0.3548,
+      "coincide": false,
+      "movimiento": 0.15,
+      "cambioFavorito": false,
+      "lineaGoles": 2.5,
+      "cuotaGoles": 2.1
+    },
+    {
+      "partido": "SC Freiburg vs Schalke 04",
+      "liga": "Bundesliga",
+      "kickoff": "2026-10-11T15:30Z",
+      "favoritoMercado": "H",
+      "ladoMercado": "local",
+      "probMercado": 0.5753,
+      "cuotaMercado": 0.57,
+      "ladoModelo": "local",
+      "probModelo": 0.4833,
+      "coincide": true,
+      "movimiento": 0.14,
+      "cambioFavorito": false,
+      "lineaGoles": 2.5,
+      "cuotaGoles": 1.625
+    },
+    {
+      "partido": "Tenerife vs Girona",
+      "liga": "esp.2",
+      "kickoff": "2026-10-12T19:00Z",
+      "favoritoMercado": "A",
+      "ladoMercado": "visitante",
+      "probMercado": 0.3659,
+      "cuotaMercado": 0.37,
+      "ladoModelo": "visitante",
+      "probModelo": 0.4323,
+      "coincide": true,
+      "movimiento": 0,
+      "cambioFavorito": false,
+      "lineaGoles": 2.5,
+      "cuotaGoles": 2.1
+    }
+  ],
+  "estadisticas": {
+    "partidosHistorico": 33882,
+    "ligas": 14,
+    "derivaMediana": 0.01765796711042711,
+    "derivaP90": 0.04945731150721738,
+    "cambioFavorito": 0.05321409598016646,
+    "consensoAcierto": 0.5209876543209877,
+    "margenCasa": -0.0457,
+    "nota": "El margen de la casa se mide como ROI de apostar todos los picks de consenso."
+  },
+  "alertas": [
+    {
+      "tipo": "NUEVO_PICK",
+      "severidad": "baja",
+      "fixtureId": "401875587",
+      "partido": "FC Utrecht vs Willem II",
+      "mercado": "1X2",
+      "detalle": "Nuevo 1X2: Gana FC Utrecht al 74%",
+      "antes": null,
+      "ahora": {
+        "confianza": 74,
+        "probMercado": 0.633
+      }
+    },
+    {
+      "tipo": "NUEVO_PICK",
+      "severidad": "baja",
+      "fixtureId": "401883183",
+      "partido": "Mallorca vs Las Palmas",
+      "mercado": "1X2",
+      "detalle": "Nuevo 1X2: Gana Mallorca al 74%",
+      "antes": null,
+      "ahora": {
+        "confianza": 74,
+        "probMercado": 0.602
+      }
+    }
+  ],
   "resumenAlertas": {
     "alta": 0,
     "media": 0,
-    "baja": 0
+    "baja": 2
   },
   "picks": [
     {
@@ -149,20 +708,72 @@
       "market": "1X2",
       "selection": "Gana Atalanta",
       "odds": 1.5405405405405406,
-      "confidence": 73,
+      "confidence": 74,
       "stars": 4,
       "isSpecial": false,
       "isPremium": false,
       "probMercado": 0.601,
-      "nMuestra": 2411,
+      "nMuestra": 5320,
       "rango": [
-        71.4,
-        75
+        73.1,
+        75.5
       ],
-      "createdAt": "2026-10-11T01:54:50.857Z",
-      "roiUnit": 0.1245945945945946,
-      "margen": 0.0808771929824561,
+      "createdAt": "2026-10-11T02:33:45.065Z",
+      "roiUnit": 0.14,
+      "margen": 0.09087719298245611,
       "breakEven": 0.6491228070175439,
+      "rentable": true
+    },
+    {
+      "id": "401875587-H",
+      "fixtureId": "401875587",
+      "league": "ned.1",
+      "kickoff": "2026-10-11T10:15Z",
+      "homeTeam": "FC Utrecht",
+      "awayTeam": "Willem II",
+      "market": "1X2",
+      "selection": "Gana FC Utrecht",
+      "odds": 1.5,
+      "confidence": 74,
+      "stars": 4,
+      "isSpecial": false,
+      "isPremium": false,
+      "probMercado": 0.633,
+      "nMuestra": 5320,
+      "rango": [
+        73.1,
+        75.5
+      ],
+      "createdAt": "2026-10-11T02:33:45.065Z",
+      "roiUnit": 0.10999999999999999,
+      "margen": 0.07333333333333336,
+      "breakEven": 0.6666666666666666,
+      "rentable": true
+    },
+    {
+      "id": "401883183-H",
+      "fixtureId": "401883183",
+      "league": "esp.2",
+      "kickoff": "2026-10-11T16:30Z",
+      "homeTeam": "Mallorca",
+      "awayTeam": "Las Palmas",
+      "market": "1X2",
+      "selection": "Gana Mallorca",
+      "odds": 1.5714285714285714,
+      "confidence": 74,
+      "stars": 4,
+      "isSpecial": false,
+      "isPremium": false,
+      "probMercado": 0.602,
+      "nMuestra": 5320,
+      "rango": [
+        73.1,
+        75.5
+      ],
+      "createdAt": "2026-10-11T02:33:45.065Z",
+      "roiUnit": 0.1628571428571428,
+      "margen": 0.10363636363636364,
+      "breakEven": 0.6363636363636364,
       "rentable": true
     }
   ],

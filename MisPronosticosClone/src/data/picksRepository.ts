@@ -35,6 +35,10 @@ export interface PicksRepository {
   listSpecials(): Promise<Pick[]>;
   listMercados?(): Promise<MercadosInfo | null>;
   listAlertas?(): Promise<Alerta[]>;
+  listAnalisis?(): Promise<{
+    analisis: import('./analisisRepository').AnalisisFila[];
+    estadisticas: import('./analisisRepository').AnalisisStats | null;
+  }>;
 }
 
 export const gate = (pick: Pick, minConfidence: number, minStars: number): boolean =>

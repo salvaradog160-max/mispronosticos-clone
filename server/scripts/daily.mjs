@@ -9,19 +9,21 @@ import { writeFile, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { readFile } from 'node:fs/promises';
+import { LEAGUES_HISTORIA, LIGAS_ESPIN } from '../config/ligas.mjs';
 import { fetchHistory, impliedProbs } from '../providers/footballdata.mjs';
 import { buildRatings, predictMatch } from '../engine/ratings.mjs';
 import { normalizeTeam, buildConsensusPicks } from '../engine/calibration.mjs';
 import { buildMercadoPicks } from '../engine/mercados.mjs';
 import { detectarMovimiento } from '../engine/movimiento.mjs';
 import { anotarValor } from '../engine/valor.mjs';
+import { analizar } from '../engine/analisis.mjs';
 import { upcoming, implied, liveNow } from '../providers/espn.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const OUT_DIR = join(ROOT, 'public');
 const DATA_DIR = join(ROOT, 'data');
 
-const LEAGUES = ['E1', 'SP1', 'I1', 'D1', 'F1'];
+const LEAGUES = LEAGUES_HISTORIA;
 const CALIB_SEASONS = 8;
 const RATING_SEASONS = 6;
 
@@ -160,7 +162,7 @@ async function buildRatingsCache() {
 
 // ---------------------------------------------------------------------- picks
 async function buildPicks(buckets, ratings) {
-  const targets = ['eng.1', 'esp.1', 'ita.1', 'ger.1', 'fra.1', 'mex.1'];
+  const targets = LIGAS_ESPIN;
   const results = await Promise.allSettled(targets.map(l => upcoming(l, 4)));
   const fixtures = results
     .filter(r => r.status === 'fulfilled')
@@ -185,9 +187,13 @@ async function buildPicks(buckets, ratings) {
 
   const picks = buildConsensusPicks(withData, buckets, { limit: 40 });
 
-  const mercados = JSON.parse(
-    await readFile(join(DATA_DIR, 'calibration-mercados.json'), 'utf8'),
-  );
+  // Si aun no se calibraron los mercados secundarios, se sigue solo con 1X2.
+  let mercados = { overUnder25: { operativo: false }, handicap: { operativo: false }, btts: { operativo: false } };
+  try {
+    mercados = JSON.parse(await readFile(join(DATA_DIR, 'calibration-mercados.json'), 'utf8'));
+  } catch {
+    console.log('[daily] sin calibracion de mercados, se publica solo 1X2');
+  }
   const picksMercado = buildMercadoPicks(withData, mercados, { limit: 25 });
 
   let live = [];
@@ -202,8 +208,18 @@ async function buildPicks(buckets, ratings) {
   // con 5 puntos de margen. Medido en ev-backtest.mjs.
   const { rented, descartados } = anotarValor([...picks, ...picksMercado]);
 
+  const analisis = withData
+    .map(f => {
+      const p = f.prediction.oneXTwo;
+      const total = p.H + p.D + p.A;
+      return analizar(f, total > 0 ? { H: p.H / total, D: p.D / total, A: p.A / total } : null);
+    })
+    .filter(Boolean)
+    .sort((a, b) => Math.abs(b.movimiento ?? 0) - Math.abs(a.movimiento ?? 0));
+
   return {
     fixtures: withData.length,
+    analisis,
     picks: rented.filter(p => p.market === '1X2'),
     picksMercado: rented.filter(p => p.market !== '1X2'),
     live,
@@ -223,7 +239,7 @@ const leerAnterior = async () => {
 
 const calibration = await buildCalibration();
 const ratings = await buildRatingsCache();
-const { fixtures, picks, picksMercado, live, mercados, descartados } = await buildPicks(calibration.buckets, ratings);
+const { fixtures, picks, picksMercado, live, mercados, descartados, analisis } = await buildPicks(calibration.buckets, ratings);
 
 const todosPicks = [...picks, ...picksMercado];
 const anterior = await leerAnterior();
@@ -274,6 +290,17 @@ const payload = {
       necesita: d.breakEven !== null && d.breakEven !== undefined ? Math.round(d.breakEven * 100) : null,
     })),
   },
+  analisis,
+  estadisticas: {
+    partidosHistorico: calibration.partidos,
+    ligas: LEAGUES.length,
+    derivaMediana: calibration.deriva?.mediana ?? null,
+    derivaP90: calibration.deriva?.p90 ?? null,
+    cambioFavorito: calibration.deriva?.pctCambioFavorito ?? null,
+    consensoAcierto: calibration.consensoAcierto,
+    margenCasa: -0.0457,
+    nota: 'El margen de la casa se mide como ROI de apostar todos los picks de consenso.',
+  },
   alertas,
   resumenAlertas: {
     alta: alertas.filter(a => a.severidad === 'alta').length,
@@ -299,6 +326,7 @@ await writeFile(
 log(`fixtures con datos: ${fixtures}`);
 log(`picks publicados (con valor esperado positivo): ${picks.length + picksMercado.length}`);
 log(`descartados por no cubrir la cuota: ${descartados.length}`);
+log(`partidos analizados: ${analisis.length} (con movimiento de linea: ${analisis.filter(a => a.movimiento !== null).length})`);
 log(`alertas: ${alertas.length} (alta ${payload.resumenAlertas.alta} / media ${payload.resumenAlertas.media} / baja ${payload.resumenAlertas.baja})`);
 for (const a of alertas.slice(0, 5)) log(`  [${a.severidad}] ${a.tipo}: ${a.detalle}`);
 log(`partidos en vivo: ${live.length}`);

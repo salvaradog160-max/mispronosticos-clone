@@ -26,6 +26,8 @@ export interface DailyPayload {
   picksMercado?: ServerPickShape[];
   alertas?: Alerta[];
   live: ServerMatchShape[];
+  analisis?: AnalisisFila[];
+  estadisticas?: AnalisisStats | null;
   mercados?: {
     overUnder25: boolean;
     handicap: boolean;
@@ -56,6 +58,34 @@ interface ServerPickShape {
   breakEven?: number | null;
   nMuestra?: number;
   rango?: number[];
+}
+
+interface AnalisisFila {
+  partido: string;
+  liga: string;
+  kickoff: string;
+  favoritoMercado: string;
+  ladoMercado: string;
+  probMercado: number;
+  cuotaMercado: number;
+  ladoModelo: string;
+  probModelo: number;
+  coincide: boolean;
+  movimiento: number | null;
+  cambioFavorito: boolean;
+  lineaGoles: number | null;
+  cuotaGoles: number | null;
+}
+
+interface AnalisisStats {
+  partidosHistorico: number;
+  ligas: number;
+  derivaMediana: number | null;
+  derivaP90: number | null;
+  cambioFavorito: number | null;
+  consensoAcierto: number | null;
+  margenCasa: number;
+  nota: string;
 }
 
 interface ServerMatchShape {
@@ -117,9 +147,13 @@ export const createStaticRepository = (config: AppConfig): PicksRepository => {
       const data = await load();
       return data.mercados ?? null;
     },
+    listAnalisis: async () => {
+      const d = await load();
+      return { analisis: d.analisis ?? [], estadisticas: d.estadisticas ?? null };
+    },
     listAlertas: async () => {
-      const data = await load();
-      return data.alertas ?? [];
+      const d = await load();
+      return d.alertas ?? [];
     },
     listLiveMatches: async () => {
       const data = await load();

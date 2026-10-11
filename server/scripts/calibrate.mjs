@@ -10,11 +10,12 @@
 import { writeFile, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { LEAGUES_HISTORIA } from '../config/ligas.mjs';
 import { fetchHistory, impliedProbs } from '../providers/footballdata.mjs';
 import { buildRatings, predictMatch } from '../engine/ratings.mjs';
 import { calibrateConsensus, consistencyGroups, measuredAccuracy } from '../engine/calibration.mjs';
 
-const LEAGUES = ['E1', 'SP1', 'I1', 'D1', 'F1'];
+const LEAGUES = LEAGUES_HISTORIA;
 const SEASONS = 8;
 
 const parseDate = raw => {

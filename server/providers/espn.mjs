@@ -45,8 +45,20 @@ const extractOdds = comp => {
   const total = odds.total?.over?.close ?? odds.total?.over?.open;
   const under = odds.total?.under?.close ?? odds.total?.under?.open;
 
+  // Cuota de APERTURA. Es la que permite medir cuanto se movio la
+  // linea: `close` en un partido por jugar es solo la ultima
+  // cotizacion, no el cierre real.
+  const apertura = {
+    H: americanToDecimal(ml?.home?.open?.odds),
+    A: americanToDecimal(ml?.away?.open?.odds),
+    D: decimal.D,
+    over: americanToDecimal(odds.total?.over?.open?.odds),
+    under: americanToDecimal(odds.total?.under?.open?.odds),
+  };
+
   return {
     ...decimal,
+    apertura,
     provider: odds.provider?.name ?? 'ESPN',
     line: odds.overUnder ?? (Number(String(total?.line ?? '').replace(/[oO]/, '')) || null),
     over: americanToDecimal(total?.odds),
