@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-11T22:40:04.763Z",
+  "generado": "2026-10-11T23:05:05.235Z",
   "picks": [
     {
       "id": "401875005-H",
@@ -21,36 +21,10 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-11T22:40:02.404Z",
+      "createdAt": "2026-10-11T23:05:02.918Z",
       "roiUnit": 0.11948717948717946,
       "margen": 0.0789830508474576,
       "breakEven": 0.6610169491525424,
-      "rentable": true
-    },
-    {
-      "id": "761859-H",
-      "fixtureId": "761859",
-      "league": "usa.1",
-      "kickoff": "2026-10-11T23:00Z",
-      "homeTeam": "St. Louis CITY SC",
-      "awayTeam": "LA Galaxy",
-      "market": "1X2",
-      "selection": "Gana St. Louis CITY SC",
-      "odds": 1.4651162790697674,
-      "confidence": 74,
-      "stars": 4,
-      "isSpecial": false,
-      "isPremium": false,
-      "probMercado": 0.631,
-      "nMuestra": 5212,
-      "rango": [
-        72.9,
-        75.3
-      ],
-      "createdAt": "2026-10-11T22:40:02.405Z",
-      "roiUnit": 0.08418604651162787,
-      "margen": 0.057460317460317434,
-      "breakEven": 0.6825396825396826,
       "rentable": true
     },
     {
@@ -73,7 +47,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-11T22:40:02.405Z",
+      "createdAt": "2026-10-11T23:05:02.918Z",
       "roiUnit": 0.09238095238095245,
       "margen": 0.06258064516129036,
       "breakEven": 0.6774193548387096,
@@ -99,7 +73,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-11T22:40:02.405Z",
+      "createdAt": "2026-10-11T23:05:02.918Z",
       "roiUnit": 0.12947368421052619,
       "margen": 0.08482758620689645,
       "breakEven": 0.6551724137931035,
