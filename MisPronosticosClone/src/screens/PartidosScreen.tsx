@@ -170,6 +170,8 @@ export default function PartidosScreen() {
   const { data, tablas, loading, error } = useAnalisis(DEFAULTS);
   const [detalle, setDetalle] = useState<AnalisisFila | null>(null);
   const [query, setQuery] = useState('');
+  /** orden: por liga (default) o por hora de inicio global. */
+  const [porHora, setPorHora] = useState(false);
 
   // Buscador por equipo: coincide con el nombre de local o visita
   // (sin acentos y sin importar mayusculas). Vacio = todo.
@@ -187,6 +189,13 @@ export default function PartidosScreen() {
   }, [data, query]);
 
   const secciones = useMemo(() => {
+    if (porHora) {
+      // Una sola seccion, todo ordenado por hora de inicio.
+      const ordenados = [...datos].sort(
+        (a, b) => (a.kickoff ?? '').localeCompare(b.kickoff ?? '') || a.partido.localeCompare(b.partido),
+      );
+      return [{ title: `Por hora (${ordenados.length})`, data: ordenados }];
+    }
     const mapa = new Map<string, AnalisisFila[]>();
     for (const f of datos) {
       const k = f.liga || 'Sin liga';
@@ -201,7 +210,7 @@ export default function PartidosScreen() {
         ),
       }))
       .sort((a, b) => b.data.length - a.data.length || a.title.localeCompare(b.title));
-  }, [datos]);
+  }, [datos, porHora]);
 
   if (loading) {
     return (
@@ -217,19 +226,27 @@ export default function PartidosScreen() {
       <View style={[s.cabecera, { paddingTop: insets.top + spacing.sm }]}>
         <Text style={s.titulo}>Partidos</Text>
         <Text style={s.sub}>
-          {query ? `${datos.length} encontrados de ${data.length}` : `${data.length} partidos · ${secciones.length} ligas`}
+          {query ? `${datos.length} encontrados de ${data.length}` : `${data.length} partidos · ${secciones.length} secciones`}
           {error ? ' · sin conexion' : ''}
         </Text>
-        <TextInput
-          value={query}
-          onChangeText={setQuery}
-          placeholder="Buscar equipo…"
-          placeholderTextColor={palette.textMuted}
-          style={s.buscador}
-          autoCorrect={false}
-          autoCapitalize="none"
-          returnKeyType="search"
-        />
+        <View style={s.buscaYOrden}>
+          <TextInput
+            value={query}
+            onChangeText={setQuery}
+            placeholder="Buscar equipo…"
+            placeholderTextColor={palette.textMuted}
+            style={[s.buscador, { flex: 1 }]}
+            autoCorrect={false}
+            autoCapitalize="none"
+            returnKeyType="search"
+          />
+          <Pressable
+            onPress={() => setPorHora(v => !v)}
+            style={[s.ordenBoton, porHora && s.ordenBotonActivo]}
+            hitSlop={6}>
+            <Text style={[s.ordenTxt, porHora && s.ordenTxtActivo]}>Hora</Text>
+          </Pressable>
+        </View>
       </View>
 
       <SectionList
@@ -265,8 +282,19 @@ const s = StyleSheet.create({
   cargando: { color: palette.textMuted, fontSize: fontSize.md },
 
   cabecera: { paddingHorizontal: spacing.md, paddingBottom: spacing.sm },
+  buscaYOrden: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm, marginTop: spacing.sm },
+  ordenBoton: {
+    paddingHorizontal: spacing.md,
+    paddingVertical: 10,
+    borderRadius: radius.md,
+    borderWidth: 1,
+    borderColor: palette.surfaceAlt,
+    backgroundColor: palette.surface,
+  },
+  ordenBotonActivo: { borderColor: palette.accent, backgroundColor: palette.accentTint },
+  ordenTxt: { color: palette.textMuted, fontSize: fontSize.sm, fontWeight: '800' },
+  ordenTxtActivo: { color: palette.accent },
   buscador: {
-    marginTop: spacing.sm,
     backgroundColor: palette.surface,
     borderRadius: radius.md,
     paddingHorizontal: spacing.md,

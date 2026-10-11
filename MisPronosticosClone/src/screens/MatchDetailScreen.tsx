@@ -22,10 +22,13 @@ import type { AnalisisFila, TablaLiga, FilaTabla } from '../data/analisisReposit
  * referencia traia se quita porque no hay IA que haga ese analisis.
  */
 
-type Pestana = 'analisis' | 'h2h' | 'posiciones';
+type Pestana = 'analisis' | 'pronosticos' | 'tendencias' | 'patrones' | 'h2h' | 'posiciones';
 
 const PESTANAS: { id: Pestana; label: string }[] = [
   { id: 'analisis', label: 'Análisis' },
+  { id: 'pronosticos', label: 'Pronósticos' },
+  { id: 'tendencias', label: 'Tendencias' },
+  { id: 'patrones', label: 'Patrones' },
   { id: 'h2h', label: 'H2H' },
   { id: 'posiciones', label: 'Posiciones' },
 ];
@@ -55,6 +58,92 @@ const Fila = ({ etiqueta, children }: { etiqueta: string; children: React.ReactN
 );
 
 const color = (c?: string | null) => (c ? (c.startsWith('#') ? c : `#${c}`) : null);
+
+/**
+ * Color de fondo tipo formato condicional de Excel (escala 3 colores),
+ * igual que el `tint(d)` del HTML de referencia:
+ *   d >= 0 -> verde (accent/success), d < 0 -> rojo (danger)
+ * La intensidad crece con |d| hasta un tope. Sobre fondos oscuros.
+ */
+const tintBg = (d: number, max = 40) => {
+  const alpha = Math.min(1, Math.abs(d)) * max;
+  return {
+    backgroundColor: d >= 0 ? `rgba(74,222,128,${alpha})` : `rgba(239,68,68,${alpha})`,
+  };
+};
+
+/** Celdilla "X%" con fondo verde/rojo segun que tan cerca/fuerte de la
+ * tendencia queda. p es 0..100 (% over) o el valor a colorear. */
+const CeldaPct = ({ p, tendencia }: { p: number; tendencia: 'over' | 'under' | 'neutro' }) => {
+  const d = tendencia === 'neutro' ? 0 : tendencia === 'over' ? (p - 50) / 50 : (50 - p) / 50;
+  return (
+    <View style={[s.celdaPct, d !== 0 ? tintBg(d * 2) : null]}>
+      <Text style={s.celdaPctTxt}>{Math.round(p)}%</Text>
+    </View>
+  );
+};
+
+/** Tarjeta de pronostico ordenada por probabilidad (cuadro del HTML). */
+const TarjetaPronostico = ({
+  nombre,
+  p,
+  riesgo,
+  cuotaJusta,
+  modelo,
+  historial,
+}: {
+  nombre: string;
+  p: number;
+  riesgo: string;
+  cuotaJusta: number | null;
+  modelo?: number | null;
+  historial?: number | null;
+}) => {
+  const riesgoColor =
+    riesgo === 'bajo' ? palette.success : riesgo === 'alto' ? palette.danger : palette.star;
+  return (
+    <View style={s.tarjetaPk}>
+      <View style={s.pkTop}>
+        <Text style={s.pkNombre} numberOfLines={1}>
+          {nombre}
+        </Text>
+        <Text style={[s.pkRiesgo, { color: riesgoColor }]}>{riesgo}</Text>
+      </View>
+      {modelo != null || historial != null ? (
+        <Text style={s.pkFuentes}>
+          {modelo != null ? `Modelo ${Math.round(modelo * 100)}%` : 'Modelo —'}
+          {historial != null ? ` · Historial ${Math.round(historial * 100)}%` : ' · Historial —'}
+        </Text>
+      ) : null}
+      <View style={s.pkRow}>
+        <View style={s.pkCol}>
+          <Text style={s.pkNum}>{Math.round(p * 100)}%</Text>
+          <Text style={s.pkLab}>Probabilidad</Text>
+        </View>
+        <View style={s.pkCol}>
+          <Text style={s.pkNum}>{cuotaJusta != null ? `@${cuotaJusta.toFixed(2)}` : '@—'}</Text>
+          <Text style={s.pkLab}>Cuota justa</Text>
+        </View>
+      </View>
+    </View>
+  );
+};
+
+/** Cuadro de patrones (igual que el HTML: titulo + lista de frases). */
+const CuadroPatron = ({ titulo, items }: { titulo: string; items: string[] }) => (
+  <View style={s.cuadroPatron}>
+    <Text style={s.patronTitulo}>{titulo}</Text>
+    {items.length ? (
+      items.map((t, i) => (
+        <Text style={[s.bullet, { color: palette.text }]} key={i}>
+          • {t}
+        </Text>
+      ))
+    ) : (
+      <Text style={s.aviso}>Sin patrones claros.</Text>
+    )}
+  </View>
+);
 
 const Escudo = ({ uri, alt, size = 56 }: { uri?: string | null; alt: string; size?: number }) => {
   const [fallo, setFallo] = useState(false);
@@ -326,20 +415,17 @@ export default function MatchDetailScreen({
                   {fila.combinado.pronosticos.length > 0 && (
                     <>
                       <Text style={s.subEtiqueta}>Pronósticos (en orden de probabilidad)</Text>
-                      {fila.combinado.pronosticos.map(pr => {
-                        const deAmbasFuentes =
-                          typeof pr.modelo === 'number' && typeof pr.historial === 'number';
-                        return (
-                          <Fila etiqueta={pr.nombre} key={pr.tipo}>
-                            <Text style={s.valor} numberOfLines={1}>
-                              {pct0(pr.p)} · {pr.riesgo} · @{pr.cuotaJusta}
-                              {deAmbasFuentes
-                                ? ` · modelo ${pct0(pr.modelo)} / hist ${pct0(pr.historial)}`
-                                : ''}
-                            </Text>
-                          </Fila>
-                        );
-                      })}
+                      {fila.combinado.pronosticos.map(pr => (
+                        <TarjetaPronostico
+                          nombre={pr.nombre}
+                          p={pr.p}
+                          riesgo={pr.riesgo}
+                          cuotaJusta={pr.cuotaJusta}
+                          modelo={pr.modelo}
+                          historial={pr.historial}
+                          key={pr.tipo}
+                        />
+                      ))}
                     </>
                   )}
 
@@ -358,27 +444,6 @@ export default function MatchDetailScreen({
                       {fila.combinado.riesgos.map((o, i) => (
                         <Text style={[s.bullet, { color: palette.star }]} key={`r${i}`}>• {o}</Text>
                       ))}
-                    </>
-                  )}
-
-                  {fila.combinado.tendencias?.general && (
-                    <>
-                      <Text style={s.subEtiqueta}>Tendencias Over/Under (historial real)</Text>
-                      {fila.combinado.tendencias.general.ou.map(t => (
-                        <Fila etiqueta={`O/U ${t.linea}`} key={t.linea}>
-                          <Text style={[s.valor, t.over >= 60 ? { color: palette.success } : t.over <= 40 ? { color: palette.danger } : {}]}>
-                            Over {t.over}%{t.dev ? ` (dev ${t.dev}%)` : ''}
-                          </Text>
-                        </Fila>
-                      ))}
-                      <Fila etiqueta="Ambos anotan">
-                        <Text style={s.valor}>
-                          Sí {fila.combinado.tendencias.general.aa}%
-                        </Text>
-                      </Fila>
-                      <Text style={s.pie}>
-                        % de partidos del historial que pasaron la línea. Verde = tendencia a Over, rojo = a Under.
-                      </Text>
                     </>
                   )}
                 </>
@@ -539,6 +604,123 @@ export default function MatchDetailScreen({
             </>
           )}
 
+          {pestana === 'pronosticos' && (
+            <>
+              <Text style={s.seccion}>PRONÓSTICOS EN ORDEN DE PROBABILIDAD</Text>
+              <Text style={s.aviso}>
+                Probabilidad combinada: 50% modelo · 30% cuadros base · 20% H2H. Riesgo: bajo desde 75%,
+                medio desde 60%, y sube un nivel si modelo e historial difieren 25 puntos o más. La cuota
+                justa es lo mínimo que debería pagar la casa.
+              </Text>
+              {fila.combinado && fila.combinado.pronosticos.length > 0 ? (
+                fila.combinado.pronosticos.map(pr => (
+                  <TarjetaPronostico
+                    nombre={pr.nombre}
+                    p={pr.p}
+                    riesgo={pr.riesgo}
+                    cuotaJusta={pr.cuotaJusta}
+                    modelo={pr.modelo}
+                    historial={pr.historial}
+                    key={pr.tipo}
+                  />
+                ))
+              ) : (
+                <Text style={s.aviso}>Sin pronósticos con datos suficientes.</Text>
+              )}
+            </>
+          )}
+
+          {pestana === 'tendencias' && (
+            <>
+              <Text style={s.seccion}>TENDENCIAS OVER/UNDER (HISTORIAL REAL)</Text>
+              <Text style={s.aviso}>
+                % de partidos del historial que pasaron la línea. Verde = tendencia a Over, rojo = a Under.
+                En líneas enteras, dev = % que cayó justo en la línea. Últ.5 L/V junta al local y a la visita.
+              </Text>
+
+              {fila.combinado?.tendencias?.general ? (
+                <>
+                  <Text style={s.subEtiqueta}>General (últ. X de ambos)</Text>
+                  {fila.combinado.tendencias.general.ou.map(t => (
+                    <Fila etiqueta={`O/U ${t.linea}`} key={`g${t.linea}`}>
+                      <CeldaPct p={t.over} tendencia={t.over >= 50 ? 'over' : 'under'} />
+                      {t.dev ? <Text style={s.pie}> dev {t.dev}%</Text> : null}
+                    </Fila>
+                  ))}
+                  <Fila etiqueta="Ambos anotan">
+                    <CeldaPct p={fila.combinado.tendencias.general.aa} tendencia={fila.combinado.tendencias.general.aa >= 50 ? 'over' : 'under'} />
+                  </Fila>
+                  <Text style={s.pie}>n = {fila.combinado.tendencias.general.n} partidos</Text>
+
+                  {fila.combinado.tendencias.lv && (
+                    <>
+                      <Text style={s.subEtiqueta}>Últ. 5 L/V</Text>
+                      {fila.combinado.tendencias.lv.ou.map(t => (
+                        <Fila etiqueta={`O/U ${t.linea}`} key={`l${t.linea}`}>
+                          <CeldaPct p={t.over} tendencia={t.over >= 50 ? 'over' : 'under'} />
+                          {t.dev ? <Text style={s.pie}> dev {t.dev}%</Text> : null}
+                        </Fila>
+                      ))}
+                      <Fila etiqueta="Ambos anotan">
+                        <CeldaPct p={fila.combinado.tendencias.lv.aa} tendencia={fila.combinado.tendencias.lv.aa >= 50 ? 'over' : 'under'} />
+                      </Fila>
+                    </>
+                  )}
+
+                  {fila.combinado.tendencias.h2h && (
+                    <>
+                      <Text style={s.subEtiqueta}>H2H</Text>
+                      {fila.combinado.tendencias.h2h.ou.map(t => (
+                        <Fila etiqueta={`O/U ${t.linea}`} key={`h${t.linea}`}>
+                          <CeldaPct p={t.over} tendencia={t.over >= 50 ? 'over' : 'under'} />
+                          {t.dev ? <Text style={s.pie}> dev {t.dev}%</Text> : null}
+                        </Fila>
+                      ))}
+                      <Fila etiqueta="Ambos anotan">
+                        <CeldaPct p={fila.combinado.tendencias.h2h.aa} tendencia={fila.combinado.tendencias.h2h.aa >= 50 ? 'over' : 'under'} />
+                      </Fila>
+                    </>
+                  )}
+                </>
+              ) : (
+                <Text style={s.aviso}>Sin historial suficiente para tendencias.</Text>
+              )}
+            </>
+          )}
+
+          {pestana === 'patrones' && (
+            <>
+              <Text style={s.seccion}>PATRONES (DEL MÁS RECIENTE AL MÁS ANTIGUO)</Text>
+              <Text style={s.aviso}>
+                Rachas y momento salen de la historia descargada: el primero de la lista es el partido más
+                reciente.
+              </Text>
+              {fila.combinado?.patrones ? (
+                (Object.entries(fila.combinado.patrones) as Array<[string, string[]]>).map(([k, items]) => (
+                  <CuadroPatron
+                    key={k}
+                    titulo={
+                      k === 'generalLocal'
+                        ? 'General local'
+                        : k === 'generalVisita'
+                          ? 'General visita'
+                          : k === 'localCasa'
+                            ? 'Local en casa'
+                            : k === 'visitaFuera'
+                              ? 'Visita fuera'
+                              : k === 'h2h'
+                                ? 'H2H'
+                                : k
+                    }
+                    items={items}
+                  />
+                ))
+              ) : (
+                <Text style={s.aviso}>Sin patrones con datos suficientes.</Text>
+              )}
+            </>
+          )}
+
           {pestana === 'h2h' && (
             <>
               <Text style={s.seccion}>ENFRENTAMIENTOS DIRECTOS</Text>
@@ -643,6 +825,43 @@ const s = StyleSheet.create({
 
   escudoVacio: { backgroundColor: palette.surfaceAlt, alignItems: 'center', justifyContent: 'center' },
   escudoIni: { color: palette.textMuted, fontSize: fontSize.md, fontWeight: '800' },
+
+  celdaPct: {
+    paddingHorizontal: spacing.sm,
+    paddingVertical: 4,
+    borderRadius: radius.sm,
+    minWidth: 64,
+    alignItems: 'center',
+  },
+  celdaPctTxt: { color: palette.text, fontSize: fontSize.sm, fontWeight: '800' },
+
+  tarjetaPk: {
+    backgroundColor: palette.surface,
+    borderWidth: 1,
+    borderColor: palette.surfaceAlt,
+    borderRadius: radius.md,
+    padding: spacing.md,
+    marginTop: spacing.sm,
+    gap: spacing.xs,
+  },
+  pkTop: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: spacing.sm },
+  pkNombre: { color: palette.text, fontSize: fontSize.md, fontWeight: '800', flexShrink: 1 },
+  pkRiesgo: { fontSize: fontSize.xs, fontWeight: '900', textTransform: 'uppercase' },
+  pkFuentes: { color: palette.textMuted, fontSize: fontSize.xs },
+  pkRow: { flexDirection: 'row', gap: spacing.lg, marginTop: spacing.xs },
+  pkCol: { flexDirection: 'row', alignItems: 'baseline', gap: spacing.xs },
+  pkNum: { color: palette.accent, fontSize: fontSize.lg, fontWeight: '900' },
+  pkLab: { color: palette.textMuted, fontSize: fontSize.xs },
+
+  cuadroPatron: {
+    backgroundColor: palette.surface,
+    borderWidth: 1,
+    borderColor: palette.surfaceAlt,
+    borderRadius: radius.md,
+    padding: spacing.md,
+    marginTop: spacing.sm,
+  },
+  patronTitulo: { color: palette.star, fontSize: fontSize.sm, fontWeight: '800', marginBottom: spacing.xs },
 
   tabs: {
     flexDirection: 'row',
