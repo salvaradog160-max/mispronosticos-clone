@@ -165,11 +165,17 @@ export const useLiveMatches = (config: AppConfig): AsyncState<Match[]> => {
   return { data, loading, error, reload };
 };
 
-import type { AnalisisFila as AnalisisRow, AnalisisStats as EstadisticasRow } from './analisisRepository';
+import type {
+  AnalisisFila as AnalisisRow,
+  AnalisisStats as EstadisticasRow,
+  TablaLiga as TablaLigaRow,
+} from './analisisRepository';
 
 export interface AnalisisState {
   data: AnalisisRow[];
   stats: EstadisticasRow | null;
+  /** Tablas de posiciones por clave de liga. */
+  tablas: Record<string, TablaLigaRow>;
   loading: boolean;
   error: string | null;
   reload: () => void;
@@ -180,6 +186,7 @@ export const useAnalisis = (config: AppConfig): AnalisisState => {
   const repo = useRepo(config);
   const [data, setData] = useState<AnalisisRow[]>([]);
   const [stats, setStats] = useState<EstadisticasRow | null>(null);
+  const [tablas, setTablas] = useState<Record<string, TablaLigaRow>>({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [nonce, setNonce] = useState(0);
@@ -204,6 +211,7 @@ export const useAnalisis = (config: AppConfig): AnalisisState => {
         if (vivo) {
           setData(r.analisis);
           setStats(r.estadisticas);
+          setTablas(r.tablas ?? {});
         }
       })
       .catch((e: Error) => {
@@ -217,5 +225,5 @@ export const useAnalisis = (config: AppConfig): AnalisisState => {
     };
   }, [repo, nonce]);
 
-  return { data, stats, loading, error, reload };
+  return { data, stats, tablas, loading, error, reload };
 };

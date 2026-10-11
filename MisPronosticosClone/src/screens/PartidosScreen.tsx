@@ -12,7 +12,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { palette, spacing, radius, fontSize } from '../theme';
 import { useAnalisis } from '../data/usePicks';
 import type { AnalisisFila } from '../data/analisisRepository';
-import DetalleModal from './DetalleModal';
+import MatchDetailScreen from './MatchDetailScreen';
 import { DEFAULTS } from '../config';
 
 /**
@@ -164,7 +164,7 @@ const Fila = ({ f, onPress }: { f: AnalisisFila; onPress: () => void }) => {
 
 export default function PartidosScreen() {
   const insets = useSafeAreaInsets();
-  const { data, loading, error } = useAnalisis(DEFAULTS);
+  const { data, tablas, loading, error } = useAnalisis(DEFAULTS);
   const [detalle, setDetalle] = useState<AnalisisFila | null>(null);
 
   const secciones = useMemo(() => {
@@ -222,7 +222,11 @@ export default function PartidosScreen() {
         }
       />
 
-      <DetalleModal fila={detalle} onCerrar={() => setDetalle(null)} />
+      <MatchDetailScreen
+        fila={detalle}
+        tabla={detalle?.ligaKey ? tablas[detalle.ligaKey] ?? null : null}
+        onCerrar={() => setDetalle(null)}
+      />
     </View>
   );
 }

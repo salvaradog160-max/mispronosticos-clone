@@ -179,6 +179,9 @@ export const analizar = (partido, probs, confianza = null) => {
   return {
     partido: `${partido.homeTeam} vs ${partido.awayTeam}`,
     liga: partido.leagueName,
+    // Clave de liga (arg.1, bra.1...). El nombre no sirve para pedir la
+    // tabla de posiciones: ESPN la indexa por clave.
+    ligaKey: partido.leagueKey ?? null,
     // Escudos. La app de referencia es guiada visualmente por los
     // escudos; sin ellos la lista es una tabla de texto. Vienen en la
     // misma respuesta del scoreboard, asi que no cuestan nada extra.

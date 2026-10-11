@@ -18,7 +18,7 @@ import { lookupBucket } from '../engine/calibration.mjs';
 import { detectarMovimiento } from '../engine/movimiento.mjs';
 import { anotarValor } from '../engine/valor.mjs';
 import { analizar } from '../engine/analisis.mjs';
-import { upcoming, implied, liveNow } from '../providers/espn.mjs';
+import { upcoming, implied, liveNow, standings } from '../providers/espn.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const OUT_DIR = join(ROOT, 'public');
@@ -349,6 +349,22 @@ const payload = {
   picksMercado,
   live,
 };
+
+// Tabla de posiciones de cada liga presente en el analisis.
+// ESPN la da gratis y ya trae los grupos, que es justo lo que muestra la
+// pestana "Posiciones". Se piden solo las ligas que aparecen, no las 50.
+const ligasEnJuego = [...new Set(analisis.map(a => a.ligaKey).filter(Boolean))];
+const tablas = {};
+for (const lk of ligasEnJuego) {
+  try {
+    const t = await standings(lk);
+    if (t) tablas[lk] = t;
+  } catch {
+    /* esa liga no tiene tabla; se omite sin romper el resto */
+  }
+}
+log(`tablas de posiciones: ${Object.keys(tablas).length}/${ligasEnJuego.length} ligas`);
+payload.standings = tablas;
 
 await mkdir(OUT_DIR, { recursive: true });
 const path = join(OUT_DIR, 'picks.json');

@@ -14,9 +14,34 @@ export interface LadoGoles {
   margenPp: number | null;
 }
 
+/** Una fila de la tabla de posiciones. */
+export interface FilaTabla {
+  posicion: number;
+  equipo: string;
+  escudo: string | null;
+  color?: string | null;
+  pj: number;
+  ganados: number;
+  empatados: number;
+  perdidos: number;
+  puntos: number;
+  diferencia: number;
+  aFavor: number;
+  enContra: number;
+}
+
+/** Tabla de una liga. Algunas traen grupos (Argentina, Escocia...). */
+export interface TablaLiga {
+  liga: string;
+  ligaNombre: string;
+  grupos: { nombre: string | null; equipos: FilaTabla[] }[];
+}
+
 export interface AnalisisFila {
   partido: string;
   liga: string;
+  /** Clave ESPN de la liga (arg.1). Necesaria para buscar su tabla. */
+  ligaKey?: string | null;
   /** Escudos de cada equipo. Sin ellos la lista es una tabla de texto. */
   escudoLocal?: string | null;
   escudoVisita?: string | null;
@@ -84,6 +109,10 @@ export interface AnalisisStats {
 }
 
 export interface Repository {
-  listAnalisis(): Promise<{ analisis: AnalisisFila[]; estadisticas: AnalisisStats | null }>;
+  listAnalisis(): Promise<{
+    analisis: AnalisisFila[];
+    estadisticas: AnalisisStats | null;
+    tablas: Record<string, TablaLiga>;
+  }>;
   _config?: AppConfig;
 }

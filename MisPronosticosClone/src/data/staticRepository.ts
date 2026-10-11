@@ -1,6 +1,6 @@
 import type { AppConfig } from '../config';
 import type { Match, Pick } from '../domain/picks';
-import type { AnalisisFila, AnalisisStats } from './analisisRepository';
+import type { AnalisisFila, AnalisisStats, TablaLiga } from './analisisRepository';
 import type { PicksQuery, PicksRepository } from './picksRepository';
 
 export interface Alerta {
@@ -29,6 +29,8 @@ export interface DailyPayload {
   live: ServerMatchShape[];
   analisis?: AnalisisFila[];
   estadisticas?: AnalisisStats | null;
+  /** Tablas de posiciones por clave de liga (sco.1, arg.1...). */
+  standings?: Record<string, TablaLiga>;
   mercados?: {
     overUnder25: boolean;
     handicap: boolean;
@@ -122,7 +124,13 @@ export const createStaticRepository = (config: AppConfig): PicksRepository => {
     },
     listAnalisis: async () => {
       const d = await load();
-      return { analisis: d.analisis ?? [], estadisticas: d.estadisticas ?? null };
+      return {
+        analisis: d.analisis ?? [],
+        estadisticas: d.estadisticas ?? null,
+        // Tablas por clave de liga (sco.1, arg.1...). Puede venir vacio:
+        // las ligas sin tabla simplemente no aparecen.
+        tablas: d.standings ?? {},
+      };
     },
     listAlertas: async () => {
       const d = await load();
