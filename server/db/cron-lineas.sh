@@ -1,5 +1,6 @@
 #!/bin/bash
-# Corre el extractor de lineas cada 30 minutos.
+export PATH="/home/sergio-alvarado/.nvm/versions/node/v22.23.2/bin:$PATH"
+# Corre el extractor de lineas cada 15 minutos (ESPN ilimitado).
 #
 # Frecuencia elegida por el dato, no por costumbre: la apertura ya esta
 # guardada desde la primera lectura y el cierre se rellena solo cuando

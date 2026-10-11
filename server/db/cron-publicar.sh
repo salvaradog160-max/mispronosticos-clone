@@ -1,11 +1,12 @@
 #!/bin/bash
+export PATH="/home/sergio-alvarado/.nvm/versions/node/v22.23.2/bin:$PATH"
 # Regenera picks.json con el analisis (calibracion en cache) y, si el
 # contenido cambio de verdad, hace commit + push para que la app lo vea
 # via GitHub raw (dataSource: 'static' en la app).
 #
-# Frecuencia: cada 60 minutos. La apertura ya esta en Postgres y daily
-# corre en ~3 s con cache caliente. 60 min no pierde nada material:
-# ESPN publica cambios de linea a lo largo del dia, no por minuto.
+# Frecuencia: cada 15 minutos. ESPN es ilimitado por peticion y daily corre en ~3s.
+# con cache caliente. 15 min alcanza para ver el marcador y la cuota
+# casi en vivo sin gastar de mas: ESPN mueve lineas todo el dia, no por minuto.
 set -euo pipefail
 
 DIR="/home/sergio-alvarado/Proyectos/mispronosticos-clone"

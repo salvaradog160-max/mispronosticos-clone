@@ -13,9 +13,14 @@
 import { readFileSync } from 'node:fs';
 import { execSync } from 'node:child_process';
 import { huella } from '../engine/movimiento.mjs';
+import { fileURLToPath } from 'node:url';
+
+const PICK_DIR = fileURLToPath(new URL('../public/', import.meta.url));
 
 const leer = origen => {
-  if (origen === 'disco') return JSON.parse(readFileSync('public/picks.json', 'utf8'));
+  if (origen === 'disco') {
+    return JSON.parse(readFileSync(`${PICK_DIR}picks.json`, 'utf8'));
+  }
   return JSON.parse(execSync('git show HEAD:server/public/picks.json', { encoding: 'utf8', maxBuffer: 1e8 }));
 };
 
