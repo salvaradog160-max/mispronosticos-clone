@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-12T14:05:06.583Z",
+  "generado": "2026-10-12T15:30:04.497Z",
   "picks": [
     {
       "id": "401875005-H",
@@ -10,21 +10,21 @@
       "awayTeam": "Venezia",
       "market": "1X2",
       "selection": "Gana Atalanta",
-      "odds": 1.5,
+      "odds": 1.4761904761904763,
       "confidence": 74,
       "stars": 4,
       "isSpecial": false,
       "isPremium": false,
-      "probMercado": 0.617,
+      "probMercado": 0.628,
       "nMuestra": 5212,
       "rango": [
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-12T14:05:03.178Z",
-      "roiUnit": 0.10999999999999999,
-      "margen": 0.07333333333333336,
-      "breakEven": 0.6666666666666666,
+      "createdAt": "2026-10-12T15:30:02.688Z",
+      "roiUnit": 0.09238095238095245,
+      "margen": 0.06258064516129036,
+      "breakEven": 0.6774193548387096,
       "rentable": true
     },
     {
@@ -47,7 +47,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-12T14:05:03.178Z",
+      "createdAt": "2026-10-12T15:30:02.689Z",
       "roiUnit": 0.10097560975609754,
       "margen": 0.06786885245901642,
       "breakEven": 0.6721311475409836,
@@ -73,7 +73,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-12T14:05:03.179Z",
+      "createdAt": "2026-10-12T15:30:02.689Z",
       "roiUnit": 0.12947368421052619,
       "margen": 0.08482758620689645,
       "breakEven": 0.6551724137931035,
