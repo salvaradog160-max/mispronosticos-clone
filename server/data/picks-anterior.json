@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-12T19:20:04.266Z",
+  "generado": "2026-10-12T19:35:04.998Z",
   "picks": [
     {
       "id": "761861-H",
@@ -21,36 +21,10 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-12T19:20:02.516Z",
+      "createdAt": "2026-10-12T19:35:03.180Z",
       "roiUnit": 0.10097560975609754,
       "margen": 0.06786885245901642,
       "breakEven": 0.6721311475409836,
-      "rentable": true
-    },
-    {
-      "id": "401850662-H",
-      "fixtureId": "401850662",
-      "league": "chi.1",
-      "kickoff": "2026-10-12T20:00Z",
-      "homeTeam": "Universidad de Chile",
-      "awayTeam": "Ñublense",
-      "market": "1X2",
-      "selection": "Gana Universidad de Chile",
-      "odds": 1.5555555555555556,
-      "confidence": 74,
-      "stars": 4,
-      "isSpecial": false,
-      "isPremium": false,
-      "probMercado": 0.608,
-      "nMuestra": 5212,
-      "rango": [
-        72.9,
-        75.3
-      ],
-      "createdAt": "2026-10-12T19:20:02.516Z",
-      "roiUnit": 0.15111111111111114,
-      "margen": 0.0971428571428572,
-      "breakEven": 0.6428571428571428,
       "rentable": true
     }
   ],
