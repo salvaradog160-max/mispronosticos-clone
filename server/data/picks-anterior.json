@@ -1,32 +1,6 @@
 {
-  "generado": "2026-10-12T16:10:04.631Z",
+  "generado": "2026-10-12T18:25:04.996Z",
   "picks": [
-    {
-      "id": "401875005-H",
-      "fixtureId": "401875005",
-      "league": "ita.1",
-      "kickoff": "2026-10-12T16:30Z",
-      "homeTeam": "Atalanta",
-      "awayTeam": "Venezia",
-      "market": "1X2",
-      "selection": "Gana Atalanta",
-      "odds": 1.526315789473684,
-      "confidence": 74,
-      "stars": 4,
-      "isSpecial": false,
-      "isPremium": false,
-      "probMercado": 0.605,
-      "nMuestra": 5212,
-      "rango": [
-        72.9,
-        75.3
-      ],
-      "createdAt": "2026-10-12T16:10:02.696Z",
-      "roiUnit": 0.12947368421052619,
-      "margen": 0.08482758620689645,
-      "breakEven": 0.6551724137931035,
-      "rentable": true
-    },
     {
       "id": "761861-H",
       "fixtureId": "761861",
@@ -47,7 +21,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-12T16:10:02.696Z",
+      "createdAt": "2026-10-12T18:25:03.222Z",
       "roiUnit": 0.10097560975609754,
       "margen": 0.06786885245901642,
       "breakEven": 0.6721311475409836,
@@ -73,7 +47,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-12T16:10:02.696Z",
+      "createdAt": "2026-10-12T18:25:03.222Z",
       "roiUnit": 0.12947368421052619,
       "margen": 0.08482758620689645,
       "breakEven": 0.6551724137931035,
