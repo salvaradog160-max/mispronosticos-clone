@@ -1,6 +1,6 @@
 {
-  "generado": "2026-10-12T00:00:06.083Z",
-  "anterior": "2026-10-11T23:55:05.094Z",
+  "generado": "2026-10-12T00:05:04.576Z",
+  "anterior": "2026-10-12T00:00:06.083Z",
   "fuente": "football-data.co.uk + ESPN (sin claves)",
   "calibracion": {
     "partidos": 35973,
@@ -282,32 +282,32 @@
       "kickoff": "2026-10-13T00:00Z",
       "favoritoMercado": "H",
       "ladoMercado": "Red Bull Bragantino",
-      "probMercado": 0.425,
+      "probMercado": 0.4287,
       "cuotaMercado": 2.2,
       "cuotaApertura": 1.91,
       "ladoModelo": "Red Bull Bragantino",
       "probModelo": 0.479,
       "coincide": true,
-      "movimiento": -5.86,
+      "movimiento": -5.66,
       "cambioFavorito": false,
       "goles": {
         "linea": 2.5,
-        "overround": 1.0878,
+        "overround": 1.068,
         "over": {
           "lado": "Over",
-          "cuota": 1.67,
-          "probMercado": 0.5516,
-          "probMercadoPct": 55.2,
+          "cuota": 1.69,
+          "probMercado": 0.5541,
+          "probMercadoPct": 55.4,
           "probModelo": 49.7,
-          "margenPp": -5.4
+          "margenPp": -5.7
         },
         "under": {
           "lado": "Under",
-          "cuota": 2.05,
-          "probMercado": 0.4484,
-          "probMercadoPct": 44.8,
+          "cuota": 2.1,
+          "probMercado": 0.4459,
+          "probMercadoPct": 44.6,
           "probModelo": 50.3,
-          "margenPp": 5.4
+          "margenPp": 5.7
         }
       },
       "lineaGoles": 2.5,
@@ -602,10 +602,10 @@
       "resultado": null,
       "goodToLine": {
         "ejecutable": false,
-        "probActual": 0.42498004788507576,
+        "probActual": 0.42873877391643894,
         "necesita": 0.38,
         "cuotaNecesaria": 2.6315789473684212,
-        "cuotaActual": 2.3530516431924884
+        "cuotaActual": 2.3324225865209467
       },
       "serie": null,
       "combinado": {
@@ -26662,22 +26662,10 @@
     "nota": "El margen de la casa se mide como ROI de apostar todos los picks de consenso, medido por el backtest.",
     "notaDrawdown": "Max drawdown: cuánto cayó el saldo acumulado desde su máximo, apostando 1 unidad por pick."
   },
-  "alertas": [
-    {
-      "tipo": "PICK_RETIRADO",
-      "severidad": "media",
-      "fixtureId": "761859",
-      "partido": "St. Louis CITY SC vs LA Galaxy",
-      "mercado": "1X2",
-      "detalle": "Gana St. Louis CITY SC ya no se publica: perdio el consenso o dejo de cubrir la cuota.",
-      "antes": {},
-      "ahora": null,
-      "delta": null
-    }
-  ],
+  "alertas": [],
   "resumenAlertas": {
     "alta": 0,
-    "media": 1,
+    "media": 0,
     "baja": 0
   },
   "picks": [
@@ -26701,7 +26689,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-12T00:00:03.353Z",
+      "createdAt": "2026-10-12T00:05:02.699Z",
       "roiUnit": 0.11948717948717946,
       "margen": 0.0789830508474576,
       "breakEven": 0.6610169491525424,
@@ -26727,7 +26715,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-12T00:00:03.354Z",
+      "createdAt": "2026-10-12T00:05:02.699Z",
       "roiUnit": 0.10097560975609754,
       "margen": 0.06786885245901642,
       "breakEven": 0.6721311475409836,
@@ -26753,7 +26741,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-12T00:00:03.354Z",
+      "createdAt": "2026-10-12T00:05:02.699Z",
       "roiUnit": 0.12947368421052619,
       "margen": 0.08482758620689645,
       "breakEven": 0.6551724137931035,
