@@ -96,15 +96,28 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        // La firma release esta en signing.gradle (NO versionado): si
+        // existe lo usamos para keystore propio. Sin el, falla con
+        // mensaje claro en vez de callar la falta de firma.
+        if (file('signing.gradle').exists()) {
+            def sgn = new Properties()
+            sgn.load(file('signing.gradle').newInputStream())
+            release {
+                storeFile file(sgn.getProperty('storeFile'))
+                storePassword sgn.getProperty('storePassword')
+                keyAlias sgn.getProperty('keyAlias')
+                keyPassword sgn.getProperty('keyPassword')
+            }
+        }
     }
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
         }
         release {
-            // Caution! In production, you need to generate your own keystore file.
-            // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            if (file('signing.gradle').exists()) {
+                signingConfig signingConfigs.release
+            }
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
@@ -121,3 +134,8 @@ dependencies {
         implementation jscFlavor
     }
 }
+
+
+
+
+

@@ -1,6 +1,6 @@
 {
-  "generado": "2026-10-12T00:05:04.576Z",
-  "anterior": "2026-10-12T00:00:06.083Z",
+  "generado": "2026-10-12T00:15:05.104Z",
+  "anterior": "2026-10-12T00:10:04.850Z",
   "fuente": "football-data.co.uk + ESPN (sin claves)",
   "calibracion": {
     "partidos": 35973,
@@ -2949,22 +2949,22 @@
       "cambioFavorito": false,
       "goles": {
         "linea": 3.5,
-        "overround": 1.0502,
+        "overround": 1.0598,
         "over": {
           "lado": "Over",
-          "cuota": 2.3,
-          "probMercado": 0.414,
-          "probMercadoPct": 41.4,
+          "cuota": 2.25,
+          "probMercado": 0.4194,
+          "probMercadoPct": 41.9,
           "probModelo": 56,
-          "margenPp": 14.6
+          "margenPp": 14
         },
         "under": {
           "lado": "Under",
           "cuota": 1.63,
-          "probMercado": 0.586,
-          "probMercadoPct": 58.6,
+          "probMercado": 0.5806,
+          "probMercadoPct": 58.1,
           "probModelo": 44,
-          "margenPp": -14.5
+          "margenPp": -14
         }
       },
       "lineaGoles": 3.5,
@@ -26689,7 +26689,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-12T00:05:02.699Z",
+      "createdAt": "2026-10-12T00:15:03.159Z",
       "roiUnit": 0.11948717948717946,
       "margen": 0.0789830508474576,
       "breakEven": 0.6610169491525424,
@@ -26715,7 +26715,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-12T00:05:02.699Z",
+      "createdAt": "2026-10-12T00:15:03.159Z",
       "roiUnit": 0.10097560975609754,
       "margen": 0.06786885245901642,
       "breakEven": 0.6721311475409836,
@@ -26741,7 +26741,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-12T00:05:02.699Z",
+      "createdAt": "2026-10-12T00:15:03.159Z",
       "roiUnit": 0.12947368421052619,
       "margen": 0.08482758620689645,
       "breakEven": 0.6551724137931035,
@@ -27862,6 +27862,20 @@
             },
             {
               "posicion": 2,
+              "equipo": "Belgrano (Córdoba)",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/4.png",
+              "color": null,
+              "pj": 12,
+              "ganados": 6,
+              "empatados": 4,
+              "perdidos": 2,
+              "puntos": 22,
+              "diferencia": 7,
+              "aFavor": 14,
+              "enContra": 7
+            },
+            {
+              "posicion": 3,
               "equipo": "Argentinos Juniors",
               "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/3.png",
               "color": null,
@@ -27873,20 +27887,6 @@
               "diferencia": 5,
               "aFavor": 16,
               "enContra": 11
-            },
-            {
-              "posicion": 3,
-              "equipo": "Belgrano (Córdoba)",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/4.png",
-              "color": null,
-              "pj": 11,
-              "ganados": 5,
-              "empatados": 4,
-              "perdidos": 2,
-              "puntos": 19,
-              "diferencia": 5,
-              "aFavor": 12,
-              "enContra": 7
             },
             {
               "posicion": 4,
@@ -28019,14 +28019,14 @@
               "equipo": "Racing Club",
               "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/15.png",
               "color": null,
-              "pj": 11,
+              "pj": 12,
               "ganados": 3,
               "empatados": 2,
-              "perdidos": 6,
+              "perdidos": 7,
               "puntos": 11,
-              "diferencia": -4,
+              "diferencia": -6,
               "aFavor": 13,
-              "enContra": 17
+              "enContra": 19
             },
             {
               "posicion": 14,

@@ -31,3 +31,4 @@ MisPronosticosClone/android/app/google-services.json
 
 # esto SÍ se versiona:
 !server/public/picks.jsonserver/data/odds-historicas.json
+MisPronosticosClone/android/key.properties
