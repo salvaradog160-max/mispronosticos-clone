@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-12T00:15:05.104Z",
+  "generado": "2026-10-12T05:50:34.598Z",
   "picks": [
     {
       "id": "401875005-H",
@@ -10,21 +10,21 @@
       "awayTeam": "Venezia",
       "market": "1X2",
       "selection": "Gana Atalanta",
-      "odds": 1.5128205128205128,
+      "odds": 1.5,
       "confidence": 74,
       "stars": 4,
       "isSpecial": false,
       "isPremium": false,
-      "probMercado": 0.608,
+      "probMercado": 0.618,
       "nMuestra": 5212,
       "rango": [
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-12T00:15:03.159Z",
-      "roiUnit": 0.11948717948717946,
-      "margen": 0.0789830508474576,
-      "breakEven": 0.6610169491525424,
+      "createdAt": "2026-10-12T05:50:33.231Z",
+      "roiUnit": 0.10999999999999999,
+      "margen": 0.07333333333333336,
+      "breakEven": 0.6666666666666666,
       "rentable": true
     },
     {
@@ -47,7 +47,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-12T00:15:03.159Z",
+      "createdAt": "2026-10-12T05:50:33.231Z",
       "roiUnit": 0.10097560975609754,
       "margen": 0.06786885245901642,
       "breakEven": 0.6721311475409836,
@@ -62,21 +62,21 @@
       "awayTeam": "Ñublense",
       "market": "1X2",
       "selection": "Gana Universidad de Chile",
-      "odds": 1.526315789473684,
+      "odds": 1.5128205128205128,
       "confidence": 74,
       "stars": 4,
       "isSpecial": false,
       "isPremium": false,
-      "probMercado": 0.617,
+      "probMercado": 0.627,
       "nMuestra": 5212,
       "rango": [
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-12T00:15:03.159Z",
-      "roiUnit": 0.12947368421052619,
-      "margen": 0.08482758620689645,
-      "breakEven": 0.6551724137931035,
+      "createdAt": "2026-10-12T05:50:33.231Z",
+      "roiUnit": 0.11948717948717946,
+      "margen": 0.0789830508474576,
+      "breakEven": 0.6610169491525424,
       "rentable": true
     }
   ],
