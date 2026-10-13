@@ -11,6 +11,7 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { palette, spacing, radius, fontSize } from '../theme';
 import { LadoGolesFila, formatKickoff, tiempoPara } from '../components/PartidoDetalle';
+import { CuadroMercado } from '../components/CuadroMercado';
 import type { AnalisisFila, TablaLiga, FilaTabla } from '../data/analisisRepository';
 
 /**
@@ -22,13 +23,14 @@ import type { AnalisisFila, TablaLiga, FilaTabla } from '../data/analisisReposit
  * referencia traia se quita porque no hay IA que haga ese analisis.
  */
 
-type Pestana = 'analisis' | 'pronosticos' | 'tendencias' | 'patrones' | 'h2h' | 'posiciones';
+type Pestana = 'analisis' | 'pronosticos' | 'tendencias' | 'patrones' | 'mercado' | 'h2h' | 'posiciones';
 
 const PESTANAS: { id: Pestana; label: string }[] = [
   { id: 'analisis', label: 'Análisis' },
   { id: 'pronosticos', label: 'Pronósticos' },
   { id: 'tendencias', label: 'Tendencias' },
   { id: 'patrones', label: 'Patrones' },
+  { id: 'mercado', label: 'Mercado' },
   { id: 'h2h', label: 'H2H' },
   { id: 'posiciones', label: 'Posiciones' },
 ];
@@ -732,6 +734,12 @@ export default function MatchDetailScreen({
               ) : (
                 <Text style={s.aviso}>Sin patrones con datos suficientes.</Text>
               )}
+            </>
+          )}
+
+          {pestana === 'mercado' && (
+            <>
+              <CuadroMercado />
             </>
           )}
 

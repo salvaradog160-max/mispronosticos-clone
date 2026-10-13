@@ -164,6 +164,30 @@ const server = createServer(async (req, res) => {
       return json(res, { picks: picks.slice(0, limit), total: picks.length });
     }
 
+    // Movimiento de linea y goles esperados del mercado, leido de OddsMath.
+    // ?url=<partido de oddsmath>&mercado=O/U 2.5 (por defecto).
+    if (path === '/mercado') {
+      const urlPartido = url.searchParams.get('url');
+      if (!urlPartido || !urlPartido.includes('oddsmath.com')) {
+        return json(res, {
+          error: 'url_invalida',
+          detalle: 'Falta ?url=https://www.oddsmath.com/football/... o no es de oddsmath.',
+        }, 400);
+      }
+      // solo lectura de paginas publicas; el motor cachea 5 min en disco
+      const { leerMercado } = await import('../engine/mercado.mjs');
+      const mercado = url.searchParams.get('mercado') ?? 'O/U 2.5';
+      const datos = await leerMercado(urlPartido, mercado);
+      if (!datos.casas?.length) {
+        return json(res, {
+          error: 'sin_datos',
+          detalle: `Ninguna casa publico grafico de ${mercado} para ese partido.`,
+          mercado,
+        }, 404);
+      }
+      return json(res, datos);
+    }
+
     return json(res, { error: 'no_encontrado', path }, 404);
   } catch (error) {
     return json(res, { error: 'error_servidor', detalle: String(error) }, 500);
