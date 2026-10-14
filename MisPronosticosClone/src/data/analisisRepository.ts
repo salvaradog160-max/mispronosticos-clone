@@ -210,11 +210,25 @@ export interface AnalisisFila {
       /** Visitante jugando de visita, historial completo. */
       visitaFueraHist?: TendenciasCuadro | null;
     };
+    /** Lectura agregada en frases sobre la muestra completa. */
+    lectura?: {
+      localCasa: LecturaBloque | null;
+      visitaFuera: LecturaBloque | null;
+      localCasaHist: LecturaBloque | null;
+      visitaFueraHist: LecturaBloque | null;
+      h2h: LecturaBloque | null;
+      h2hCasa: LecturaBloque | null;
+    } | null;
   } | null;
 }
 
-export interface CifrasCuadro {
+export interface LecturaBloque {
+  etiqueta: string;
   n: number;
+  lineas: string[];
+}
+
+export interface CifrasCuadro {  n: number;
   gfProm: number;
   gcProm: number;
   gfMed: number;

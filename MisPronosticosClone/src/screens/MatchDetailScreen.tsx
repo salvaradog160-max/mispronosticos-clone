@@ -757,8 +757,39 @@ export default function MatchDetailScreen({
                     <BloqueTendencias titulo="Últ. 5 L/V (combinado)" c={fila.combinado.tendencias.lv} />
                   )}
 
-                  {fila.combinado.tendencias.h2h && (
+                  {fila.combinado?.tendencias?.h2h && (
                     <BloqueTendencias titulo="H2H" c={fila.combinado.tendencias.h2h} />
+                  )}
+
+                  {fila.combinado?.lectura && (
+                    <>
+                      <Text style={s.subTitulo}>LECTURA EN FRASES — muestra completa</Text>
+                      <Text style={s.aviso}>
+                        Cada rasgo cuenta sobre todos los partidos del bloque, no solo los últimos.
+                        Solo se afirma lo que es una tendencia real (55% o más, o 30% o menos).
+                      </Text>
+
+                      {([
+                        ['localCasa', 'Local jugando en casa'],
+                        ['visitaFuera', 'Visitante jugando de visita'],
+                        ['h2hCasa', 'H2H · local en su casa'],
+                        ['h2h', 'H2H · todos los enfrentamientos'],
+                        ['localCasaHist', 'Local en casa · histórico'],
+                        ['visitaFueraHist', 'Visitante fuera · histórico'],
+                      ] as const)
+                        .filter(([k]) => fila.combinado?.lectura?.[k])
+                        .map(([k, titulo]) => {
+                          const b = fila.combinado!.lectura![k]!;
+                          return (
+                            <View key={k} style={s.stLectura}>
+                              <Text style={s.stLecturaTitulo}>{titulo}</Text>
+                              {b.lineas.map((l, i) => (
+                                <Text key={i} style={s.stLecturaLinea}>· {l}</Text>
+                              ))}
+                            </View>
+                          );
+                        })}
+                    </>
                   )}
                 </>
               ) : (
@@ -1071,6 +1102,14 @@ const s = StyleSheet.create({
   valor: { color: palette.text, fontSize: fontSize.sm, fontWeight: '700', textAlign: 'right' },
 
   aviso: { color: palette.textMuted, fontSize: fontSize.sm, lineHeight: 20, marginTop: spacing.sm },
+  stLectura: {
+    backgroundColor: palette.surface, borderRadius: radius.md,
+    borderWidth: 1, borderColor: palette.border, padding: spacing.md, marginTop: spacing.sm,
+  },
+  stLecturaTitulo: {
+    color: palette.accent, fontSize: fontSize.md, fontWeight: '800', marginBottom: spacing.xs,
+  },
+  stLecturaLinea: { color: palette.text, fontSize: fontSize.md, lineHeight: 24 },
   subTitulo: {
     color: palette.accent, fontSize: fontSize.md, fontWeight: '800',
     marginTop: spacing.lg, marginBottom: spacing.xs, letterSpacing: 0.4,

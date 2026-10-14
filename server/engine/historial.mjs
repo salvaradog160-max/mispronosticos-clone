@@ -249,6 +249,81 @@ const patronesDe = (filas, equipo, { enCasa = null } = {}) => {
   return out;
 };
 
+/**
+ * Lectura agregada EN FRASES sobre todo el bloque, no solo los ultimos
+ * partidos. `patronesDe` mira rachas recientes (2-5 juegos); esto cuenta
+ * sobre la muestra completa y siempre declara el n, para que se pueda
+ * distinguir "18 de 20" de "3 de 4".
+ *
+ * Solo se afirma un rasgo cuando es notable (>=55% o <=30%). Un 50/50
+ * no es una tendencia, es ruido, y decirlo asi seria mentir.
+ */
+const lecturaDe = (filas, etiqueta, { enCasa = null } = {}) => {
+  const out = [];
+  const n = filas?.length ?? 0;
+  if (!n) return null;
+
+  const pct = k => Math.round((k / n) * 100);
+  const notable = k => k / n >= 0.55 || k / n <= 0.30;
+  const frase = k => `${k} de ${n} (${pct(k)}%)`;
+
+  const suma = (pred) => filas.filter(pred).length;
+  const media = (sel) => (filas.reduce((a, f) => a + (f[sel] ?? 0), 0) / n).toFixed(2);
+
+  out.push(`${n} partidos en este contexto`);
+
+  const btts = suma(f => f.gf >= 1 && f.gc >= 1);
+  if (notable(btts)) {
+    out.push(btts / n >= 0.55
+      ? `Ambos equipos anotaron en ${frase(btts)}`
+      : `Ambos equipos anotaron solo en ${frase(btts)}`);
+  }
+
+  const porUno = suma(f => f.res === 'G' && f.gf - f.gc === 1);
+  if (porUno / n >= 0.20) out.push(`Ganó por exactamente 1 gol en ${frase(porUno)}`);
+
+  const gano = suma(f => f.res === 'G');
+  const perdio = suma(f => f.res === 'P');
+  const empato = suma(f => f.res === 'E');
+  if (gano / n >= 0.55) out.push(`Ganó en ${frase(gano)}`);
+  if (perdio / n >= 0.55) out.push(`Perdió en ${frase(perdio)}`);
+  if (empato / n >= 0.30) out.push(`Empató en ${frase(empato)}`);
+
+  const porteriaCero = suma(f => f.res === 'G' && f.gc === 0);
+  if (porteriaCero / n >= 0.20) out.push(`Ganó sin recibir gol en ${frase(porteriaCero)}`);
+
+  for (const linea of [1.5, 2.5, 3.5]) {
+    const over = suma(f => (f.gf + f.gc) > linea);
+    if (!notable(over)) continue;
+    out.push(over / n >= 0.55
+      ? `Sobre ${linea} en ${frase(over)}`
+      : `Sobre ${linea} solo en ${frase(over)}`);
+    const under = n - over;
+    if (under / n >= 0.55) out.push(`Bajo ${linea} en ${frase(under)}`);
+  }
+
+  // Marcador mas frecuente: el resultado exacto que mas se repite.
+  const marcadores = new Map();
+  for (const f of filas) {
+    const k = `${f.gf}-${f.gc}`;
+    marcadores.set(k, (marcadores.get(k) ?? 0) + 1);
+  }
+  const [top, veces] = [...marcadores.entries()].sort((a, b) => b[1] - a[1])[0] ?? [];
+  if (top && veces / n >= 0.15) out.push(`Marcador más repetido: ${top} (${veces} veces)`);
+
+  out.push(`Promedio: ${media('gf')} a favor, ${media('gc')} en contra`);
+
+  // Racha vigente (lo unico que si es "de ahora", y se separa del resto).
+  let racha = 1;
+  for (let i = 1; i < filas.length && filas[i].res === filas[0].res; i++) racha++;
+  if (racha >= 2) {
+    const nom = { G: 'victorias', P: 'derrotas', E: 'empates' }[filas[0].res];
+    out.push(`Ahora: ${racha} ${nom} seguidas`);
+  }
+
+  return { etiqueta, n, lineas: out };
+};
+
 /** Racha de un equipo en su contexto (para la vista de patrones). */
 const rachaDe = filas => {
   if (!filas.length) return null;
@@ -485,6 +560,17 @@ export const historialDe = (history, homeRaw, awayRaw) => {
       visitaFuera: patronesDe(cuadroVisitaFuera, `${awayRaw}`, { enCasa: false }),
       h2h: patronesDe(h2hLocalVisto, 'H2H'),
       h2hCasa: patronesDe(h2hCasaVisto, 'H2H', { enCasa: true }),
+    },
+    // Lectura agregada en frases sobre la muestra COMPLETA de cada
+    // contexto. Incluye el H2H partido por sede, que es el cruce mas
+    // informative: local en su casa contra ese visitante.
+    lectura: {
+      localCasa: lecturaDe(cuadroLocalCasa, `${homeRaw} en casa`, { enCasa: true }),
+      visitaFuera: lecturaDe(cuadroVisitaFuera, `${awayRaw} de visita`, { enCasa: false }),
+      localCasaHist: lecturaDe(cuadroLocalCasaHist, `${homeRaw} en casa (histórico)`, { enCasa: true }),
+      visitaFueraHist: lecturaDe(cuadroVisitaFueraHist, `${awayRaw} de visita (histórico)`, { enCasa: false }),
+      h2h: lecturaDe(h2hLocalVisto, 'H2H completo'),
+      h2hCasa: lecturaDe(h2hCasaVisto, 'H2H · local en casa', { enCasa: true }),
     },
     pesoEstadio: {
       local: {
