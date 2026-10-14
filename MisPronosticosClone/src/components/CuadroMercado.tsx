@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Pressable, ActivityIndicator, StyleSheet, ScrollView } from 'react-native';
 
-import { palette, spacing, radius, fontSize } from '../theme';
+import { palette, spacing, radius } from '../theme';
 import {
   leerMercado, limpiarCacheMercado,
   type LecturaMercado, type MercadoId, type Diagnostico,
 } from '../data/mercadoRepository';
 
 const MERCADOS: MercadoId[] = ['O/U 1.5', 'O/U 2.5', 'O/U 3.5'];
+
+/** Escala propia: la del tema (13/14) se queda pequena en pantalla
+ *  de telefono y de noche. Aqui se lee con luz tenue. */
+const T = { xs: 15, sm: 17, md: 19, lg: 23, xl: 30 } as const;
+
+/** Texto secundario mas claro que palette.textMuted: de noche el gris
+ *  apagado no se distingue y estas etiquetas son datos, no adorno. */
+const suave = '#cbd5e1';
 
 const colorDireccion = (d: Diagnostico['direccion']) =>
   d === 'hacia Over' ? palette.success : d === 'hacia Under' ? palette.danger : palette.textMuted;
@@ -67,7 +75,7 @@ export const CuadroMercado = () => {
       <TextInput
         style={st.input}
         placeholder="https://www.oddsmath.com/football/..."
-        placeholderTextColor={palette.textMuted}
+        placeholderTextColor="#8496ad"
         value={url}
         onChangeText={setUrl}
         autoCapitalize="none"
@@ -161,54 +169,54 @@ export const CuadroMercado = () => {
   );
 };
 
-const th = { color: palette.textMuted, fontSize: fontSize.xs, fontWeight: '700' } as const;
+const th = { color: suave, fontSize: T.xs, fontWeight: '800', letterSpacing: 0.3 } as const;
 
 const st = StyleSheet.create({
-  titulo: { color: palette.text, fontSize: fontSize.lg, fontWeight: '800', marginBottom: spacing.xs },
-  nota: { color: palette.textMuted, fontSize: fontSize.sm, marginBottom: spacing.sm, lineHeight: 18 },
-  subtitulo: { color: palette.text, fontSize: fontSize.sm, fontWeight: '700', marginTop: spacing.md, marginBottom: spacing.xs },
+  titulo: { color: palette.text, fontSize: T.lg, fontWeight: '800', marginBottom: spacing.xs },
+  nota: { color: suave, fontSize: T.sm, marginBottom: spacing.md, lineHeight: 24 },
+  subtitulo: { color: palette.text, fontSize: T.md, fontWeight: '800', marginTop: spacing.lg, marginBottom: spacing.xs },
   input: {
-    backgroundColor: palette.surface,
+    backgroundColor: palette.surfaceAlt,
     borderColor: palette.border,
     borderWidth: 1,
     borderRadius: radius.md,
     color: palette.text,
-    padding: spacing.sm,
-    fontSize: fontSize.sm,
-    minHeight: 56,
+    padding: spacing.md,
+    fontSize: T.sm,
+    minHeight: 76,
     textAlignVertical: 'top',
   },
-  filaMercados: { flexDirection: 'row', gap: spacing.xs, marginTop: spacing.sm },
+  filaMercados: { flexDirection: 'row', gap: spacing.xs, marginTop: spacing.md },
   chip: {
-    paddingHorizontal: spacing.sm, paddingVertical: 6,
+    flex: 1, paddingVertical: 12,
     borderRadius: radius.sm, borderWidth: 1, borderColor: palette.border,
-    backgroundColor: palette.surface,
+    backgroundColor: palette.surface, alignItems: 'center',
   },
-  chipActivo: { backgroundColor: palette.accentTint, borderColor: palette.accent },
-  chipTxt: { color: palette.textMuted, fontSize: fontSize.xs, fontWeight: '700' },
+  chipActivo: { backgroundColor: palette.accentTint, borderColor: palette.accent, borderWidth: 2 },
+  chipTxt: { color: suave, fontSize: T.xs, fontWeight: '800' },
   chipTxtActivo: { color: palette.accent },
-  filaBotones: { flexDirection: 'row', gap: spacing.xs, marginTop: spacing.sm },
-  boton: { flex: 1, paddingVertical: spacing.sm, borderRadius: radius.md, alignItems: 'center' },
-  botonPrimario: { backgroundColor: palette.accent },
-  botonSec: { backgroundColor: palette.surface, borderWidth: 1, borderColor: palette.border },
-  botonTxt: { color: palette.bg, fontWeight: '800', fontSize: fontSize.sm },
-  botonSecTxt: { color: palette.text, fontWeight: '600', fontSize: fontSize.xs },
-  error: { color: palette.danger, fontSize: fontSize.sm, marginTop: spacing.sm },
+  filaBotones: { flexDirection: 'row', gap: spacing.xs, marginTop: spacing.md },
+  boton: { paddingVertical: 16, paddingHorizontal: spacing.sm, borderRadius: radius.md, alignItems: 'center', justifyContent: 'center' },
+  botonPrimario: { flex: 1, backgroundColor: palette.accent },
+  botonSec: { flex: 1.2, backgroundColor: palette.surfaceAlt, borderWidth: 1, borderColor: palette.border },
+  botonTxt: { color: palette.bg, fontWeight: '800', fontSize: T.sm },
+  botonSecTxt: { color: palette.text, fontWeight: '700', fontSize: T.xs, textAlign: 'center' },
+  error: { color: palette.danger, fontSize: T.sm, marginTop: spacing.md, lineHeight: 24 },
   tarjeta: {
     backgroundColor: palette.surface, borderRadius: radius.md,
     borderWidth: 1, borderColor: palette.border, padding: spacing.md, marginTop: spacing.md,
   },
-  cabecera: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: spacing.sm },
-  mercado: { color: palette.accent, fontSize: fontSize.md, fontWeight: '800' },
-  veredicto: { fontSize: fontSize.sm, fontWeight: '800' },
-  cifras: { flexDirection: 'row', gap: spacing.sm },
-  cifra: { flex: 1, backgroundColor: palette.surfaceAlt, borderRadius: radius.sm, padding: spacing.sm },
-  cifraEt: { color: palette.textMuted, fontSize: 10, marginBottom: 2 },
-  cifraVal: { color: palette.text, fontSize: fontSize.lg, fontWeight: '800' },
-  cifraSub: { color: palette.textMuted, fontSize: 9 },
-  encabezado: { flexDirection: 'row', paddingBottom: 4, borderBottomWidth: 1, borderBottomColor: palette.border },
-  filaCasa: { flexDirection: 'row', paddingVertical: 5, borderBottomWidth: 1, borderBottomColor: palette.surfaceAlt },
-  colCasa: { flex: 2, color: palette.text, fontSize: fontSize.xs },
-  colPct: { flex: 1, color: palette.text, fontSize: fontSize.xs, textAlign: 'right' },
-  aviso: { color: palette.textMuted, fontSize: 10, marginTop: spacing.md, lineHeight: 14 },
+  cabecera: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: spacing.md, flexWrap: 'wrap', gap: spacing.xs },
+  mercado: { color: palette.accent, fontSize: T.lg, fontWeight: '800' },
+  veredicto: { fontSize: T.sm, fontWeight: '800' },
+  cifras: { gap: spacing.sm },
+  cifra: { backgroundColor: palette.surfaceAlt, borderRadius: radius.sm, padding: spacing.md },
+  cifraEt: { color: suave, fontSize: T.xs, marginBottom: 4, fontWeight: '600' },
+  cifraVal: { color: palette.text, fontSize: T.xl, fontWeight: '800' },
+  cifraSub: { color: suave, fontSize: T.xs, marginTop: 2 },
+  encabezado: { flexDirection: 'row', paddingBottom: 6, borderBottomWidth: 1, borderBottomColor: palette.border, marginTop: spacing.md },
+  filaCasa: { flexDirection: 'row', paddingVertical: 10, borderBottomWidth: 1, borderBottomColor: palette.surfaceAlt, alignItems: 'center' },
+  colCasa: { flex: 2.2, color: palette.text, fontSize: T.xs, fontWeight: '700' },
+  colPct: { flex: 1, color: palette.text, fontSize: T.xs, fontWeight: '700', textAlign: 'right' },
+  aviso: { color: suave, fontSize: T.xs, marginTop: spacing.lg, lineHeight: 22 },
 });

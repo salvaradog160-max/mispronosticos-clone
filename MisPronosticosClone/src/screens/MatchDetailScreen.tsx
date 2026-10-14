@@ -337,19 +337,25 @@ export default function MatchDetailScreen({
 
         {fila.sede ? <Text style={s.sede}>📍 {fila.sede}</Text> : null}
 
-        {/* Pestanas */}
-        <View style={s.tabs}>
-          {PESTANAS.map(p => (
-            <Pressable
-              key={p.id}
-              onPress={() => setPestana(p.id)}
-              style={[s.tab, pestana === p.id && s.tabActiva]}>
-              <Text style={[s.tabTxt, pestana === p.id && s.tabTxtActiva]} numberOfLines={1}>
-                {p.label}
-              </Text>
-            </Pressable>
-          ))}
-        </View>
+        {/* Pestanas: con scroll horizontal porque son 7 y en pantalla
+            angosta la letra grande no cabria repartida en partes iguales */}
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={s.tabsScroll}>
+          <View style={s.tabs}>
+            {PESTANAS.map(p => (
+              <Pressable
+                key={p.id}
+                onPress={() => setPestana(p.id)}
+                style={[s.tab, pestana === p.id && s.tabActiva]}>
+                <Text style={[s.tabTxt, pestana === p.id && s.tabTxtActiva]} numberOfLines={1}>
+                  {p.label}
+                </Text>
+              </Pressable>
+            ))}
+          </View>
+        </ScrollView>
 
         <ScrollView
           style={s.cuerpo}
@@ -960,21 +966,22 @@ const s = StyleSheet.create({
   recomPct: { color: palette.accent, fontSize: fontSize.lg, fontWeight: '900' },
   recomLinea: { color: palette.textMuted, fontSize: fontSize.sm, lineHeight: 20 },
 
+  tabsScroll: { flexGrow: 0 },
   tabs: {
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderBottomColor: palette.surfaceAlt,
-    paddingHorizontal: spacing.sm,
+    paddingHorizontal: spacing.xs,
   },
   tab: {
-    flex: 1,
-    paddingVertical: spacing.sm,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.md,
     alignItems: 'center',
-    borderBottomWidth: 2,
+    borderBottomWidth: 3,
     borderBottomColor: 'transparent',
   },
   tabActiva: { borderBottomColor: palette.accent },
-  tabTxt: { color: palette.textMuted, fontSize: fontSize.xs, fontWeight: '700' },
+  tabTxt: { color: palette.text, fontSize: fontSize.md, fontWeight: '700' },
   tabTxtActiva: { color: palette.accent },
 
   cuerpo: { flex: 1 },
