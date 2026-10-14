@@ -424,6 +424,13 @@ export const historialDe = (history, homeRaw, awayRaw) => {
   const cuadroLocalCasa = partidosDe(partidos, home, { enCasa: true, season: tempHome });
   const cuadroVisitaFuera = partidosDe(partidos, away, { enCasa: false, season: tempAway });
 
+  // Los mismos dos contextos pero SIN filtrar por temporada: el historial
+  // completo. Son contextos distintos y se muestran aparte a proposito:
+  // "como juega este local en SU casa" y "como juega este visitante FUERA"
+  // no se pueden sumar, porque promedian poblaciones distintas.
+  const cuadroLocalCasaHist = partidosDe(partidos, home, { enCasa: true });
+  const cuadroVisitaFueraHist = partidosDe(partidos, away, { enCasa: false });
+
   // H2H directo: historial COMPLETO de enfrentamientos directos (todas
   // las temporadas en la base), dividido en: todos, y los que el local
   // jugo en su cancha. Se leen desde la perspectiva del local.
@@ -499,6 +506,13 @@ export const historialDe = (history, homeRaw, awayRaw) => {
       general: tendenciasDe([...cuadroGeneralL, ...cuadroGeneralV]),
       lv: tendenciasDe([...cuadroLocalCasa, ...cuadroVisitaFuera]),
       h2h: tendenciasDe(h2h.map(p => ({ gfLocal: p.homeScore, gfVisita: p.awayScore }))),
+      // Cada contexto por separado. Antes local-casa y visita-fuera se
+      // mezclaban en `lv`, y esa mezcla escondia justo el dato que sirve:
+      // como rinde CADA equipo en SU contexto.
+      localCasa: tendenciasDe(cuadroLocalCasa),
+      visitaFuera: tendenciasDe(cuadroVisitaFuera),
+      localCasaHist: tendenciasDe(cuadroLocalCasaHist),
+      visitaFueraHist: tendenciasDe(cuadroVisitaFueraHist),
     },
   };
 };

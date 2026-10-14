@@ -201,6 +201,14 @@ export interface AnalisisFila {
       general: TendenciasCuadro | null;
       lv: TendenciasCuadro | null;
       h2h: TendenciasCuadro | null;
+      /** Local jugando en casa, TEMPORADA VIGENTE. */
+      localCasa?: TendenciasCuadro | null;
+      /** Visitante jugando de visita, TEMPORADA VIGENTE. */
+      visitaFuera?: TendenciasCuadro | null;
+      /** Local jugando en casa, historial completo. */
+      localCasaHist?: TendenciasCuadro | null;
+      /** Visitante jugando de visita, historial completo. */
+      visitaFueraHist?: TendenciasCuadro | null;
     };
   } | null;
 }

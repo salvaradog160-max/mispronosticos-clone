@@ -691,11 +691,70 @@ export default function MatchDetailScreen({
 
               {fila.combinado?.tendencias?.general ? (
                 <>
-                  <BloqueTendencias titulo="General" c={fila.combinado.tendencias.general} />
+                  <Text style={s.subTitulo}>TEMPORADA VIGENTE — por contexto</Text>
+                  <Text style={s.aviso}>
+                    Cada equipo se mide en SU contexto: el local jugando en casa y el visitante
+                    jugando de visita. No se suman entre sí porque promedian poblaciones distintas.
+                  </Text>
+
+                  {fila.combinado.tendencias.localCasa && (
+                    <>
+                      <BloqueTendencias
+                        titulo={`Local en casa · ${fila.combinado?.temporadaVigente?.local ?? 'local'}`}
+                        c={fila.combinado.tendencias.localCasa}
+                      />
+                      <Text style={s.pie}>
+                        n = {fila.combinado.tendencias.localCasa.n} partidos en casa
+                      </Text>
+                    </>
+                  )}
+
+                  {fila.combinado.tendencias.visitaFuera && (
+                    <>
+                      <BloqueTendencias
+                        titulo={`Visitante de visita · ${fila.combinado?.temporadaVigente?.visita ?? 'visitante'}`}
+                        c={fila.combinado.tendencias.visitaFuera}
+                      />
+                      <Text style={s.pie}>
+                        n = {fila.combinado.tendencias.visitaFuera.n} partidos fuera
+                      </Text>
+                    </>
+                  )}
+
+                  {(fila.combinado.tendencias.localCasaHist || fila.combinado.tendencias.visitaFueraHist) && (
+                    <Text style={s.subTitulo}>HISTÓRICO COMPLETO — mismos contextos</Text>
+                  )}
+
+                  {fila.combinado.tendencias.localCasaHist && (
+                    <>
+                      <BloqueTendencias
+                        titulo={`Local en casa (histórico)`}
+                        c={fila.combinado.tendencias.localCasaHist}
+                      />
+                      <Text style={s.pie}>
+                        n = {fila.combinado.tendencias.localCasaHist.n} partidos en casa, todas las temporadas
+                      </Text>
+                    </>
+                  )}
+
+                  {fila.combinado.tendencias.visitaFueraHist && (
+                    <>
+                      <BloqueTendencias
+                        titulo={`Visitante fuera (histórico)`}
+                        c={fila.combinado.tendencias.visitaFueraHist}
+                      />
+                      <Text style={s.pie}>
+                        n = {fila.combinado.tendencias.visitaFueraHist.n} partidos fuera, todas las temporadas
+                      </Text>
+                    </>
+                  )}
+
+                  <Text style={s.subTitulo}>COMPARATIVAS</Text>
+                  <BloqueTendencias titulo="General (local + visitante, todo)" c={fila.combinado.tendencias.general} />
                   <Text style={s.pie}>n = {fila.combinado.tendencias.general.n} partidos</Text>
 
                   {fila.combinado.tendencias.lv && (
-                    <BloqueTendencias titulo="Últ. 5 L/V" c={fila.combinado.tendencias.lv} />
+                    <BloqueTendencias titulo="Últ. 5 L/V (combinado)" c={fila.combinado.tendencias.lv} />
                   )}
 
                   {fila.combinado.tendencias.h2h && (
@@ -1012,6 +1071,10 @@ const s = StyleSheet.create({
   valor: { color: palette.text, fontSize: fontSize.sm, fontWeight: '700', textAlign: 'right' },
 
   aviso: { color: palette.textMuted, fontSize: fontSize.sm, lineHeight: 20, marginTop: spacing.sm },
+  subTitulo: {
+    color: palette.accent, fontSize: fontSize.md, fontWeight: '800',
+    marginTop: spacing.lg, marginBottom: spacing.xs, letterSpacing: 0.4,
+  },
   bullet: { color: palette.text, fontSize: fontSize.sm, lineHeight: 21, marginTop: 4, paddingRight: spacing.md },
   bien: { color: palette.success, fontSize: fontSize.md, fontWeight: '700' },
   mal: { color: palette.danger, fontSize: fontSize.md, fontWeight: '700' },
