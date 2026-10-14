@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-14T21:25:06.776Z",
+  "generado": "2026-10-14T22:25:06.160Z",
   "picks": [
     {
       "id": "401841270-H",
@@ -15,13 +15,13 @@
       "stars": 4,
       "isSpecial": false,
       "isPremium": false,
-      "probMercado": 0.613,
+      "probMercado": 0.617,
       "nMuestra": 5212,
       "rango": [
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-14T21:25:02.656Z",
+      "createdAt": "2026-10-14T22:25:01.962Z",
       "roiUnit": 0.11948717948717946,
       "margen": 0.0789830508474576,
       "breakEven": 0.6610169491525424,
@@ -36,21 +36,21 @@
       "awayTeam": "New York City FC",
       "market": "1X2",
       "selection": "Gana Inter Miami CF",
-      "odds": 1.4761904761904763,
+      "odds": 1.4651162790697674,
       "confidence": 74,
       "stars": 4,
       "isSpecial": false,
       "isPremium": false,
-      "probMercado": 0.627,
+      "probMercado": 0.629,
       "nMuestra": 5212,
       "rango": [
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-14T21:25:02.656Z",
-      "roiUnit": 0.09238095238095245,
-      "margen": 0.06258064516129036,
-      "breakEven": 0.6774193548387096,
+      "createdAt": "2026-10-14T22:25:01.963Z",
+      "roiUnit": 0.08418604651162787,
+      "margen": 0.057460317460317434,
+      "breakEven": 0.6825396825396826,
       "rentable": true
     }
   ],
