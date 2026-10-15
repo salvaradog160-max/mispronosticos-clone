@@ -1,5 +1,58 @@
 {
-  "generado": "2026-10-15T17:10:01.343Z",
-  "picks": [],
+  "generado": "2026-10-15T17:15:08.417Z",
+  "picks": [
+    {
+      "id": "401841270-H",
+      "fixtureId": "401841270",
+      "league": "bra.1",
+      "kickoff": "2026-10-17T21:30Z",
+      "homeTeam": "Atlético-MG",
+      "awayTeam": "Coritiba",
+      "market": "1X2",
+      "selection": "Gana Atlético-MG",
+      "odds": 1.5128205128205128,
+      "confidence": 74,
+      "stars": 4,
+      "isSpecial": false,
+      "isPremium": false,
+      "probMercado": 0.617,
+      "nMuestra": 5212,
+      "rango": [
+        72.9,
+        75.3
+      ],
+      "createdAt": "2026-10-15T17:15:02.672Z",
+      "roiUnit": 0.11948717948717946,
+      "margen": 0.0789830508474576,
+      "breakEven": 0.6610169491525424,
+      "rentable": true
+    },
+    {
+      "id": "761885-H",
+      "fixtureId": "761885",
+      "league": "usa.1",
+      "kickoff": "2026-10-18T02:30Z",
+      "homeTeam": "Seattle Sounders FC",
+      "awayTeam": "CF Montréal",
+      "market": "1X2",
+      "selection": "Gana Seattle Sounders FC",
+      "odds": 1.4761904761904763,
+      "confidence": 74,
+      "stars": 4,
+      "isSpecial": false,
+      "isPremium": false,
+      "probMercado": 0.626,
+      "nMuestra": 5212,
+      "rango": [
+        72.9,
+        75.3
+      ],
+      "createdAt": "2026-10-15T17:15:02.672Z",
+      "roiUnit": 0.09238095238095245,
+      "margen": 0.06258064516129036,
+      "breakEven": 0.6774193548387096,
+      "rentable": true
+    }
+  ],
   "picksMercado": []
 }
