@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-15T23:35:08.684Z",
+  "generado": "2026-10-15T23:40:08.741Z",
   "picks": [
     {
       "id": "401841270-H",
@@ -21,7 +21,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-15T23:35:03.140Z",
+      "createdAt": "2026-10-15T23:40:03.081Z",
       "roiUnit": 0.11948717948717946,
       "margen": 0.0789830508474576,
       "breakEven": 0.6610169491525424,
@@ -36,21 +36,21 @@
       "awayTeam": "Charlotte FC",
       "market": "1X2",
       "selection": "Gana Philadelphia Union",
-      "odds": 1.4878048780487805,
+      "odds": 1.4761904761904763,
       "confidence": 74,
       "stars": 4,
       "isSpecial": false,
       "isPremium": false,
-      "probMercado": 0.62,
+      "probMercado": 0.627,
       "nMuestra": 5212,
       "rango": [
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-15T23:35:03.140Z",
-      "roiUnit": 0.10097560975609754,
-      "margen": 0.06786885245901642,
-      "breakEven": 0.6721311475409836,
+      "createdAt": "2026-10-15T23:40:03.081Z",
+      "roiUnit": 0.09238095238095245,
+      "margen": 0.06258064516129036,
+      "breakEven": 0.6774193548387096,
       "rentable": true
     },
     {
@@ -73,7 +73,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-15T23:35:03.140Z",
+      "createdAt": "2026-10-15T23:40:03.081Z",
       "roiUnit": 0.09238095238095245,
       "margen": 0.06258064516129036,
       "breakEven": 0.6774193548387096,
