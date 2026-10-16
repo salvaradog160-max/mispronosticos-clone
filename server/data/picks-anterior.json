@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-16T17:05:09.377Z",
+  "generado": "2026-10-16T17:55:09.252Z",
   "picks": [
     {
       "id": "401874935-H",
@@ -21,36 +21,10 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-16T17:05:03.228Z",
+      "createdAt": "2026-10-16T17:55:03.088Z",
       "roiUnit": 0.12947368421052619,
       "margen": 0.08482758620689645,
       "breakEven": 0.6551724137931035,
-      "rentable": true
-    },
-    {
-      "id": "401875583-H",
-      "fixtureId": "401875583",
-      "league": "ned.1",
-      "kickoff": "2026-10-16T18:00Z",
-      "homeTeam": "Heerenveen",
-      "awayTeam": "Excelsior",
-      "market": "1X2",
-      "selection": "Gana Heerenveen",
-      "odds": 1.5714285714285714,
-      "confidence": 74,
-      "stars": 4,
-      "isSpecial": false,
-      "isPremium": false,
-      "probMercado": 0.601,
-      "nMuestra": 5212,
-      "rango": [
-        72.9,
-        75.3
-      ],
-      "createdAt": "2026-10-16T17:05:03.228Z",
-      "roiUnit": 0.1628571428571428,
-      "margen": 0.10363636363636364,
-      "breakEven": 0.6363636363636364,
       "rentable": true
     },
     {
@@ -73,7 +47,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-16T17:05:03.228Z",
+      "createdAt": "2026-10-16T17:55:03.088Z",
       "roiUnit": 0.12947368421052619,
       "margen": 0.08482758620689645,
       "breakEven": 0.6551724137931035,
@@ -99,7 +73,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-16T17:05:03.228Z",
+      "createdAt": "2026-10-16T17:55:03.088Z",
       "roiUnit": 0.11948717948717946,
       "margen": 0.0789830508474576,
       "breakEven": 0.6610169491525424,
@@ -125,7 +99,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-16T17:05:03.228Z",
+      "createdAt": "2026-10-16T17:55:03.088Z",
       "roiUnit": 0.10097560975609754,
       "margen": 0.06786885245901642,
       "breakEven": 0.6721311475409836,
