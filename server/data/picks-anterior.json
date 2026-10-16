@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-16T21:20:08.043Z",
+  "generado": "2026-10-16T21:55:08.099Z",
   "picks": [
     {
       "id": "401874935-H",
@@ -21,7 +21,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-16T21:20:02.192Z",
+      "createdAt": "2026-10-16T21:55:02.187Z",
       "roiUnit": 0.14,
       "margen": 0.09087719298245611,
       "breakEven": 0.6491228070175439,
@@ -36,21 +36,21 @@
       "awayTeam": "Talleres (Córdoba)",
       "market": "1X2",
       "selection": "Gana Boca Juniors",
-      "odds": 1.4878048780487805,
+      "odds": 1.4651162790697674,
       "confidence": 74,
       "stars": 4,
       "isSpecial": false,
       "isPremium": false,
-      "probMercado": 0.635,
+      "probMercado": 0.644,
       "nMuestra": 5212,
       "rango": [
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-16T21:20:02.193Z",
-      "roiUnit": 0.10097560975609754,
-      "margen": 0.06786885245901642,
-      "breakEven": 0.6721311475409836,
+      "createdAt": "2026-10-16T21:55:02.188Z",
+      "roiUnit": 0.08418604651162787,
+      "margen": 0.057460317460317434,
+      "breakEven": 0.6825396825396826,
       "rentable": true
     },
     {
@@ -67,13 +67,13 @@
       "stars": 4,
       "isSpecial": false,
       "isPremium": false,
-      "probMercado": 0.608,
+      "probMercado": 0.612,
       "nMuestra": 5212,
       "rango": [
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-16T21:20:02.193Z",
+      "createdAt": "2026-10-16T21:55:02.188Z",
       "roiUnit": 0.14,
       "margen": 0.09087719298245611,
       "breakEven": 0.6491228070175439,
@@ -99,7 +99,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-16T21:20:02.193Z",
+      "createdAt": "2026-10-16T21:55:02.188Z",
       "roiUnit": 0.10097560975609754,
       "margen": 0.06786885245901642,
       "breakEven": 0.6721311475409836,
