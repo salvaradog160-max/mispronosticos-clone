@@ -1,6 +1,6 @@
 {
-  "generado": "2026-10-16T12:25:08.180Z",
-  "anterior": "2026-10-16T12:20:08.751Z",
+  "generado": "2026-10-16T12:30:08.364Z",
+  "anterior": "2026-10-16T12:25:08.180Z",
   "fuente": "football-data.co.uk + ESPN (sin claves)",
   "calibracion": {
     "partidos": 35973,
@@ -4873,22 +4873,22 @@
       "cambioFavorito": true,
       "goles": {
         "linea": 2.5,
-        "overround": 1.0652,
+        "overround": 1.0745,
         "over": {
           "lado": "Over",
-          "cuota": 1.77,
-          "probMercado": 0.5306,
-          "probMercadoPct": 53.1,
+          "cuota": 1.74,
+          "probMercado": 0.5347,
+          "probMercadoPct": 53.5,
           "probModelo": 49,
-          "margenPp": -4
+          "margenPp": -4.5
         },
         "under": {
           "lado": "Under",
           "cuota": 2,
-          "probMercado": 0.4694,
-          "probMercadoPct": 46.9,
+          "probMercado": 0.4653,
+          "probMercadoPct": 46.5,
           "probModelo": 51,
-          "margenPp": 4.1
+          "margenPp": 4.5
         }
       },
       "lineaGoles": 2.5,
@@ -42515,6 +42515,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 3.1,
+          "current": 3.35,
+          "closed": null,
+          "movePct": -2.4073,
+          "capturedAt": "2026-10-16T12:25:04.355Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 2.2,
@@ -45592,6 +45602,16 @@
           "closed": null,
           "movePct": 1.0571,
           "capturedAt": "2026-10-16T12:20:04.943Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 2.2,
+          "current": 2.15,
+          "closed": null,
+          "movePct": 1.0571,
+          "capturedAt": "2026-10-16T12:25:04.352Z"
         },
         {
           "market": "spread",
@@ -48675,6 +48695,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 1.588,
+          "current": 1.69,
+          "closed": null,
+          "movePct": -3.7793,
+          "capturedAt": "2026-10-16T12:25:04.362Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -0.5,
           "opened": 2.1,
@@ -51402,36 +51432,6 @@
           "closed": null,
           "movePct": 1.1614,
           "capturedAt": "2026-10-15T23:35:05.169Z"
-        },
-        {
-          "market": "spread",
-          "side": "home",
-          "line": -0.5,
-          "opened": 2.1,
-          "current": 2.05,
-          "closed": null,
-          "movePct": 1.1614,
-          "capturedAt": "2026-10-15T23:40:05.284Z"
-        },
-        {
-          "market": "spread",
-          "side": "home",
-          "line": -0.5,
-          "opened": 2.1,
-          "current": 2.05,
-          "closed": null,
-          "movePct": 1.1614,
-          "capturedAt": "2026-10-15T23:45:04.376Z"
-        },
-        {
-          "market": "spread",
-          "side": "home",
-          "line": -0.5,
-          "opened": 2.1,
-          "current": 2.05,
-          "closed": null,
-          "movePct": 1.1614,
-          "capturedAt": "2026-10-15T23:50:04.821Z"
         }
       ],
       "combinado": {
@@ -125469,22 +125469,10 @@
     "nota": "El margen de la casa se mide como ROI de apostar todos los picks de consenso, medido por el backtest.",
     "notaDrawdown": "Max drawdown: cuánto cayó el saldo acumulado desde su máximo, apostando 1 unidad por pick."
   },
-  "alertas": [
-    {
-      "tipo": "PICK_RETIRADO",
-      "severidad": "media",
-      "fixtureId": "761885",
-      "partido": "Seattle Sounders FC vs CF Montréal",
-      "mercado": "1X2",
-      "detalle": "Gana Seattle Sounders FC ya no se publica: perdio el consenso o dejo de cubrir la cuota.",
-      "antes": {},
-      "ahora": null,
-      "delta": null
-    }
-  ],
+  "alertas": [],
   "resumenAlertas": {
     "alta": 0,
-    "media": 1,
+    "media": 0,
     "baja": 0
   },
   "picks": [
@@ -125508,7 +125496,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-16T12:25:02.069Z",
+      "createdAt": "2026-10-16T12:30:02.516Z",
       "roiUnit": 0.14,
       "margen": 0.09087719298245611,
       "breakEven": 0.6491228070175439,
@@ -125534,7 +125522,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-16T12:25:02.070Z",
+      "createdAt": "2026-10-16T12:30:02.516Z",
       "roiUnit": 0.1628571428571428,
       "margen": 0.10363636363636364,
       "breakEven": 0.6363636363636364,
@@ -125560,7 +125548,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-16T12:25:02.070Z",
+      "createdAt": "2026-10-16T12:30:02.517Z",
       "roiUnit": 0.1628571428571428,
       "margen": 0.10363636363636364,
       "breakEven": 0.6363636363636364,
@@ -125586,7 +125574,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-16T12:25:02.070Z",
+      "createdAt": "2026-10-16T12:30:02.517Z",
       "roiUnit": 0.11948717948717946,
       "margen": 0.0789830508474576,
       "breakEven": 0.6610169491525424,
@@ -125612,7 +125600,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-16T12:25:02.070Z",
+      "createdAt": "2026-10-16T12:30:02.517Z",
       "roiUnit": 0.09238095238095245,
       "margen": 0.06258064516129036,
       "breakEven": 0.6774193548387096,
