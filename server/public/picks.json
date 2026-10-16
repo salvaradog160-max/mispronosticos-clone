@@ -1,6 +1,6 @@
 {
-  "generado": "2026-10-16T22:15:08.231Z",
-  "anterior": "2026-10-16T22:10:08.468Z",
+  "generado": "2026-10-16T22:20:07.806Z",
+  "anterior": "2026-10-16T22:15:08.231Z",
   "fuente": "football-data.co.uk + ESPN (sin claves)",
   "calibracion": {
     "partidos": 35973,
@@ -21330,6 +21330,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 3.1,
+          "current": 3.45,
+          "closed": null,
+          "movePct": -3.2726,
+          "capturedAt": "2026-10-16T22:15:05.096Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 2.2,
@@ -25569,6 +25579,16 @@
           "capturedAt": "2026-10-16T22:10:06.317Z"
         },
         {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 2.2,
+          "current": 2.05,
+          "closed": null,
+          "movePct": 3.3259,
+          "capturedAt": "2026-10-16T22:15:05.093Z"
+        },
+        {
           "market": "spread",
           "side": "away",
           "line": -0.5,
@@ -29067,26 +29087,6 @@
           "closed": null,
           "movePct": -4.6296,
           "capturedAt": "2026-10-16T15:55:05.246Z"
-        },
-        {
-          "market": "spread",
-          "side": "away",
-          "line": -0.5,
-          "opened": 1.588,
-          "current": 1.714,
-          "closed": null,
-          "movePct": -4.6296,
-          "capturedAt": "2026-10-16T16:00:05.349Z"
-        },
-        {
-          "market": "spread",
-          "side": "away",
-          "line": -0.5,
-          "opened": 1.588,
-          "current": 1.714,
-          "closed": null,
-          "movePct": -4.6296,
-          "capturedAt": "2026-10-16T16:05:04.748Z"
         }
       ],
       "combinado": {
@@ -121235,22 +121235,10 @@
     "nota": "El margen de la casa se mide como ROI de apostar todos los picks de consenso, medido por el backtest.",
     "notaDrawdown": "Max drawdown: cuánto cayó el saldo acumulado desde su máximo, apostando 1 unidad por pick."
   },
-  "alertas": [
-    {
-      "tipo": "PICK_RETIRADO",
-      "severidad": "media",
-      "fixtureId": "401841627",
-      "partido": "Boca Juniors vs Talleres (Córdoba)",
-      "mercado": "1X2",
-      "detalle": "Gana Boca Juniors ya no se publica: perdio el consenso o dejo de cubrir la cuota.",
-      "antes": {},
-      "ahora": null,
-      "delta": null
-    }
-  ],
+  "alertas": [],
   "resumenAlertas": {
     "alta": 0,
-    "media": 1,
+    "media": 0,
     "baja": 0
   },
   "picks": [
@@ -121274,7 +121262,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-16T22:15:02.493Z",
+      "createdAt": "2026-10-16T22:20:02.027Z",
       "roiUnit": 0.14,
       "margen": 0.09087719298245611,
       "breakEven": 0.6491228070175439,
@@ -121300,7 +121288,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-16T22:15:02.494Z",
+      "createdAt": "2026-10-16T22:20:02.028Z",
       "roiUnit": 0.14,
       "margen": 0.09087719298245611,
       "breakEven": 0.6491228070175439,
@@ -121326,7 +121314,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-16T22:15:02.494Z",
+      "createdAt": "2026-10-16T22:20:02.028Z",
       "roiUnit": 0.10097560975609754,
       "margen": 0.06786885245901642,
       "breakEven": 0.6721311475409836,
@@ -121342,8 +121330,8 @@
       "leagueKey": "arg.1",
       "kickoff": "2026-10-16T22:00Z",
       "status": "in",
-      "statusDetail": "15'",
-      "minute": "15'",
+      "statusDetail": "20'",
+      "minute": "20'",
       "period": 1,
       "homeTeam": "Defensa y Justicia",
       "awayTeam": "Instituto (Córdoba)",
