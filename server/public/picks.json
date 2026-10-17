@@ -1,6 +1,6 @@
 {
-  "generado": "2026-10-17T00:25:08.661Z",
-  "anterior": "2026-10-17T00:20:08.928Z",
+  "generado": "2026-10-17T00:30:08.094Z",
+  "anterior": "2026-10-17T00:25:08.661Z",
   "fuente": "football-data.co.uk + ESPN (sin claves)",
   "calibracion": {
     "partidos": 35973,
@@ -104988,25 +104988,11 @@
     "nota": "El margen de la casa se mide como ROI de apostar todos los picks de consenso, medido por el backtest.",
     "notaDrawdown": "Max drawdown: cuánto cayó el saldo acumulado desde su máximo, apostando 1 unidad por pick."
   },
-  "alertas": [
-    {
-      "tipo": "NUEVO_PICK",
-      "severidad": "baja",
-      "fixtureId": "401882837",
-      "partido": "Villarreal vs Elche",
-      "mercado": "1X2",
-      "detalle": "Nuevo 1X2: Gana Villarreal al 74%",
-      "antes": null,
-      "ahora": {
-        "confianza": 74,
-        "probMercado": 0.648
-      }
-    }
-  ],
+  "alertas": [],
   "resumenAlertas": {
     "alta": 0,
     "media": 0,
-    "baja": 1
+    "baja": 0
   },
   "picks": [
     {
@@ -105029,7 +105015,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-17T00:25:02.946Z",
+      "createdAt": "2026-10-17T00:30:02.361Z",
       "roiUnit": 0.08418604651162787,
       "margen": 0.057460317460317434,
       "breakEven": 0.6825396825396826,
@@ -105055,7 +105041,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-17T00:25:02.946Z",
+      "createdAt": "2026-10-17T00:30:02.361Z",
       "roiUnit": 0.14,
       "margen": 0.09087719298245611,
       "breakEven": 0.6491228070175439,
@@ -105081,7 +105067,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-17T00:25:02.947Z",
+      "createdAt": "2026-10-17T00:30:02.362Z",
       "roiUnit": 0.10097560975609754,
       "margen": 0.06786885245901642,
       "breakEven": 0.6721311475409836,
