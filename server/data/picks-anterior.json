@@ -1,32 +1,5 @@
 {
-  "generado": "2026-10-17T17:20:07.108Z",
-  "picks": [
-    {
-      "id": "401874935-H",
-      "fixtureId": "401874935",
-      "league": "ita.1",
-      "kickoff": "2026-10-17T18:45Z",
-      "homeTeam": "AS Roma",
-      "awayTeam": "Genoa",
-      "market": "1X2",
-      "selection": "Gana AS Roma",
-      "odds": 1.526315789473684,
-      "confidence": 74,
-      "stars": 4,
-      "isSpecial": false,
-      "isPremium": false,
-      "probMercado": 0.606,
-      "nMuestra": 5212,
-      "rango": [
-        72.9,
-        75.3
-      ],
-      "createdAt": "2026-10-17T17:20:02.480Z",
-      "roiUnit": 0.12947368421052619,
-      "margen": 0.08482758620689645,
-      "breakEven": 0.6551724137931035,
-      "rentable": true
-    }
-  ],
+  "generado": "2026-10-17T17:45:06.883Z",
+  "picks": [],
   "picksMercado": []
 }
