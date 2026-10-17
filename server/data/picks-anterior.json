@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-17T00:30:08.094Z",
+  "generado": "2026-10-17T13:20:07.578Z",
   "picks": [
     {
       "id": "401882837-H",
@@ -10,73 +10,21 @@
       "awayTeam": "Elche",
       "market": "1X2",
       "selection": "Gana Villarreal",
-      "odds": 1.4651162790697674,
+      "odds": 1.4545454545454546,
       "confidence": 74,
       "stars": 4,
       "isSpecial": false,
       "isPremium": false,
-      "probMercado": 0.648,
+      "probMercado": 0.652,
       "nMuestra": 5212,
       "rango": [
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-17T00:30:02.361Z",
-      "roiUnit": 0.08418604651162787,
-      "margen": 0.057460317460317434,
-      "breakEven": 0.6825396825396826,
-      "rentable": true
-    },
-    {
-      "id": "401874935-H",
-      "fixtureId": "401874935",
-      "league": "ita.1",
-      "kickoff": "2026-10-17T18:45Z",
-      "homeTeam": "AS Roma",
-      "awayTeam": "Genoa",
-      "market": "1X2",
-      "selection": "Gana AS Roma",
-      "odds": 1.5405405405405406,
-      "confidence": 74,
-      "stars": 4,
-      "isSpecial": false,
-      "isPremium": false,
-      "probMercado": 0.601,
-      "nMuestra": 5212,
-      "rango": [
-        72.9,
-        75.3
-      ],
-      "createdAt": "2026-10-17T00:30:02.361Z",
-      "roiUnit": 0.14,
-      "margen": 0.09087719298245611,
-      "breakEven": 0.6491228070175439,
-      "rentable": true
-    },
-    {
-      "id": "761875-H",
-      "fixtureId": "761875",
-      "league": "usa.1",
-      "kickoff": "2026-10-17T18:30Z",
-      "homeTeam": "Philadelphia Union",
-      "awayTeam": "Charlotte FC",
-      "market": "1X2",
-      "selection": "Gana Philadelphia Union",
-      "odds": 1.4878048780487805,
-      "confidence": 74,
-      "stars": 4,
-      "isSpecial": false,
-      "isPremium": false,
-      "probMercado": 0.62,
-      "nMuestra": 5212,
-      "rango": [
-        72.9,
-        75.3
-      ],
-      "createdAt": "2026-10-17T00:30:02.362Z",
-      "roiUnit": 0.10097560975609754,
-      "margen": 0.06786885245901642,
-      "breakEven": 0.6721311475409836,
+      "createdAt": "2026-10-17T13:20:02.089Z",
+      "roiUnit": 0.07636363636363636,
+      "margen": 0.05249999999999999,
+      "breakEven": 0.6875,
       "rentable": true
     }
   ],
