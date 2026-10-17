@@ -1,6 +1,6 @@
 {
-  "generado": "2026-10-17T13:40:07.581Z",
-  "anterior": "2026-10-17T13:35:08.172Z",
+  "generado": "2026-10-17T13:45:08.298Z",
+  "anterior": "2026-10-17T13:40:07.581Z",
   "fuente": "football-data.co.uk + ESPN (sin claves)",
   "calibracion": {
     "partidos": 35973,
@@ -930,6 +930,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 5,
+          "current": 3.6,
+          "closed": null,
+          "movePct": 7.7778,
+          "capturedAt": "2026-10-17T13:40:05.238Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 1.588,
@@ -967,6 +977,16 @@
           "closed": null,
           "movePct": -12.963,
           "capturedAt": "2026-10-17T13:35:05.722Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 1.588,
+          "current": 2,
+          "closed": null,
+          "movePct": -12.963,
+          "capturedAt": "2026-10-17T13:40:05.234Z"
         },
         {
           "market": "spread",
@@ -1010,6 +1030,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 2.25,
+          "current": 1.769,
+          "closed": null,
+          "movePct": 12.0773,
+          "capturedAt": "2026-10-17T13:40:05.243Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -0.5,
           "opened": 1.526,
@@ -1047,6 +1077,16 @@
           "closed": null,
           "movePct": -13.1363,
           "capturedAt": "2026-10-17T13:35:05.736Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 1.526,
+          "current": 1.909,
+          "closed": null,
+          "movePct": -13.1363,
+          "capturedAt": "2026-10-17T13:40:05.240Z"
         },
         {
           "market": "total",
@@ -1090,6 +1130,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.714,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:05.247Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -1127,6 +1177,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-17T13:35:05.745Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.1,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:05.250Z"
         }
       ],
       "combinado": {
@@ -2256,6 +2316,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 8,
+          "current": 5.75,
+          "closed": null,
+          "movePct": 4.8913,
+          "capturedAt": "2026-10-17T13:40:03.718Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 1.27,
@@ -2293,6 +2363,16 @@
           "closed": null,
           "movePct": -14.4377,
           "capturedAt": "2026-10-17T13:35:04.355Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 1.27,
+          "current": 1.556,
+          "closed": null,
+          "movePct": -14.4377,
+          "capturedAt": "2026-10-17T13:40:03.715Z"
         },
         {
           "market": "spread",
@@ -2336,6 +2416,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 1.909,
+          "current": 2.35,
+          "closed": null,
+          "movePct": -9.8278,
+          "capturedAt": "2026-10-17T13:40:03.723Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -0.5,
           "opened": 1.714,
@@ -2373,6 +2463,16 @@
           "closed": null,
           "movePct": 7.1839,
           "capturedAt": "2026-10-17T13:35:04.361Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 1.714,
+          "current": 1.526,
+          "closed": null,
+          "movePct": 7.1839,
+          "capturedAt": "2026-10-17T13:40:03.721Z"
         },
         {
           "market": "total",
@@ -2416,6 +2516,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.87,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:03.727Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -2453,6 +2563,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-17T13:35:04.369Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.909,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:03.730Z"
         }
       ],
       "combinado": {
@@ -7916,6 +8036,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 2.7,
+          "current": 3.25,
+          "closed": null,
+          "movePct": -6.2678,
+          "capturedAt": "2026-10-17T13:40:05.904Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 2.4,
@@ -7953,6 +8083,16 @@
           "closed": null,
           "movePct": 5.9524,
           "capturedAt": "2026-10-17T13:35:06.134Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 2.4,
+          "current": 2.1,
+          "closed": null,
+          "movePct": 5.9524,
+          "capturedAt": "2026-10-17T13:40:05.901Z"
         },
         {
           "market": "spread",
@@ -7996,6 +8136,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 1.526,
+          "current": 1.714,
+          "closed": null,
+          "movePct": -7.1839,
+          "capturedAt": "2026-10-17T13:40:05.911Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -0.5,
           "opened": 2.25,
@@ -8033,6 +8183,16 @@
           "closed": null,
           "movePct": 5.5556,
           "capturedAt": "2026-10-17T13:35:06.140Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 2.25,
+          "current": 2,
+          "closed": null,
+          "movePct": 5.5556,
+          "capturedAt": "2026-10-17T13:40:05.907Z"
         },
         {
           "market": "total",
@@ -8076,6 +8236,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.625,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:05.915Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -8113,6 +8283,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-17T13:35:06.149Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.2,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:05.918Z"
         }
       ],
       "combinado": {
@@ -24380,6 +24560,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 2.2,
+          "current": 2.4,
+          "closed": null,
+          "movePct": -3.7879,
+          "capturedAt": "2026-10-17T13:40:08.198Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 3.1,
@@ -24417,6 +24607,16 @@
           "closed": null,
           "movePct": 2.8297,
           "capturedAt": "2026-10-17T13:35:07.963Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 3.1,
+          "current": 2.85,
+          "closed": null,
+          "movePct": 2.8297,
+          "capturedAt": "2026-10-17T13:40:08.195Z"
         },
         {
           "market": "spread",
@@ -24460,6 +24660,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": 0.5,
+          "opened": 2.05,
+          "current": 2.3,
+          "closed": null,
+          "movePct": -5.3022,
+          "capturedAt": "2026-10-17T13:40:08.204Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": 0.5,
           "opened": 1.606,
@@ -24497,6 +24707,16 @@
           "closed": null,
           "movePct": 2.6481,
           "capturedAt": "2026-10-17T13:35:07.969Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": 0.5,
+          "opened": 1.606,
+          "current": 1.541,
+          "closed": null,
+          "movePct": 2.6481,
+          "capturedAt": "2026-10-17T13:40:08.201Z"
         },
         {
           "market": "total",
@@ -24540,6 +24760,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.87,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:08.207Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -24577,6 +24807,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-17T13:35:07.978Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.87,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:08.210Z"
         }
       ],
       "combinado": {
@@ -32148,6 +32388,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 2.7,
+          "current": 2.6,
+          "closed": 2.6,
+          "movePct": 1.4245,
+          "capturedAt": "2026-10-17T13:40:04.549Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 2.2,
@@ -32185,6 +32435,16 @@
           "closed": 2.4,
           "movePct": -3.7879,
           "capturedAt": "2026-10-17T13:35:05.021Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 2.2,
+          "current": 2.4,
+          "closed": 2.4,
+          "movePct": -3.7879,
+          "capturedAt": "2026-10-17T13:40:04.489Z"
         },
         {
           "market": "spread",
@@ -32228,6 +32488,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 1.588,
+          "current": 1.526,
+          "closed": 1.526,
+          "movePct": 2.5543,
+          "capturedAt": "2026-10-17T13:40:04.556Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -0.5,
           "opened": 2.1,
@@ -32265,6 +32535,16 @@
           "closed": 2.35,
           "movePct": -5.0659,
           "capturedAt": "2026-10-17T13:35:05.027Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 2.1,
+          "current": 2.35,
+          "closed": 2.35,
+          "movePct": -5.0659,
+          "capturedAt": "2026-10-17T13:40:04.552Z"
         },
         {
           "market": "total",
@@ -32308,6 +32588,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 3.5,
+          "opened": null,
+          "current": 2.25,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:04.559Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 3.5,
           "opened": null,
@@ -32345,6 +32635,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-17T13:35:05.036Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 3.5,
+          "opened": null,
+          "current": 1.645,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:04.561Z"
         }
       ],
       "combinado": {
@@ -33402,6 +33702,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 7,
+          "current": 8.5,
+          "closed": null,
+          "movePct": -2.521,
+          "capturedAt": "2026-10-17T13:40:07.911Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 1.357,
@@ -33439,6 +33749,16 @@
           "closed": null,
           "movePct": 3.06,
           "capturedAt": "2026-10-17T13:35:07.704Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 1.357,
+          "current": 1.303,
+          "closed": null,
+          "movePct": 3.06,
+          "capturedAt": "2026-10-17T13:40:07.907Z"
         },
         {
           "market": "spread",
@@ -33482,6 +33802,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -1.5,
+          "opened": 1.69,
+          "current": 1.909,
+          "closed": null,
+          "movePct": -6.8027,
+          "capturedAt": "2026-10-17T13:40:07.916Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -1.5,
           "opened": 1.952,
@@ -33519,6 +33849,16 @@
           "closed": null,
           "movePct": 4.336,
           "capturedAt": "2026-10-17T13:35:07.711Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -1.5,
+          "opened": 1.952,
+          "current": 1.8,
+          "closed": null,
+          "movePct": 4.336,
+          "capturedAt": "2026-10-17T13:40:07.914Z"
         },
         {
           "market": "total",
@@ -33562,6 +33902,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 3.5,
+          "opened": null,
+          "current": 2.1,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:07.920Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 3.5,
           "opened": null,
@@ -33599,6 +33949,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-17T13:35:07.718Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 3.5,
+          "opened": null,
+          "current": 1.69,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:07.923Z"
         }
       ],
       "combinado": {
@@ -35785,6 +36145,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 5.75,
+          "current": 5.25,
+          "closed": null,
+          "movePct": 1.6563,
+          "capturedAt": "2026-10-17T13:40:08.060Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 1.513,
@@ -35822,6 +36192,16 @@
           "closed": null,
           "movePct": -3.8375,
           "capturedAt": "2026-10-17T13:35:07.834Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 1.513,
+          "current": 1.606,
+          "closed": null,
+          "movePct": -3.8375,
+          "capturedAt": "2026-10-17T13:40:08.057Z"
         },
         {
           "market": "spread",
@@ -35865,6 +36245,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 1.488,
+          "current": 2.25,
+          "closed": null,
+          "movePct": -22.7687,
+          "capturedAt": "2026-10-17T13:40:08.066Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -0.5,
           "opened": 2.3,
@@ -35902,6 +36292,16 @@
           "closed": null,
           "movePct": 20.1581,
           "capturedAt": "2026-10-17T13:35:07.840Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 2.3,
+          "current": 1.571,
+          "closed": null,
+          "movePct": 20.1581,
+          "capturedAt": "2026-10-17T13:40:08.063Z"
         },
         {
           "market": "total",
@@ -35945,6 +36345,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.741,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:08.068Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -35982,6 +36392,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-17T13:35:07.848Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 2,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:08.071Z"
         }
       ],
       "combinado": {
@@ -40348,6 +40768,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 2.2,
+          "current": 2.1,
+          "closed": null,
+          "movePct": 2.1645,
+          "capturedAt": "2026-10-17T13:40:06.401Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 3.1,
@@ -40385,6 +40815,16 @@
           "closed": null,
           "movePct": -2.4073,
           "capturedAt": "2026-10-17T13:35:06.396Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 3.1,
+          "current": 3.35,
+          "closed": null,
+          "movePct": -2.4073,
+          "capturedAt": "2026-10-17T13:40:06.396Z"
         },
         {
           "market": "spread",
@@ -40428,6 +40868,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": 0.5,
+          "opened": 2.05,
+          "current": 2,
+          "closed": null,
+          "movePct": 1.2195,
+          "capturedAt": "2026-10-17T13:40:06.408Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": 0.5,
           "opened": 1.606,
@@ -40465,6 +40915,16 @@
           "closed": null,
           "movePct": -3.9308,
           "capturedAt": "2026-10-17T13:35:06.402Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": 0.5,
+          "opened": 1.606,
+          "current": 1.714,
+          "closed": null,
+          "movePct": -3.9308,
+          "capturedAt": "2026-10-17T13:40:06.405Z"
         },
         {
           "market": "total",
@@ -40508,6 +40968,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.714,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:06.411Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -40545,6 +41015,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-17T13:35:06.414Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.05,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:06.414Z"
         }
       ],
       "combinado": {
@@ -41681,6 +42161,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 3.05,
+          "current": 3.45,
+          "closed": null,
+          "movePct": -3.8014,
+          "capturedAt": "2026-10-17T13:40:08.338Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 2.15,
@@ -41718,6 +42208,16 @@
           "closed": null,
           "movePct": 1.1074,
           "capturedAt": "2026-10-17T13:35:08.096Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 2.15,
+          "current": 2.1,
+          "closed": null,
+          "movePct": 1.1074,
+          "capturedAt": "2026-10-17T13:40:08.334Z"
         },
         {
           "market": "spread",
@@ -41761,6 +42261,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 1.645,
+          "current": 1.69,
+          "closed": null,
+          "movePct": -1.6006,
+          "capturedAt": "2026-10-17T13:40:08.344Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -0.5,
           "opened": 2.05,
@@ -41798,6 +42308,16 @@
           "closed": null,
           "movePct": 0,
           "capturedAt": "2026-10-17T13:35:08.102Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 2.05,
+          "current": 2.05,
+          "closed": null,
+          "movePct": 0,
+          "capturedAt": "2026-10-17T13:40:08.341Z"
         },
         {
           "market": "total",
@@ -41841,6 +42361,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 2,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:08.347Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -41878,6 +42408,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-17T13:35:08.109Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.741,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:08.349Z"
         }
       ],
       "combinado": {
@@ -47345,6 +47885,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 4.4,
+          "current": 4.9,
+          "closed": null,
+          "movePct": -2.3191,
+          "capturedAt": "2026-10-17T13:40:09.195Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 1.625,
@@ -47382,6 +47932,16 @@
           "closed": null,
           "movePct": 1.4245,
           "capturedAt": "2026-10-17T13:35:08.854Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 1.625,
+          "current": 1.588,
+          "closed": null,
+          "movePct": 1.4245,
+          "capturedAt": "2026-10-17T13:40:09.192Z"
         },
         {
           "market": "spread",
@@ -47425,6 +47985,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 2.25,
+          "current": 2.3,
+          "closed": null,
+          "movePct": -0.9662,
+          "capturedAt": "2026-10-17T13:40:09.201Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -0.5,
           "opened": 1.513,
@@ -47462,6 +48032,16 @@
           "closed": null,
           "movePct": -1.1894,
           "capturedAt": "2026-10-17T13:35:08.861Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 1.513,
+          "current": 1.541,
+          "closed": null,
+          "movePct": -1.1894,
+          "capturedAt": "2026-10-17T13:40:09.199Z"
         },
         {
           "market": "total",
@@ -47505,6 +48085,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 3.5,
+          "opened": null,
+          "current": 2.2,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:09.204Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 3.5,
           "opened": null,
@@ -47542,6 +48132,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-17T13:35:08.867Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 3.5,
+          "opened": null,
+          "current": 1.645,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:09.206Z"
         }
       ],
       "combinado": {
@@ -50821,6 +51421,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 2.35,
+          "current": 2.3,
+          "closed": null,
+          "movePct": 0.9251,
+          "capturedAt": "2026-10-17T13:40:07.528Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 3.1,
@@ -50858,6 +51468,16 @@
           "closed": null,
           "movePct": -2.8463,
           "capturedAt": "2026-10-17T13:35:07.313Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 3.1,
+          "current": 3.4,
+          "closed": null,
+          "movePct": -2.8463,
+          "capturedAt": "2026-10-17T13:40:07.525Z"
         },
         {
           "market": "spread",
@@ -50901,6 +51521,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": 0.5,
+          "opened": 2.25,
+          "current": 2.2,
+          "closed": null,
+          "movePct": 1.0101,
+          "capturedAt": "2026-10-17T13:40:07.534Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": 0.5,
           "opened": 1.526,
@@ -50938,6 +51568,16 @@
           "closed": null,
           "movePct": -3.2531,
           "capturedAt": "2026-10-17T13:35:07.317Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": 0.5,
+          "opened": 1.526,
+          "current": 1.606,
+          "closed": null,
+          "movePct": -3.2531,
+          "capturedAt": "2026-10-17T13:40:07.531Z"
         },
         {
           "market": "total",
@@ -50981,6 +51621,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 1.5,
+          "opened": null,
+          "current": 1.5,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:07.537Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 1.5,
           "opened": null,
@@ -51018,6 +51668,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-17T13:35:07.325Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 1.5,
+          "opened": null,
+          "current": 2.5,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:07.539Z"
         }
       ],
       "combinado": {
@@ -52138,6 +52798,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 2.2,
+          "current": 2.35,
+          "closed": 2.35,
+          "movePct": -2.9014,
+          "capturedAt": "2026-10-17T13:40:04.352Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 2.8,
@@ -52175,6 +52845,16 @@
           "closed": 2.8,
           "movePct": 0,
           "capturedAt": "2026-10-17T13:35:04.888Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 2.8,
+          "current": 2.8,
+          "closed": 2.8,
+          "movePct": 0,
+          "capturedAt": "2026-10-17T13:40:04.349Z"
         },
         {
           "market": "spread",
@@ -52218,6 +52898,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": 0.5,
+          "opened": 2.1,
+          "current": 2.25,
+          "closed": 2.25,
+          "movePct": -3.1746,
+          "capturedAt": "2026-10-17T13:40:04.367Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": 0.5,
           "opened": 1.588,
@@ -52255,6 +52945,16 @@
           "closed": 1.556,
           "movePct": 1.3228,
           "capturedAt": "2026-10-17T13:35:04.896Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": 0.5,
+          "opened": 1.588,
+          "current": 1.556,
+          "closed": 1.556,
+          "movePct": 1.3228,
+          "capturedAt": "2026-10-17T13:40:04.363Z"
         },
         {
           "market": "total",
@@ -52298,6 +52998,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.645,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:04.370Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -52335,6 +53045,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-17T13:35:04.906Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.2,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:04.372Z"
         }
       ],
       "combinado": {
@@ -58764,6 +59484,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 1.8,
+          "current": 1.909,
+          "closed": null,
+          "movePct": -3.1746,
+          "capturedAt": "2026-10-17T13:40:05.356Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 3.9,
@@ -58801,6 +59531,16 @@
           "closed": null,
           "movePct": 0,
           "capturedAt": "2026-10-17T13:35:05.864Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 3.9,
+          "current": 3.9,
+          "closed": null,
+          "movePct": 0,
+          "capturedAt": "2026-10-17T13:40:05.353Z"
         },
         {
           "market": "spread",
@@ -58844,6 +59584,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": 0.5,
+          "opened": 1.714,
+          "current": 1.833,
+          "closed": null,
+          "movePct": -3.7879,
+          "capturedAt": "2026-10-17T13:40:05.362Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": 0.5,
           "opened": 1.909,
@@ -58881,6 +59631,16 @@
           "closed": null,
           "movePct": 1.1074,
           "capturedAt": "2026-10-17T13:35:05.872Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": 0.5,
+          "opened": 1.909,
+          "current": 1.87,
+          "closed": null,
+          "movePct": 1.1074,
+          "capturedAt": "2026-10-17T13:40:05.359Z"
         },
         {
           "market": "total",
@@ -58924,6 +59684,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.645,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:05.364Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -58961,6 +59731,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-17T13:35:05.880Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.2,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:05.367Z"
         }
       ],
       "combinado": {
@@ -61102,6 +61882,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 5.75,
+          "current": 6,
+          "closed": null,
+          "movePct": -0.7246,
+          "capturedAt": "2026-10-17T13:40:02.966Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 1.455,
@@ -61139,6 +61929,16 @@
           "closed": null,
           "movePct": -0.496,
           "capturedAt": "2026-10-17T13:35:03.566Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 1.455,
+          "current": 1.465,
+          "closed": null,
+          "movePct": -0.496,
+          "capturedAt": "2026-10-17T13:40:02.963Z"
         },
         {
           "market": "spread",
@@ -61182,6 +61982,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -1.5,
+          "opened": 1.588,
+          "current": 1.667,
+          "closed": null,
+          "movePct": -2.963,
+          "capturedAt": "2026-10-17T13:40:02.972Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -1.5,
           "opened": 2.1,
@@ -61219,6 +62029,16 @@
           "closed": null,
           "movePct": 0,
           "capturedAt": "2026-10-17T13:35:03.573Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -1.5,
+          "opened": 2.1,
+          "current": 2.1,
+          "closed": null,
+          "movePct": 0,
+          "capturedAt": "2026-10-17T13:40:02.969Z"
         },
         {
           "market": "total",
@@ -61262,6 +62082,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 3.5,
+          "opened": null,
+          "current": 2.1,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:02.975Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 3.5,
           "opened": null,
@@ -61299,6 +62129,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-17T13:35:03.582Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 3.5,
+          "opened": null,
+          "current": 1.741,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:02.978Z"
         }
       ],
       "combinado": {
@@ -62440,6 +63280,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 8.5,
+          "current": 9.5,
+          "closed": null,
+          "movePct": -1.2384,
+          "capturedAt": "2026-10-17T13:40:04.836Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 1.211,
@@ -62477,6 +63327,16 @@
           "closed": null,
           "movePct": 2.0067,
           "capturedAt": "2026-10-17T13:35:05.304Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 1.211,
+          "current": 1.182,
+          "closed": null,
+          "movePct": 2.0067,
+          "capturedAt": "2026-10-17T13:40:04.831Z"
         },
         {
           "market": "spread",
@@ -62520,6 +63380,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -2.5,
+          "opened": 1.625,
+          "current": 1.741,
+          "closed": null,
+          "movePct": -4.0917,
+          "capturedAt": "2026-10-17T13:40:04.842Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -2.5,
           "opened": 2.1,
@@ -62557,6 +63427,16 @@
           "closed": null,
           "movePct": 2.381,
           "capturedAt": "2026-10-17T13:35:05.310Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -2.5,
+          "opened": 2.1,
+          "current": 2,
+          "closed": null,
+          "movePct": 2.381,
+          "capturedAt": "2026-10-17T13:40:04.839Z"
         },
         {
           "market": "total",
@@ -62600,6 +63480,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 4.5,
+          "opened": null,
+          "current": 1.741,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:04.845Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 4.5,
           "opened": null,
@@ -62637,6 +63527,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-17T13:35:05.319Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 4.5,
+          "opened": null,
+          "current": 2.05,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:04.847Z"
         }
       ],
       "combinado": {
@@ -66987,6 +67887,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 7,
+          "current": 7.5,
+          "closed": null,
+          "movePct": -0.9524,
+          "capturedAt": "2026-10-17T13:40:06.571Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 1.351,
@@ -67024,6 +67934,16 @@
           "closed": null,
           "movePct": 0.974,
           "capturedAt": "2026-10-17T13:35:06.535Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 1.351,
+          "current": 1.333,
+          "closed": null,
+          "movePct": 0.974,
+          "capturedAt": "2026-10-17T13:40:06.567Z"
         },
         {
           "market": "spread",
@@ -67067,6 +67987,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -1.5,
+          "opened": 1.8,
+          "current": 1.87,
+          "closed": null,
+          "movePct": -2.0672,
+          "capturedAt": "2026-10-17T13:40:06.578Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -1.5,
           "opened": 1.833,
@@ -67104,6 +68034,16 @@
           "closed": null,
           "movePct": 0,
           "capturedAt": "2026-10-17T13:35:06.543Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -1.5,
+          "opened": 1.833,
+          "current": 1.833,
+          "closed": null,
+          "movePct": 0,
+          "capturedAt": "2026-10-17T13:40:06.575Z"
         },
         {
           "market": "total",
@@ -67147,6 +68087,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 3.5,
+          "opened": null,
+          "current": 1.952,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:06.580Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 3.5,
           "opened": null,
@@ -67184,6 +68134,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-17T13:35:06.552Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 3.5,
+          "opened": null,
+          "current": 1.769,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:06.583Z"
         }
       ],
       "combinado": {
@@ -68320,6 +69280,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 8,
+          "current": 8.5,
+          "closed": null,
+          "movePct": -0.7353,
+          "capturedAt": "2026-10-17T13:40:06.779Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 1.333,
@@ -68357,6 +69327,16 @@
           "closed": null,
           "movePct": 1.1905,
           "capturedAt": "2026-10-17T13:35:06.672Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 1.333,
+          "current": 1.313,
+          "closed": null,
+          "movePct": 1.1905,
+          "capturedAt": "2026-10-17T13:40:06.775Z"
         },
         {
           "market": "spread",
@@ -68400,6 +69380,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -1.5,
+          "opened": 1.769,
+          "current": 1.87,
+          "closed": null,
+          "movePct": -3.0334,
+          "capturedAt": "2026-10-17T13:40:06.785Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -1.5,
           "opened": 1.87,
@@ -68437,6 +69427,16 @@
           "closed": null,
           "movePct": 1.0571,
           "capturedAt": "2026-10-17T13:35:06.682Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -1.5,
+          "opened": 1.87,
+          "current": 1.833,
+          "closed": null,
+          "movePct": 1.0571,
+          "capturedAt": "2026-10-17T13:40:06.782Z"
         },
         {
           "market": "total",
@@ -68480,6 +69480,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 3.5,
+          "opened": null,
+          "current": 2.25,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:06.788Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 3.5,
           "opened": null,
@@ -68517,6 +69527,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-17T13:35:06.691Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 3.5,
+          "opened": null,
+          "current": 1.606,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:06.791Z"
         }
       ],
       "combinado": {
@@ -69657,6 +70677,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 4.2,
+          "current": 4.1,
+          "closed": null,
+          "movePct": 0.5807,
+          "capturedAt": "2026-10-17T13:40:07.285Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 1.909,
@@ -69694,6 +70724,16 @@
           "closed": null,
           "movePct": -1.1614,
           "capturedAt": "2026-10-17T13:35:07.056Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 1.909,
+          "current": 1.952,
+          "closed": null,
+          "movePct": -1.1614,
+          "capturedAt": "2026-10-17T13:40:07.282Z"
         },
         {
           "market": "spread",
@@ -69737,6 +70777,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 1.769,
+          "current": 1.833,
+          "closed": null,
+          "movePct": -1.9763,
+          "capturedAt": "2026-10-17T13:40:07.291Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -0.5,
           "opened": 1.833,
@@ -69774,6 +70824,16 @@
           "closed": null,
           "movePct": -1.0571,
           "capturedAt": "2026-10-17T13:35:07.062Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 1.833,
+          "current": 1.87,
+          "closed": null,
+          "movePct": -1.0571,
+          "capturedAt": "2026-10-17T13:40:07.289Z"
         },
         {
           "market": "total",
@@ -69817,6 +70877,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.15,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:07.294Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -69854,6 +70924,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-17T13:35:07.069Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.645,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:07.296Z"
         }
       ],
       "combinado": {
@@ -73150,6 +74230,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 4.1,
+          "current": 4.2,
+          "closed": null,
+          "movePct": -0.5807,
+          "capturedAt": "2026-10-17T13:40:06.160Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 1.87,
@@ -73187,6 +74277,16 @@
           "closed": null,
           "movePct": 1.0571,
           "capturedAt": "2026-10-17T13:35:06.263Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 1.87,
+          "current": 1.833,
+          "closed": null,
+          "movePct": 1.0571,
+          "capturedAt": "2026-10-17T13:40:06.157Z"
         },
         {
           "market": "spread",
@@ -73230,6 +74330,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 1.833,
+          "current": 1.909,
+          "closed": null,
+          "movePct": -2.1645,
+          "capturedAt": "2026-10-17T13:40:06.166Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -0.5,
           "opened": 1.769,
@@ -73267,6 +74377,16 @@
           "closed": null,
           "movePct": 0,
           "capturedAt": "2026-10-17T13:35:06.270Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 1.769,
+          "current": 1.769,
+          "closed": null,
+          "movePct": 0,
+          "capturedAt": "2026-10-17T13:40:06.163Z"
         },
         {
           "market": "total",
@@ -73310,6 +74430,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.769,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:06.169Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -73347,6 +74477,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-17T13:35:06.278Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 2,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:06.171Z"
         }
       ],
       "combinado": {
@@ -75560,6 +76700,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 4.4,
+          "current": 4.7,
+          "closed": null,
+          "movePct": -1.4507,
+          "capturedAt": "2026-10-17T13:40:07.660Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 1.769,
@@ -75597,6 +76747,16 @@
           "closed": null,
           "movePct": 0,
           "capturedAt": "2026-10-17T13:35:07.448Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 1.769,
+          "current": 1.769,
+          "closed": null,
+          "movePct": 0,
+          "capturedAt": "2026-10-17T13:40:07.656Z"
         },
         {
           "market": "spread",
@@ -75640,6 +76800,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": -0.5,
+          "opened": 1.952,
+          "current": 2,
+          "closed": null,
+          "movePct": -1.2195,
+          "capturedAt": "2026-10-17T13:40:07.666Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": -0.5,
           "opened": 1.69,
@@ -75677,6 +76847,16 @@
           "closed": null,
           "movePct": -0.8503,
           "capturedAt": "2026-10-17T13:35:07.455Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": -0.5,
+          "opened": 1.69,
+          "current": 1.714,
+          "closed": null,
+          "movePct": -0.8503,
+          "capturedAt": "2026-10-17T13:40:07.663Z"
         },
         {
           "market": "total",
@@ -75720,6 +76900,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.05,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:07.668Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -75757,6 +76947,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-17T13:35:07.462Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.714,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:07.670Z"
         }
       ],
       "combinado": {
@@ -91973,6 +93173,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 2.75,
+          "current": 2.8,
+          "closed": null,
+          "movePct": -0.6494,
+          "capturedAt": "2026-10-17T13:40:07.402Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 2.75,
@@ -92010,6 +93220,16 @@
           "closed": null,
           "movePct": -0.6494,
           "capturedAt": "2026-10-17T13:35:07.183Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 2.75,
+          "current": 2.8,
+          "closed": null,
+          "movePct": -0.6494,
+          "capturedAt": "2026-10-17T13:40:07.400Z"
         },
         {
           "market": "spread",
@@ -92053,6 +93273,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": 0.5,
+          "opened": 2.55,
+          "current": 2.6,
+          "closed": null,
+          "movePct": -0.7541,
+          "capturedAt": "2026-10-17T13:40:07.408Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": 0.5,
           "opened": 1.408,
@@ -92090,6 +93320,16 @@
           "closed": null,
           "movePct": -1.3175,
           "capturedAt": "2026-10-17T13:35:07.190Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": 0.5,
+          "opened": 1.408,
+          "current": 1.435,
+          "closed": null,
+          "movePct": -1.3175,
+          "capturedAt": "2026-10-17T13:40:07.405Z"
         },
         {
           "market": "total",
@@ -92133,6 +93373,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 1.5,
+          "opened": null,
+          "current": 1.588,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:07.411Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 1.5,
           "opened": null,
@@ -92170,6 +93420,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-17T13:35:07.199Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 1.5,
+          "opened": null,
+          "current": 2.3,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:07.414Z"
         }
       ],
       "combinado": {
@@ -93295,6 +94555,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 2,
+          "current": 2,
+          "closed": null,
+          "movePct": 0,
+          "capturedAt": "2026-10-17T13:40:07.161Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 3.65,
@@ -93332,6 +94602,16 @@
           "closed": null,
           "movePct": -0.3702,
           "capturedAt": "2026-10-17T13:35:06.920Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 3.65,
+          "current": 3.7,
+          "closed": null,
+          "movePct": -0.3702,
+          "capturedAt": "2026-10-17T13:40:07.158Z"
         },
         {
           "market": "spread",
@@ -93375,6 +94655,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": 0.5,
+          "opened": 1.909,
+          "current": 1.952,
+          "closed": null,
+          "movePct": -1.1614,
+          "capturedAt": "2026-10-17T13:40:07.166Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": 0.5,
           "opened": 1.714,
@@ -93412,6 +94702,16 @@
           "closed": null,
           "movePct": -1.8116,
           "capturedAt": "2026-10-17T13:35:06.927Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": 0.5,
+          "opened": 1.714,
+          "current": 1.769,
+          "closed": null,
+          "movePct": -1.8116,
+          "capturedAt": "2026-10-17T13:40:07.164Z"
         },
         {
           "market": "total",
@@ -93455,6 +94755,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.952,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:07.169Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -93492,6 +94802,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-17T13:35:06.935Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.8,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:07.171Z"
         }
       ],
       "combinado": {
@@ -94615,6 +95935,16 @@
         },
         {
           "market": "moneyline",
+          "side": "away",
+          "line": null,
+          "opened": 1.741,
+          "current": 1.769,
+          "closed": 1.769,
+          "movePct": -0.9251,
+          "capturedAt": "2026-10-17T13:40:03.472Z"
+        },
+        {
+          "market": "moneyline",
           "side": "home",
           "line": null,
           "opened": 4,
@@ -94652,6 +95982,16 @@
           "closed": 4.2,
           "movePct": -1.1905,
           "capturedAt": "2026-10-17T13:35:04.090Z"
+        },
+        {
+          "market": "moneyline",
+          "side": "home",
+          "line": null,
+          "opened": 4,
+          "current": 4.2,
+          "closed": 4.2,
+          "movePct": -1.1905,
+          "capturedAt": "2026-10-17T13:40:03.467Z"
         },
         {
           "market": "spread",
@@ -94695,6 +96035,16 @@
         },
         {
           "market": "spread",
+          "side": "away",
+          "line": 0.5,
+          "opened": 1.69,
+          "current": 1.741,
+          "closed": 1.741,
+          "movePct": -1.7369,
+          "capturedAt": "2026-10-17T13:40:03.479Z"
+        },
+        {
+          "market": "spread",
           "side": "home",
           "line": 0.5,
           "opened": 1.952,
@@ -94732,6 +96082,16 @@
           "closed": 2,
           "movePct": -1.2195,
           "capturedAt": "2026-10-17T13:35:04.097Z"
+        },
+        {
+          "market": "spread",
+          "side": "home",
+          "line": 0.5,
+          "opened": 1.952,
+          "current": 2,
+          "closed": 2,
+          "movePct": -1.2195,
+          "capturedAt": "2026-10-17T13:40:03.476Z"
         },
         {
           "market": "total",
@@ -94775,6 +96135,16 @@
         },
         {
           "market": "total",
+          "side": "over",
+          "line": 2.5,
+          "opened": null,
+          "current": 1.741,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:03.482Z"
+        },
+        {
+          "market": "total",
           "side": "under",
           "line": 2.5,
           "opened": null,
@@ -94812,6 +96182,16 @@
           "closed": null,
           "movePct": null,
           "capturedAt": "2026-10-17T13:35:04.105Z"
+        },
+        {
+          "market": "total",
+          "side": "under",
+          "line": 2.5,
+          "opened": null,
+          "current": 2.05,
+          "closed": null,
+          "movePct": null,
+          "capturedAt": "2026-10-17T13:40:03.484Z"
         }
       ],
       "combinado": {
@@ -109481,22 +110861,10 @@
     "nota": "El margen de la casa se mide como ROI de apostar todos los picks de consenso, medido por el backtest.",
     "notaDrawdown": "Max drawdown: cuánto cayó el saldo acumulado desde su máximo, apostando 1 unidad por pick."
   },
-  "alertas": [
-    {
-      "tipo": "PICK_RETIRADO",
-      "severidad": "media",
-      "fixtureId": "401882837",
-      "partido": "Villarreal vs Elche",
-      "mercado": "1X2",
-      "detalle": "Gana Villarreal ya no se publica: perdio el consenso o dejo de cubrir la cuota.",
-      "antes": {},
-      "ahora": null,
-      "delta": null
-    }
-  ],
+  "alertas": [],
   "resumenAlertas": {
     "alta": 0,
-    "media": 1,
+    "media": 0,
     "baja": 0
   },
   "picks": [],
@@ -109509,8 +110877,8 @@
       "leagueKey": "esp.1",
       "kickoff": "2026-10-17T12:00Z",
       "status": "in",
-      "statusDetail": "80'",
-      "minute": "80'",
+      "statusDetail": "85'",
+      "minute": "85'",
       "period": 2,
       "homeTeam": "Espanyol",
       "awayTeam": "Atlético Madrid",
@@ -109547,8 +110915,8 @@
       "leagueKey": "ita.1",
       "kickoff": "2026-10-17T13:00Z",
       "status": "in",
-      "statusDetail": "39'",
-      "minute": "39'",
+      "statusDetail": "44'",
+      "minute": "44'",
       "period": 1,
       "homeTeam": "Venezia",
       "awayTeam": "Napoli",
@@ -109585,8 +110953,8 @@
       "leagueKey": "ger.1",
       "kickoff": "2026-10-17T13:30Z",
       "status": "in",
-      "statusDetail": "10'",
-      "minute": "10'",
+      "statusDetail": "15'",
+      "minute": "15'",
       "period": 1,
       "homeTeam": "1. FC Union Berlin",
       "awayTeam": "Borussia Dortmund",
@@ -109623,8 +110991,8 @@
       "leagueKey": "ger.1",
       "kickoff": "2026-10-17T13:30Z",
       "status": "in",
-      "statusDetail": "9'",
-      "minute": "9'",
+      "statusDetail": "14'",
+      "minute": "14'",
       "period": 1,
       "homeTeam": "Hamburg SV",
       "awayTeam": "VfB Stuttgart",
@@ -109646,8 +111014,8 @@
       "leagueKey": "ger.1",
       "kickoff": "2026-10-17T13:30Z",
       "status": "in",
-      "statusDetail": "10'",
-      "minute": "10'",
+      "statusDetail": "15'",
+      "minute": "15'",
       "period": 1,
       "homeTeam": "Schalke 04",
       "awayTeam": "Mainz",
@@ -109684,8 +111052,8 @@
       "leagueKey": "ger.1",
       "kickoff": "2026-10-17T13:30Z",
       "status": "in",
-      "statusDetail": "10'",
-      "minute": "10'",
+      "statusDetail": "15'",
+      "minute": "15'",
       "period": 1,
       "homeTeam": "SV Elversberg",
       "awayTeam": "FC Augsburg",
@@ -109722,8 +111090,8 @@
       "leagueKey": "ger.1",
       "kickoff": "2026-10-17T13:30Z",
       "status": "in",
-      "statusDetail": "9'",
-      "minute": "9'",
+      "statusDetail": "14'",
+      "minute": "14'",
       "period": 1,
       "homeTeam": "Werder Bremen",
       "awayTeam": "SC Paderborn 07",
