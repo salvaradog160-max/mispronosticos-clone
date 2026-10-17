@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-17T18:10:06.913Z",
+  "generado": "2026-10-17T18:35:06.962Z",
   "picks": [
     {
       "id": "401875579-H",
@@ -10,21 +10,21 @@
       "awayTeam": "Willem II",
       "market": "1X2",
       "selection": "Gana Sparta Rotterdam",
-      "odds": 1.5405405405405406,
+      "odds": 1.5714285714285714,
       "confidence": 74,
       "stars": 4,
       "isSpecial": false,
       "isPremium": false,
-      "probMercado": 0.611,
+      "probMercado": 0.601,
       "nMuestra": 5212,
       "rango": [
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-17T18:10:02.202Z",
-      "roiUnit": 0.14,
-      "margen": 0.09087719298245611,
-      "breakEven": 0.6491228070175439,
+      "createdAt": "2026-10-17T18:35:02.481Z",
+      "roiUnit": 0.1628571428571428,
+      "margen": 0.10363636363636364,
+      "breakEven": 0.6363636363636364,
       "rentable": true
     }
   ],
