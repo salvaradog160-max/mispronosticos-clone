@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-17T13:20:07.578Z",
+  "generado": "2026-10-17T13:25:08.019Z",
   "picks": [
     {
       "id": "401882837-H",
@@ -10,21 +10,21 @@
       "awayTeam": "Elche",
       "market": "1X2",
       "selection": "Gana Villarreal",
-      "odds": 1.4545454545454546,
+      "odds": 1.4651162790697674,
       "confidence": 74,
       "stars": 4,
       "isSpecial": false,
       "isPremium": false,
-      "probMercado": 0.652,
+      "probMercado": 0.651,
       "nMuestra": 5212,
       "rango": [
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-17T13:20:02.089Z",
-      "roiUnit": 0.07636363636363636,
-      "margen": 0.05249999999999999,
-      "breakEven": 0.6875,
+      "createdAt": "2026-10-17T13:25:02.583Z",
+      "roiUnit": 0.08418604651162787,
+      "margen": 0.057460317460317434,
+      "breakEven": 0.6825396825396826,
       "rentable": true
     }
   ],
