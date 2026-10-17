@@ -1,6 +1,6 @@
 {
-  "generado": "2026-10-17T00:10:08.057Z",
-  "anterior": "2026-10-17T00:05:08.566Z",
+  "generado": "2026-10-17T00:15:09.156Z",
+  "anterior": "2026-10-17T00:10:08.057Z",
   "fuente": "football-data.co.uk + ESPN (sin claves)",
   "calibracion": {
     "partidos": 35973,
@@ -104996,22 +104996,10 @@
     "nota": "El margen de la casa se mide como ROI de apostar todos los picks de consenso, medido por el backtest.",
     "notaDrawdown": "Max drawdown: cuánto cayó el saldo acumulado desde su máximo, apostando 1 unidad por pick."
   },
-  "alertas": [
-    {
-      "tipo": "PICK_RETIRADO",
-      "severidad": "media",
-      "fixtureId": "401841270",
-      "partido": "Atlético-MG vs Coritiba",
-      "mercado": "1X2",
-      "detalle": "Gana Atlético-MG ya no se publica: perdio el consenso o dejo de cubrir la cuota.",
-      "antes": {},
-      "ahora": null,
-      "delta": null
-    }
-  ],
+  "alertas": [],
   "resumenAlertas": {
     "alta": 0,
-    "media": 1,
+    "media": 0,
     "baja": 0
   },
   "picks": [
@@ -105035,7 +105023,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-17T00:10:02.338Z",
+      "createdAt": "2026-10-17T00:15:02.862Z",
       "roiUnit": 0.14,
       "margen": 0.09087719298245611,
       "breakEven": 0.6491228070175439,
@@ -105061,7 +105049,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-17T00:10:02.339Z",
+      "createdAt": "2026-10-17T00:15:02.863Z",
       "roiUnit": 0.10097560975609754,
       "margen": 0.06786885245901642,
       "breakEven": 0.6721311475409836,
