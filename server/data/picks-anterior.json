@@ -1,32 +1,5 @@
 {
-  "generado": "2026-10-17T13:25:08.019Z",
-  "picks": [
-    {
-      "id": "401882837-H",
-      "fixtureId": "401882837",
-      "league": "esp.1",
-      "kickoff": "2026-10-17T14:15Z",
-      "homeTeam": "Villarreal",
-      "awayTeam": "Elche",
-      "market": "1X2",
-      "selection": "Gana Villarreal",
-      "odds": 1.4651162790697674,
-      "confidence": 74,
-      "stars": 4,
-      "isSpecial": false,
-      "isPremium": false,
-      "probMercado": 0.651,
-      "nMuestra": 5212,
-      "rango": [
-        72.9,
-        75.3
-      ],
-      "createdAt": "2026-10-17T13:25:02.583Z",
-      "roiUnit": 0.08418604651162787,
-      "margen": 0.057460317460317434,
-      "breakEven": 0.6825396825396826,
-      "rentable": true
-    }
-  ],
+  "generado": "2026-10-17T13:40:07.581Z",
+  "picks": [],
   "picksMercado": []
 }
