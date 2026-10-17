@@ -1,6 +1,6 @@
 {
-  "generado": "2026-10-17T00:15:09.156Z",
-  "anterior": "2026-10-17T00:10:08.057Z",
+  "generado": "2026-10-17T00:25:08.661Z",
+  "anterior": "2026-10-17T00:20:08.928Z",
   "fuente": "football-data.co.uk + ESPN (sin claves)",
   "calibracion": {
     "partidos": 35973,
@@ -17,23 +17,15 @@
   },
   "resumen": {
     "partidosConDatos": 97,
-    "picks": 2,
+    "picks": 3,
     "picksMercado": 0,
-    "descartados": 63,
+    "descartados": 62,
     "enVivo": 0
   },
   "descarte": {
     "criterio": "Se publica solo lo que acierta mas de lo que la cuota cobra, con 5pp de margen.",
     "motivo": "Un pick puede acertar el 57% y aun asi perder dinero si la cuota exige 61%.",
     "descartados": [
-      {
-        "partido": "Villarreal vs Elche",
-        "mercado": "1X2",
-        "seleccion": "Gana Villarreal",
-        "cuota": 1.4444444444444444,
-        "confianza": 74,
-        "necesita": 69
-      },
       {
         "partido": "Real Madrid vs Sevilla",
         "mercado": "1X2",
@@ -179,14 +171,6 @@
         "necesita": 57
       },
       {
-        "partido": "Lille vs Brest",
-        "mercado": "1X2",
-        "seleccion": "Gana Lille",
-        "cuota": 1.9090909090909092,
-        "confianza": 52,
-        "necesita": 52
-      },
-      {
         "partido": "Aberdeen vs St Mirren",
         "mercado": "1X2",
         "seleccion": "Gana Aberdeen",
@@ -241,6 +225,14 @@
         "cuota": 1.8695652173913042,
         "confianza": 47,
         "necesita": 53
+      },
+      {
+        "partido": "Lille vs Brest",
+        "mercado": "1X2",
+        "seleccion": "Gana Lille",
+        "cuota": 1.9523809523809523,
+        "confianza": 47,
+        "necesita": 51
       },
       {
         "partido": "Ascoli vs Empoli",
@@ -358,9 +350,9 @@
         "partido": "Lille vs Brest",
         "mercado": "TOTAL",
         "seleccion": "Más de 2.5 goles",
-        "cuota": 1.6896551724137931,
+        "cuota": 1.7142857142857144,
         "confianza": 59,
-        "necesita": 59
+        "necesita": 58
       },
       {
         "partido": "Troyes vs Lens",
@@ -533,6 +525,1091 @@
     ]
   },
   "analisis": [
+    {
+      "partido": "Lille vs Brest",
+      "liga": "Ligue 1",
+      "ligaKey": "fra.1",
+      "escudoLocal": "https://a.espncdn.com/i/teamlogos/soccer/500/166.png",
+      "escudoVisita": "https://a.espncdn.com/i/teamlogos/soccer/500/6997.png",
+      "colorLocal": "c2051b",
+      "colorVisita": "ef2f24",
+      "sede": "Decathlon Arena - Stade Pierre-Mauroy",
+      "calibracion": "propia",
+      "kickoff": "2026-10-17T18:45Z",
+      "favoritoMercado": "H",
+      "ladoMercado": "Lille",
+      "probMercado": 0.4882,
+      "cuotaMercado": 1.95,
+      "cuotaApertura": 1.59,
+      "ladoModelo": "Lille",
+      "probModelo": 0.4153,
+      "coincide": true,
+      "movimiento": -8.61,
+      "cambioFavorito": false,
+      "goles": {
+        "linea": 2.5,
+        "overround": 1.0595,
+        "over": {
+          "lado": "Over",
+          "cuota": 1.71,
+          "probMercado": 0.5506,
+          "probMercadoPct": 55.1,
+          "probModelo": 52.6,
+          "margenPp": -2.5
+        },
+        "under": {
+          "lado": "Under",
+          "cuota": 2.1,
+          "probMercado": 0.4494,
+          "probMercadoPct": 44.9,
+          "probModelo": 47.4,
+          "margenPp": 2.4
+        }
+      },
+      "lineaGoles": 2.5,
+      "lambdaHome": 1.4898854730312001,
+      "lambdaAway": 1.2913491679199998,
+      "ladder": {
+        "oneXTwo": {
+          "local": {
+            "p": 0.4153244265772324,
+            "cuotaJusta": 2.41
+          },
+          "empate": {
+            "p": 0.25951877472053675,
+            "cuotaJusta": 3.85
+          },
+          "visita": {
+            "p": 0.3251567987022309,
+            "cuotaJusta": 3.08
+          }
+        },
+        "overUnder": [
+          {
+            "linea": 0.5,
+            "over": {
+              "p": 0.9380380406322115,
+              "cuotaJusta": 1.07
+            },
+            "under": {
+              "p": 0.06196195936778848,
+              "cuotaJusta": 16.14
+            }
+          },
+          {
+            "linea": 1,
+            "over": {
+              "p": 0.7657072928390215,
+              "cuotaJusta": 1.31
+            },
+            "under": {
+              "p": 0.2342927071609785,
+              "cuotaJusta": 4.27
+            }
+          },
+          {
+            "linea": 1.5,
+            "over": {
+              "p": 0.7657072928390215,
+              "cuotaJusta": 1.31
+            },
+            "under": {
+              "p": 0.2342927071609785,
+              "cuotaJusta": 4.27
+            }
+          },
+          {
+            "linea": 2,
+            "over": {
+              "p": 0.5260611701072998,
+              "cuotaJusta": 1.9
+            },
+            "under": {
+              "p": 0.4739388298927002,
+              "cuotaJusta": 2.11
+            }
+          },
+          {
+            "linea": 2.5,
+            "over": {
+              "p": 0.5260611701072998,
+              "cuotaJusta": 1.9
+            },
+            "under": {
+              "p": 0.4739388298927002,
+              "cuotaJusta": 2.11
+            }
+          },
+          {
+            "linea": 3,
+            "over": {
+              "p": 0.3038904707369298,
+              "cuotaJusta": 3.29
+            },
+            "under": {
+              "p": 0.6961095292630701,
+              "cuotaJusta": 1.44
+            }
+          },
+          {
+            "linea": 3.5,
+            "over": {
+              "p": 0.3038904707369298,
+              "cuotaJusta": 3.29
+            },
+            "under": {
+              "p": 0.6961095292630701,
+              "cuotaJusta": 1.44
+            }
+          },
+          {
+            "linea": 4,
+            "over": {
+              "p": 0.1494132594136236,
+              "cuotaJusta": 6.69
+            },
+            "under": {
+              "p": 0.8505867405863764,
+              "cuotaJusta": 1.18
+            }
+          },
+          {
+            "linea": 4.5,
+            "over": {
+              "p": 0.1494132594136236,
+              "cuotaJusta": 6.69
+            },
+            "under": {
+              "p": 0.8505867405863764,
+              "cuotaJusta": 1.18
+            }
+          }
+        ],
+        "ambosAnotan": {
+          "si": {
+            "p": 0.5616638440967094,
+            "cuotaJusta": 1.78
+          },
+          "no": {
+            "p": 0.43833615590329056,
+            "cuotaJusta": 2.28
+          }
+        },
+        "marcadores": [
+          {
+            "marcador": "1-1",
+            "p": 0.11921247792571518,
+            "cuotaJusta": 8.39
+          },
+          {
+            "marcador": "1-0",
+            "p": 0.09231622313098552,
+            "cuotaJusta": 10.83
+          },
+          {
+            "marcador": "2-1",
+            "p": 0.08880646953278783,
+            "cuotaJusta": 11.26
+          },
+          {
+            "marcador": "0-1",
+            "p": 0.08001452466220449,
+            "cuotaJusta": 12.5
+          },
+          {
+            "marcador": "1-2",
+            "p": 0.07697246708752682,
+            "cuotaJusta": 12.99
+          },
+          {
+            "marcador": "2-0",
+            "p": 0.06877029988398108,
+            "cuotaJusta": 14.54
+          }
+        ]
+      },
+      "tiempos": {
+        "fraccion1T": 0.45,
+        "primerTiempo": {
+          "local": 0.67,
+          "visita": 0.581,
+          "overUnder": [
+            {
+              "linea": 0.5,
+              "over": {
+                "p": 0.7139405402159787,
+                "cuotaJusta": 1.4
+              },
+              "under": {
+                "p": 0.28605945978402125,
+                "cuotaJusta": 3.5
+              }
+            },
+            {
+              "linea": 1,
+              "over": {
+                "p": 0.3559212247005794,
+                "cuotaJusta": 2.81
+              },
+              "under": {
+                "p": 0.6440787752994206,
+                "cuotaJusta": 1.55
+              }
+            },
+            {
+              "linea": 1.5,
+              "over": {
+                "p": 0.3559212247005794,
+                "cuotaJusta": 2.81
+              },
+              "under": {
+                "p": 0.6440787752994206,
+                "cuotaJusta": 1.55
+              }
+            },
+            {
+              "linea": 2,
+              "over": {
+                "p": 0.13188068715133974,
+                "cuotaJusta": 7.58
+              },
+              "under": {
+                "p": 0.8681193128486603,
+                "cuotaJusta": 1.15
+              }
+            },
+            {
+              "linea": 2.5,
+              "over": {
+                "p": 0.13188068715133974,
+                "cuotaJusta": 7.58
+              },
+              "under": {
+                "p": 0.8681193128486603,
+                "cuotaJusta": 1.15
+              }
+            }
+          ]
+        },
+        "segundoTiempo": {
+          "local": 0.819,
+          "visita": 0.71,
+          "overUnder": [
+            {
+              "linea": 0.5,
+              "over": {
+                "p": 0.7833948249543521,
+                "cuotaJusta": 1.28
+              },
+              "under": {
+                "p": 0.2166051750456479,
+                "cuotaJusta": 4.62
+              }
+            },
+            {
+              "linea": 1,
+              "over": {
+                "p": 0.4520584260189143,
+                "cuotaJusta": 2.21
+              },
+              "under": {
+                "p": 0.5479415739810857,
+                "cuotaJusta": 1.83
+              }
+            },
+            {
+              "linea": 1.5,
+              "over": {
+                "p": 0.4520584260189143,
+                "cuotaJusta": 2.21
+              },
+              "under": {
+                "p": 0.5479415739810857,
+                "cuotaJusta": 1.83
+              }
+            },
+            {
+              "linea": 2,
+              "over": {
+                "p": 0.19863925162391635,
+                "cuotaJusta": 5.03
+              },
+              "under": {
+                "p": 0.8013607483760836,
+                "cuotaJusta": 1.25
+              }
+            },
+            {
+              "linea": 2.5,
+              "over": {
+                "p": 0.19863925162391635,
+                "cuotaJusta": 5.03
+              },
+              "under": {
+                "p": 0.8013607483760836,
+                "cuotaJusta": 1.25
+              }
+            }
+          ]
+        }
+      },
+      "estado": "programado",
+      "marcador": null,
+      "resultado": null,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.48820843630880084,
+        "necesita": 0.42,
+        "cuotaNecesaria": 2.380952380952381,
+        "cuotaActual": 2.048305448305448
+      },
+      "serie": null,
+      "combinado": {
+        "inclina": "Local",
+        "pCombinada": 0.3877,
+        "confianza": "baja",
+        "fuentes": [
+          "modelo",
+          "base",
+          "h2h"
+        ],
+        "pesos": {
+          "modelo": 0.5,
+          "base": 0.3,
+          "h2h": 0.2
+        },
+        "tabla": [
+          {
+            "lado": "H",
+            "modelo": 0.4153,
+            "historial": 0.4,
+            "combinada": 0.3877
+          },
+          {
+            "lado": "D",
+            "modelo": 0.2595,
+            "historial": 0.4,
+            "combinada": 0.3498
+          },
+          {
+            "lado": "A",
+            "modelo": 0.3252,
+            "historial": 0.2,
+            "combinada": 0.2626
+          }
+        ],
+        "recomendacion": {
+          "tipo": "O1.5",
+          "nombre": "Más de 1.5 goles",
+          "p": 0.7828536464195108,
+          "riesgo": "medio",
+          "cuotaJusta": 1.28,
+          "modelo": 0.7657,
+          "historial": 0.8,
+          "fuente": 2
+        },
+        "alternativa": {
+          "tipo": "1X",
+          "nombre": "Local o empate",
+          "p": 0.7374216006488845,
+          "riesgo": "medio",
+          "cuotaJusta": 1.36
+        },
+        "demasPronosticos": [
+          {
+            "tipo": "X2",
+            "nombre": "Visita o empate",
+            "p": 0.6123377867113838,
+            "riesgo": "medio",
+            "cuotaJusta": 1.63
+          },
+          {
+            "tipo": "AA",
+            "nombre": "Ambos anotan: Sí",
+            "p": 0.5808319220483547,
+            "riesgo": "alto",
+            "cuotaJusta": 1.72,
+            "modelo": 0.5617,
+            "historial": 0.6,
+            "fuente": 2
+          },
+          {
+            "tipo": "O2.5",
+            "nombre": "Más de 2.5 goles",
+            "p": 0.5630305850536499,
+            "riesgo": "alto",
+            "cuotaJusta": 1.78,
+            "modelo": 0.5261,
+            "historial": 0.6,
+            "fuente": 2
+          },
+          {
+            "tipo": "1",
+            "nombre": "Gana local",
+            "p": 0.3876622132886162,
+            "riesgo": "alto",
+            "cuotaJusta": 2.58
+          },
+          {
+            "tipo": "X",
+            "nombre": "Empate",
+            "p": 0.34975938736026835,
+            "riesgo": "alto",
+            "cuotaJusta": 2.86
+          },
+          {
+            "tipo": "O3.5",
+            "nombre": "Más de 3.5 goles",
+            "p": 0.3019452353684649,
+            "riesgo": "alto",
+            "cuotaJusta": 3.31,
+            "modelo": 0.3039,
+            "historial": 0.3,
+            "fuente": 2
+          },
+          {
+            "tipo": "2",
+            "nombre": "Gana visita",
+            "p": 0.2625783993511155,
+            "riesgo": "alto",
+            "cuotaJusta": 3.81
+          },
+          {
+            "tipo": "O4.5",
+            "nombre": "Más de 4.5 goles",
+            "p": 0.0747066297068118,
+            "riesgo": "alto",
+            "cuotaJusta": 13.39,
+            "modelo": 0.1494,
+            "historial": 0,
+            "fuente": 2
+          }
+        ],
+        "evitar": [],
+        "coinciden": [
+          "Más de 1 goles: modelo 77% e historial 80% coinciden.",
+          "Más de 1.5 goles: modelo 77% e historial 80% coinciden.",
+          "Más de 3 goles: modelo 30% e historial 30% coinciden.",
+          "Más de 3.5 goles: modelo 30% e historial 30% coinciden."
+        ],
+        "calidad": "Calidad de datos buena.",
+        "pronosticos": [
+          {
+            "tipo": "O1.5",
+            "nombre": "Más de 1.5 goles",
+            "p": 0.7828536464195108,
+            "riesgo": "medio",
+            "cuotaJusta": 1.28,
+            "modelo": 0.7657,
+            "historial": 0.8,
+            "fuente": 2
+          },
+          {
+            "tipo": "1X",
+            "nombre": "Local o empate",
+            "p": 0.7374216006488845,
+            "riesgo": "medio",
+            "cuotaJusta": 1.36
+          },
+          {
+            "tipo": "X2",
+            "nombre": "Visita o empate",
+            "p": 0.6123377867113838,
+            "riesgo": "medio",
+            "cuotaJusta": 1.63
+          },
+          {
+            "tipo": "AA",
+            "nombre": "Ambos anotan: Sí",
+            "p": 0.5808319220483547,
+            "riesgo": "alto",
+            "cuotaJusta": 1.72,
+            "modelo": 0.5617,
+            "historial": 0.6,
+            "fuente": 2
+          },
+          {
+            "tipo": "O2.5",
+            "nombre": "Más de 2.5 goles",
+            "p": 0.5630305850536499,
+            "riesgo": "alto",
+            "cuotaJusta": 1.78,
+            "modelo": 0.5261,
+            "historial": 0.6,
+            "fuente": 2
+          },
+          {
+            "tipo": "1",
+            "nombre": "Gana local",
+            "p": 0.3876622132886162,
+            "riesgo": "alto",
+            "cuotaJusta": 2.58
+          },
+          {
+            "tipo": "X",
+            "nombre": "Empate",
+            "p": 0.34975938736026835,
+            "riesgo": "alto",
+            "cuotaJusta": 2.86
+          },
+          {
+            "tipo": "O3.5",
+            "nombre": "Más de 3.5 goles",
+            "p": 0.3019452353684649,
+            "riesgo": "alto",
+            "cuotaJusta": 3.31,
+            "modelo": 0.3039,
+            "historial": 0.3,
+            "fuente": 2
+          },
+          {
+            "tipo": "2",
+            "nombre": "Gana visita",
+            "p": 0.2625783993511155,
+            "riesgo": "alto",
+            "cuotaJusta": 3.81
+          },
+          {
+            "tipo": "O4.5",
+            "nombre": "Más de 4.5 goles",
+            "p": 0.0747066297068118,
+            "riesgo": "alto",
+            "cuotaJusta": 13.39,
+            "modelo": 0.1494,
+            "historial": 0,
+            "fuente": 2
+          }
+        ],
+        "oportunidades": [
+          "H2H General: 10 pts local vs 5 visita. Respalda a Local.",
+          "Más de 1 goles: modelo 77% e historial 80% coinciden.",
+          "Más de 1.5 goles: modelo 77% e historial 80% coinciden."
+        ],
+        "riesgos": [],
+        "serieH2H": [
+          "E",
+          "E",
+          "P",
+          "G",
+          "E",
+          "G"
+        ],
+        "h2hPartidos": 10,
+        "serieH2HCasa": [
+          "E",
+          "G",
+          "G",
+          "G",
+          "E"
+        ],
+        "h2hCasaPartidos": 5,
+        "temporadaVigente": {
+          "local": "2627",
+          "visita": "2627"
+        },
+        "cuadros": {
+          "generalLocal": {
+            "n": 5,
+            "gfProm": 1.6,
+            "gcProm": 0.8,
+            "gfMed": 2,
+            "gcMed": 0,
+            "gfDe": 0.55,
+            "gcDe": 1.1,
+            "gfGe1": 100,
+            "gcGe1": 40
+          },
+          "generalVisita": {
+            "n": 5,
+            "gfProm": 1.4,
+            "gcProm": 1.6,
+            "gfMed": 2,
+            "gcMed": 2,
+            "gfDe": 0.89,
+            "gcDe": 0.55,
+            "gfGe1": 80,
+            "gcGe1": 100
+          },
+          "localCasa": {
+            "n": 2,
+            "gfProm": 2,
+            "gcProm": 1,
+            "gfMed": 2,
+            "gcMed": 1,
+            "gfDe": 0,
+            "gcDe": 1.41,
+            "gfGe1": 100,
+            "gcGe1": 50
+          },
+          "visitaFuera": {
+            "n": 3,
+            "gfProm": 1.67,
+            "gcProm": 1.67,
+            "gfMed": 2,
+            "gcMed": 2,
+            "gfDe": 0.58,
+            "gcDe": 0.58,
+            "gfGe1": 100,
+            "gcGe1": 100
+          },
+          "h2h": {
+            "n": 10,
+            "gfProm": 1.2,
+            "gcProm": 1.2,
+            "gfMed": 1,
+            "gcMed": 1,
+            "gfDe": 1.14,
+            "gcDe": 0.92,
+            "gfGe1": 70,
+            "gcGe1": 80
+          },
+          "h2hCasa": {
+            "n": 5,
+            "gfProm": 1.6,
+            "gcProm": 0.8,
+            "gfMed": 1,
+            "gcMed": 1,
+            "gfDe": 0.89,
+            "gcDe": 0.45,
+            "gfGe1": 100,
+            "gcGe1": 80
+          }
+        },
+        "puntos": {
+          "localCasa": {
+            "pts": 4,
+            "porPartido": 2,
+            "n": 2
+          },
+          "localGral": {
+            "pts": 10,
+            "porPartido": 2,
+            "n": 5
+          },
+          "visitaFuera": {
+            "pts": 4,
+            "porPartido": 1.33,
+            "n": 3
+          },
+          "visitaGral": {
+            "pts": 5,
+            "porPartido": 1,
+            "n": 5
+          }
+        },
+        "pesoEstadio": {
+          "local": {
+            "casa": 2,
+            "general": 2,
+            "dif": 0
+          },
+          "visita": {
+            "fuera": 1.33,
+            "general": 1,
+            "dif": 0.33
+          }
+        },
+        "patrones": {
+          "generalLocal": [
+            "Lille: perdió el último tras 3 sin perder",
+            "Lille: anotó en sus últimos 3",
+            "Lille: forma a la baja, 1.5 pts por partido en los últimos 2 contra 2.3 antes"
+          ],
+          "generalVisita": [
+            "Brest: 2 derrotas seguidas",
+            "Brest: recibió gol en sus últimos 3",
+            "Brest: goles a favor a la baja, 0.5 por partido en los últimos 2 contra 2.0 antes",
+            "Brest: forma a la baja, 0.0 pts por partido en los últimos 2 contra 1.7 antes"
+          ],
+          "localCasa": [
+            "Lille en casa: 2 sin perder",
+            "Lille en casa: anotó en sus últimos 2"
+          ],
+          "visitaFuera": [
+            "Brest fuera: anotó en sus últimos 3",
+            "Brest fuera: recibió gol en sus últimos 3",
+            "Brest fuera: ambos anotaron en sus últimos 2",
+            "Brest fuera: ambos marcan en cadena (últimos 3)"
+          ],
+          "h2h": [
+            "H2H: recibió gol en sus últimos 3",
+            "H2H: ambos anotaron en sus últimos 2",
+            "H2H: zig-zag de goles: U-O-U-O (alterna over/under de 2.5)",
+            "H2H: suele ganar por 1 gol (2 de los últimos 4)",
+            "H2H: empates seguidos (3 de los últimos 5)",
+            "H2H: goles a favor al alza, 2.0 por partido en los últimos 2 contra 1.0 antes",
+            "H2H: recibe más, 2.0 por partido en los últimos 2 contra 1.0 antes",
+            "H2H: forma a la baja, 1.0 pts por partido en los últimos 2 contra 1.5 antes"
+          ],
+          "h2hCasa": [
+            "H2H en casa: 5 sin perder",
+            "H2H en casa: anotó en sus últimos 3",
+            "H2H en casa: ambos anotaron en sus últimos 2",
+            "H2H en casa: zig-zag de goles: U-O-U-O (alterna over/under de 2.5)",
+            "H2H en casa: suele ganar por 1 gol (2 de los últimos 4)"
+          ]
+        },
+        "tendencias": {
+          "general": {
+            "ou": [
+              {
+                "linea": 0.5,
+                "over": 100,
+                "dev": 0
+              },
+              {
+                "linea": 1,
+                "over": 80,
+                "dev": 20
+              },
+              {
+                "linea": 1.5,
+                "over": 80,
+                "dev": 0
+              },
+              {
+                "linea": 2,
+                "over": 60,
+                "dev": 20
+              },
+              {
+                "linea": 2.5,
+                "over": 60,
+                "dev": 0
+              },
+              {
+                "linea": 3,
+                "over": 30,
+                "dev": 30
+              },
+              {
+                "linea": 3.5,
+                "over": 30,
+                "dev": 0
+              },
+              {
+                "linea": 4,
+                "over": 0,
+                "dev": 30
+              },
+              {
+                "linea": 4.5,
+                "over": 0,
+                "dev": 0
+              }
+            ],
+            "aa": 60,
+            "n": 10
+          },
+          "lv": {
+            "ou": [
+              {
+                "linea": 0.5,
+                "over": 100,
+                "dev": 0
+              },
+              {
+                "linea": 1,
+                "over": 100,
+                "dev": 0
+              },
+              {
+                "linea": 1.5,
+                "over": 100,
+                "dev": 0
+              },
+              {
+                "linea": 2,
+                "over": 80,
+                "dev": 20
+              },
+              {
+                "linea": 2.5,
+                "over": 80,
+                "dev": 0
+              },
+              {
+                "linea": 3,
+                "over": 40,
+                "dev": 40
+              },
+              {
+                "linea": 3.5,
+                "over": 40,
+                "dev": 0
+              },
+              {
+                "linea": 4,
+                "over": 0,
+                "dev": 40
+              },
+              {
+                "linea": 4.5,
+                "over": 0,
+                "dev": 0
+              }
+            ],
+            "aa": 80,
+            "n": 5
+          },
+          "h2h": {
+            "ou": [
+              {
+                "linea": 0.5,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 1,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 1.5,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 2,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 2.5,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 3,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 3.5,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 4,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 4.5,
+                "over": 0,
+                "dev": 0
+              }
+            ],
+            "aa": 60,
+            "n": 10
+          },
+          "localCasa": {
+            "ou": [
+              {
+                "linea": 0.5,
+                "over": 100,
+                "dev": 0
+              },
+              {
+                "linea": 1,
+                "over": 100,
+                "dev": 0
+              },
+              {
+                "linea": 1.5,
+                "over": 100,
+                "dev": 0
+              },
+              {
+                "linea": 2,
+                "over": 50,
+                "dev": 50
+              },
+              {
+                "linea": 2.5,
+                "over": 50,
+                "dev": 0
+              },
+              {
+                "linea": 3,
+                "over": 50,
+                "dev": 0
+              },
+              {
+                "linea": 3.5,
+                "over": 50,
+                "dev": 0
+              },
+              {
+                "linea": 4,
+                "over": 0,
+                "dev": 50
+              },
+              {
+                "linea": 4.5,
+                "over": 0,
+                "dev": 0
+              }
+            ],
+            "aa": 50,
+            "n": 2
+          },
+          "visitaFuera": {
+            "ou": [
+              {
+                "linea": 0.5,
+                "over": 100,
+                "dev": 0
+              },
+              {
+                "linea": 1,
+                "over": 100,
+                "dev": 0
+              },
+              {
+                "linea": 1.5,
+                "over": 100,
+                "dev": 0
+              },
+              {
+                "linea": 2,
+                "over": 100,
+                "dev": 0
+              },
+              {
+                "linea": 2.5,
+                "over": 100,
+                "dev": 0
+              },
+              {
+                "linea": 3,
+                "over": 33,
+                "dev": 67
+              },
+              {
+                "linea": 3.5,
+                "over": 33,
+                "dev": 0
+              },
+              {
+                "linea": 4,
+                "over": 0,
+                "dev": 33
+              },
+              {
+                "linea": 4.5,
+                "over": 0,
+                "dev": 0
+              }
+            ],
+            "aa": 100,
+            "n": 3
+          },
+          "localCasaHist": {
+            "ou": [
+              {
+                "linea": 0.5,
+                "over": 93,
+                "dev": 0
+              },
+              {
+                "linea": 1,
+                "over": 78,
+                "dev": 15
+              },
+              {
+                "linea": 1.5,
+                "over": 78,
+                "dev": 0
+              },
+              {
+                "linea": 2,
+                "over": 53,
+                "dev": 25
+              },
+              {
+                "linea": 2.5,
+                "over": 53,
+                "dev": 0
+              },
+              {
+                "linea": 3,
+                "over": 27,
+                "dev": 25
+              },
+              {
+                "linea": 3.5,
+                "over": 27,
+                "dev": 0
+              },
+              {
+                "linea": 4,
+                "over": 13,
+                "dev": 14
+              },
+              {
+                "linea": 4.5,
+                "over": 13,
+                "dev": 0
+              }
+            ],
+            "aa": 60,
+            "n": 91
+          },
+          "visitaFueraHist": {
+            "ou": [
+              {
+                "linea": 0.5,
+                "over": 96,
+                "dev": 0
+              },
+              {
+                "linea": 1,
+                "over": 79,
+                "dev": 16
+              },
+              {
+                "linea": 1.5,
+                "over": 79,
+                "dev": 0
+              },
+              {
+                "linea": 2,
+                "over": 55,
+                "dev": 24
+              },
+              {
+                "linea": 2.5,
+                "over": 55,
+                "dev": 0
+              },
+              {
+                "linea": 3,
+                "over": 29,
+                "dev": 26
+              },
+              {
+                "linea": 3.5,
+                "over": 29,
+                "dev": 0
+              },
+              {
+                "linea": 4,
+                "over": 12,
+                "dev": 17
+              },
+              {
+                "linea": 4.5,
+                "over": 12,
+                "dev": 0
+              }
+            ],
+            "aa": 59,
+            "n": 92
+          }
+        }
+      }
+    },
     {
       "partido": "AS Roma vs Genoa",
       "liga": "Serie A",
@@ -1628,1091 +2705,6 @@
             ],
             "aa": 49,
             "n": 97
-          }
-        }
-      }
-    },
-    {
-      "partido": "Lille vs Brest",
-      "liga": "Ligue 1",
-      "ligaKey": "fra.1",
-      "escudoLocal": "https://a.espncdn.com/i/teamlogos/soccer/500/166.png",
-      "escudoVisita": "https://a.espncdn.com/i/teamlogos/soccer/500/6997.png",
-      "colorLocal": "c2051b",
-      "colorVisita": "ef2f24",
-      "sede": "Decathlon Arena - Stade Pierre-Mauroy",
-      "calibracion": "propia",
-      "kickoff": "2026-10-17T18:45Z",
-      "favoritoMercado": "H",
-      "ladoMercado": "Lille",
-      "probMercado": 0.5004,
-      "cuotaMercado": 1.91,
-      "cuotaApertura": 1.59,
-      "ladoModelo": "Lille",
-      "probModelo": 0.4153,
-      "coincide": true,
-      "movimiento": -7.57,
-      "cambioFavorito": false,
-      "goles": {
-        "linea": 2.5,
-        "overround": 1.057,
-        "over": {
-          "lado": "Over",
-          "cuota": 1.69,
-          "probMercado": 0.5599,
-          "probMercadoPct": 56,
-          "probModelo": 52.6,
-          "margenPp": -3.4
-        },
-        "under": {
-          "lado": "Under",
-          "cuota": 2.15,
-          "probMercado": 0.4401,
-          "probMercadoPct": 44,
-          "probModelo": 47.4,
-          "margenPp": 3.4
-        }
-      },
-      "lineaGoles": 2.5,
-      "lambdaHome": 1.4898854730312001,
-      "lambdaAway": 1.2913491679199998,
-      "ladder": {
-        "oneXTwo": {
-          "local": {
-            "p": 0.4153244265772324,
-            "cuotaJusta": 2.41
-          },
-          "empate": {
-            "p": 0.25951877472053675,
-            "cuotaJusta": 3.85
-          },
-          "visita": {
-            "p": 0.3251567987022309,
-            "cuotaJusta": 3.08
-          }
-        },
-        "overUnder": [
-          {
-            "linea": 0.5,
-            "over": {
-              "p": 0.9380380406322115,
-              "cuotaJusta": 1.07
-            },
-            "under": {
-              "p": 0.06196195936778848,
-              "cuotaJusta": 16.14
-            }
-          },
-          {
-            "linea": 1,
-            "over": {
-              "p": 0.7657072928390215,
-              "cuotaJusta": 1.31
-            },
-            "under": {
-              "p": 0.2342927071609785,
-              "cuotaJusta": 4.27
-            }
-          },
-          {
-            "linea": 1.5,
-            "over": {
-              "p": 0.7657072928390215,
-              "cuotaJusta": 1.31
-            },
-            "under": {
-              "p": 0.2342927071609785,
-              "cuotaJusta": 4.27
-            }
-          },
-          {
-            "linea": 2,
-            "over": {
-              "p": 0.5260611701072998,
-              "cuotaJusta": 1.9
-            },
-            "under": {
-              "p": 0.4739388298927002,
-              "cuotaJusta": 2.11
-            }
-          },
-          {
-            "linea": 2.5,
-            "over": {
-              "p": 0.5260611701072998,
-              "cuotaJusta": 1.9
-            },
-            "under": {
-              "p": 0.4739388298927002,
-              "cuotaJusta": 2.11
-            }
-          },
-          {
-            "linea": 3,
-            "over": {
-              "p": 0.3038904707369298,
-              "cuotaJusta": 3.29
-            },
-            "under": {
-              "p": 0.6961095292630701,
-              "cuotaJusta": 1.44
-            }
-          },
-          {
-            "linea": 3.5,
-            "over": {
-              "p": 0.3038904707369298,
-              "cuotaJusta": 3.29
-            },
-            "under": {
-              "p": 0.6961095292630701,
-              "cuotaJusta": 1.44
-            }
-          },
-          {
-            "linea": 4,
-            "over": {
-              "p": 0.1494132594136236,
-              "cuotaJusta": 6.69
-            },
-            "under": {
-              "p": 0.8505867405863764,
-              "cuotaJusta": 1.18
-            }
-          },
-          {
-            "linea": 4.5,
-            "over": {
-              "p": 0.1494132594136236,
-              "cuotaJusta": 6.69
-            },
-            "under": {
-              "p": 0.8505867405863764,
-              "cuotaJusta": 1.18
-            }
-          }
-        ],
-        "ambosAnotan": {
-          "si": {
-            "p": 0.5616638440967094,
-            "cuotaJusta": 1.78
-          },
-          "no": {
-            "p": 0.43833615590329056,
-            "cuotaJusta": 2.28
-          }
-        },
-        "marcadores": [
-          {
-            "marcador": "1-1",
-            "p": 0.11921247792571518,
-            "cuotaJusta": 8.39
-          },
-          {
-            "marcador": "1-0",
-            "p": 0.09231622313098552,
-            "cuotaJusta": 10.83
-          },
-          {
-            "marcador": "2-1",
-            "p": 0.08880646953278783,
-            "cuotaJusta": 11.26
-          },
-          {
-            "marcador": "0-1",
-            "p": 0.08001452466220449,
-            "cuotaJusta": 12.5
-          },
-          {
-            "marcador": "1-2",
-            "p": 0.07697246708752682,
-            "cuotaJusta": 12.99
-          },
-          {
-            "marcador": "2-0",
-            "p": 0.06877029988398108,
-            "cuotaJusta": 14.54
-          }
-        ]
-      },
-      "tiempos": {
-        "fraccion1T": 0.45,
-        "primerTiempo": {
-          "local": 0.67,
-          "visita": 0.581,
-          "overUnder": [
-            {
-              "linea": 0.5,
-              "over": {
-                "p": 0.7139405402159787,
-                "cuotaJusta": 1.4
-              },
-              "under": {
-                "p": 0.28605945978402125,
-                "cuotaJusta": 3.5
-              }
-            },
-            {
-              "linea": 1,
-              "over": {
-                "p": 0.3559212247005794,
-                "cuotaJusta": 2.81
-              },
-              "under": {
-                "p": 0.6440787752994206,
-                "cuotaJusta": 1.55
-              }
-            },
-            {
-              "linea": 1.5,
-              "over": {
-                "p": 0.3559212247005794,
-                "cuotaJusta": 2.81
-              },
-              "under": {
-                "p": 0.6440787752994206,
-                "cuotaJusta": 1.55
-              }
-            },
-            {
-              "linea": 2,
-              "over": {
-                "p": 0.13188068715133974,
-                "cuotaJusta": 7.58
-              },
-              "under": {
-                "p": 0.8681193128486603,
-                "cuotaJusta": 1.15
-              }
-            },
-            {
-              "linea": 2.5,
-              "over": {
-                "p": 0.13188068715133974,
-                "cuotaJusta": 7.58
-              },
-              "under": {
-                "p": 0.8681193128486603,
-                "cuotaJusta": 1.15
-              }
-            }
-          ]
-        },
-        "segundoTiempo": {
-          "local": 0.819,
-          "visita": 0.71,
-          "overUnder": [
-            {
-              "linea": 0.5,
-              "over": {
-                "p": 0.7833948249543521,
-                "cuotaJusta": 1.28
-              },
-              "under": {
-                "p": 0.2166051750456479,
-                "cuotaJusta": 4.62
-              }
-            },
-            {
-              "linea": 1,
-              "over": {
-                "p": 0.4520584260189143,
-                "cuotaJusta": 2.21
-              },
-              "under": {
-                "p": 0.5479415739810857,
-                "cuotaJusta": 1.83
-              }
-            },
-            {
-              "linea": 1.5,
-              "over": {
-                "p": 0.4520584260189143,
-                "cuotaJusta": 2.21
-              },
-              "under": {
-                "p": 0.5479415739810857,
-                "cuotaJusta": 1.83
-              }
-            },
-            {
-              "linea": 2,
-              "over": {
-                "p": 0.19863925162391635,
-                "cuotaJusta": 5.03
-              },
-              "under": {
-                "p": 0.8013607483760836,
-                "cuotaJusta": 1.25
-              }
-            },
-            {
-              "linea": 2.5,
-              "over": {
-                "p": 0.19863925162391635,
-                "cuotaJusta": 5.03
-              },
-              "under": {
-                "p": 0.8013607483760836,
-                "cuotaJusta": 1.25
-              }
-            }
-          ]
-        }
-      },
-      "estado": "programado",
-      "marcador": null,
-      "resultado": null,
-      "goodToLine": {
-        "ejecutable": false,
-        "probActual": 0.5004353504571181,
-        "necesita": 0.47000000000000003,
-        "cuotaNecesaria": 2.127659574468085,
-        "cuotaActual": 1.9982601130926487
-      },
-      "serie": null,
-      "combinado": {
-        "inclina": "Local",
-        "pCombinada": 0.3877,
-        "confianza": "baja",
-        "fuentes": [
-          "modelo",
-          "base",
-          "h2h"
-        ],
-        "pesos": {
-          "modelo": 0.5,
-          "base": 0.3,
-          "h2h": 0.2
-        },
-        "tabla": [
-          {
-            "lado": "H",
-            "modelo": 0.4153,
-            "historial": 0.4,
-            "combinada": 0.3877
-          },
-          {
-            "lado": "D",
-            "modelo": 0.2595,
-            "historial": 0.4,
-            "combinada": 0.3498
-          },
-          {
-            "lado": "A",
-            "modelo": 0.3252,
-            "historial": 0.2,
-            "combinada": 0.2626
-          }
-        ],
-        "recomendacion": {
-          "tipo": "O1.5",
-          "nombre": "Más de 1.5 goles",
-          "p": 0.7828536464195108,
-          "riesgo": "medio",
-          "cuotaJusta": 1.28,
-          "modelo": 0.7657,
-          "historial": 0.8,
-          "fuente": 2
-        },
-        "alternativa": {
-          "tipo": "1X",
-          "nombre": "Local o empate",
-          "p": 0.7374216006488845,
-          "riesgo": "medio",
-          "cuotaJusta": 1.36
-        },
-        "demasPronosticos": [
-          {
-            "tipo": "X2",
-            "nombre": "Visita o empate",
-            "p": 0.6123377867113838,
-            "riesgo": "medio",
-            "cuotaJusta": 1.63
-          },
-          {
-            "tipo": "AA",
-            "nombre": "Ambos anotan: Sí",
-            "p": 0.5808319220483547,
-            "riesgo": "alto",
-            "cuotaJusta": 1.72,
-            "modelo": 0.5617,
-            "historial": 0.6,
-            "fuente": 2
-          },
-          {
-            "tipo": "O2.5",
-            "nombre": "Más de 2.5 goles",
-            "p": 0.5630305850536499,
-            "riesgo": "alto",
-            "cuotaJusta": 1.78,
-            "modelo": 0.5261,
-            "historial": 0.6,
-            "fuente": 2
-          },
-          {
-            "tipo": "1",
-            "nombre": "Gana local",
-            "p": 0.3876622132886162,
-            "riesgo": "alto",
-            "cuotaJusta": 2.58
-          },
-          {
-            "tipo": "X",
-            "nombre": "Empate",
-            "p": 0.34975938736026835,
-            "riesgo": "alto",
-            "cuotaJusta": 2.86
-          },
-          {
-            "tipo": "O3.5",
-            "nombre": "Más de 3.5 goles",
-            "p": 0.3019452353684649,
-            "riesgo": "alto",
-            "cuotaJusta": 3.31,
-            "modelo": 0.3039,
-            "historial": 0.3,
-            "fuente": 2
-          },
-          {
-            "tipo": "2",
-            "nombre": "Gana visita",
-            "p": 0.2625783993511155,
-            "riesgo": "alto",
-            "cuotaJusta": 3.81
-          },
-          {
-            "tipo": "O4.5",
-            "nombre": "Más de 4.5 goles",
-            "p": 0.0747066297068118,
-            "riesgo": "alto",
-            "cuotaJusta": 13.39,
-            "modelo": 0.1494,
-            "historial": 0,
-            "fuente": 2
-          }
-        ],
-        "evitar": [],
-        "coinciden": [
-          "Más de 1 goles: modelo 77% e historial 80% coinciden.",
-          "Más de 1.5 goles: modelo 77% e historial 80% coinciden.",
-          "Más de 3 goles: modelo 30% e historial 30% coinciden.",
-          "Más de 3.5 goles: modelo 30% e historial 30% coinciden."
-        ],
-        "calidad": "Calidad de datos buena.",
-        "pronosticos": [
-          {
-            "tipo": "O1.5",
-            "nombre": "Más de 1.5 goles",
-            "p": 0.7828536464195108,
-            "riesgo": "medio",
-            "cuotaJusta": 1.28,
-            "modelo": 0.7657,
-            "historial": 0.8,
-            "fuente": 2
-          },
-          {
-            "tipo": "1X",
-            "nombre": "Local o empate",
-            "p": 0.7374216006488845,
-            "riesgo": "medio",
-            "cuotaJusta": 1.36
-          },
-          {
-            "tipo": "X2",
-            "nombre": "Visita o empate",
-            "p": 0.6123377867113838,
-            "riesgo": "medio",
-            "cuotaJusta": 1.63
-          },
-          {
-            "tipo": "AA",
-            "nombre": "Ambos anotan: Sí",
-            "p": 0.5808319220483547,
-            "riesgo": "alto",
-            "cuotaJusta": 1.72,
-            "modelo": 0.5617,
-            "historial": 0.6,
-            "fuente": 2
-          },
-          {
-            "tipo": "O2.5",
-            "nombre": "Más de 2.5 goles",
-            "p": 0.5630305850536499,
-            "riesgo": "alto",
-            "cuotaJusta": 1.78,
-            "modelo": 0.5261,
-            "historial": 0.6,
-            "fuente": 2
-          },
-          {
-            "tipo": "1",
-            "nombre": "Gana local",
-            "p": 0.3876622132886162,
-            "riesgo": "alto",
-            "cuotaJusta": 2.58
-          },
-          {
-            "tipo": "X",
-            "nombre": "Empate",
-            "p": 0.34975938736026835,
-            "riesgo": "alto",
-            "cuotaJusta": 2.86
-          },
-          {
-            "tipo": "O3.5",
-            "nombre": "Más de 3.5 goles",
-            "p": 0.3019452353684649,
-            "riesgo": "alto",
-            "cuotaJusta": 3.31,
-            "modelo": 0.3039,
-            "historial": 0.3,
-            "fuente": 2
-          },
-          {
-            "tipo": "2",
-            "nombre": "Gana visita",
-            "p": 0.2625783993511155,
-            "riesgo": "alto",
-            "cuotaJusta": 3.81
-          },
-          {
-            "tipo": "O4.5",
-            "nombre": "Más de 4.5 goles",
-            "p": 0.0747066297068118,
-            "riesgo": "alto",
-            "cuotaJusta": 13.39,
-            "modelo": 0.1494,
-            "historial": 0,
-            "fuente": 2
-          }
-        ],
-        "oportunidades": [
-          "H2H General: 10 pts local vs 5 visita. Respalda a Local.",
-          "Más de 1 goles: modelo 77% e historial 80% coinciden.",
-          "Más de 1.5 goles: modelo 77% e historial 80% coinciden."
-        ],
-        "riesgos": [],
-        "serieH2H": [
-          "E",
-          "E",
-          "P",
-          "G",
-          "E",
-          "G"
-        ],
-        "h2hPartidos": 10,
-        "serieH2HCasa": [
-          "E",
-          "G",
-          "G",
-          "G",
-          "E"
-        ],
-        "h2hCasaPartidos": 5,
-        "temporadaVigente": {
-          "local": "2627",
-          "visita": "2627"
-        },
-        "cuadros": {
-          "generalLocal": {
-            "n": 5,
-            "gfProm": 1.6,
-            "gcProm": 0.8,
-            "gfMed": 2,
-            "gcMed": 0,
-            "gfDe": 0.55,
-            "gcDe": 1.1,
-            "gfGe1": 100,
-            "gcGe1": 40
-          },
-          "generalVisita": {
-            "n": 5,
-            "gfProm": 1.4,
-            "gcProm": 1.6,
-            "gfMed": 2,
-            "gcMed": 2,
-            "gfDe": 0.89,
-            "gcDe": 0.55,
-            "gfGe1": 80,
-            "gcGe1": 100
-          },
-          "localCasa": {
-            "n": 2,
-            "gfProm": 2,
-            "gcProm": 1,
-            "gfMed": 2,
-            "gcMed": 1,
-            "gfDe": 0,
-            "gcDe": 1.41,
-            "gfGe1": 100,
-            "gcGe1": 50
-          },
-          "visitaFuera": {
-            "n": 3,
-            "gfProm": 1.67,
-            "gcProm": 1.67,
-            "gfMed": 2,
-            "gcMed": 2,
-            "gfDe": 0.58,
-            "gcDe": 0.58,
-            "gfGe1": 100,
-            "gcGe1": 100
-          },
-          "h2h": {
-            "n": 10,
-            "gfProm": 1.2,
-            "gcProm": 1.2,
-            "gfMed": 1,
-            "gcMed": 1,
-            "gfDe": 1.14,
-            "gcDe": 0.92,
-            "gfGe1": 70,
-            "gcGe1": 80
-          },
-          "h2hCasa": {
-            "n": 5,
-            "gfProm": 1.6,
-            "gcProm": 0.8,
-            "gfMed": 1,
-            "gcMed": 1,
-            "gfDe": 0.89,
-            "gcDe": 0.45,
-            "gfGe1": 100,
-            "gcGe1": 80
-          }
-        },
-        "puntos": {
-          "localCasa": {
-            "pts": 4,
-            "porPartido": 2,
-            "n": 2
-          },
-          "localGral": {
-            "pts": 10,
-            "porPartido": 2,
-            "n": 5
-          },
-          "visitaFuera": {
-            "pts": 4,
-            "porPartido": 1.33,
-            "n": 3
-          },
-          "visitaGral": {
-            "pts": 5,
-            "porPartido": 1,
-            "n": 5
-          }
-        },
-        "pesoEstadio": {
-          "local": {
-            "casa": 2,
-            "general": 2,
-            "dif": 0
-          },
-          "visita": {
-            "fuera": 1.33,
-            "general": 1,
-            "dif": 0.33
-          }
-        },
-        "patrones": {
-          "generalLocal": [
-            "Lille: perdió el último tras 3 sin perder",
-            "Lille: anotó en sus últimos 3",
-            "Lille: forma a la baja, 1.5 pts por partido en los últimos 2 contra 2.3 antes"
-          ],
-          "generalVisita": [
-            "Brest: 2 derrotas seguidas",
-            "Brest: recibió gol en sus últimos 3",
-            "Brest: goles a favor a la baja, 0.5 por partido en los últimos 2 contra 2.0 antes",
-            "Brest: forma a la baja, 0.0 pts por partido en los últimos 2 contra 1.7 antes"
-          ],
-          "localCasa": [
-            "Lille en casa: 2 sin perder",
-            "Lille en casa: anotó en sus últimos 2"
-          ],
-          "visitaFuera": [
-            "Brest fuera: anotó en sus últimos 3",
-            "Brest fuera: recibió gol en sus últimos 3",
-            "Brest fuera: ambos anotaron en sus últimos 2",
-            "Brest fuera: ambos marcan en cadena (últimos 3)"
-          ],
-          "h2h": [
-            "H2H: recibió gol en sus últimos 3",
-            "H2H: ambos anotaron en sus últimos 2",
-            "H2H: zig-zag de goles: U-O-U-O (alterna over/under de 2.5)",
-            "H2H: suele ganar por 1 gol (2 de los últimos 4)",
-            "H2H: empates seguidos (3 de los últimos 5)",
-            "H2H: goles a favor al alza, 2.0 por partido en los últimos 2 contra 1.0 antes",
-            "H2H: recibe más, 2.0 por partido en los últimos 2 contra 1.0 antes",
-            "H2H: forma a la baja, 1.0 pts por partido en los últimos 2 contra 1.5 antes"
-          ],
-          "h2hCasa": [
-            "H2H en casa: 5 sin perder",
-            "H2H en casa: anotó en sus últimos 3",
-            "H2H en casa: ambos anotaron en sus últimos 2",
-            "H2H en casa: zig-zag de goles: U-O-U-O (alterna over/under de 2.5)",
-            "H2H en casa: suele ganar por 1 gol (2 de los últimos 4)"
-          ]
-        },
-        "tendencias": {
-          "general": {
-            "ou": [
-              {
-                "linea": 0.5,
-                "over": 100,
-                "dev": 0
-              },
-              {
-                "linea": 1,
-                "over": 80,
-                "dev": 20
-              },
-              {
-                "linea": 1.5,
-                "over": 80,
-                "dev": 0
-              },
-              {
-                "linea": 2,
-                "over": 60,
-                "dev": 20
-              },
-              {
-                "linea": 2.5,
-                "over": 60,
-                "dev": 0
-              },
-              {
-                "linea": 3,
-                "over": 30,
-                "dev": 30
-              },
-              {
-                "linea": 3.5,
-                "over": 30,
-                "dev": 0
-              },
-              {
-                "linea": 4,
-                "over": 0,
-                "dev": 30
-              },
-              {
-                "linea": 4.5,
-                "over": 0,
-                "dev": 0
-              }
-            ],
-            "aa": 60,
-            "n": 10
-          },
-          "lv": {
-            "ou": [
-              {
-                "linea": 0.5,
-                "over": 100,
-                "dev": 0
-              },
-              {
-                "linea": 1,
-                "over": 100,
-                "dev": 0
-              },
-              {
-                "linea": 1.5,
-                "over": 100,
-                "dev": 0
-              },
-              {
-                "linea": 2,
-                "over": 80,
-                "dev": 20
-              },
-              {
-                "linea": 2.5,
-                "over": 80,
-                "dev": 0
-              },
-              {
-                "linea": 3,
-                "over": 40,
-                "dev": 40
-              },
-              {
-                "linea": 3.5,
-                "over": 40,
-                "dev": 0
-              },
-              {
-                "linea": 4,
-                "over": 0,
-                "dev": 40
-              },
-              {
-                "linea": 4.5,
-                "over": 0,
-                "dev": 0
-              }
-            ],
-            "aa": 80,
-            "n": 5
-          },
-          "h2h": {
-            "ou": [
-              {
-                "linea": 0.5,
-                "over": 0,
-                "dev": 0
-              },
-              {
-                "linea": 1,
-                "over": 0,
-                "dev": 0
-              },
-              {
-                "linea": 1.5,
-                "over": 0,
-                "dev": 0
-              },
-              {
-                "linea": 2,
-                "over": 0,
-                "dev": 0
-              },
-              {
-                "linea": 2.5,
-                "over": 0,
-                "dev": 0
-              },
-              {
-                "linea": 3,
-                "over": 0,
-                "dev": 0
-              },
-              {
-                "linea": 3.5,
-                "over": 0,
-                "dev": 0
-              },
-              {
-                "linea": 4,
-                "over": 0,
-                "dev": 0
-              },
-              {
-                "linea": 4.5,
-                "over": 0,
-                "dev": 0
-              }
-            ],
-            "aa": 60,
-            "n": 10
-          },
-          "localCasa": {
-            "ou": [
-              {
-                "linea": 0.5,
-                "over": 100,
-                "dev": 0
-              },
-              {
-                "linea": 1,
-                "over": 100,
-                "dev": 0
-              },
-              {
-                "linea": 1.5,
-                "over": 100,
-                "dev": 0
-              },
-              {
-                "linea": 2,
-                "over": 50,
-                "dev": 50
-              },
-              {
-                "linea": 2.5,
-                "over": 50,
-                "dev": 0
-              },
-              {
-                "linea": 3,
-                "over": 50,
-                "dev": 0
-              },
-              {
-                "linea": 3.5,
-                "over": 50,
-                "dev": 0
-              },
-              {
-                "linea": 4,
-                "over": 0,
-                "dev": 50
-              },
-              {
-                "linea": 4.5,
-                "over": 0,
-                "dev": 0
-              }
-            ],
-            "aa": 50,
-            "n": 2
-          },
-          "visitaFuera": {
-            "ou": [
-              {
-                "linea": 0.5,
-                "over": 100,
-                "dev": 0
-              },
-              {
-                "linea": 1,
-                "over": 100,
-                "dev": 0
-              },
-              {
-                "linea": 1.5,
-                "over": 100,
-                "dev": 0
-              },
-              {
-                "linea": 2,
-                "over": 100,
-                "dev": 0
-              },
-              {
-                "linea": 2.5,
-                "over": 100,
-                "dev": 0
-              },
-              {
-                "linea": 3,
-                "over": 33,
-                "dev": 67
-              },
-              {
-                "linea": 3.5,
-                "over": 33,
-                "dev": 0
-              },
-              {
-                "linea": 4,
-                "over": 0,
-                "dev": 33
-              },
-              {
-                "linea": 4.5,
-                "over": 0,
-                "dev": 0
-              }
-            ],
-            "aa": 100,
-            "n": 3
-          },
-          "localCasaHist": {
-            "ou": [
-              {
-                "linea": 0.5,
-                "over": 93,
-                "dev": 0
-              },
-              {
-                "linea": 1,
-                "over": 78,
-                "dev": 15
-              },
-              {
-                "linea": 1.5,
-                "over": 78,
-                "dev": 0
-              },
-              {
-                "linea": 2,
-                "over": 53,
-                "dev": 25
-              },
-              {
-                "linea": 2.5,
-                "over": 53,
-                "dev": 0
-              },
-              {
-                "linea": 3,
-                "over": 27,
-                "dev": 25
-              },
-              {
-                "linea": 3.5,
-                "over": 27,
-                "dev": 0
-              },
-              {
-                "linea": 4,
-                "over": 13,
-                "dev": 14
-              },
-              {
-                "linea": 4.5,
-                "over": 13,
-                "dev": 0
-              }
-            ],
-            "aa": 60,
-            "n": 91
-          },
-          "visitaFueraHist": {
-            "ou": [
-              {
-                "linea": 0.5,
-                "over": 96,
-                "dev": 0
-              },
-              {
-                "linea": 1,
-                "over": 79,
-                "dev": 16
-              },
-              {
-                "linea": 1.5,
-                "over": 79,
-                "dev": 0
-              },
-              {
-                "linea": 2,
-                "over": 55,
-                "dev": 24
-              },
-              {
-                "linea": 2.5,
-                "over": 55,
-                "dev": 0
-              },
-              {
-                "linea": 3,
-                "over": 29,
-                "dev": 26
-              },
-              {
-                "linea": 3.5,
-                "over": 29,
-                "dev": 0
-              },
-              {
-                "linea": 4,
-                "over": 12,
-                "dev": 17
-              },
-              {
-                "linea": 4.5,
-                "over": 12,
-                "dev": 0
-              }
-            ],
-            "aa": 59,
-            "n": 92
           }
         }
       }
@@ -41465,1103 +41457,6 @@
       }
     },
     {
-      "partido": "Villarreal vs Elche",
-      "liga": "La Liga",
-      "ligaKey": "esp.1",
-      "escudoLocal": "https://a.espncdn.com/i/teamlogos/soccer/500/102.png",
-      "escudoVisita": "https://a.espncdn.com/i/teamlogos/soccer/500/3751.png",
-      "colorLocal": "ffff00",
-      "colorVisita": "288A00",
-      "sede": "Estadio de la Cerámica",
-      "calibracion": "propia",
-      "kickoff": "2026-10-17T14:15Z",
-      "favoritoMercado": "H",
-      "ladoMercado": "Villarreal",
-      "probMercado": 0.6618,
-      "cuotaMercado": 1.44,
-      "cuotaApertura": 1.45,
-      "ladoModelo": "Villarreal",
-      "probModelo": 0.5924,
-      "coincide": true,
-      "movimiento": 1.4,
-      "cambioFavorito": false,
-      "goles": {
-        "linea": 3.5,
-        "overround": 1.0464,
-        "over": {
-          "lado": "Over",
-          "cuota": 2.2,
-          "probMercado": 0.4344,
-          "probMercadoPct": 43.4,
-          "probModelo": 56.4,
-          "margenPp": 12.9
-        },
-        "under": {
-          "lado": "Under",
-          "cuota": 1.69,
-          "probMercado": 0.5656,
-          "probMercadoPct": 56.6,
-          "probModelo": 43.6,
-          "margenPp": -12.9
-        }
-      },
-      "lineaGoles": 3.5,
-      "lambdaHome": 1.94683930562304,
-      "lambdaAway": 0.9951601048559998,
-      "ladder": {
-        "oneXTwo": {
-          "local": {
-            "p": 0.592411907412719,
-            "cuotaJusta": 1.69
-          },
-          "empate": {
-            "p": 0.22267559488887675,
-            "cuotaJusta": 4.49
-          },
-          "visita": {
-            "p": 0.18491249769840426,
-            "cuotaJusta": 5.41
-          }
-        },
-        "overUnder": [
-          {
-            "linea": 0.5,
-            "over": {
-              "p": 0.947239865627122,
-              "cuotaJusta": 1.06
-            },
-            "under": {
-              "p": 0.052760134372877965,
-              "cuotaJusta": 18.95
-            }
-          },
-          {
-            "linea": 1,
-            "over": {
-              "p": 0.7920195823697179,
-              "cuotaJusta": 1.26
-            },
-            "under": {
-              "p": 0.20798041763028208,
-              "cuotaJusta": 4.81
-            }
-          },
-          {
-            "linea": 1.5,
-            "over": {
-              "p": 0.7920195823697179,
-              "cuotaJusta": 1.26
-            },
-            "under": {
-              "p": 0.20798041763028208,
-              "cuotaJusta": 4.81
-            }
-          },
-          {
-            "linea": 2,
-            "over": {
-              "p": 0.5636905914508817,
-              "cuotaJusta": 1.77
-            },
-            "under": {
-              "p": 0.43630940854911826,
-              "cuotaJusta": 2.29
-            }
-          },
-          {
-            "linea": 2.5,
-            "over": {
-              "p": 0.5636905914508817,
-              "cuotaJusta": 1.77
-            },
-            "under": {
-              "p": 0.43630940854911826,
-              "cuotaJusta": 2.29
-            }
-          },
-          {
-            "linea": 3,
-            "over": {
-              "p": 0.3397760058913857,
-              "cuotaJusta": 2.94
-            },
-            "under": {
-              "p": 0.6602239941086143,
-              "cuotaJusta": 1.51
-            }
-          },
-          {
-            "linea": 3.5,
-            "over": {
-              "p": 0.3397760058913857,
-              "cuotaJusta": 2.94
-            },
-            "under": {
-              "p": 0.6602239941086143,
-              "cuotaJusta": 1.51
-            }
-          },
-          {
-            "linea": 4,
-            "over": {
-              "p": 0.17508686121296116,
-              "cuotaJusta": 5.71
-            },
-            "under": {
-              "p": 0.8249131387870389,
-              "cuotaJusta": 1.21
-            }
-          },
-          {
-            "linea": 4.5,
-            "over": {
-              "p": 0.17508686121296116,
-              "cuotaJusta": 5.71
-            },
-            "under": {
-              "p": 0.8249131387870389,
-              "cuotaJusta": 1.21
-            }
-          }
-        ],
-        "ambosAnotan": {
-          "si": {
-            "p": 0.5403714114293701,
-            "cuotaJusta": 1.85
-          },
-          "no": {
-            "p": 0.45962858857062994,
-            "cuotaJusta": 2.18
-          }
-        },
-        "marcadores": [
-          {
-            "marcador": "1-0",
-            "p": 0.10271550272889124,
-            "cuotaJusta": 9.74
-          },
-          {
-            "marcador": "1-1",
-            "p": 0.10221837046602013,
-            "cuotaJusta": 9.78
-          },
-          {
-            "marcador": "2-0",
-            "p": 0.09998528900471806,
-            "cuotaJusta": 10
-          },
-          {
-            "marcador": "2-1",
-            "p": 0.09950137068999267,
-            "cuotaJusta": 10.05
-          },
-          {
-            "marcador": "3-0",
-            "p": 0.06488509687282143,
-            "cuotaJusta": 15.41
-          },
-          {
-            "marcador": "3-1",
-            "p": 0.06457105980754868,
-            "cuotaJusta": 15.49
-          }
-        ]
-      },
-      "tiempos": {
-        "fraccion1T": 0.45,
-        "primerTiempo": {
-          "local": 0.876,
-          "visita": 0.448,
-          "overUnder": [
-            {
-              "linea": 0.5,
-              "over": {
-                "p": 0.7339044261952987,
-                "cuotaJusta": 1.36
-              },
-              "under": {
-                "p": 0.2660955738047013,
-                "cuotaJusta": 3.76
-              }
-            },
-            {
-              "linea": 1,
-              "over": {
-                "p": 0.38162056662627164,
-                "cuotaJusta": 2.62
-              },
-              "under": {
-                "p": 0.6183794333737284,
-                "cuotaJusta": 1.62
-              }
-            },
-            {
-              "linea": 1.5,
-              "over": {
-                "p": 0.38162056662627164,
-                "cuotaJusta": 2.62
-              },
-              "under": {
-                "p": 0.6183794333737284,
-                "cuotaJusta": 1.62
-              }
-            },
-            {
-              "linea": 2,
-              "over": {
-                "p": 0.14842631251226548,
-                "cuotaJusta": 6.74
-              },
-              "under": {
-                "p": 0.8515736874877345,
-                "cuotaJusta": 1.17
-              }
-            },
-            {
-              "linea": 2.5,
-              "over": {
-                "p": 0.14842631251226548,
-                "cuotaJusta": 6.74
-              },
-              "under": {
-                "p": 0.8515736874877345,
-                "cuotaJusta": 1.17
-              }
-            }
-          ]
-        },
-        "segundoTiempo": {
-          "local": 1.071,
-          "visita": 0.547,
-          "overUnder": [
-            {
-              "linea": 0.5,
-              "over": {
-                "p": 0.801724871666555,
-                "cuotaJusta": 1.25
-              },
-              "under": {
-                "p": 0.19827512833344496,
-                "cuotaJusta": 5.04
-              }
-            },
-            {
-              "linea": 1,
-              "over": {
-                "p": 0.4808959507983309,
-                "cuotaJusta": 2.08
-              },
-              "under": {
-                "p": 0.5191040492016691,
-                "cuotaJusta": 1.93
-              }
-            },
-            {
-              "linea": 1.5,
-              "over": {
-                "p": 0.4808959507983309,
-                "cuotaJusta": 2.08
-              },
-              "under": {
-                "p": 0.5191040492016691,
-                "cuotaJusta": 1.93
-              }
-            },
-            {
-              "linea": 2,
-              "over": {
-                "p": 0.2213293643821221,
-                "cuotaJusta": 4.52
-              },
-              "under": {
-                "p": 0.7786706356178779,
-                "cuotaJusta": 1.28
-              }
-            },
-            {
-              "linea": 2.5,
-              "over": {
-                "p": 0.2213293643821221,
-                "cuotaJusta": 4.52
-              },
-              "under": {
-                "p": 0.7786706356178779,
-                "cuotaJusta": 1.28
-              }
-            }
-          ]
-        }
-      },
-      "estado": "programado",
-      "marcador": null,
-      "resultado": null,
-      "goodToLine": {
-        "ejecutable": false,
-        "probActual": 0.661764705882353,
-        "necesita": 0.69,
-        "cuotaNecesaria": 1.4492753623188408,
-        "cuotaActual": 1.5111111111111108
-      },
-      "serie": null,
-      "combinado": {
-        "inclina": "Local",
-        "pCombinada": 0.5153,
-        "confianza": "baja",
-        "fuentes": [
-          "modelo",
-          "base",
-          "h2h"
-        ],
-        "pesos": {
-          "modelo": 0.5,
-          "base": 0.3,
-          "h2h": 0.2
-        },
-        "tabla": [
-          {
-            "lado": "H",
-            "modelo": 0.5924,
-            "historial": 0.2857,
-            "combinada": 0.5153
-          },
-          {
-            "lado": "D",
-            "modelo": 0.2227,
-            "historial": 0.2857,
-            "combinada": 0.1971
-          },
-          {
-            "lado": "A",
-            "modelo": 0.1849,
-            "historial": 0.4286,
-            "combinada": 0.2877
-          }
-        ],
-        "recomendacion": {
-          "tipo": "O1.5",
-          "nombre": "Más de 1.5 goles",
-          "p": 0.861009791184859,
-          "riesgo": "medio",
-          "cuotaJusta": 1.16,
-          "modelo": 0.792,
-          "historial": 0.93,
-          "fuente": 2
-        },
-        "alternativa": {
-          "tipo": "1X",
-          "nombre": "Local o empate",
-          "p": 0.7123056559127026,
-          "riesgo": "medio",
-          "cuotaJusta": 1.4
-        },
-        "demasPronosticos": [
-          {
-            "tipo": "AA",
-            "nombre": "Ambos anotan: Sí",
-            "p": 0.700185705714685,
-            "riesgo": "alto",
-            "cuotaJusta": 1.43,
-            "modelo": 0.5404,
-            "historial": 0.86,
-            "fuente": 2
-          },
-          {
-            "tipo": "O2.5",
-            "nombre": "Más de 2.5 goles",
-            "p": 0.6768452957254409,
-            "riesgo": "alto",
-            "cuotaJusta": 1.48,
-            "modelo": 0.5637,
-            "historial": 0.79,
-            "fuente": 2
-          },
-          {
-            "tipo": "O3.5",
-            "nombre": "Más de 3.5 goles",
-            "p": 0.5248880029456928,
-            "riesgo": "alto",
-            "cuotaJusta": 1.91,
-            "modelo": 0.3398,
-            "historial": 0.71,
-            "fuente": 2
-          },
-          {
-            "tipo": "1",
-            "nombre": "Gana local",
-            "p": 0.5152535727539785,
-            "riesgo": "alto",
-            "cuotaJusta": 1.94
-          },
-          {
-            "tipo": "X2",
-            "nombre": "Visita o empate",
-            "p": 0.4847464272460214,
-            "riesgo": "alto",
-            "cuotaJusta": 2.06
-          },
-          {
-            "tipo": "2",
-            "nombre": "Gana visita",
-            "p": 0.2876943440872973,
-            "riesgo": "alto",
-            "cuotaJusta": 3.48
-          },
-          {
-            "tipo": "O4.5",
-            "nombre": "Más de 4.5 goles",
-            "p": 0.26754343060648056,
-            "riesgo": "alto",
-            "cuotaJusta": 3.74,
-            "modelo": 0.1751,
-            "historial": 0.36,
-            "fuente": 2
-          },
-          {
-            "tipo": "X",
-            "nombre": "Empate",
-            "p": 0.19705208315872408,
-            "riesgo": "alto",
-            "cuotaJusta": 5.07
-          }
-        ],
-        "evitar": [
-          "Más de 2 goles: modelo 56% contra historial 79% (modelo abajo 23pp).",
-          "Más de 2.5 goles: modelo 56% contra historial 79% (modelo abajo 23pp).",
-          "Más de 3 goles: modelo 34% contra historial 71% (modelo abajo 37pp).",
-          "Más de 3.5 goles: modelo 34% contra historial 71% (modelo abajo 37pp)."
-        ],
-        "coinciden": [],
-        "calidad": "Calidad de datos buena.",
-        "pronosticos": [
-          {
-            "tipo": "O1.5",
-            "nombre": "Más de 1.5 goles",
-            "p": 0.861009791184859,
-            "riesgo": "medio",
-            "cuotaJusta": 1.16,
-            "modelo": 0.792,
-            "historial": 0.93,
-            "fuente": 2
-          },
-          {
-            "tipo": "1X",
-            "nombre": "Local o empate",
-            "p": 0.7123056559127026,
-            "riesgo": "medio",
-            "cuotaJusta": 1.4
-          },
-          {
-            "tipo": "AA",
-            "nombre": "Ambos anotan: Sí",
-            "p": 0.700185705714685,
-            "riesgo": "alto",
-            "cuotaJusta": 1.43,
-            "modelo": 0.5404,
-            "historial": 0.86,
-            "fuente": 2
-          },
-          {
-            "tipo": "O2.5",
-            "nombre": "Más de 2.5 goles",
-            "p": 0.6768452957254409,
-            "riesgo": "alto",
-            "cuotaJusta": 1.48,
-            "modelo": 0.5637,
-            "historial": 0.79,
-            "fuente": 2
-          },
-          {
-            "tipo": "O3.5",
-            "nombre": "Más de 3.5 goles",
-            "p": 0.5248880029456928,
-            "riesgo": "alto",
-            "cuotaJusta": 1.91,
-            "modelo": 0.3398,
-            "historial": 0.71,
-            "fuente": 2
-          },
-          {
-            "tipo": "1",
-            "nombre": "Gana local",
-            "p": 0.5152535727539785,
-            "riesgo": "alto",
-            "cuotaJusta": 1.94
-          },
-          {
-            "tipo": "X2",
-            "nombre": "Visita o empate",
-            "p": 0.4847464272460214,
-            "riesgo": "alto",
-            "cuotaJusta": 2.06
-          },
-          {
-            "tipo": "2",
-            "nombre": "Gana visita",
-            "p": 0.2876943440872973,
-            "riesgo": "alto",
-            "cuotaJusta": 3.48
-          },
-          {
-            "tipo": "O4.5",
-            "nombre": "Más de 4.5 goles",
-            "p": 0.26754343060648056,
-            "riesgo": "alto",
-            "cuotaJusta": 3.74,
-            "modelo": 0.1751,
-            "historial": 0.36,
-            "fuente": 2
-          },
-          {
-            "tipo": "X",
-            "nombre": "Empate",
-            "p": 0.19705208315872408,
-            "riesgo": "alto",
-            "cuotaJusta": 5.07
-          }
-        ],
-        "oportunidades": [
-          "Patrón Local: Villarreal en casa: ganó el último tras 3 sin ganar.",
-          "Patrón H2H L/V (local): H2H en casa: 3 victorias seguidas."
-        ],
-        "riesgos": [
-          "Patrón Visita: Elche fuera: forma al alza, 2.0 pts por partido en los últimos 2 contra 0.5 antes.",
-          "Patrón Visita: Elche fuera: recibe menos, 1.0 por partido en los últimos 2 contra 2.0 antes.",
-          "Más de 2 goles: modelo 56% contra historial 79% (modelo abajo 23pp).",
-          "Más de 2.5 goles: modelo 56% contra historial 79% (modelo abajo 23pp).",
-          "Más de 3 goles: modelo 34% contra historial 71% (modelo abajo 37pp)."
-        ],
-        "serieH2H": [
-          "G",
-          "G",
-          "P",
-          "G",
-          "P",
-          "G"
-        ],
-        "h2hPartidos": 6,
-        "serieH2HCasa": [
-          "G",
-          "G",
-          "G"
-        ],
-        "h2hCasaPartidos": 3,
-        "temporadaVigente": {
-          "local": "2627",
-          "visita": "2627"
-        },
-        "cuadros": {
-          "generalLocal": {
-            "n": 7,
-            "gfProm": 1.86,
-            "gcProm": 1.71,
-            "gfMed": 2,
-            "gcMed": 2,
-            "gfDe": 1.07,
-            "gcDe": 0.76,
-            "gfGe1": 86,
-            "gcGe1": 100
-          },
-          "generalVisita": {
-            "n": 7,
-            "gfProm": 1.57,
-            "gcProm": 2.43,
-            "gfMed": 2,
-            "gcMed": 3,
-            "gfDe": 0.98,
-            "gcDe": 1.51,
-            "gfGe1": 86,
-            "gcGe1": 100
-          },
-          "localCasa": {
-            "n": 3,
-            "gfProm": 2,
-            "gcProm": 2,
-            "gfMed": 2,
-            "gcMed": 2,
-            "gfDe": 1,
-            "gcDe": 1,
-            "gfGe1": 100,
-            "gcGe1": 100
-          },
-          "visitaFuera": {
-            "n": 4,
-            "gfProm": 1.75,
-            "gcProm": 1.5,
-            "gfMed": 1.5,
-            "gcMed": 1,
-            "gfDe": 0.96,
-            "gcDe": 1,
-            "gfGe1": 100,
-            "gcGe1": 100
-          },
-          "h2h": {
-            "n": 6,
-            "gfProm": 2.33,
-            "gcProm": 1.17,
-            "gfMed": 2.5,
-            "gcMed": 1,
-            "gfDe": 1.63,
-            "gcDe": 0.98,
-            "gfGe1": 83,
-            "gcGe1": 83
-          },
-          "h2hCasa": {
-            "n": 3,
-            "gfProm": 3.33,
-            "gcProm": 0.67,
-            "gfMed": 4,
-            "gcMed": 1,
-            "gfDe": 1.15,
-            "gcDe": 0.58,
-            "gfGe1": 100,
-            "gcGe1": 67
-          }
-        },
-        "puntos": {
-          "localCasa": {
-            "pts": 3,
-            "porPartido": 1,
-            "n": 3
-          },
-          "localGral": {
-            "pts": 8,
-            "porPartido": 1.14,
-            "n": 7
-          },
-          "visitaFuera": {
-            "pts": 5,
-            "porPartido": 1.25,
-            "n": 4
-          },
-          "visitaGral": {
-            "pts": 5,
-            "porPartido": 0.71,
-            "n": 7
-          }
-        },
-        "pesoEstadio": {
-          "local": {
-            "casa": 1,
-            "general": 1.14,
-            "dif": -0.14
-          },
-          "visita": {
-            "fuera": 1.25,
-            "general": 0.71,
-            "dif": 0.54
-          }
-        },
-        "patrones": {
-          "generalLocal": [
-            "Villarreal: 2 victorias seguidas",
-            "Villarreal: anotó en sus últimos 3",
-            "Villarreal: recibió gol en sus últimos 3",
-            "Villarreal: ambos anotaron en sus últimos 2",
-            "Villarreal: ambos marcan en cadena (últimos 3)",
-            "Villarreal: goles a favor al alza, 3.0 por partido en los últimos 2 contra 1.4 antes",
-            "Villarreal: recibe menos, 1.0 por partido en los últimos 2 contra 2.0 antes",
-            "Villarreal: forma al alza, 3.0 pts por partido en los últimos 2 contra 0.4 antes"
-          ],
-          "generalVisita": [
-            "Elche: anotó en sus últimos 3",
-            "Elche: recibió gol en sus últimos 3",
-            "Elche: ambos anotaron en sus últimos 2",
-            "Elche: ambos marcan en cadena (últimos 3)",
-            "Elche: goles a favor al alza, 2.5 por partido en los últimos 2 contra 1.2 antes",
-            "Elche: forma al alza, 1.5 pts por partido en los últimos 2 contra 0.4 antes"
-          ],
-          "localCasa": [
-            "Villarreal en casa: ganó el último tras 3 sin ganar",
-            "Villarreal en casa: anotó en sus últimos 3",
-            "Villarreal en casa: recibió gol en sus últimos 3",
-            "Villarreal en casa: ambos anotaron en sus últimos 2",
-            "Villarreal en casa: ambos marcan en cadena (últimos 3)"
-          ],
-          "visitaFuera": [
-            "Elche fuera: anotó en sus últimos 3",
-            "Elche fuera: recibió gol en sus últimos 3",
-            "Elche fuera: ambos anotaron en sus últimos 2",
-            "Elche fuera: zig-zag de goles: O-U-O-U (alterna over/under de 2.5)",
-            "Elche fuera: ambos marcan en cadena (últimos 3)",
-            "Elche fuera: recibe menos, 1.0 por partido en los últimos 2 contra 2.0 antes",
-            "Elche fuera: forma al alza, 2.0 pts por partido en los últimos 2 contra 0.5 antes"
-          ],
-          "h2h": [
-            "H2H: 2 victorias seguidas",
-            "H2H: anotó en sus últimos 3",
-            "H2H: recibió gol en sus últimos 3",
-            "H2H: ambos anotaron en sus últimos 2",
-            "H2H: ambos marcan en cadena (últimos 3)",
-            "H2H: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.5 antes"
-          ],
-          "h2hCasa": [
-            "H2H en casa: 3 victorias seguidas",
-            "H2H en casa: 3 sin perder",
-            "H2H en casa: anotó en sus últimos 3"
-          ]
-        },
-        "tendencias": {
-          "general": {
-            "ou": [
-              {
-                "linea": 0.5,
-                "over": 100,
-                "dev": 0
-              },
-              {
-                "linea": 1,
-                "over": 93,
-                "dev": 7
-              },
-              {
-                "linea": 1.5,
-                "over": 93,
-                "dev": 0
-              },
-              {
-                "linea": 2,
-                "over": 79,
-                "dev": 14
-              },
-              {
-                "linea": 2.5,
-                "over": 79,
-                "dev": 0
-              },
-              {
-                "linea": 3,
-                "over": 71,
-                "dev": 7
-              },
-              {
-                "linea": 3.5,
-                "over": 71,
-                "dev": 0
-              },
-              {
-                "linea": 4,
-                "over": 36,
-                "dev": 36
-              },
-              {
-                "linea": 4.5,
-                "over": 36,
-                "dev": 0
-              }
-            ],
-            "aa": 86,
-            "n": 14
-          },
-          "lv": {
-            "ou": [
-              {
-                "linea": 0.5,
-                "over": 100,
-                "dev": 0
-              },
-              {
-                "linea": 1,
-                "over": 100,
-                "dev": 0
-              },
-              {
-                "linea": 1.5,
-                "over": 100,
-                "dev": 0
-              },
-              {
-                "linea": 2,
-                "over": 71,
-                "dev": 29
-              },
-              {
-                "linea": 2.5,
-                "over": 71,
-                "dev": 0
-              },
-              {
-                "linea": 3,
-                "over": 57,
-                "dev": 14
-              },
-              {
-                "linea": 3.5,
-                "over": 57,
-                "dev": 0
-              },
-              {
-                "linea": 4,
-                "over": 29,
-                "dev": 29
-              },
-              {
-                "linea": 4.5,
-                "over": 29,
-                "dev": 0
-              }
-            ],
-            "aa": 100,
-            "n": 7
-          },
-          "h2h": {
-            "ou": [
-              {
-                "linea": 0.5,
-                "over": 0,
-                "dev": 0
-              },
-              {
-                "linea": 1,
-                "over": 0,
-                "dev": 0
-              },
-              {
-                "linea": 1.5,
-                "over": 0,
-                "dev": 0
-              },
-              {
-                "linea": 2,
-                "over": 0,
-                "dev": 0
-              },
-              {
-                "linea": 2.5,
-                "over": 0,
-                "dev": 0
-              },
-              {
-                "linea": 3,
-                "over": 0,
-                "dev": 0
-              },
-              {
-                "linea": 3.5,
-                "over": 0,
-                "dev": 0
-              },
-              {
-                "linea": 4,
-                "over": 0,
-                "dev": 0
-              },
-              {
-                "linea": 4.5,
-                "over": 0,
-                "dev": 0
-              }
-            ],
-            "aa": 67,
-            "n": 6
-          },
-          "localCasa": {
-            "ou": [
-              {
-                "linea": 0.5,
-                "over": 100,
-                "dev": 0
-              },
-              {
-                "linea": 1,
-                "over": 100,
-                "dev": 0
-              },
-              {
-                "linea": 1.5,
-                "over": 100,
-                "dev": 0
-              },
-              {
-                "linea": 2,
-                "over": 100,
-                "dev": 0
-              },
-              {
-                "linea": 2.5,
-                "over": 100,
-                "dev": 0
-              },
-              {
-                "linea": 3,
-                "over": 67,
-                "dev": 33
-              },
-              {
-                "linea": 3.5,
-                "over": 67,
-                "dev": 0
-              },
-              {
-                "linea": 4,
-                "over": 33,
-                "dev": 33
-              },
-              {
-                "linea": 4.5,
-                "over": 33,
-                "dev": 0
-              }
-            ],
-            "aa": 100,
-            "n": 3
-          },
-          "visitaFuera": {
-            "ou": [
-              {
-                "linea": 0.5,
-                "over": 100,
-                "dev": 0
-              },
-              {
-                "linea": 1,
-                "over": 100,
-                "dev": 0
-              },
-              {
-                "linea": 1.5,
-                "over": 100,
-                "dev": 0
-              },
-              {
-                "linea": 2,
-                "over": 50,
-                "dev": 50
-              },
-              {
-                "linea": 2.5,
-                "over": 50,
-                "dev": 0
-              },
-              {
-                "linea": 3,
-                "over": 50,
-                "dev": 0
-              },
-              {
-                "linea": 3.5,
-                "over": 50,
-                "dev": 0
-              },
-              {
-                "linea": 4,
-                "over": 25,
-                "dev": 25
-              },
-              {
-                "linea": 4.5,
-                "over": 25,
-                "dev": 0
-              }
-            ],
-            "aa": 100,
-            "n": 4
-          },
-          "localCasaHist": {
-            "ou": [
-              {
-                "linea": 0.5,
-                "over": 96,
-                "dev": 0
-              },
-              {
-                "linea": 1,
-                "over": 88,
-                "dev": 8
-              },
-              {
-                "linea": 1.5,
-                "over": 88,
-                "dev": 0
-              },
-              {
-                "linea": 2,
-                "over": 66,
-                "dev": 21
-              },
-              {
-                "linea": 2.5,
-                "over": 66,
-                "dev": 0
-              },
-              {
-                "linea": 3,
-                "over": 41,
-                "dev": 26
-              },
-              {
-                "linea": 3.5,
-                "over": 41,
-                "dev": 0
-              },
-              {
-                "linea": 4,
-                "over": 24,
-                "dev": 16
-              },
-              {
-                "linea": 4.5,
-                "over": 24,
-                "dev": 0
-              }
-            ],
-            "aa": 66,
-            "n": 98
-          },
-          "visitaFueraHist": {
-            "ou": [
-              {
-                "linea": 0.5,
-                "over": 98,
-                "dev": 0
-              },
-              {
-                "linea": 1,
-                "over": 75,
-                "dev": 23
-              },
-              {
-                "linea": 1.5,
-                "over": 75,
-                "dev": 0
-              },
-              {
-                "linea": 2,
-                "over": 45,
-                "dev": 30
-              },
-              {
-                "linea": 2.5,
-                "over": 45,
-                "dev": 0
-              },
-              {
-                "linea": 3,
-                "over": 22,
-                "dev": 22
-              },
-              {
-                "linea": 3.5,
-                "over": 22,
-                "dev": 0
-              },
-              {
-                "linea": 4,
-                "over": 7,
-                "dev": 16
-              },
-              {
-                "linea": 4.5,
-                "over": 7,
-                "dev": 0
-              }
-            ],
-            "aa": 52,
-            "n": 103
-          }
-        }
-      }
-    },
-    {
       "partido": "Atlético-MG vs Coritiba",
       "liga": "Brasileirão",
       "ligaKey": "bra.1",
@@ -70526,6 +69421,1067 @@
       }
     },
     {
+      "partido": "Deportivo Riestra vs Unión (Santa Fe)",
+      "liga": "Liga Profesional",
+      "ligaKey": "arg.1",
+      "escudoLocal": "https://a.espncdn.com/i/teamlogos/soccer/500/17702.png",
+      "escudoVisita": "https://a.espncdn.com/i/teamlogos/soccer/500/20.png",
+      "colorLocal": "212121",
+      "colorVisita": "C60000",
+      "sede": "Guillermo Laza",
+      "calibracion": "propia",
+      "kickoff": "2026-10-20T00:15Z",
+      "favoritoMercado": "H",
+      "ladoMercado": "Deportivo Riestra",
+      "probMercado": 0.4073,
+      "cuotaMercado": 2.3,
+      "cuotaApertura": 2.25,
+      "ladoModelo": "Unión (Santa Fe)",
+      "probModelo": 0.4542,
+      "coincide": false,
+      "movimiento": -0.38,
+      "cambioFavorito": false,
+      "goles": {
+        "linea": 1.5,
+        "overround": 1.0842,
+        "over": {
+          "lado": "Over",
+          "cuota": 1.59,
+          "probMercado": 0.5807,
+          "probMercadoPct": 58.1,
+          "probModelo": 48.8,
+          "margenPp": -9.3
+        },
+        "under": {
+          "lado": "Under",
+          "cuota": 2.2,
+          "probMercado": 0.4193,
+          "probMercadoPct": 41.9,
+          "probModelo": 51.2,
+          "margenPp": 9.3
+        }
+      },
+      "lineaGoles": 1.5,
+      "lambdaHome": 1.1266863142392,
+      "lambdaAway": 1.4992420864079998,
+      "ladder": {
+        "oneXTwo": {
+          "local": {
+            "p": 0.28141899376135115,
+            "cuotaJusta": 3.55
+          },
+          "empate": {
+            "p": 0.2643676260420216,
+            "cuotaJusta": 3.78
+          },
+          "visita": {
+            "p": 0.45421338019662727,
+            "cuotaJusta": 2.2
+          }
+        },
+        "overUnder": [
+          {
+            "linea": 0.5,
+            "over": {
+              "p": 0.9276274648660676,
+              "cuotaJusta": 1.08
+            },
+            "under": {
+              "p": 0.07237253513393238,
+              "cuotaJusta": 13.82
+            }
+          },
+          {
+            "linea": 1,
+            "over": {
+              "p": 0.7375823694513479,
+              "cuotaJusta": 1.36
+            },
+            "under": {
+              "p": 0.2624176305486521,
+              "cuotaJusta": 3.81
+            }
+          },
+          {
+            "linea": 1.5,
+            "over": {
+              "p": 0.7375823694513479,
+              "cuotaJusta": 1.36
+            },
+            "under": {
+              "p": 0.2624176305486521,
+              "cuotaJusta": 3.81
+            }
+          },
+          {
+            "linea": 2,
+            "over": {
+              "p": 0.4880599627247386,
+              "cuotaJusta": 2.05
+            },
+            "under": {
+              "p": 0.5119400372752614,
+              "cuotaJusta": 1.95
+            }
+          },
+          {
+            "linea": 2.5,
+            "over": {
+              "p": 0.4880599627247386,
+              "cuotaJusta": 2.05
+            },
+            "under": {
+              "p": 0.5119400372752614,
+              "cuotaJusta": 1.95
+            }
+          },
+          {
+            "linea": 3,
+            "over": {
+              "p": 0.2696506379176565,
+              "cuotaJusta": 3.71
+            },
+            "under": {
+              "p": 0.7303493620823436,
+              "cuotaJusta": 1.37
+            }
+          },
+          {
+            "linea": 3.5,
+            "over": {
+              "p": 0.2696506379176565,
+              "cuotaJusta": 3.71
+            },
+            "under": {
+              "p": 0.7303493620823436,
+              "cuotaJusta": 1.37
+            }
+          },
+          {
+            "linea": 4,
+            "over": {
+              "p": 0.1262688256733829,
+              "cuotaJusta": 7.92
+            },
+            "under": {
+              "p": 0.8737311743266171,
+              "cuotaJusta": 1.14
+            }
+          },
+          {
+            "linea": 4.5,
+            "over": {
+              "p": 0.1262688256733829,
+              "cuotaJusta": 7.92
+            },
+            "under": {
+              "p": 0.8737311743266171,
+              "cuotaJusta": 1.14
+            }
+          }
+        ],
+        "ambosAnotan": {
+          "si": {
+            "p": 0.5249677348733317,
+            "cuotaJusta": 1.9
+          },
+          "no": {
+            "p": 0.4750322651266683,
+            "cuotaJusta": 2.11
+          }
+        },
+        "marcadores": [
+          {
+            "marcador": "1-1",
+            "p": 0.12224991613823238,
+            "cuotaJusta": 8.18
+          },
+          {
+            "marcador": "0-1",
+            "p": 0.10850395056123689,
+            "cuotaJusta": 9.22
+          },
+          {
+            "marcador": "1-2",
+            "p": 0.09164110966714326,
+            "cuotaJusta": 10.91
+          },
+          {
+            "marcador": "1-0",
+            "p": 0.08154114485348272,
+            "cuotaJusta": 12.26
+          },
+          {
+            "marcador": "0-2",
+            "p": 0.08133684461146963,
+            "cuotaJusta": 12.29
+          },
+          {
+            "marcador": "0-0",
+            "p": 0.07237253512619769,
+            "cuotaJusta": 13.82
+          }
+        ]
+      },
+      "tiempos": {
+        "fraccion1T": 0.45,
+        "primerTiempo": {
+          "local": 0.507,
+          "visita": 0.675,
+          "overUnder": [
+            {
+              "linea": 0.5,
+              "over": {
+                "p": 0.6932333077139611,
+                "cuotaJusta": 1.44
+              },
+              "under": {
+                "p": 0.3067666922860389,
+                "cuotaJusta": 3.26
+              }
+            },
+            {
+              "linea": 1,
+              "over": {
+                "p": 0.3307369913730312,
+                "cuotaJusta": 3.02
+              },
+              "under": {
+                "p": 0.6692630086269689,
+                "cuotaJusta": 1.49
+              }
+            },
+            {
+              "linea": 1.5,
+              "over": {
+                "p": 0.3307369913730312,
+                "cuotaJusta": 3.02
+              },
+              "under": {
+                "p": 0.6692630086269689,
+                "cuotaJusta": 1.49
+              }
+            },
+            {
+              "linea": 2,
+              "over": {
+                "p": 0.1165618826258623,
+                "cuotaJusta": 8.58
+              },
+              "under": {
+                "p": 0.8834381173741377,
+                "cuotaJusta": 1.13
+              }
+            },
+            {
+              "linea": 2.5,
+              "over": {
+                "p": 0.1165618826258623,
+                "cuotaJusta": 8.58
+              },
+              "under": {
+                "p": 0.8834381173741377,
+                "cuotaJusta": 1.13
+              }
+            }
+          ]
+        },
+        "segundoTiempo": {
+          "local": 0.62,
+          "visita": 0.825,
+          "overUnder": [
+            {
+              "linea": 0.5,
+              "over": {
+                "p": 0.7640795531389846,
+                "cuotaJusta": 1.31
+              },
+              "under": {
+                "p": 0.23592044686101543,
+                "cuotaJusta": 4.24
+              }
+            },
+            {
+              "linea": 1,
+              "over": {
+                "p": 0.42334894220084,
+                "cuotaJusta": 2.36
+              },
+              "under": {
+                "p": 0.5766510577991599,
+                "cuotaJusta": 1.73
+              }
+            },
+            {
+              "linea": 1.5,
+              "over": {
+                "p": 0.42334894220084,
+                "cuotaJusta": 2.36
+              },
+              "under": {
+                "p": 0.5766510577991599,
+                "cuotaJusta": 1.73
+              }
+            },
+            {
+              "linea": 2,
+              "over": {
+                "p": 0.17729704043694564,
+                "cuotaJusta": 5.64
+              },
+              "under": {
+                "p": 0.8227029595630544,
+                "cuotaJusta": 1.22
+              }
+            },
+            {
+              "linea": 2.5,
+              "over": {
+                "p": 0.17729704043694564,
+                "cuotaJusta": 5.64
+              },
+              "under": {
+                "p": 0.8227029595630544,
+                "cuotaJusta": 1.22
+              }
+            }
+          ]
+        }
+      },
+      "estado": "programado",
+      "marcador": null,
+      "resultado": null,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.40734776044287874,
+        "necesita": 0.38,
+        "cuotaNecesaria": 2.6315789473684212,
+        "cuotaActual": 2.454904867803311
+      },
+      "serie": null,
+      "combinado": {
+        "inclina": "Visita",
+        "pCombinada": 0.4557,
+        "confianza": "baja",
+        "fuentes": [
+          "modelo",
+          "base",
+          "h2h"
+        ],
+        "pesos": {
+          "modelo": 0.5,
+          "base": 0.3,
+          "h2h": 0.2
+        },
+        "tabla": [
+          {
+            "lado": "H",
+            "modelo": 0.2814,
+            "historial": 0.2143,
+            "combinada": 0.205
+          },
+          {
+            "lado": "D",
+            "modelo": 0.2644,
+            "historial": 0.3571,
+            "combinada": 0.3393
+          },
+          {
+            "lado": "A",
+            "modelo": 0.4542,
+            "historial": 0.4286,
+            "combinada": 0.4557
+          }
+        ],
+        "recomendacion": {
+          "tipo": "X2",
+          "nombre": "Visita o empate",
+          "p": 0.7950047888336101,
+          "riesgo": "bajo",
+          "cuotaJusta": 1.26
+        },
+        "alternativa": {
+          "tipo": "O1.5",
+          "nombre": "Más de 1.5 goles",
+          "p": 0.7037911847256739,
+          "riesgo": "alto",
+          "cuotaJusta": 1.42,
+          "modelo": 0.7376,
+          "historial": 0.67,
+          "fuente": 2
+        },
+        "demasPronosticos": [
+          {
+            "tipo": "1X",
+            "nombre": "Local o empate",
+            "p": 0.5443218813302578,
+            "riesgo": "alto",
+            "cuotaJusta": 1.84
+          },
+          {
+            "tipo": "AA",
+            "nombre": "Ambos anotan: Sí",
+            "p": 0.4824838674366658,
+            "riesgo": "alto",
+            "cuotaJusta": 2.07,
+            "modelo": 0.525,
+            "historial": 0.44,
+            "fuente": 2
+          },
+          {
+            "tipo": "2",
+            "nombre": "Gana visita",
+            "p": 0.45567811866974217,
+            "riesgo": "alto",
+            "cuotaJusta": 2.19
+          },
+          {
+            "tipo": "O2.5",
+            "nombre": "Más de 2.5 goles",
+            "p": 0.4240299813623693,
+            "riesgo": "alto",
+            "cuotaJusta": 2.36,
+            "modelo": 0.4881,
+            "historial": 0.36,
+            "fuente": 2
+          },
+          {
+            "tipo": "X",
+            "nombre": "Empate",
+            "p": 0.33932667016386797,
+            "riesgo": "alto",
+            "cuotaJusta": 2.95
+          },
+          {
+            "tipo": "O3.5",
+            "nombre": "Más de 3.5 goles",
+            "p": 0.21482531895882823,
+            "riesgo": "alto",
+            "cuotaJusta": 4.65,
+            "modelo": 0.2697,
+            "historial": 0.16,
+            "fuente": 2
+          },
+          {
+            "tipo": "1",
+            "nombre": "Gana local",
+            "p": 0.20499521116638986,
+            "riesgo": "alto",
+            "cuotaJusta": 4.88
+          },
+          {
+            "tipo": "O4.5",
+            "nombre": "Más de 4.5 goles",
+            "p": 0.09813441283669146,
+            "riesgo": "alto",
+            "cuotaJusta": 10.19,
+            "modelo": 0.1263,
+            "historial": 0.07,
+            "fuente": 2
+          }
+        ],
+        "evitar": [],
+        "coinciden": [],
+        "calidad": "Calidad de datos media: goles irregulares en la base.",
+        "pronosticos": [
+          {
+            "tipo": "X2",
+            "nombre": "Visita o empate",
+            "p": 0.7950047888336101,
+            "riesgo": "bajo",
+            "cuotaJusta": 1.26
+          },
+          {
+            "tipo": "O1.5",
+            "nombre": "Más de 1.5 goles",
+            "p": 0.7037911847256739,
+            "riesgo": "alto",
+            "cuotaJusta": 1.42,
+            "modelo": 0.7376,
+            "historial": 0.67,
+            "fuente": 2
+          },
+          {
+            "tipo": "1X",
+            "nombre": "Local o empate",
+            "p": 0.5443218813302578,
+            "riesgo": "alto",
+            "cuotaJusta": 1.84
+          },
+          {
+            "tipo": "AA",
+            "nombre": "Ambos anotan: Sí",
+            "p": 0.4824838674366658,
+            "riesgo": "alto",
+            "cuotaJusta": 2.07,
+            "modelo": 0.525,
+            "historial": 0.44,
+            "fuente": 2
+          },
+          {
+            "tipo": "2",
+            "nombre": "Gana visita",
+            "p": 0.45567811866974217,
+            "riesgo": "alto",
+            "cuotaJusta": 2.19
+          },
+          {
+            "tipo": "O2.5",
+            "nombre": "Más de 2.5 goles",
+            "p": 0.4240299813623693,
+            "riesgo": "alto",
+            "cuotaJusta": 2.36,
+            "modelo": 0.4881,
+            "historial": 0.36,
+            "fuente": 2
+          },
+          {
+            "tipo": "X",
+            "nombre": "Empate",
+            "p": 0.33932667016386797,
+            "riesgo": "alto",
+            "cuotaJusta": 2.95
+          },
+          {
+            "tipo": "O3.5",
+            "nombre": "Más de 3.5 goles",
+            "p": 0.21482531895882823,
+            "riesgo": "alto",
+            "cuotaJusta": 4.65,
+            "modelo": 0.2697,
+            "historial": 0.16,
+            "fuente": 2
+          },
+          {
+            "tipo": "1",
+            "nombre": "Gana local",
+            "p": 0.20499521116638986,
+            "riesgo": "alto",
+            "cuotaJusta": 4.88
+          },
+          {
+            "tipo": "O4.5",
+            "nombre": "Más de 4.5 goles",
+            "p": 0.09813441283669146,
+            "riesgo": "alto",
+            "cuotaJusta": 10.19,
+            "modelo": 0.1263,
+            "historial": 0.07,
+            "fuente": 2
+          }
+        ],
+        "oportunidades": [
+          "Peso del estadio local: rinde mejor en casa (1.14 vs 0.81 pts por partido, +0.3).",
+          "La visita baja fuera de casa (0.86 vs 1.21 pts por partido)."
+        ],
+        "riesgos": [
+          "Patrón Local: Deportivo Riestra en casa: recibe más, 2.0 por partido en los últimos 2 contra 0.5 antes."
+        ],
+        "serieH2H": [
+          "P",
+          "E"
+        ],
+        "h2hPartidos": 2,
+        "serieH2HCasa": [],
+        "h2hCasaPartidos": 0,
+        "temporadaVigente": {
+          "local": "2026",
+          "visita": "2026"
+        },
+        "cuadros": {
+          "generalLocal": {
+            "n": 27,
+            "gfProm": 0.52,
+            "gcProm": 0.85,
+            "gfMed": 0,
+            "gcMed": 1,
+            "gfDe": 0.8,
+            "gcDe": 0.82,
+            "gfGe1": 37,
+            "gcGe1": 63
+          },
+          "generalVisita": {
+            "n": 28,
+            "gfProm": 1.46,
+            "gcProm": 1.46,
+            "gfMed": 1,
+            "gcMed": 1.5,
+            "gfDe": 1.32,
+            "gcDe": 1,
+            "gfGe1": 71,
+            "gcGe1": 82
+          },
+          "localCasa": {
+            "n": 14,
+            "gfProm": 0.79,
+            "gcProm": 0.71,
+            "gfMed": 0.5,
+            "gcMed": 1,
+            "gfDe": 0.97,
+            "gcDe": 0.83,
+            "gfGe1": 50,
+            "gcGe1": 57
+          },
+          "visitaFuera": {
+            "n": 14,
+            "gfProm": 1.36,
+            "gcProm": 1.86,
+            "gfMed": 1,
+            "gcMed": 2,
+            "gfDe": 1.34,
+            "gcDe": 0.86,
+            "gfGe1": 64,
+            "gcGe1": 100
+          },
+          "h2h": {
+            "n": 2,
+            "gfProm": 0,
+            "gcProm": 1,
+            "gfMed": 0,
+            "gcMed": 1,
+            "gfDe": 0,
+            "gcDe": 1.41,
+            "gfGe1": 0,
+            "gcGe1": 50
+          },
+          "h2hCasa": {
+            "n": 0,
+            "gfProm": 0,
+            "gcProm": 0,
+            "gfMed": null,
+            "gcMed": null,
+            "gfDe": 0,
+            "gcDe": 0,
+            "gfGe1": 0,
+            "gcGe1": 0
+          }
+        },
+        "puntos": {
+          "localCasa": {
+            "pts": 16,
+            "porPartido": 1.14,
+            "n": 14
+          },
+          "localGral": {
+            "pts": 22,
+            "porPartido": 0.81,
+            "n": 27
+          },
+          "visitaFuera": {
+            "pts": 12,
+            "porPartido": 0.86,
+            "n": 14
+          },
+          "visitaGral": {
+            "pts": 34,
+            "porPartido": 1.21,
+            "n": 28
+          }
+        },
+        "pesoEstadio": {
+          "local": {
+            "casa": 1.14,
+            "general": 0.81,
+            "dif": 0.33
+          },
+          "visita": {
+            "fuera": 0.86,
+            "general": 1.21,
+            "dif": -0.35
+          }
+        },
+        "patrones": {
+          "generalLocal": [
+            "Deportivo Riestra: 5 sin ganar",
+            "Deportivo Riestra: empates seguidos (4 de los últimos 5)",
+            "Deportivo Riestra: goles concentrados, la desviación (0.79) supera el promedio (0.52)"
+          ],
+          "generalVisita": [
+            "Unión (Santa Fe): 4 derrotas seguidas",
+            "Unión (Santa Fe): recibió gol en sus últimos 3",
+            "Unión (Santa Fe): suele ganar por 1 gol (4 de los últimos 4)",
+            "Unión (Santa Fe): goles a favor a la baja, 0.0 por partido en los últimos 2 contra 1.6 antes",
+            "Unión (Santa Fe): recibe más, 2.5 por partido en los últimos 2 contra 1.4 antes",
+            "Unión (Santa Fe): forma a la baja, 0.0 pts por partido en los últimos 2 contra 1.3 antes"
+          ],
+          "localCasa": [
+            "Deportivo Riestra en casa: recibió gol en sus últimos 3",
+            "Deportivo Riestra en casa: recibe más, 2.0 por partido en los últimos 2 contra 0.5 antes",
+            "Deportivo Riestra en casa: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.3 antes"
+          ],
+          "visitaFuera": [
+            "Unión (Santa Fe) fuera: 2 derrotas seguidas",
+            "Unión (Santa Fe) fuera: recibió gol en sus últimos 3",
+            "Unión (Santa Fe) fuera: goles a favor a la baja, 0.5 por partido en los últimos 2 contra 1.5 antes",
+            "Unión (Santa Fe) fuera: forma a la baja, 0.0 pts por partido en los últimos 2 contra 1.0 antes"
+          ],
+          "h2h": [
+            "H2H: 2 sin ganar"
+          ],
+          "h2hCasa": []
+        },
+        "tendencias": {
+          "general": {
+            "ou": [
+              {
+                "linea": 0.5,
+                "over": 84,
+                "dev": 0
+              },
+              {
+                "linea": 1,
+                "over": 67,
+                "dev": 16
+              },
+              {
+                "linea": 1.5,
+                "over": 67,
+                "dev": 0
+              },
+              {
+                "linea": 2,
+                "over": 36,
+                "dev": 31
+              },
+              {
+                "linea": 2.5,
+                "over": 36,
+                "dev": 0
+              },
+              {
+                "linea": 3,
+                "over": 16,
+                "dev": 20
+              },
+              {
+                "linea": 3.5,
+                "over": 16,
+                "dev": 0
+              },
+              {
+                "linea": 4,
+                "over": 7,
+                "dev": 9
+              },
+              {
+                "linea": 4.5,
+                "over": 7,
+                "dev": 0
+              }
+            ],
+            "aa": 44,
+            "n": 55
+          },
+          "lv": {
+            "ou": [
+              {
+                "linea": 0.5,
+                "over": 89,
+                "dev": 0
+              },
+              {
+                "linea": 1,
+                "over": 71,
+                "dev": 18
+              },
+              {
+                "linea": 1.5,
+                "over": 71,
+                "dev": 0
+              },
+              {
+                "linea": 2,
+                "over": 43,
+                "dev": 29
+              },
+              {
+                "linea": 2.5,
+                "over": 43,
+                "dev": 0
+              },
+              {
+                "linea": 3,
+                "over": 18,
+                "dev": 25
+              },
+              {
+                "linea": 3.5,
+                "over": 18,
+                "dev": 0
+              },
+              {
+                "linea": 4,
+                "over": 4,
+                "dev": 14
+              },
+              {
+                "linea": 4.5,
+                "over": 4,
+                "dev": 0
+              }
+            ],
+            "aa": 46,
+            "n": 28
+          },
+          "h2h": {
+            "ou": [
+              {
+                "linea": 0.5,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 1,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 1.5,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 2,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 2.5,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 3,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 3.5,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 4,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 4.5,
+                "over": 0,
+                "dev": 0
+              }
+            ],
+            "aa": 0,
+            "n": 2
+          },
+          "localCasa": {
+            "ou": [
+              {
+                "linea": 0.5,
+                "over": 79,
+                "dev": 0
+              },
+              {
+                "linea": 1,
+                "over": 57,
+                "dev": 21
+              },
+              {
+                "linea": 1.5,
+                "over": 57,
+                "dev": 0
+              },
+              {
+                "linea": 2,
+                "over": 14,
+                "dev": 43
+              },
+              {
+                "linea": 2.5,
+                "over": 14,
+                "dev": 0
+              },
+              {
+                "linea": 3,
+                "over": 0,
+                "dev": 14
+              },
+              {
+                "linea": 3.5,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 4,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 4.5,
+                "over": 0,
+                "dev": 0
+              }
+            ],
+            "aa": 29,
+            "n": 14
+          },
+          "visitaFuera": {
+            "ou": [
+              {
+                "linea": 0.5,
+                "over": 100,
+                "dev": 0
+              },
+              {
+                "linea": 1,
+                "over": 86,
+                "dev": 14
+              },
+              {
+                "linea": 1.5,
+                "over": 86,
+                "dev": 0
+              },
+              {
+                "linea": 2,
+                "over": 71,
+                "dev": 14
+              },
+              {
+                "linea": 2.5,
+                "over": 71,
+                "dev": 0
+              },
+              {
+                "linea": 3,
+                "over": 36,
+                "dev": 36
+              },
+              {
+                "linea": 3.5,
+                "over": 36,
+                "dev": 0
+              },
+              {
+                "linea": 4,
+                "over": 7,
+                "dev": 29
+              },
+              {
+                "linea": 4.5,
+                "over": 7,
+                "dev": 0
+              }
+            ],
+            "aa": 64,
+            "n": 14
+          },
+          "localCasaHist": {
+            "ou": [
+              {
+                "linea": 0.5,
+                "over": 77,
+                "dev": 0
+              },
+              {
+                "linea": 1,
+                "over": 50,
+                "dev": 27
+              },
+              {
+                "linea": 1.5,
+                "over": 50,
+                "dev": 0
+              },
+              {
+                "linea": 2,
+                "over": 18,
+                "dev": 32
+              },
+              {
+                "linea": 2.5,
+                "over": 18,
+                "dev": 0
+              },
+              {
+                "linea": 3,
+                "over": 7,
+                "dev": 11
+              },
+              {
+                "linea": 3.5,
+                "over": 7,
+                "dev": 0
+              },
+              {
+                "linea": 4,
+                "over": 2,
+                "dev": 5
+              },
+              {
+                "linea": 4.5,
+                "over": 2,
+                "dev": 0
+              }
+            ],
+            "aa": 25,
+            "n": 44
+          },
+          "visitaFueraHist": {
+            "ou": [
+              {
+                "linea": 0.5,
+                "over": 87,
+                "dev": 0
+              },
+              {
+                "linea": 1,
+                "over": 60,
+                "dev": 27
+              },
+              {
+                "linea": 1.5,
+                "over": 60,
+                "dev": 0
+              },
+              {
+                "linea": 2,
+                "over": 42,
+                "dev": 18
+              },
+              {
+                "linea": 2.5,
+                "over": 42,
+                "dev": 0
+              },
+              {
+                "linea": 3,
+                "over": 24,
+                "dev": 18
+              },
+              {
+                "linea": 3.5,
+                "over": 24,
+                "dev": 0
+              },
+              {
+                "linea": 4,
+                "over": 8,
+                "dev": 16
+              },
+              {
+                "linea": 4.5,
+                "over": 8,
+                "dev": 0
+              }
+            ],
+            "aa": 48,
+            "n": 83
+          }
+        }
+      }
+    },
+    {
       "partido": "Pisa vs Cremonese",
       "liga": "Serie B",
       "ligaKey": "ita.2",
@@ -74851,6 +74807,1103 @@
             ],
             "aa": 49,
             "n": 97
+          }
+        }
+      }
+    },
+    {
+      "partido": "Villarreal vs Elche",
+      "liga": "La Liga",
+      "ligaKey": "esp.1",
+      "escudoLocal": "https://a.espncdn.com/i/teamlogos/soccer/500/102.png",
+      "escudoVisita": "https://a.espncdn.com/i/teamlogos/soccer/500/3751.png",
+      "colorLocal": "ffff00",
+      "colorVisita": "288A00",
+      "sede": "Estadio de la Cerámica",
+      "calibracion": "propia",
+      "kickoff": "2026-10-17T14:15Z",
+      "favoritoMercado": "H",
+      "ladoMercado": "Villarreal",
+      "probMercado": 0.648,
+      "cuotaMercado": 1.47,
+      "cuotaApertura": 1.45,
+      "ladoModelo": "Villarreal",
+      "probModelo": 0.5924,
+      "coincide": true,
+      "movimiento": 0.28,
+      "cambioFavorito": false,
+      "goles": {
+        "linea": 3.5,
+        "overround": 1.0464,
+        "over": {
+          "lado": "Over",
+          "cuota": 2.2,
+          "probMercado": 0.4344,
+          "probMercadoPct": 43.4,
+          "probModelo": 56.4,
+          "margenPp": 12.9
+        },
+        "under": {
+          "lado": "Under",
+          "cuota": 1.69,
+          "probMercado": 0.5656,
+          "probMercadoPct": 56.6,
+          "probModelo": 43.6,
+          "margenPp": -12.9
+        }
+      },
+      "lineaGoles": 3.5,
+      "lambdaHome": 1.94683930562304,
+      "lambdaAway": 0.9951601048559998,
+      "ladder": {
+        "oneXTwo": {
+          "local": {
+            "p": 0.592411907412719,
+            "cuotaJusta": 1.69
+          },
+          "empate": {
+            "p": 0.22267559488887675,
+            "cuotaJusta": 4.49
+          },
+          "visita": {
+            "p": 0.18491249769840426,
+            "cuotaJusta": 5.41
+          }
+        },
+        "overUnder": [
+          {
+            "linea": 0.5,
+            "over": {
+              "p": 0.947239865627122,
+              "cuotaJusta": 1.06
+            },
+            "under": {
+              "p": 0.052760134372877965,
+              "cuotaJusta": 18.95
+            }
+          },
+          {
+            "linea": 1,
+            "over": {
+              "p": 0.7920195823697179,
+              "cuotaJusta": 1.26
+            },
+            "under": {
+              "p": 0.20798041763028208,
+              "cuotaJusta": 4.81
+            }
+          },
+          {
+            "linea": 1.5,
+            "over": {
+              "p": 0.7920195823697179,
+              "cuotaJusta": 1.26
+            },
+            "under": {
+              "p": 0.20798041763028208,
+              "cuotaJusta": 4.81
+            }
+          },
+          {
+            "linea": 2,
+            "over": {
+              "p": 0.5636905914508817,
+              "cuotaJusta": 1.77
+            },
+            "under": {
+              "p": 0.43630940854911826,
+              "cuotaJusta": 2.29
+            }
+          },
+          {
+            "linea": 2.5,
+            "over": {
+              "p": 0.5636905914508817,
+              "cuotaJusta": 1.77
+            },
+            "under": {
+              "p": 0.43630940854911826,
+              "cuotaJusta": 2.29
+            }
+          },
+          {
+            "linea": 3,
+            "over": {
+              "p": 0.3397760058913857,
+              "cuotaJusta": 2.94
+            },
+            "under": {
+              "p": 0.6602239941086143,
+              "cuotaJusta": 1.51
+            }
+          },
+          {
+            "linea": 3.5,
+            "over": {
+              "p": 0.3397760058913857,
+              "cuotaJusta": 2.94
+            },
+            "under": {
+              "p": 0.6602239941086143,
+              "cuotaJusta": 1.51
+            }
+          },
+          {
+            "linea": 4,
+            "over": {
+              "p": 0.17508686121296116,
+              "cuotaJusta": 5.71
+            },
+            "under": {
+              "p": 0.8249131387870389,
+              "cuotaJusta": 1.21
+            }
+          },
+          {
+            "linea": 4.5,
+            "over": {
+              "p": 0.17508686121296116,
+              "cuotaJusta": 5.71
+            },
+            "under": {
+              "p": 0.8249131387870389,
+              "cuotaJusta": 1.21
+            }
+          }
+        ],
+        "ambosAnotan": {
+          "si": {
+            "p": 0.5403714114293701,
+            "cuotaJusta": 1.85
+          },
+          "no": {
+            "p": 0.45962858857062994,
+            "cuotaJusta": 2.18
+          }
+        },
+        "marcadores": [
+          {
+            "marcador": "1-0",
+            "p": 0.10271550272889124,
+            "cuotaJusta": 9.74
+          },
+          {
+            "marcador": "1-1",
+            "p": 0.10221837046602013,
+            "cuotaJusta": 9.78
+          },
+          {
+            "marcador": "2-0",
+            "p": 0.09998528900471806,
+            "cuotaJusta": 10
+          },
+          {
+            "marcador": "2-1",
+            "p": 0.09950137068999267,
+            "cuotaJusta": 10.05
+          },
+          {
+            "marcador": "3-0",
+            "p": 0.06488509687282143,
+            "cuotaJusta": 15.41
+          },
+          {
+            "marcador": "3-1",
+            "p": 0.06457105980754868,
+            "cuotaJusta": 15.49
+          }
+        ]
+      },
+      "tiempos": {
+        "fraccion1T": 0.45,
+        "primerTiempo": {
+          "local": 0.876,
+          "visita": 0.448,
+          "overUnder": [
+            {
+              "linea": 0.5,
+              "over": {
+                "p": 0.7339044261952987,
+                "cuotaJusta": 1.36
+              },
+              "under": {
+                "p": 0.2660955738047013,
+                "cuotaJusta": 3.76
+              }
+            },
+            {
+              "linea": 1,
+              "over": {
+                "p": 0.38162056662627164,
+                "cuotaJusta": 2.62
+              },
+              "under": {
+                "p": 0.6183794333737284,
+                "cuotaJusta": 1.62
+              }
+            },
+            {
+              "linea": 1.5,
+              "over": {
+                "p": 0.38162056662627164,
+                "cuotaJusta": 2.62
+              },
+              "under": {
+                "p": 0.6183794333737284,
+                "cuotaJusta": 1.62
+              }
+            },
+            {
+              "linea": 2,
+              "over": {
+                "p": 0.14842631251226548,
+                "cuotaJusta": 6.74
+              },
+              "under": {
+                "p": 0.8515736874877345,
+                "cuotaJusta": 1.17
+              }
+            },
+            {
+              "linea": 2.5,
+              "over": {
+                "p": 0.14842631251226548,
+                "cuotaJusta": 6.74
+              },
+              "under": {
+                "p": 0.8515736874877345,
+                "cuotaJusta": 1.17
+              }
+            }
+          ]
+        },
+        "segundoTiempo": {
+          "local": 1.071,
+          "visita": 0.547,
+          "overUnder": [
+            {
+              "linea": 0.5,
+              "over": {
+                "p": 0.801724871666555,
+                "cuotaJusta": 1.25
+              },
+              "under": {
+                "p": 0.19827512833344496,
+                "cuotaJusta": 5.04
+              }
+            },
+            {
+              "linea": 1,
+              "over": {
+                "p": 0.4808959507983309,
+                "cuotaJusta": 2.08
+              },
+              "under": {
+                "p": 0.5191040492016691,
+                "cuotaJusta": 1.93
+              }
+            },
+            {
+              "linea": 1.5,
+              "over": {
+                "p": 0.4808959507983309,
+                "cuotaJusta": 2.08
+              },
+              "under": {
+                "p": 0.5191040492016691,
+                "cuotaJusta": 1.93
+              }
+            },
+            {
+              "linea": 2,
+              "over": {
+                "p": 0.2213293643821221,
+                "cuotaJusta": 4.52
+              },
+              "under": {
+                "p": 0.7786706356178779,
+                "cuotaJusta": 1.28
+              }
+            },
+            {
+              "linea": 2.5,
+              "over": {
+                "p": 0.2213293643821221,
+                "cuotaJusta": 4.52
+              },
+              "under": {
+                "p": 0.7786706356178779,
+                "cuotaJusta": 1.28
+              }
+            }
+          ]
+        }
+      },
+      "estado": "programado",
+      "marcador": null,
+      "resultado": null,
+      "goodToLine": {
+        "ejecutable": false,
+        "probActual": 0.6480086114101183,
+        "necesita": 0.69,
+        "cuotaNecesaria": 1.4492753623188408,
+        "cuotaActual": 1.5431893687707643
+      },
+      "serie": null,
+      "combinado": {
+        "inclina": "Local",
+        "pCombinada": 0.5153,
+        "confianza": "baja",
+        "fuentes": [
+          "modelo",
+          "base",
+          "h2h"
+        ],
+        "pesos": {
+          "modelo": 0.5,
+          "base": 0.3,
+          "h2h": 0.2
+        },
+        "tabla": [
+          {
+            "lado": "H",
+            "modelo": 0.5924,
+            "historial": 0.2857,
+            "combinada": 0.5153
+          },
+          {
+            "lado": "D",
+            "modelo": 0.2227,
+            "historial": 0.2857,
+            "combinada": 0.1971
+          },
+          {
+            "lado": "A",
+            "modelo": 0.1849,
+            "historial": 0.4286,
+            "combinada": 0.2877
+          }
+        ],
+        "recomendacion": {
+          "tipo": "O1.5",
+          "nombre": "Más de 1.5 goles",
+          "p": 0.861009791184859,
+          "riesgo": "medio",
+          "cuotaJusta": 1.16,
+          "modelo": 0.792,
+          "historial": 0.93,
+          "fuente": 2
+        },
+        "alternativa": {
+          "tipo": "1X",
+          "nombre": "Local o empate",
+          "p": 0.7123056559127026,
+          "riesgo": "medio",
+          "cuotaJusta": 1.4
+        },
+        "demasPronosticos": [
+          {
+            "tipo": "AA",
+            "nombre": "Ambos anotan: Sí",
+            "p": 0.700185705714685,
+            "riesgo": "alto",
+            "cuotaJusta": 1.43,
+            "modelo": 0.5404,
+            "historial": 0.86,
+            "fuente": 2
+          },
+          {
+            "tipo": "O2.5",
+            "nombre": "Más de 2.5 goles",
+            "p": 0.6768452957254409,
+            "riesgo": "alto",
+            "cuotaJusta": 1.48,
+            "modelo": 0.5637,
+            "historial": 0.79,
+            "fuente": 2
+          },
+          {
+            "tipo": "O3.5",
+            "nombre": "Más de 3.5 goles",
+            "p": 0.5248880029456928,
+            "riesgo": "alto",
+            "cuotaJusta": 1.91,
+            "modelo": 0.3398,
+            "historial": 0.71,
+            "fuente": 2
+          },
+          {
+            "tipo": "1",
+            "nombre": "Gana local",
+            "p": 0.5152535727539785,
+            "riesgo": "alto",
+            "cuotaJusta": 1.94
+          },
+          {
+            "tipo": "X2",
+            "nombre": "Visita o empate",
+            "p": 0.4847464272460214,
+            "riesgo": "alto",
+            "cuotaJusta": 2.06
+          },
+          {
+            "tipo": "2",
+            "nombre": "Gana visita",
+            "p": 0.2876943440872973,
+            "riesgo": "alto",
+            "cuotaJusta": 3.48
+          },
+          {
+            "tipo": "O4.5",
+            "nombre": "Más de 4.5 goles",
+            "p": 0.26754343060648056,
+            "riesgo": "alto",
+            "cuotaJusta": 3.74,
+            "modelo": 0.1751,
+            "historial": 0.36,
+            "fuente": 2
+          },
+          {
+            "tipo": "X",
+            "nombre": "Empate",
+            "p": 0.19705208315872408,
+            "riesgo": "alto",
+            "cuotaJusta": 5.07
+          }
+        ],
+        "evitar": [
+          "Más de 2 goles: modelo 56% contra historial 79% (modelo abajo 23pp).",
+          "Más de 2.5 goles: modelo 56% contra historial 79% (modelo abajo 23pp).",
+          "Más de 3 goles: modelo 34% contra historial 71% (modelo abajo 37pp).",
+          "Más de 3.5 goles: modelo 34% contra historial 71% (modelo abajo 37pp)."
+        ],
+        "coinciden": [],
+        "calidad": "Calidad de datos buena.",
+        "pronosticos": [
+          {
+            "tipo": "O1.5",
+            "nombre": "Más de 1.5 goles",
+            "p": 0.861009791184859,
+            "riesgo": "medio",
+            "cuotaJusta": 1.16,
+            "modelo": 0.792,
+            "historial": 0.93,
+            "fuente": 2
+          },
+          {
+            "tipo": "1X",
+            "nombre": "Local o empate",
+            "p": 0.7123056559127026,
+            "riesgo": "medio",
+            "cuotaJusta": 1.4
+          },
+          {
+            "tipo": "AA",
+            "nombre": "Ambos anotan: Sí",
+            "p": 0.700185705714685,
+            "riesgo": "alto",
+            "cuotaJusta": 1.43,
+            "modelo": 0.5404,
+            "historial": 0.86,
+            "fuente": 2
+          },
+          {
+            "tipo": "O2.5",
+            "nombre": "Más de 2.5 goles",
+            "p": 0.6768452957254409,
+            "riesgo": "alto",
+            "cuotaJusta": 1.48,
+            "modelo": 0.5637,
+            "historial": 0.79,
+            "fuente": 2
+          },
+          {
+            "tipo": "O3.5",
+            "nombre": "Más de 3.5 goles",
+            "p": 0.5248880029456928,
+            "riesgo": "alto",
+            "cuotaJusta": 1.91,
+            "modelo": 0.3398,
+            "historial": 0.71,
+            "fuente": 2
+          },
+          {
+            "tipo": "1",
+            "nombre": "Gana local",
+            "p": 0.5152535727539785,
+            "riesgo": "alto",
+            "cuotaJusta": 1.94
+          },
+          {
+            "tipo": "X2",
+            "nombre": "Visita o empate",
+            "p": 0.4847464272460214,
+            "riesgo": "alto",
+            "cuotaJusta": 2.06
+          },
+          {
+            "tipo": "2",
+            "nombre": "Gana visita",
+            "p": 0.2876943440872973,
+            "riesgo": "alto",
+            "cuotaJusta": 3.48
+          },
+          {
+            "tipo": "O4.5",
+            "nombre": "Más de 4.5 goles",
+            "p": 0.26754343060648056,
+            "riesgo": "alto",
+            "cuotaJusta": 3.74,
+            "modelo": 0.1751,
+            "historial": 0.36,
+            "fuente": 2
+          },
+          {
+            "tipo": "X",
+            "nombre": "Empate",
+            "p": 0.19705208315872408,
+            "riesgo": "alto",
+            "cuotaJusta": 5.07
+          }
+        ],
+        "oportunidades": [
+          "Patrón Local: Villarreal en casa: ganó el último tras 3 sin ganar.",
+          "Patrón H2H L/V (local): H2H en casa: 3 victorias seguidas."
+        ],
+        "riesgos": [
+          "Patrón Visita: Elche fuera: forma al alza, 2.0 pts por partido en los últimos 2 contra 0.5 antes.",
+          "Patrón Visita: Elche fuera: recibe menos, 1.0 por partido en los últimos 2 contra 2.0 antes.",
+          "Más de 2 goles: modelo 56% contra historial 79% (modelo abajo 23pp).",
+          "Más de 2.5 goles: modelo 56% contra historial 79% (modelo abajo 23pp).",
+          "Más de 3 goles: modelo 34% contra historial 71% (modelo abajo 37pp)."
+        ],
+        "serieH2H": [
+          "G",
+          "G",
+          "P",
+          "G",
+          "P",
+          "G"
+        ],
+        "h2hPartidos": 6,
+        "serieH2HCasa": [
+          "G",
+          "G",
+          "G"
+        ],
+        "h2hCasaPartidos": 3,
+        "temporadaVigente": {
+          "local": "2627",
+          "visita": "2627"
+        },
+        "cuadros": {
+          "generalLocal": {
+            "n": 7,
+            "gfProm": 1.86,
+            "gcProm": 1.71,
+            "gfMed": 2,
+            "gcMed": 2,
+            "gfDe": 1.07,
+            "gcDe": 0.76,
+            "gfGe1": 86,
+            "gcGe1": 100
+          },
+          "generalVisita": {
+            "n": 7,
+            "gfProm": 1.57,
+            "gcProm": 2.43,
+            "gfMed": 2,
+            "gcMed": 3,
+            "gfDe": 0.98,
+            "gcDe": 1.51,
+            "gfGe1": 86,
+            "gcGe1": 100
+          },
+          "localCasa": {
+            "n": 3,
+            "gfProm": 2,
+            "gcProm": 2,
+            "gfMed": 2,
+            "gcMed": 2,
+            "gfDe": 1,
+            "gcDe": 1,
+            "gfGe1": 100,
+            "gcGe1": 100
+          },
+          "visitaFuera": {
+            "n": 4,
+            "gfProm": 1.75,
+            "gcProm": 1.5,
+            "gfMed": 1.5,
+            "gcMed": 1,
+            "gfDe": 0.96,
+            "gcDe": 1,
+            "gfGe1": 100,
+            "gcGe1": 100
+          },
+          "h2h": {
+            "n": 6,
+            "gfProm": 2.33,
+            "gcProm": 1.17,
+            "gfMed": 2.5,
+            "gcMed": 1,
+            "gfDe": 1.63,
+            "gcDe": 0.98,
+            "gfGe1": 83,
+            "gcGe1": 83
+          },
+          "h2hCasa": {
+            "n": 3,
+            "gfProm": 3.33,
+            "gcProm": 0.67,
+            "gfMed": 4,
+            "gcMed": 1,
+            "gfDe": 1.15,
+            "gcDe": 0.58,
+            "gfGe1": 100,
+            "gcGe1": 67
+          }
+        },
+        "puntos": {
+          "localCasa": {
+            "pts": 3,
+            "porPartido": 1,
+            "n": 3
+          },
+          "localGral": {
+            "pts": 8,
+            "porPartido": 1.14,
+            "n": 7
+          },
+          "visitaFuera": {
+            "pts": 5,
+            "porPartido": 1.25,
+            "n": 4
+          },
+          "visitaGral": {
+            "pts": 5,
+            "porPartido": 0.71,
+            "n": 7
+          }
+        },
+        "pesoEstadio": {
+          "local": {
+            "casa": 1,
+            "general": 1.14,
+            "dif": -0.14
+          },
+          "visita": {
+            "fuera": 1.25,
+            "general": 0.71,
+            "dif": 0.54
+          }
+        },
+        "patrones": {
+          "generalLocal": [
+            "Villarreal: 2 victorias seguidas",
+            "Villarreal: anotó en sus últimos 3",
+            "Villarreal: recibió gol en sus últimos 3",
+            "Villarreal: ambos anotaron en sus últimos 2",
+            "Villarreal: ambos marcan en cadena (últimos 3)",
+            "Villarreal: goles a favor al alza, 3.0 por partido en los últimos 2 contra 1.4 antes",
+            "Villarreal: recibe menos, 1.0 por partido en los últimos 2 contra 2.0 antes",
+            "Villarreal: forma al alza, 3.0 pts por partido en los últimos 2 contra 0.4 antes"
+          ],
+          "generalVisita": [
+            "Elche: anotó en sus últimos 3",
+            "Elche: recibió gol en sus últimos 3",
+            "Elche: ambos anotaron en sus últimos 2",
+            "Elche: ambos marcan en cadena (últimos 3)",
+            "Elche: goles a favor al alza, 2.5 por partido en los últimos 2 contra 1.2 antes",
+            "Elche: forma al alza, 1.5 pts por partido en los últimos 2 contra 0.4 antes"
+          ],
+          "localCasa": [
+            "Villarreal en casa: ganó el último tras 3 sin ganar",
+            "Villarreal en casa: anotó en sus últimos 3",
+            "Villarreal en casa: recibió gol en sus últimos 3",
+            "Villarreal en casa: ambos anotaron en sus últimos 2",
+            "Villarreal en casa: ambos marcan en cadena (últimos 3)"
+          ],
+          "visitaFuera": [
+            "Elche fuera: anotó en sus últimos 3",
+            "Elche fuera: recibió gol en sus últimos 3",
+            "Elche fuera: ambos anotaron en sus últimos 2",
+            "Elche fuera: zig-zag de goles: O-U-O-U (alterna over/under de 2.5)",
+            "Elche fuera: ambos marcan en cadena (últimos 3)",
+            "Elche fuera: recibe menos, 1.0 por partido en los últimos 2 contra 2.0 antes",
+            "Elche fuera: forma al alza, 2.0 pts por partido en los últimos 2 contra 0.5 antes"
+          ],
+          "h2h": [
+            "H2H: 2 victorias seguidas",
+            "H2H: anotó en sus últimos 3",
+            "H2H: recibió gol en sus últimos 3",
+            "H2H: ambos anotaron en sus últimos 2",
+            "H2H: ambos marcan en cadena (últimos 3)",
+            "H2H: forma al alza, 3.0 pts por partido en los últimos 2 contra 1.5 antes"
+          ],
+          "h2hCasa": [
+            "H2H en casa: 3 victorias seguidas",
+            "H2H en casa: 3 sin perder",
+            "H2H en casa: anotó en sus últimos 3"
+          ]
+        },
+        "tendencias": {
+          "general": {
+            "ou": [
+              {
+                "linea": 0.5,
+                "over": 100,
+                "dev": 0
+              },
+              {
+                "linea": 1,
+                "over": 93,
+                "dev": 7
+              },
+              {
+                "linea": 1.5,
+                "over": 93,
+                "dev": 0
+              },
+              {
+                "linea": 2,
+                "over": 79,
+                "dev": 14
+              },
+              {
+                "linea": 2.5,
+                "over": 79,
+                "dev": 0
+              },
+              {
+                "linea": 3,
+                "over": 71,
+                "dev": 7
+              },
+              {
+                "linea": 3.5,
+                "over": 71,
+                "dev": 0
+              },
+              {
+                "linea": 4,
+                "over": 36,
+                "dev": 36
+              },
+              {
+                "linea": 4.5,
+                "over": 36,
+                "dev": 0
+              }
+            ],
+            "aa": 86,
+            "n": 14
+          },
+          "lv": {
+            "ou": [
+              {
+                "linea": 0.5,
+                "over": 100,
+                "dev": 0
+              },
+              {
+                "linea": 1,
+                "over": 100,
+                "dev": 0
+              },
+              {
+                "linea": 1.5,
+                "over": 100,
+                "dev": 0
+              },
+              {
+                "linea": 2,
+                "over": 71,
+                "dev": 29
+              },
+              {
+                "linea": 2.5,
+                "over": 71,
+                "dev": 0
+              },
+              {
+                "linea": 3,
+                "over": 57,
+                "dev": 14
+              },
+              {
+                "linea": 3.5,
+                "over": 57,
+                "dev": 0
+              },
+              {
+                "linea": 4,
+                "over": 29,
+                "dev": 29
+              },
+              {
+                "linea": 4.5,
+                "over": 29,
+                "dev": 0
+              }
+            ],
+            "aa": 100,
+            "n": 7
+          },
+          "h2h": {
+            "ou": [
+              {
+                "linea": 0.5,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 1,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 1.5,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 2,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 2.5,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 3,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 3.5,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 4,
+                "over": 0,
+                "dev": 0
+              },
+              {
+                "linea": 4.5,
+                "over": 0,
+                "dev": 0
+              }
+            ],
+            "aa": 67,
+            "n": 6
+          },
+          "localCasa": {
+            "ou": [
+              {
+                "linea": 0.5,
+                "over": 100,
+                "dev": 0
+              },
+              {
+                "linea": 1,
+                "over": 100,
+                "dev": 0
+              },
+              {
+                "linea": 1.5,
+                "over": 100,
+                "dev": 0
+              },
+              {
+                "linea": 2,
+                "over": 100,
+                "dev": 0
+              },
+              {
+                "linea": 2.5,
+                "over": 100,
+                "dev": 0
+              },
+              {
+                "linea": 3,
+                "over": 67,
+                "dev": 33
+              },
+              {
+                "linea": 3.5,
+                "over": 67,
+                "dev": 0
+              },
+              {
+                "linea": 4,
+                "over": 33,
+                "dev": 33
+              },
+              {
+                "linea": 4.5,
+                "over": 33,
+                "dev": 0
+              }
+            ],
+            "aa": 100,
+            "n": 3
+          },
+          "visitaFuera": {
+            "ou": [
+              {
+                "linea": 0.5,
+                "over": 100,
+                "dev": 0
+              },
+              {
+                "linea": 1,
+                "over": 100,
+                "dev": 0
+              },
+              {
+                "linea": 1.5,
+                "over": 100,
+                "dev": 0
+              },
+              {
+                "linea": 2,
+                "over": 50,
+                "dev": 50
+              },
+              {
+                "linea": 2.5,
+                "over": 50,
+                "dev": 0
+              },
+              {
+                "linea": 3,
+                "over": 50,
+                "dev": 0
+              },
+              {
+                "linea": 3.5,
+                "over": 50,
+                "dev": 0
+              },
+              {
+                "linea": 4,
+                "over": 25,
+                "dev": 25
+              },
+              {
+                "linea": 4.5,
+                "over": 25,
+                "dev": 0
+              }
+            ],
+            "aa": 100,
+            "n": 4
+          },
+          "localCasaHist": {
+            "ou": [
+              {
+                "linea": 0.5,
+                "over": 96,
+                "dev": 0
+              },
+              {
+                "linea": 1,
+                "over": 88,
+                "dev": 8
+              },
+              {
+                "linea": 1.5,
+                "over": 88,
+                "dev": 0
+              },
+              {
+                "linea": 2,
+                "over": 66,
+                "dev": 21
+              },
+              {
+                "linea": 2.5,
+                "over": 66,
+                "dev": 0
+              },
+              {
+                "linea": 3,
+                "over": 41,
+                "dev": 26
+              },
+              {
+                "linea": 3.5,
+                "over": 41,
+                "dev": 0
+              },
+              {
+                "linea": 4,
+                "over": 24,
+                "dev": 16
+              },
+              {
+                "linea": 4.5,
+                "over": 24,
+                "dev": 0
+              }
+            ],
+            "aa": 66,
+            "n": 98
+          },
+          "visitaFueraHist": {
+            "ou": [
+              {
+                "linea": 0.5,
+                "over": 98,
+                "dev": 0
+              },
+              {
+                "linea": 1,
+                "over": 75,
+                "dev": 23
+              },
+              {
+                "linea": 1.5,
+                "over": 75,
+                "dev": 0
+              },
+              {
+                "linea": 2,
+                "over": 45,
+                "dev": 30
+              },
+              {
+                "linea": 2.5,
+                "over": 45,
+                "dev": 0
+              },
+              {
+                "linea": 3,
+                "over": 22,
+                "dev": 22
+              },
+              {
+                "linea": 3.5,
+                "over": 22,
+                "dev": 0
+              },
+              {
+                "linea": 4,
+                "over": 7,
+                "dev": 16
+              },
+              {
+                "linea": 4.5,
+                "over": 7,
+                "dev": 0
+              }
+            ],
+            "aa": 52,
+            "n": 103
           }
         }
       }
@@ -95235,1067 +96288,6 @@
       }
     },
     {
-      "partido": "Deportivo Riestra vs Unión (Santa Fe)",
-      "liga": "Liga Profesional",
-      "ligaKey": "arg.1",
-      "escudoLocal": "https://a.espncdn.com/i/teamlogos/soccer/500/17702.png",
-      "escudoVisita": "https://a.espncdn.com/i/teamlogos/soccer/500/20.png",
-      "colorLocal": "212121",
-      "colorVisita": "C60000",
-      "sede": "Guillermo Laza",
-      "calibracion": "propia",
-      "kickoff": "2026-10-20T00:15Z",
-      "favoritoMercado": "H",
-      "ladoMercado": "Deportivo Riestra",
-      "probMercado": 0.4088,
-      "cuotaMercado": 2.25,
-      "cuotaApertura": 2.25,
-      "ladoModelo": "Unión (Santa Fe)",
-      "probModelo": 0.4542,
-      "coincide": false,
-      "movimiento": 0,
-      "cambioFavorito": false,
-      "goles": {
-        "linea": 1.5,
-        "overround": 1.0909,
-        "over": {
-          "lado": "Over",
-          "cuota": 1.57,
-          "probMercado": 0.5833,
-          "probMercadoPct": 58.3,
-          "probModelo": 48.8,
-          "margenPp": -9.5
-        },
-        "under": {
-          "lado": "Under",
-          "cuota": 2.2,
-          "probMercado": 0.4167,
-          "probMercadoPct": 41.7,
-          "probModelo": 51.2,
-          "margenPp": 9.5
-        }
-      },
-      "lineaGoles": 1.5,
-      "lambdaHome": 1.1266863142392,
-      "lambdaAway": 1.4992420864079998,
-      "ladder": {
-        "oneXTwo": {
-          "local": {
-            "p": 0.28141899376135115,
-            "cuotaJusta": 3.55
-          },
-          "empate": {
-            "p": 0.2643676260420216,
-            "cuotaJusta": 3.78
-          },
-          "visita": {
-            "p": 0.45421338019662727,
-            "cuotaJusta": 2.2
-          }
-        },
-        "overUnder": [
-          {
-            "linea": 0.5,
-            "over": {
-              "p": 0.9276274648660676,
-              "cuotaJusta": 1.08
-            },
-            "under": {
-              "p": 0.07237253513393238,
-              "cuotaJusta": 13.82
-            }
-          },
-          {
-            "linea": 1,
-            "over": {
-              "p": 0.7375823694513479,
-              "cuotaJusta": 1.36
-            },
-            "under": {
-              "p": 0.2624176305486521,
-              "cuotaJusta": 3.81
-            }
-          },
-          {
-            "linea": 1.5,
-            "over": {
-              "p": 0.7375823694513479,
-              "cuotaJusta": 1.36
-            },
-            "under": {
-              "p": 0.2624176305486521,
-              "cuotaJusta": 3.81
-            }
-          },
-          {
-            "linea": 2,
-            "over": {
-              "p": 0.4880599627247386,
-              "cuotaJusta": 2.05
-            },
-            "under": {
-              "p": 0.5119400372752614,
-              "cuotaJusta": 1.95
-            }
-          },
-          {
-            "linea": 2.5,
-            "over": {
-              "p": 0.4880599627247386,
-              "cuotaJusta": 2.05
-            },
-            "under": {
-              "p": 0.5119400372752614,
-              "cuotaJusta": 1.95
-            }
-          },
-          {
-            "linea": 3,
-            "over": {
-              "p": 0.2696506379176565,
-              "cuotaJusta": 3.71
-            },
-            "under": {
-              "p": 0.7303493620823436,
-              "cuotaJusta": 1.37
-            }
-          },
-          {
-            "linea": 3.5,
-            "over": {
-              "p": 0.2696506379176565,
-              "cuotaJusta": 3.71
-            },
-            "under": {
-              "p": 0.7303493620823436,
-              "cuotaJusta": 1.37
-            }
-          },
-          {
-            "linea": 4,
-            "over": {
-              "p": 0.1262688256733829,
-              "cuotaJusta": 7.92
-            },
-            "under": {
-              "p": 0.8737311743266171,
-              "cuotaJusta": 1.14
-            }
-          },
-          {
-            "linea": 4.5,
-            "over": {
-              "p": 0.1262688256733829,
-              "cuotaJusta": 7.92
-            },
-            "under": {
-              "p": 0.8737311743266171,
-              "cuotaJusta": 1.14
-            }
-          }
-        ],
-        "ambosAnotan": {
-          "si": {
-            "p": 0.5249677348733317,
-            "cuotaJusta": 1.9
-          },
-          "no": {
-            "p": 0.4750322651266683,
-            "cuotaJusta": 2.11
-          }
-        },
-        "marcadores": [
-          {
-            "marcador": "1-1",
-            "p": 0.12224991613823238,
-            "cuotaJusta": 8.18
-          },
-          {
-            "marcador": "0-1",
-            "p": 0.10850395056123689,
-            "cuotaJusta": 9.22
-          },
-          {
-            "marcador": "1-2",
-            "p": 0.09164110966714326,
-            "cuotaJusta": 10.91
-          },
-          {
-            "marcador": "1-0",
-            "p": 0.08154114485348272,
-            "cuotaJusta": 12.26
-          },
-          {
-            "marcador": "0-2",
-            "p": 0.08133684461146963,
-            "cuotaJusta": 12.29
-          },
-          {
-            "marcador": "0-0",
-            "p": 0.07237253512619769,
-            "cuotaJusta": 13.82
-          }
-        ]
-      },
-      "tiempos": {
-        "fraccion1T": 0.45,
-        "primerTiempo": {
-          "local": 0.507,
-          "visita": 0.675,
-          "overUnder": [
-            {
-              "linea": 0.5,
-              "over": {
-                "p": 0.6932333077139611,
-                "cuotaJusta": 1.44
-              },
-              "under": {
-                "p": 0.3067666922860389,
-                "cuotaJusta": 3.26
-              }
-            },
-            {
-              "linea": 1,
-              "over": {
-                "p": 0.3307369913730312,
-                "cuotaJusta": 3.02
-              },
-              "under": {
-                "p": 0.6692630086269689,
-                "cuotaJusta": 1.49
-              }
-            },
-            {
-              "linea": 1.5,
-              "over": {
-                "p": 0.3307369913730312,
-                "cuotaJusta": 3.02
-              },
-              "under": {
-                "p": 0.6692630086269689,
-                "cuotaJusta": 1.49
-              }
-            },
-            {
-              "linea": 2,
-              "over": {
-                "p": 0.1165618826258623,
-                "cuotaJusta": 8.58
-              },
-              "under": {
-                "p": 0.8834381173741377,
-                "cuotaJusta": 1.13
-              }
-            },
-            {
-              "linea": 2.5,
-              "over": {
-                "p": 0.1165618826258623,
-                "cuotaJusta": 8.58
-              },
-              "under": {
-                "p": 0.8834381173741377,
-                "cuotaJusta": 1.13
-              }
-            }
-          ]
-        },
-        "segundoTiempo": {
-          "local": 0.62,
-          "visita": 0.825,
-          "overUnder": [
-            {
-              "linea": 0.5,
-              "over": {
-                "p": 0.7640795531389846,
-                "cuotaJusta": 1.31
-              },
-              "under": {
-                "p": 0.23592044686101543,
-                "cuotaJusta": 4.24
-              }
-            },
-            {
-              "linea": 1,
-              "over": {
-                "p": 0.42334894220084,
-                "cuotaJusta": 2.36
-              },
-              "under": {
-                "p": 0.5766510577991599,
-                "cuotaJusta": 1.73
-              }
-            },
-            {
-              "linea": 1.5,
-              "over": {
-                "p": 0.42334894220084,
-                "cuotaJusta": 2.36
-              },
-              "under": {
-                "p": 0.5766510577991599,
-                "cuotaJusta": 1.73
-              }
-            },
-            {
-              "linea": 2,
-              "over": {
-                "p": 0.17729704043694564,
-                "cuotaJusta": 5.64
-              },
-              "under": {
-                "p": 0.8227029595630544,
-                "cuotaJusta": 1.22
-              }
-            },
-            {
-              "linea": 2.5,
-              "over": {
-                "p": 0.17729704043694564,
-                "cuotaJusta": 5.64
-              },
-              "under": {
-                "p": 0.8227029595630544,
-                "cuotaJusta": 1.22
-              }
-            }
-          ]
-        }
-      },
-      "estado": "programado",
-      "marcador": null,
-      "resultado": null,
-      "goodToLine": {
-        "ejecutable": false,
-        "probActual": 0.4087591240875912,
-        "necesita": 0.38,
-        "cuotaNecesaria": 2.6315789473684212,
-        "cuotaActual": 2.4464285714285716
-      },
-      "serie": null,
-      "combinado": {
-        "inclina": "Visita",
-        "pCombinada": 0.4557,
-        "confianza": "baja",
-        "fuentes": [
-          "modelo",
-          "base",
-          "h2h"
-        ],
-        "pesos": {
-          "modelo": 0.5,
-          "base": 0.3,
-          "h2h": 0.2
-        },
-        "tabla": [
-          {
-            "lado": "H",
-            "modelo": 0.2814,
-            "historial": 0.2143,
-            "combinada": 0.205
-          },
-          {
-            "lado": "D",
-            "modelo": 0.2644,
-            "historial": 0.3571,
-            "combinada": 0.3393
-          },
-          {
-            "lado": "A",
-            "modelo": 0.4542,
-            "historial": 0.4286,
-            "combinada": 0.4557
-          }
-        ],
-        "recomendacion": {
-          "tipo": "X2",
-          "nombre": "Visita o empate",
-          "p": 0.7950047888336101,
-          "riesgo": "bajo",
-          "cuotaJusta": 1.26
-        },
-        "alternativa": {
-          "tipo": "O1.5",
-          "nombre": "Más de 1.5 goles",
-          "p": 0.7037911847256739,
-          "riesgo": "alto",
-          "cuotaJusta": 1.42,
-          "modelo": 0.7376,
-          "historial": 0.67,
-          "fuente": 2
-        },
-        "demasPronosticos": [
-          {
-            "tipo": "1X",
-            "nombre": "Local o empate",
-            "p": 0.5443218813302578,
-            "riesgo": "alto",
-            "cuotaJusta": 1.84
-          },
-          {
-            "tipo": "AA",
-            "nombre": "Ambos anotan: Sí",
-            "p": 0.4824838674366658,
-            "riesgo": "alto",
-            "cuotaJusta": 2.07,
-            "modelo": 0.525,
-            "historial": 0.44,
-            "fuente": 2
-          },
-          {
-            "tipo": "2",
-            "nombre": "Gana visita",
-            "p": 0.45567811866974217,
-            "riesgo": "alto",
-            "cuotaJusta": 2.19
-          },
-          {
-            "tipo": "O2.5",
-            "nombre": "Más de 2.5 goles",
-            "p": 0.4240299813623693,
-            "riesgo": "alto",
-            "cuotaJusta": 2.36,
-            "modelo": 0.4881,
-            "historial": 0.36,
-            "fuente": 2
-          },
-          {
-            "tipo": "X",
-            "nombre": "Empate",
-            "p": 0.33932667016386797,
-            "riesgo": "alto",
-            "cuotaJusta": 2.95
-          },
-          {
-            "tipo": "O3.5",
-            "nombre": "Más de 3.5 goles",
-            "p": 0.21482531895882823,
-            "riesgo": "alto",
-            "cuotaJusta": 4.65,
-            "modelo": 0.2697,
-            "historial": 0.16,
-            "fuente": 2
-          },
-          {
-            "tipo": "1",
-            "nombre": "Gana local",
-            "p": 0.20499521116638986,
-            "riesgo": "alto",
-            "cuotaJusta": 4.88
-          },
-          {
-            "tipo": "O4.5",
-            "nombre": "Más de 4.5 goles",
-            "p": 0.09813441283669146,
-            "riesgo": "alto",
-            "cuotaJusta": 10.19,
-            "modelo": 0.1263,
-            "historial": 0.07,
-            "fuente": 2
-          }
-        ],
-        "evitar": [],
-        "coinciden": [],
-        "calidad": "Calidad de datos media: goles irregulares en la base.",
-        "pronosticos": [
-          {
-            "tipo": "X2",
-            "nombre": "Visita o empate",
-            "p": 0.7950047888336101,
-            "riesgo": "bajo",
-            "cuotaJusta": 1.26
-          },
-          {
-            "tipo": "O1.5",
-            "nombre": "Más de 1.5 goles",
-            "p": 0.7037911847256739,
-            "riesgo": "alto",
-            "cuotaJusta": 1.42,
-            "modelo": 0.7376,
-            "historial": 0.67,
-            "fuente": 2
-          },
-          {
-            "tipo": "1X",
-            "nombre": "Local o empate",
-            "p": 0.5443218813302578,
-            "riesgo": "alto",
-            "cuotaJusta": 1.84
-          },
-          {
-            "tipo": "AA",
-            "nombre": "Ambos anotan: Sí",
-            "p": 0.4824838674366658,
-            "riesgo": "alto",
-            "cuotaJusta": 2.07,
-            "modelo": 0.525,
-            "historial": 0.44,
-            "fuente": 2
-          },
-          {
-            "tipo": "2",
-            "nombre": "Gana visita",
-            "p": 0.45567811866974217,
-            "riesgo": "alto",
-            "cuotaJusta": 2.19
-          },
-          {
-            "tipo": "O2.5",
-            "nombre": "Más de 2.5 goles",
-            "p": 0.4240299813623693,
-            "riesgo": "alto",
-            "cuotaJusta": 2.36,
-            "modelo": 0.4881,
-            "historial": 0.36,
-            "fuente": 2
-          },
-          {
-            "tipo": "X",
-            "nombre": "Empate",
-            "p": 0.33932667016386797,
-            "riesgo": "alto",
-            "cuotaJusta": 2.95
-          },
-          {
-            "tipo": "O3.5",
-            "nombre": "Más de 3.5 goles",
-            "p": 0.21482531895882823,
-            "riesgo": "alto",
-            "cuotaJusta": 4.65,
-            "modelo": 0.2697,
-            "historial": 0.16,
-            "fuente": 2
-          },
-          {
-            "tipo": "1",
-            "nombre": "Gana local",
-            "p": 0.20499521116638986,
-            "riesgo": "alto",
-            "cuotaJusta": 4.88
-          },
-          {
-            "tipo": "O4.5",
-            "nombre": "Más de 4.5 goles",
-            "p": 0.09813441283669146,
-            "riesgo": "alto",
-            "cuotaJusta": 10.19,
-            "modelo": 0.1263,
-            "historial": 0.07,
-            "fuente": 2
-          }
-        ],
-        "oportunidades": [
-          "Peso del estadio local: rinde mejor en casa (1.14 vs 0.81 pts por partido, +0.3).",
-          "La visita baja fuera de casa (0.86 vs 1.21 pts por partido)."
-        ],
-        "riesgos": [
-          "Patrón Local: Deportivo Riestra en casa: recibe más, 2.0 por partido en los últimos 2 contra 0.5 antes."
-        ],
-        "serieH2H": [
-          "P",
-          "E"
-        ],
-        "h2hPartidos": 2,
-        "serieH2HCasa": [],
-        "h2hCasaPartidos": 0,
-        "temporadaVigente": {
-          "local": "2026",
-          "visita": "2026"
-        },
-        "cuadros": {
-          "generalLocal": {
-            "n": 27,
-            "gfProm": 0.52,
-            "gcProm": 0.85,
-            "gfMed": 0,
-            "gcMed": 1,
-            "gfDe": 0.8,
-            "gcDe": 0.82,
-            "gfGe1": 37,
-            "gcGe1": 63
-          },
-          "generalVisita": {
-            "n": 28,
-            "gfProm": 1.46,
-            "gcProm": 1.46,
-            "gfMed": 1,
-            "gcMed": 1.5,
-            "gfDe": 1.32,
-            "gcDe": 1,
-            "gfGe1": 71,
-            "gcGe1": 82
-          },
-          "localCasa": {
-            "n": 14,
-            "gfProm": 0.79,
-            "gcProm": 0.71,
-            "gfMed": 0.5,
-            "gcMed": 1,
-            "gfDe": 0.97,
-            "gcDe": 0.83,
-            "gfGe1": 50,
-            "gcGe1": 57
-          },
-          "visitaFuera": {
-            "n": 14,
-            "gfProm": 1.36,
-            "gcProm": 1.86,
-            "gfMed": 1,
-            "gcMed": 2,
-            "gfDe": 1.34,
-            "gcDe": 0.86,
-            "gfGe1": 64,
-            "gcGe1": 100
-          },
-          "h2h": {
-            "n": 2,
-            "gfProm": 0,
-            "gcProm": 1,
-            "gfMed": 0,
-            "gcMed": 1,
-            "gfDe": 0,
-            "gcDe": 1.41,
-            "gfGe1": 0,
-            "gcGe1": 50
-          },
-          "h2hCasa": {
-            "n": 0,
-            "gfProm": 0,
-            "gcProm": 0,
-            "gfMed": null,
-            "gcMed": null,
-            "gfDe": 0,
-            "gcDe": 0,
-            "gfGe1": 0,
-            "gcGe1": 0
-          }
-        },
-        "puntos": {
-          "localCasa": {
-            "pts": 16,
-            "porPartido": 1.14,
-            "n": 14
-          },
-          "localGral": {
-            "pts": 22,
-            "porPartido": 0.81,
-            "n": 27
-          },
-          "visitaFuera": {
-            "pts": 12,
-            "porPartido": 0.86,
-            "n": 14
-          },
-          "visitaGral": {
-            "pts": 34,
-            "porPartido": 1.21,
-            "n": 28
-          }
-        },
-        "pesoEstadio": {
-          "local": {
-            "casa": 1.14,
-            "general": 0.81,
-            "dif": 0.33
-          },
-          "visita": {
-            "fuera": 0.86,
-            "general": 1.21,
-            "dif": -0.35
-          }
-        },
-        "patrones": {
-          "generalLocal": [
-            "Deportivo Riestra: 5 sin ganar",
-            "Deportivo Riestra: empates seguidos (4 de los últimos 5)",
-            "Deportivo Riestra: goles concentrados, la desviación (0.79) supera el promedio (0.52)"
-          ],
-          "generalVisita": [
-            "Unión (Santa Fe): 4 derrotas seguidas",
-            "Unión (Santa Fe): recibió gol en sus últimos 3",
-            "Unión (Santa Fe): suele ganar por 1 gol (4 de los últimos 4)",
-            "Unión (Santa Fe): goles a favor a la baja, 0.0 por partido en los últimos 2 contra 1.6 antes",
-            "Unión (Santa Fe): recibe más, 2.5 por partido en los últimos 2 contra 1.4 antes",
-            "Unión (Santa Fe): forma a la baja, 0.0 pts por partido en los últimos 2 contra 1.3 antes"
-          ],
-          "localCasa": [
-            "Deportivo Riestra en casa: recibió gol en sus últimos 3",
-            "Deportivo Riestra en casa: recibe más, 2.0 por partido en los últimos 2 contra 0.5 antes",
-            "Deportivo Riestra en casa: forma a la baja, 0.5 pts por partido en los últimos 2 contra 1.3 antes"
-          ],
-          "visitaFuera": [
-            "Unión (Santa Fe) fuera: 2 derrotas seguidas",
-            "Unión (Santa Fe) fuera: recibió gol en sus últimos 3",
-            "Unión (Santa Fe) fuera: goles a favor a la baja, 0.5 por partido en los últimos 2 contra 1.5 antes",
-            "Unión (Santa Fe) fuera: forma a la baja, 0.0 pts por partido en los últimos 2 contra 1.0 antes"
-          ],
-          "h2h": [
-            "H2H: 2 sin ganar"
-          ],
-          "h2hCasa": []
-        },
-        "tendencias": {
-          "general": {
-            "ou": [
-              {
-                "linea": 0.5,
-                "over": 84,
-                "dev": 0
-              },
-              {
-                "linea": 1,
-                "over": 67,
-                "dev": 16
-              },
-              {
-                "linea": 1.5,
-                "over": 67,
-                "dev": 0
-              },
-              {
-                "linea": 2,
-                "over": 36,
-                "dev": 31
-              },
-              {
-                "linea": 2.5,
-                "over": 36,
-                "dev": 0
-              },
-              {
-                "linea": 3,
-                "over": 16,
-                "dev": 20
-              },
-              {
-                "linea": 3.5,
-                "over": 16,
-                "dev": 0
-              },
-              {
-                "linea": 4,
-                "over": 7,
-                "dev": 9
-              },
-              {
-                "linea": 4.5,
-                "over": 7,
-                "dev": 0
-              }
-            ],
-            "aa": 44,
-            "n": 55
-          },
-          "lv": {
-            "ou": [
-              {
-                "linea": 0.5,
-                "over": 89,
-                "dev": 0
-              },
-              {
-                "linea": 1,
-                "over": 71,
-                "dev": 18
-              },
-              {
-                "linea": 1.5,
-                "over": 71,
-                "dev": 0
-              },
-              {
-                "linea": 2,
-                "over": 43,
-                "dev": 29
-              },
-              {
-                "linea": 2.5,
-                "over": 43,
-                "dev": 0
-              },
-              {
-                "linea": 3,
-                "over": 18,
-                "dev": 25
-              },
-              {
-                "linea": 3.5,
-                "over": 18,
-                "dev": 0
-              },
-              {
-                "linea": 4,
-                "over": 4,
-                "dev": 14
-              },
-              {
-                "linea": 4.5,
-                "over": 4,
-                "dev": 0
-              }
-            ],
-            "aa": 46,
-            "n": 28
-          },
-          "h2h": {
-            "ou": [
-              {
-                "linea": 0.5,
-                "over": 0,
-                "dev": 0
-              },
-              {
-                "linea": 1,
-                "over": 0,
-                "dev": 0
-              },
-              {
-                "linea": 1.5,
-                "over": 0,
-                "dev": 0
-              },
-              {
-                "linea": 2,
-                "over": 0,
-                "dev": 0
-              },
-              {
-                "linea": 2.5,
-                "over": 0,
-                "dev": 0
-              },
-              {
-                "linea": 3,
-                "over": 0,
-                "dev": 0
-              },
-              {
-                "linea": 3.5,
-                "over": 0,
-                "dev": 0
-              },
-              {
-                "linea": 4,
-                "over": 0,
-                "dev": 0
-              },
-              {
-                "linea": 4.5,
-                "over": 0,
-                "dev": 0
-              }
-            ],
-            "aa": 0,
-            "n": 2
-          },
-          "localCasa": {
-            "ou": [
-              {
-                "linea": 0.5,
-                "over": 79,
-                "dev": 0
-              },
-              {
-                "linea": 1,
-                "over": 57,
-                "dev": 21
-              },
-              {
-                "linea": 1.5,
-                "over": 57,
-                "dev": 0
-              },
-              {
-                "linea": 2,
-                "over": 14,
-                "dev": 43
-              },
-              {
-                "linea": 2.5,
-                "over": 14,
-                "dev": 0
-              },
-              {
-                "linea": 3,
-                "over": 0,
-                "dev": 14
-              },
-              {
-                "linea": 3.5,
-                "over": 0,
-                "dev": 0
-              },
-              {
-                "linea": 4,
-                "over": 0,
-                "dev": 0
-              },
-              {
-                "linea": 4.5,
-                "over": 0,
-                "dev": 0
-              }
-            ],
-            "aa": 29,
-            "n": 14
-          },
-          "visitaFuera": {
-            "ou": [
-              {
-                "linea": 0.5,
-                "over": 100,
-                "dev": 0
-              },
-              {
-                "linea": 1,
-                "over": 86,
-                "dev": 14
-              },
-              {
-                "linea": 1.5,
-                "over": 86,
-                "dev": 0
-              },
-              {
-                "linea": 2,
-                "over": 71,
-                "dev": 14
-              },
-              {
-                "linea": 2.5,
-                "over": 71,
-                "dev": 0
-              },
-              {
-                "linea": 3,
-                "over": 36,
-                "dev": 36
-              },
-              {
-                "linea": 3.5,
-                "over": 36,
-                "dev": 0
-              },
-              {
-                "linea": 4,
-                "over": 7,
-                "dev": 29
-              },
-              {
-                "linea": 4.5,
-                "over": 7,
-                "dev": 0
-              }
-            ],
-            "aa": 64,
-            "n": 14
-          },
-          "localCasaHist": {
-            "ou": [
-              {
-                "linea": 0.5,
-                "over": 77,
-                "dev": 0
-              },
-              {
-                "linea": 1,
-                "over": 50,
-                "dev": 27
-              },
-              {
-                "linea": 1.5,
-                "over": 50,
-                "dev": 0
-              },
-              {
-                "linea": 2,
-                "over": 18,
-                "dev": 32
-              },
-              {
-                "linea": 2.5,
-                "over": 18,
-                "dev": 0
-              },
-              {
-                "linea": 3,
-                "over": 7,
-                "dev": 11
-              },
-              {
-                "linea": 3.5,
-                "over": 7,
-                "dev": 0
-              },
-              {
-                "linea": 4,
-                "over": 2,
-                "dev": 5
-              },
-              {
-                "linea": 4.5,
-                "over": 2,
-                "dev": 0
-              }
-            ],
-            "aa": 25,
-            "n": 44
-          },
-          "visitaFueraHist": {
-            "ou": [
-              {
-                "linea": 0.5,
-                "over": 87,
-                "dev": 0
-              },
-              {
-                "linea": 1,
-                "over": 60,
-                "dev": 27
-              },
-              {
-                "linea": 1.5,
-                "over": 60,
-                "dev": 0
-              },
-              {
-                "linea": 2,
-                "over": 42,
-                "dev": 18
-              },
-              {
-                "linea": 2.5,
-                "over": 42,
-                "dev": 0
-              },
-              {
-                "linea": 3,
-                "over": 24,
-                "dev": 18
-              },
-              {
-                "linea": 3.5,
-                "over": 24,
-                "dev": 0
-              },
-              {
-                "linea": 4,
-                "over": 8,
-                "dev": 16
-              },
-              {
-                "linea": 4.5,
-                "over": 8,
-                "dev": 0
-              }
-            ],
-            "aa": 48,
-            "n": 83
-          }
-        }
-      }
-    },
-    {
       "partido": "Remo vs Red Bull Bragantino",
       "liga": "Brasileirão",
       "ligaKey": "bra.1",
@@ -104996,13 +104988,53 @@
     "nota": "El margen de la casa se mide como ROI de apostar todos los picks de consenso, medido por el backtest.",
     "notaDrawdown": "Max drawdown: cuánto cayó el saldo acumulado desde su máximo, apostando 1 unidad por pick."
   },
-  "alertas": [],
+  "alertas": [
+    {
+      "tipo": "NUEVO_PICK",
+      "severidad": "baja",
+      "fixtureId": "401882837",
+      "partido": "Villarreal vs Elche",
+      "mercado": "1X2",
+      "detalle": "Nuevo 1X2: Gana Villarreal al 74%",
+      "antes": null,
+      "ahora": {
+        "confianza": 74,
+        "probMercado": 0.648
+      }
+    }
+  ],
   "resumenAlertas": {
     "alta": 0,
     "media": 0,
-    "baja": 0
+    "baja": 1
   },
   "picks": [
+    {
+      "id": "401882837-H",
+      "fixtureId": "401882837",
+      "league": "esp.1",
+      "kickoff": "2026-10-17T14:15Z",
+      "homeTeam": "Villarreal",
+      "awayTeam": "Elche",
+      "market": "1X2",
+      "selection": "Gana Villarreal",
+      "odds": 1.4651162790697674,
+      "confidence": 74,
+      "stars": 4,
+      "isSpecial": false,
+      "isPremium": false,
+      "probMercado": 0.648,
+      "nMuestra": 5212,
+      "rango": [
+        72.9,
+        75.3
+      ],
+      "createdAt": "2026-10-17T00:25:02.946Z",
+      "roiUnit": 0.08418604651162787,
+      "margen": 0.057460317460317434,
+      "breakEven": 0.6825396825396826,
+      "rentable": true
+    },
     {
       "id": "401874935-H",
       "fixtureId": "401874935",
@@ -105023,7 +105055,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-17T00:15:02.862Z",
+      "createdAt": "2026-10-17T00:25:02.946Z",
       "roiUnit": 0.14,
       "margen": 0.09087719298245611,
       "breakEven": 0.6491228070175439,
@@ -105049,7 +105081,7 @@
         72.9,
         75.3
       ],
-      "createdAt": "2026-10-17T00:15:02.863Z",
+      "createdAt": "2026-10-17T00:25:02.947Z",
       "roiUnit": 0.10097560975609754,
       "margen": 0.06786885245901642,
       "breakEven": 0.6721311475409836,
@@ -105059,6 +105091,269 @@
   "picksMercado": [],
   "live": [],
   "standings": {
+    "fra.1": {
+      "liga": "fra.1",
+      "ligaNombre": "Ligue 1",
+      "grupos": [
+        {
+          "nombre": "French Ligue 1 2026-27",
+          "equipos": [
+            {
+              "posicion": 1,
+              "equipo": "AS Monaco",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/174.png",
+              "color": null,
+              "pj": 6,
+              "ganados": 4,
+              "empatados": 2,
+              "perdidos": 0,
+              "puntos": 14,
+              "diferencia": 5,
+              "aFavor": 10,
+              "enContra": 5
+            },
+            {
+              "posicion": 2,
+              "equipo": "Lille",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/166.png",
+              "color": null,
+              "pj": 6,
+              "ganados": 4,
+              "empatados": 1,
+              "perdidos": 1,
+              "puntos": 13,
+              "diferencia": 5,
+              "aFavor": 9,
+              "enContra": 4
+            },
+            {
+              "posicion": 3,
+              "equipo": "Stade Rennais",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/169.png",
+              "color": null,
+              "pj": 6,
+              "ganados": 4,
+              "empatados": 1,
+              "perdidos": 1,
+              "puntos": 13,
+              "diferencia": 2,
+              "aFavor": 12,
+              "enContra": 10
+            },
+            {
+              "posicion": 4,
+              "equipo": "Lyon",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/167.png",
+              "color": null,
+              "pj": 6,
+              "ganados": 3,
+              "empatados": 2,
+              "perdidos": 1,
+              "puntos": 11,
+              "diferencia": 7,
+              "aFavor": 11,
+              "enContra": 4
+            },
+            {
+              "posicion": 5,
+              "equipo": "Paris FC",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/6851.png",
+              "color": null,
+              "pj": 6,
+              "ganados": 3,
+              "empatados": 2,
+              "perdidos": 1,
+              "puntos": 11,
+              "diferencia": 4,
+              "aFavor": 8,
+              "enContra": 4
+            },
+            {
+              "posicion": 6,
+              "equipo": "Paris Saint-Germain",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/160.png",
+              "color": null,
+              "pj": 6,
+              "ganados": 3,
+              "empatados": 2,
+              "perdidos": 1,
+              "puntos": 11,
+              "diferencia": 3,
+              "aFavor": 11,
+              "enContra": 8
+            },
+            {
+              "posicion": 7,
+              "equipo": "Toulouse",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/179.png",
+              "color": null,
+              "pj": 7,
+              "ganados": 2,
+              "empatados": 3,
+              "perdidos": 2,
+              "puntos": 9,
+              "diferencia": 1,
+              "aFavor": 12,
+              "enContra": 11
+            },
+            {
+              "posicion": 8,
+              "equipo": "Brest",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/6997.png",
+              "color": null,
+              "pj": 6,
+              "ganados": 2,
+              "empatados": 2,
+              "perdidos": 2,
+              "puntos": 8,
+              "diferencia": 3,
+              "aFavor": 12,
+              "enContra": 9
+            },
+            {
+              "posicion": 9,
+              "equipo": "Lorient",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/273.png",
+              "color": null,
+              "pj": 6,
+              "ganados": 2,
+              "empatados": 2,
+              "perdidos": 2,
+              "puntos": 8,
+              "diferencia": 0,
+              "aFavor": 6,
+              "enContra": 6
+            },
+            {
+              "posicion": 10,
+              "equipo": "Nice",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/2502.png",
+              "color": null,
+              "pj": 6,
+              "ganados": 2,
+              "empatados": 2,
+              "perdidos": 2,
+              "puntos": 8,
+              "diferencia": -2,
+              "aFavor": 5,
+              "enContra": 7
+            },
+            {
+              "posicion": 11,
+              "equipo": "Lens",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/175.png",
+              "color": null,
+              "pj": 6,
+              "ganados": 2,
+              "empatados": 1,
+              "perdidos": 3,
+              "puntos": 7,
+              "diferencia": 1,
+              "aFavor": 11,
+              "enContra": 10
+            },
+            {
+              "posicion": 12,
+              "equipo": "Strasbourg",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/180.png",
+              "color": null,
+              "pj": 6,
+              "ganados": 2,
+              "empatados": 1,
+              "perdidos": 3,
+              "puntos": 7,
+              "diferencia": -1,
+              "aFavor": 11,
+              "enContra": 12
+            },
+            {
+              "posicion": 13,
+              "equipo": "Angers",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/7868.png",
+              "color": null,
+              "pj": 6,
+              "ganados": 2,
+              "empatados": 1,
+              "perdidos": 3,
+              "puntos": 7,
+              "diferencia": -3,
+              "aFavor": 7,
+              "enContra": 10
+            },
+            {
+              "posicion": 14,
+              "equipo": "Marseille",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/176.png",
+              "color": null,
+              "pj": 6,
+              "ganados": 2,
+              "empatados": 0,
+              "perdidos": 4,
+              "puntos": 6,
+              "diferencia": 1,
+              "aFavor": 9,
+              "enContra": 8
+            },
+            {
+              "posicion": 15,
+              "equipo": "Le Mans",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/2697.png",
+              "color": null,
+              "pj": 7,
+              "ganados": 1,
+              "empatados": 3,
+              "perdidos": 3,
+              "puntos": 6,
+              "diferencia": -5,
+              "aFavor": 10,
+              "enContra": 15
+            },
+            {
+              "posicion": 16,
+              "equipo": "AJ Auxerre",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/172.png",
+              "color": null,
+              "pj": 6,
+              "ganados": 2,
+              "empatados": 0,
+              "perdidos": 4,
+              "puntos": 6,
+              "diferencia": -8,
+              "aFavor": 8,
+              "enContra": 16
+            },
+            {
+              "posicion": 17,
+              "equipo": "Troyes",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/170.png",
+              "color": null,
+              "pj": 6,
+              "ganados": 1,
+              "empatados": 1,
+              "perdidos": 4,
+              "puntos": 4,
+              "diferencia": -9,
+              "aFavor": 4,
+              "enContra": 13
+            },
+            {
+              "posicion": 18,
+              "equipo": "Le Havre AC",
+              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/3236.png",
+              "color": null,
+              "pj": 6,
+              "ganados": 0,
+              "empatados": 2,
+              "perdidos": 4,
+              "puntos": 2,
+              "diferencia": -4,
+              "aFavor": 4,
+              "enContra": 8
+            }
+          ]
+        }
+      ]
+    },
     "ita.1": {
       "liga": "ita.1",
       "ligaNombre": "Serie A",
@@ -105345,269 +105640,6 @@
               "diferencia": -11,
               "aFavor": 5,
               "enContra": 16
-            }
-          ]
-        }
-      ]
-    },
-    "fra.1": {
-      "liga": "fra.1",
-      "ligaNombre": "Ligue 1",
-      "grupos": [
-        {
-          "nombre": "French Ligue 1 2026-27",
-          "equipos": [
-            {
-              "posicion": 1,
-              "equipo": "AS Monaco",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/174.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 4,
-              "empatados": 2,
-              "perdidos": 0,
-              "puntos": 14,
-              "diferencia": 5,
-              "aFavor": 10,
-              "enContra": 5
-            },
-            {
-              "posicion": 2,
-              "equipo": "Lille",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/166.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 4,
-              "empatados": 1,
-              "perdidos": 1,
-              "puntos": 13,
-              "diferencia": 5,
-              "aFavor": 9,
-              "enContra": 4
-            },
-            {
-              "posicion": 3,
-              "equipo": "Stade Rennais",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/169.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 4,
-              "empatados": 1,
-              "perdidos": 1,
-              "puntos": 13,
-              "diferencia": 2,
-              "aFavor": 12,
-              "enContra": 10
-            },
-            {
-              "posicion": 4,
-              "equipo": "Lyon",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/167.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 3,
-              "empatados": 2,
-              "perdidos": 1,
-              "puntos": 11,
-              "diferencia": 7,
-              "aFavor": 11,
-              "enContra": 4
-            },
-            {
-              "posicion": 5,
-              "equipo": "Paris FC",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/6851.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 3,
-              "empatados": 2,
-              "perdidos": 1,
-              "puntos": 11,
-              "diferencia": 4,
-              "aFavor": 8,
-              "enContra": 4
-            },
-            {
-              "posicion": 6,
-              "equipo": "Paris Saint-Germain",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/160.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 3,
-              "empatados": 2,
-              "perdidos": 1,
-              "puntos": 11,
-              "diferencia": 3,
-              "aFavor": 11,
-              "enContra": 8
-            },
-            {
-              "posicion": 7,
-              "equipo": "Toulouse",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/179.png",
-              "color": null,
-              "pj": 7,
-              "ganados": 2,
-              "empatados": 3,
-              "perdidos": 2,
-              "puntos": 9,
-              "diferencia": 1,
-              "aFavor": 12,
-              "enContra": 11
-            },
-            {
-              "posicion": 8,
-              "equipo": "Brest",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/6997.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 2,
-              "empatados": 2,
-              "perdidos": 2,
-              "puntos": 8,
-              "diferencia": 3,
-              "aFavor": 12,
-              "enContra": 9
-            },
-            {
-              "posicion": 9,
-              "equipo": "Lorient",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/273.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 2,
-              "empatados": 2,
-              "perdidos": 2,
-              "puntos": 8,
-              "diferencia": 0,
-              "aFavor": 6,
-              "enContra": 6
-            },
-            {
-              "posicion": 10,
-              "equipo": "Nice",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/2502.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 2,
-              "empatados": 2,
-              "perdidos": 2,
-              "puntos": 8,
-              "diferencia": -2,
-              "aFavor": 5,
-              "enContra": 7
-            },
-            {
-              "posicion": 11,
-              "equipo": "Lens",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/175.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 2,
-              "empatados": 1,
-              "perdidos": 3,
-              "puntos": 7,
-              "diferencia": 1,
-              "aFavor": 11,
-              "enContra": 10
-            },
-            {
-              "posicion": 12,
-              "equipo": "Strasbourg",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/180.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 2,
-              "empatados": 1,
-              "perdidos": 3,
-              "puntos": 7,
-              "diferencia": -1,
-              "aFavor": 11,
-              "enContra": 12
-            },
-            {
-              "posicion": 13,
-              "equipo": "Angers",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/7868.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 2,
-              "empatados": 1,
-              "perdidos": 3,
-              "puntos": 7,
-              "diferencia": -3,
-              "aFavor": 7,
-              "enContra": 10
-            },
-            {
-              "posicion": 14,
-              "equipo": "Marseille",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/176.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 2,
-              "empatados": 0,
-              "perdidos": 4,
-              "puntos": 6,
-              "diferencia": 1,
-              "aFavor": 9,
-              "enContra": 8
-            },
-            {
-              "posicion": 15,
-              "equipo": "Le Mans",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/2697.png",
-              "color": null,
-              "pj": 7,
-              "ganados": 1,
-              "empatados": 3,
-              "perdidos": 3,
-              "puntos": 6,
-              "diferencia": -5,
-              "aFavor": 10,
-              "enContra": 15
-            },
-            {
-              "posicion": 16,
-              "equipo": "AJ Auxerre",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/172.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 2,
-              "empatados": 0,
-              "perdidos": 4,
-              "puntos": 6,
-              "diferencia": -8,
-              "aFavor": 8,
-              "enContra": 16
-            },
-            {
-              "posicion": 17,
-              "equipo": "Troyes",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/170.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 1,
-              "empatados": 1,
-              "perdidos": 4,
-              "puntos": 4,
-              "diferencia": -9,
-              "aFavor": 4,
-              "enContra": 13
-            },
-            {
-              "posicion": 18,
-              "equipo": "Le Havre AC",
-              "escudo": "https://a.espncdn.com/i/teamlogos/soccer/500/3236.png",
-              "color": null,
-              "pj": 6,
-              "ganados": 0,
-              "empatados": 2,
-              "perdidos": 4,
-              "puntos": 2,
-              "diferencia": -4,
-              "aFavor": 4,
-              "enContra": 8
             }
           ]
         }
