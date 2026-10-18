@@ -159,6 +159,7 @@ ul.pl li.none::before{content:none}
 .pk .r-Bajo{color:var(--win)} .pk .r-Medio{color:var(--draw)} .pk .r-Alto{color:var(--loss)}
 .pk .tr{font-size:12px;color:var(--muted)}
 .pk{border-left-width:4px}
+.toca .pk{cursor:pointer}
 .pk[data-t=top]{border-color:var(--win);background:color-mix(in srgb,var(--win) 14%,var(--field))}
 .pk[data-t=alto]{border-color:var(--win);background:color-mix(in srgb,var(--win) 7%,var(--field))}
 .pk[data-t=medio]{border-color:var(--draw)}
@@ -322,6 +323,7 @@ details.adv summary{cursor:pointer;font:600 14px var(--body);padding:6px 0}
         <div class="acts" style="margin:0 0 8px"><button class="btn" id="btn-mov" type="button">Movimiento de cuota (Arbworld)</button><span class="cap" id="mov-msg" style="margin:0"></span></div><div style="overflow-x:auto"><table class="mk" id="mov-tab" hidden></table></div><p class="cap" id="mov-cap" hidden>Apertura → actual en el exchange de Betfair (vía Arbworld), no en tu casa. Menos de 3% casi siempre es ruido; 3–7% es una señal real pero no necesariamente valor; desde 7% es fuerte, sobre todo en mercados líquidos. Descriptivo: en el backtest de tu dashboard, seguir el lado del movimiento no superó al azar. Solo salen partidos por jugar y las 40 filas con más movimiento de cada mercado.</p>
         <div class="pks" id="an-pk"></div>
         <p class="cap" id="an-pk-cap"></p>
+        <p class="cap" id="an-pk-rn" hidden>Toca una tarjeta para abrir ese partido en Stake (solo en la app). La apuesta la haces tú allí.</p>
       </div>
       <div class="block"><h3>Mercado contra modelo</h3><table class="mk" id="an-cmp"></table><p class="cap" id="an-cmp-cap"></p></div>
       <div class="block">
@@ -1279,6 +1281,13 @@ function omMsgPaste(t){ var st=$('paste-status'); st.className='status warn'; st
 $('btn-paste-clear').addEventListener('click',function(){ $('paste').value=''; $('paste-status').textContent=''; $('paste-status').className='status'; $('paste-audit').innerHTML=''; });
 $('paste').addEventListener('paste',function(){ setTimeout(function(){ if($('paste').value.length>40) loadPasted(); },50); });
 // Puente con la app (WebView de Flashscore): la app entrega aquí el texto capturado. En el navegador de la PC no se usa.
+// En la app: tocar una tarjeta de pronóstico abre el partido en el visor de Stake (la app busca el partido por los nombres).
+if(window.ReactNativeWebView){ $('an-pk-rn').hidden=false; $('an-pk').classList.add('toca'); }
+$('an-pk').addEventListener('click',function(e){
+  if(!window.ReactNativeWebView||e.target.closest('input,button,a,label')) return;
+  var c=e.target.closest('.pk'); if(!c||!cfg.names.l||!cfg.names.v) return;
+  window.ReactNativeWebView.postMessage(JSON.stringify({tipo:'stake',l:cfg.names.l,v:cfg.names.v,mercado:c.getAttribute('data-n')||''}));
+});
 window.__pgRecibir=function(tipo,texto){
   try{
     var sec;

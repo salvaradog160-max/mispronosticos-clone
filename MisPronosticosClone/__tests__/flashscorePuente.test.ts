@@ -35,3 +35,25 @@ test('los scripts generados son JS valido, entregan por postMessage y no usan el
     expect(js).not.toContain('navigator.clipboard');
   }
 });
+
+test('leerMensaje: pedido de Stake valido e invalido', () => {
+  expect(leerMensaje(JSON.stringify({ tipo: 'stake', l: 'BAYER LEVERKUSEN', v: 'FRIBURGO', mercado: 'Más de 2.5' }))).toEqual({
+    tipo: 'stake', l: 'BAYER LEVERKUSEN', v: 'FRIBURGO', mercado: 'Más de 2.5',
+  });
+  expect(leerMensaje(JSON.stringify({ tipo: 'stake', l: '', v: 'x' }))).toBeNull();
+  expect(leerMensaje(JSON.stringify({ tipo: 'stake', l: 'x'.repeat(121), v: 'x' }))).toBeNull();
+});
+
+test('urlStakePermitida: solo stake.mx / stake.com por https', () => {
+  const { urlStakePermitida } = require('../src/flashscore/puente');
+  expect(urlStakePermitida('https://stake.mx/sports/soccer')).toBe(true);
+  expect(urlStakePermitida('https://www.stake.com/')).toBe(true);
+  expect(urlStakePermitida('https://stake.mx.evil.com/')).toBe(false);
+  expect(urlStakePermitida('http://stake.mx/')).toBe(false);
+  expect(urlStakePermitida('https://evil.com/?u=https://stake.mx/')).toBe(false);
+});
+
+test('leerMensaje: aviso de fin de la busqueda en Stake', () => {
+  expect(leerMensaje(JSON.stringify({ tipo: 'stake-fin', ok: true }))).toEqual({ tipo: 'stake-fin', ok: true });
+  expect(leerMensaje(JSON.stringify({ tipo: 'stake-fin' }))).toEqual({ tipo: 'stake-fin', ok: false });
+});
