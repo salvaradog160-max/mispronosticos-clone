@@ -148,14 +148,14 @@ export interface AnalisisFila {
     capturedAt: string;
   }> | null;
 
-  /** Analisis combinado: modelo + historial real + H2H (+porciento 50/30/20). */
+  /** Analisis combinado: modelo + historial real + H2H (probabilidad solo del modelo; `combinado`/`pCombinada` son nombres heredados). */
   combinado?: {
     inclina: string | null;
     pCombinada: number | null;
     confianza: 'alta' | 'media' | 'baja' | null;
     fuentes?: string[];
     pesos?: { modelo: number; base: number; h2h: number };
-    tabla: Array<{ lado: 'H' | 'D' | 'A'; modelo: number; historial: number; combinada: number }>;
+    tabla: Array<{ lado: 'H' | 'D' | 'A'; modelo: number; historial: number; /** igual a modelo (heredado) */ combinada: number }>;
     recomendacion: { tipo: string; nombre: string; p: number; riesgo: string; cuotaJusta: number | null } | null;
     alternativa?: { tipo: string; nombre: string; p: number; riesgo: string; cuotaJusta: number | null } | null;
     demasPronosticos?: Array<{ tipo: string; nombre: string; p: number; riesgo: string; cuotaJusta: number | null }>;

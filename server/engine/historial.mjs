@@ -7,9 +7,10 @@
  * America). El usuario no captura nada: la estadistica sale de los
  * partidos reales disponibles.
  *
- * Pesos de la combinada (igual que la herramienta manual):
- *   50% modelo Poisson  30% cuadro base (ult.5 L/V)  20% H2H L/V
- * Si falta una fuente, su peso se reparte entre las que existen.
+ * Las probabilidades de los pronosticos son SOLO del modelo Poisson:
+ * el historial (base L/V, H2H) se muestra como contexto y para medir
+ * la dispersion del riesgo, pero no se mezcla (backtest 17-oct-2026:
+ * la mezcla 50/30/20 empeora +0.0088 LL y H2H no aporta).
  *
  * Riesgo: bajo >=75%, medio >=60%, y sube un nivel si el modelo y el
  * historial difieren 25 pp o mas en el lado recomendado.
@@ -333,30 +334,6 @@ const rachaDe = filas => {
   return `${n} ${n === 1 ? nombre[filas[0].res] : nombre[filas[0].res] === 'ganó' ? `victorias seguidas` : `partidos ${filas[0].res === 'G' ? 'sin perder' : 'sin ganar'}`}`;
 };
 
-/** Combina modelo + base + H2H con pesos o reparto si falta fuente. */
-export const combinar = (pModelo, pBase, pH2H, { wM = 0.5, wB = 0.3, wH = 0.2 } = {}) => {
-  const lados = ['H', 'D', 'A'];
-  let usadoM = 0, usadoB = 0, usadoH = 0;
-  if (pModelo) usadoM = wM;
-  if (pBase) usadoB = wB;
-  if (pH2H) usadoH = wH;
-  const totalPeso = usadoM + usadoB + usadoH;
-
-  const pComb = {};
-  for (const lado of lados) {
-    let acc = 0;
-    if (pModelo) acc += wM * pModelo[lado];
-    if (pBase) acc += wB * pBase[lado];
-    if (pH2H) acc += wH * pH2H[lado];
-    pComb[lado] = totalPeso > 0 ? acc / totalPeso : 0;
-  }
-  const usados = [];
-  if (pModelo) usados.push('modelo');
-  if (pBase) usados.push('base');
-  if (pH2H) usados.push('h2h');
-  return { pComb, usados };
-};
-
 /** Riesgo de una apuesta por su prob y la dispersion modelo-historial. */
 export const riesgoDe = (p, pModeloVal = null, pBaseVal = null) => {
   const prob = Number(p) || 0;
@@ -375,11 +352,11 @@ export const cuotaJusta = p => (p > 0 ? Number((1 / p).toFixed(2)) : null);
  * Pronosticos ordenados por probabilidad. Mercados que se pueden
  * comparar con modelo e historial sin inventar.
  *
- * Ademas del 1X2 (combinada 50/30/20), acepta el modelo Poisson de
+ * Ademas del 1X2 (prob. del modelo, `pComb`), acepta el modelo Poisson de
  * goles (`golesModelo`: {over1_5, over2_5, over3_5, btts}) y las
  * tendencias reales del historial (`tendHist`: {overPct por linea,
- * aa}) para generar los mercados O/U y Ambos anotan combinados, como
- * la herramienta manual.
+ * aa}) para generar los mercados O/U y Ambos anotan; su prob. es la
+ * del modelo y el historial solo alimenta el riesgo.
  */
 export const pronosticos = ({ pComb, pModelo, pBase, golesModelo, tendHist }) => {
   const out = [];
@@ -394,7 +371,7 @@ export const pronosticos = ({ pComb, pModelo, pBase, golesModelo, tendHist }) =>
     });
   }
   // 1X = H + D con cuota justa 1/(pH+pD). El riesgo se calcula sobre la
-  // prob COMBINADA del mercado (84%, no la del lado H solo): esa es la
+  // prob del mercado (modelo) (84%, no la del lado H solo): esa es la
   // regla de la herramienta manual.
   const pHm = pModelo ? pModelo.H + pModelo.D : null;
   const pBm = pBase ? pBase.H + pBase.D : null;
@@ -405,16 +382,12 @@ export const pronosticos = ({ pComb, pModelo, pBase, golesModelo, tendHist }) =>
   const p2x = (pComb.A ?? 0) + (pComb.D ?? 0);
   out.push({ tipo: 'X2', nombre: 'Visita o empate', p: p2x, riesgo: riesgoDe(p2x, pAhm, pAhmB), cuotaJusta: cuotaJusta(p2x) });
 
-  // Over/Under y AA combinados (50/50 modelo Poisson vs historial),
-  // siguiendo la herramienta manual: "Modelo X% · Historial Y%".
+  // Over/Under y AA: prob del modelo Poisson; el historial va como dato
+  // ("Modelo X% · Historial Y%") y para la dispersion del riesgo.
   const lineas = [1.5, 2.5, 3.5, 4.5];
   const f = (side, tipo, nombre, pModeloGol, pHist) => {
-    if (pModeloGol == null && pHist == null) return;
-    const pM = pModeloGol ?? 0.5;
-    const pH = pHist == null ? pModeloGol : pHist / 100;
-    // 50/50; si falta una fuente se usa la otra
-    const usado = pHist == null ? 1 : pModeloGol == null ? 1 : 2;
-    const p = pHist == null || pModeloGol == null ? Math.max(pM, pH) : (pM + pH) / 2;
+    if (pModeloGol == null) return;
+    const p = pModeloGol;
     out.push({
       tipo,
       nombre,
@@ -423,7 +396,7 @@ export const pronosticos = ({ pComb, pModelo, pBase, golesModelo, tendHist }) =>
       cuotaJusta: cuotaJusta(p),
       modelo: pModeloGol == null ? null : Number(pModeloGol.toFixed(4)),
       historial: pHist == null ? null : Number((pHist / 100).toFixed(4)),
-      fuente: usado,
+      fuente: 1,
     });
   };
 

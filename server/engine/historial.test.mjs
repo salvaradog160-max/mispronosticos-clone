@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert';
-import { historialDe, combinar, riesgoDe, cuotaJusta, pronosticos } from './historial.mjs';
+import { historialDe, riesgoDe, cuotaJusta, pronosticos } from './historial.mjs';
 
 const p = (d, h, a, hs, as, season) => ({ utcDate: d, homeTeam: h, awayTeam: a, homeScore: hs, awayScore: as, season });
 
@@ -39,21 +39,6 @@ test('historialDe: H2H directo entre los dos equipos', () => {
   assert.ok(h.probs.pH2H, 'prob H2H');
 });
 
-test('combinar: pesos 50/30/20 y reparto si falta fuente', () => {
-  const modelo = { H: 0.828, D: 0.099, A: 0.073 };
-  const base = { H: 0.5, D: 0.358, A: 0.142 };
-  const h2h = { H: 0.6, D: 0.2, A: 0.2 };
-  const { pComb, usados } = combinar(modelo, base, h2h);
-  assert.deepEqual(usados.sort(), ['base', 'h2h', 'modelo']);
-  // H = 0.5*0.828 + 0.3*0.5 + 0.2*0.6 = 0.414 + 0.15 + 0.12
-  assert.ok(Math.abs(pComb.H - (0.414 + 0.15 + 0.12)) < 0.001);
-  // Solo modelo + base: reparte el 20% de h2h
-  const sinH = combinar(modelo, base, null);
-  const total = 0.5 + 0.3;
-  const esperadoH = (0.5 * 0.828 + 0.3 * 0.5) / total;
-  assert.ok(Math.abs(sinH.pComb.H - esperadoH) < 0.001);
-});
-
 test('riesgoDe: bajo desde 75%, sube si difieren 25pp', () => {
   assert.equal(riesgoDe(0.8, 0.8, 0.8), 'bajo');
   assert.equal(riesgoDe(0.65, 0.7, 0.6), 'medio');
@@ -76,7 +61,7 @@ test('cuotaJusta = 1/p; pronosticos ordenados por probabilidad', () => {
   assert.ok(Math.abs(unoX.p - (0.66 + 0.23)) < 0.001, '1X = H+D');
 });
 
-test('riesgo del 1X usa la prob combinada del mercado, no la del lado H', () => {
+test('riesgo del 1X usa la prob del mercado, no la del lado H', () => {
   // 1X al 84% pero lado H 62%: riesgo bajo (no usa el 62%)
   const pComb = { H: 0.624, D: 0.22, A: 0.156 };
   const pModelo = { H: 0.828, D: 0.099, A: 0.073 };
@@ -103,7 +88,7 @@ test('tendenciasDe acepta filas de equipo {gf,gc} y crudas {gfLocal,gfVisita}', 
   assert.equal(typeof t.aa, 'number');
 });
 
-test('pronosticos incluye O/U y AA combinados (modelo+historial)', () => {
+test('pronosticos: O/U y AA llevan la prob del modelo, sin mezclar historial', () => {
   const pro = pronosticos({
     pComb: { H: 0.334, D: 0.316, A: 0.35 },
     pModelo: { H: 0.318, D: 0.231, A: 0.451 },
@@ -113,12 +98,22 @@ test('pronosticos incluye O/U y AA combinados (modelo+historial)', () => {
   });
   const o15 = pro.find(x => x.tipo === 'O1.5');
   assert.ok(o15, 'existe O1.5');
-  // combinacion 50/50: (0.889 + 0.8)/2
-  assert.ok(Math.abs(o15.p - (0.889 + 0.8) / 2) < 0.01, `O1.5 combinada ${o15.p}`);
+  // solo modelo: el historial (80) NO entra en p
+  assert.equal(o15.p, 0.889);
   assert.ok(o15.modelo != null && o15.historial != null, 'trae modelo e historial');
   const aa = pro.find(x => x.tipo === 'AA');
   assert.ok(aa, 'existe AA');
-  assert.ok(Math.abs(aa.p - 0.505) < 0.001); // (0.71+0.3)/2
+  assert.equal(aa.p, 0.71); // solo modelo
+});
+
+test('pronosticos: sin modelo de goles no inventa O/U ni AA desde el historial', () => {
+  const pro = pronosticos({
+    pComb: { H: 0.4, D: 0.3, A: 0.3 },
+    pModelo: { H: 0.4, D: 0.3, A: 0.3 },
+    golesModelo: null,
+    tendHist: { ou: [{ linea: 2.5, over: 60 }], aa: 30 },
+  });
+  assert.ok(!pro.some(x => x.tipo === 'O2.5' || x.tipo === 'AA'));
 });
 
 test('forense: pronosticos ordenados por probabilidad', async () => {

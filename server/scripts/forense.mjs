@@ -15,7 +15,7 @@ import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildRatings, predictMatch } from '../engine/ratings.mjs';
-import { historialDe, combinar, pronosticos } from '../engine/historial.mjs';
+import { historialDe, pronosticos } from '../engine/historial.mjs';
 import { overProb, bttsProb } from '../engine/poisson.mjs';
 import { ladderMercados, desglosarTiempos } from '../engine/ladder.mjs';
 import { normalizeTeam } from '../engine/calibration.mjs';
@@ -68,7 +68,7 @@ const pred = predictMatch(ratings, { homeTeam: home, awayTeam: away });
 const pModelo = pred.oneXTwo;
 const h = historialDe(previos, local, visita);
 const { pBase, pH2H } = h?.probs ?? {};
-const { pComb, usados } = combinar(pModelo, pBase, pH2H);
+const pComb = { ...pModelo };
 const golesModelo = {
   over25: pred.over25, over1_5: overProb(pred.lambdaHome, pred.lambdaAway, 1.5),
   over3_5: overProb(pred.lambdaHome, pred.lambdaAway, 3.5),
@@ -96,7 +96,7 @@ const solve = t => {
   return null;
 };
 
-console.log(`\n${line}\nSE INCLINA/COMBINADA (modelo 50 · base 30 · H2H 20)\n${line}`);
+console.log(`\n${line}\nSE INCLINA (solo modelo)\n${line}`);
 const ladoNombre = { H: 'Local', D: 'Empate', A: 'Visita' };
 const inclina = ['H','D','A'].sort((a,b)=>(pComb[b]??0)-(pComb[a]??0))[0];
 console.log(`inclina a ${ladoNombre[inclina]} ${pct(pComb[inclina])} · base ${pBase?pct(pBase.H):'s/d'} H2H ${pH2H?pct(pH2H.H):'s/d'}`);

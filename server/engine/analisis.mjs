@@ -156,7 +156,7 @@ export const LIGAS_SIN_CALIBRACION = new Set();
 import { goodToLine } from './valor.mjs';
 import { overProb, bttsProb } from './poisson.mjs';
 import { ladderMercados, desglosarTiempos, ladderTiempo } from './ladder.mjs';
-import { combinar, riesgoDe, pronosticos as pronosticosDe, cuotaJusta } from './historial.mjs';
+import { riesgoDe, pronosticos as pronosticosDe, cuotaJusta } from './historial.mjs';
 
 /** Ladder por tiempo: divide lambdas y arma el O/U de cada mitad. */
 const tiemposLadder = (lambdaHome, lambdaAway, ligaKey) => {
@@ -285,18 +285,20 @@ export const analizar = (partido, probs, confianza = null) => {
 /**
  * Descanso del analisis combinado. Si el partido trae `historial`
  * (motor de historial real), junta el modelo con la base (ult.5 L/V)
- * y el H2H y produce: combinada 50/30/20, riesgo, pronosticos,
+ * y el H2H y produce: probabilidades del modelo, riesgo, pronosticos,
  * oportunidades y riesgos. Si no, null.
  */
 const historialCombinado = (partido, probs) => {
   const h = partido.historial;
   if (!h) return { combinado: null };
 
-  const { pBase, pH2H } = h.probs ?? {};
+  const { pBase } = h.probs ?? {};
   const pModelo = probs;
 
-  // Combinada pedida: 50% modelo, 30% cuadro base (ult.5 L/V), 20% H2H L/V.
-  const { pComb, usados } = combinar(pModelo, pBase, pH2H);
+  // Solo modelo: la mezcla con base/H2H se quito (backtest 17-oct-2026).
+  // `pComb`/`combinado` se conservan como nombres del contrato con la app.
+  const pComb = { H: pModelo.H, D: pModelo.D, A: pModelo.A };
+  const usados = ['modelo'];
   // Mercados de goles del modelo (Poisson con las lambdas) para anadir
   // O/U y AA combinados al ranking, como hace la herramienta manual.
   const lm = partido.lambdaHome;
@@ -436,7 +438,7 @@ const historialCombinado = (partido, probs) => {
       pCombinada: Number((pComb[inclina] ?? 0).toFixed(4)),
       confianza: pComb[inclina] >= 0.75 ? 'alta' : pComb[inclina] >= 0.6 ? 'media' : 'baja',
       fuentes: usados,
-      pesos: { modelo: 0.5, base: 0.3, h2h: 0.2 },
+      pesos: { modelo: 1, base: 0, h2h: 0 },
       // 1X2: modelo, historial y combinada
       tabla: ['H', 'D', 'A'].map(l => ({
         lado: l,
@@ -467,6 +469,9 @@ const historialCombinado = (partido, probs) => {
       pesoEstadio: h.pesoEstadio,
       patrones: h.patrones,
       tendencias: h.tendencias,
+      // `lectura` lo arma historial.mjs, pero se perdia al copiar campo por
+      // campo: la pestana Tendencias la busca y nunca la encontraba.
+      lectura: h.lectura ?? null,
     },
   };
 };
