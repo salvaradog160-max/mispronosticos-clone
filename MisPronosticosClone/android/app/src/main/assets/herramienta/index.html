@@ -755,16 +755,27 @@ $('btn-stake').addEventListener('click',function(){
     $('stake-msg').textContent='Stake: '+d.partido+' ('+d.estado+')'+(d.invertido?' · local y visita al revés, ya volteados':'')+'. Llené '+n+' de '+pk.length+' tarjetas; el resto no está en Stake.'+(d.margen_x2!=null?' Margen de Stake en 1X2: '+(d.margen_x2*100).toFixed(1)+'%.':'')+(ops.length?' ★ OPORTUNIDAD: '+ops.join(', ')+'.':' Sin oportunidades sobre +'+umbralVal()+'%.')+aviso;
   }).catch(function(){ msg('No pude hablar con el servidor local. Enciende «Pronóstico de Goles» y abre http://localhost:8770/.',true); });
 });
+// Movimiento de cuota: en la PC lo pide al servidor local; en la app, a la app (que lee Arbworld directo, sin CORS).
+var __arbPend={}, __arbId=0;
+window.__pgArbRespuesta=function(id,obj){ var f=__arbPend[id]; if(f){ delete __arbPend[id]; f(obj); } };
+function arbFetch(l,v,m){
+  if(window.ReactNativeWebView) return new Promise(function(res,rej){
+    var id=++__arbId; __arbPend[id]=res;
+    window.ReactNativeWebView.postMessage(JSON.stringify({tipo:'arbworld',id:id,l:l,v:v,m:m}));
+    setTimeout(function(){ if(__arbPend[id]){ delete __arbPend[id]; rej(new Error('Arbworld no respondió a tiempo')); } },90000);
+  });
+  return fetch('/api/arbworld?l='+encodeURIComponent(l)+'&v='+encodeURIComponent(v)+'&m='+m).then(function(r){ return r.json(); });
+}
 $('btn-mov').addEventListener('click',function(){
   var st=$('mov-msg'), l=cfg.names.l, v=cfg.names.v, tb=$('mov-tab');
   function msg(t,warn){ st.textContent=t; st.style.color=warn?'var(--loss)':'var(--muted)'; }
-  if(location.protocol==='file:'){ msg('Ábrelo desde http://localhost:8770/ (con el servidor encendido).',true); return; }
+  if(location.protocol==='file:'&&!window.ReactNativeWebView){ msg('Ábrelo desde http://localhost:8770/ (con el servidor encendido).',true); return; }
   if(!l||!v){ msg('Primero carga el partido.',true); return; }
   var MK=[['1x2','1X2'],['ou25','Más/Menos 2.5']], NOM={'1':'Local','X':'Empate','2':'Visita','over':'Más','under':'Menos'};
   msg('Consultando Arbworld (unos segundos)…'); $('btn-mov').disabled=true;
   var rows='', hallado=null, faltan=[];
   MK.reduce(function(p,m){ return p.then(function(){
-    return fetch('/api/arbworld?l='+encodeURIComponent(l)+'&v='+encodeURIComponent(v)+'&m='+m[0]).then(function(r){ return r.json(); }).then(function(d){
+    return arbFetch(l,v,m[0]).then(function(d){
       if(!d.encontrado){ faltan.push(m[1]); return; }
       hallado=d;
       d.res.forEach(function(x,i){ var c=x.cambio_pct, ab=Math.abs(c), lec=ab<3?'ruido':(ab<7?'señal':'fuerte');

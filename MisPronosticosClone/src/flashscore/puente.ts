@@ -12,12 +12,20 @@ export interface PedidoStake {
   v: string;
   mercado: string;
 }
+/** Peticion de la herramienta: movimiento de cuota de un partido en Arbworld (la app lo lee; la herramienta no puede por CORS). */
+export interface PedidoArbworld {
+  tipo: 'arbworld';
+  id: number;
+  l: string;
+  v: string;
+  m: string;
+}
 /** El script de Stake avisa al terminar (haya encontrado el partido o no). */
 export interface FinStake {
   tipo: 'stake-fin';
   ok: boolean;
 }
-export type Mensaje = Captura | PedidoStake | FinStake;
+export type Mensaje = Captura | PedidoStake | FinStake | PedidoArbworld;
 
 const MAX_TEXTO = 2_000_000;
 
@@ -25,6 +33,11 @@ const MAX_TEXTO = 2_000_000;
 export const leerMensaje = (data: string): Mensaje | null => {
   try {
     const m = JSON.parse(data);
+    if (m?.tipo === 'arbworld') {
+      const ok = (x: unknown) => typeof x === 'string' && x.trim().length > 0 && x.length <= 120;
+      if (!ok(m.l) || !ok(m.v) || !ok(m.m) || !Number.isInteger(m.id)) return null;
+      return { tipo: 'arbworld', id: m.id, l: m.l, v: m.v, m: m.m };
+    }
     if (m?.tipo === 'stake-fin') return { tipo: 'stake-fin', ok: m.ok === true };
     if (m?.tipo === 'stake') {
       const ok = (x: unknown) => typeof x === 'string' && x.trim().length > 0 && x.length <= 120;

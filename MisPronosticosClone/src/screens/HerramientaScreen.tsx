@@ -7,6 +7,7 @@ import { palette, spacing } from '../theme';
 import { PARTIDO_JS, VIVO_JS } from '../flashscore/scripts';
 import { jsRecibir, leerMensaje, urlPermitida, urlStakePermitida } from '../flashscore/puente';
 import { STAKE_HOME, buscarStakeJs } from '../stake/buscar';
+import { buscarArbworld } from '../arbworld/arbworld';
 
 /**
  * Pronostico de Goles dentro de la app. El HTML va empaquetado en
@@ -99,6 +100,12 @@ export default function HerramientaScreen({ pantallaCompleta = false }: { pantal
           onMessage={e => {
             const m = leerMensaje(e.nativeEvent.data);
             if (m?.tipo === 'stake') abrirStake(m.l, m.v);
+            if (m?.tipo === 'arbworld') {
+              // Arbworld se lee desde la app (la pagina de la herramienta no puede por CORS) y la respuesta vuelve por el mismo puente.
+              buscarArbworld(m.l, m.v, m.m).then(r =>
+                herramienta.current?.injectJavaScript(`window.__pgArbRespuesta && window.__pgArbRespuesta(${m.id}, ${JSON.stringify(r)}); true;`),
+              );
+            }
           }}
           style={styles.web}
         />
@@ -118,7 +125,7 @@ export default function HerramientaScreen({ pantallaCompleta = false }: { pantal
             onNavigationStateChange={s => setPuedeVolver(s.canGoBack)}
             onMessage={e => {
               const c = leerMensaje(e.nativeEvent.data);
-              if (!c || c.tipo === 'stake' || c.tipo === 'stake-fin') return;
+              if (!c || c.tipo === 'stake' || c.tipo === 'stake-fin' || c.tipo === 'arbworld') return;
               setVista('herramienta');
               herramienta.current?.injectJavaScript(jsRecibir(c));
             }}
