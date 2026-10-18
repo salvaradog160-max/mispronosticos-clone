@@ -107,10 +107,14 @@ export const createStaticRepository = (config: AppConfig): PicksRepository => {
     if (cache) return cache;
     const url = `${config.picksUrl.replace(/\/$/, '')}?t=${Date.now()}`;
     // Repo privado: raw.githubusercontent pide el token; publico, no hace falta.
+    // Un token vencido o invalido da 404 incluso en un repo publico: se reintenta sin el.
     const token = await leerToken();
-    const res = await fetch(url, token ? { headers: { Authorization: `token ${token}` } } : undefined);
+    let res = await fetch(url, token ? { headers: { Authorization: `token ${token}` } } : undefined);
+    if (token && (res.status === 401 || res.status === 403 || res.status === 404)) {
+      res = await fetch(url);
+    }
     if (!res.ok) {
-      const pista = res.status === 404 || res.status === 401 ? ' (si el repo es privado, pega el token en Perfil)' : '';
+      const pista = res.status === 404 || res.status === 401 ? ' (si el repo es privado, revisa el token en Perfil)' : '';
       throw new Error(`${res.status} leyendo picks.json${pista}`);
     }
     cache = (await res.json()) as DailyPayload;

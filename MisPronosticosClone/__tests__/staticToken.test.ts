@@ -23,7 +23,19 @@ test('con token manda Authorization: token <t>', async () => {
   expect(f.mock.calls[0][1]).toEqual({ headers: { Authorization: 'token ghp_x' } });
 });
 
+test('token invalido (404) reintenta sin token y, si el repo es publico, carga', async () => {
+  (Keychain.getGenericPassword as jest.Mock).mockResolvedValueOnce({ username: 'github', password: 'vencido' });
+  const f = jest.fn()
+    .mockResolvedValueOnce({ ok: false, status: 404, json: async () => ({}) })
+    .mockResolvedValueOnce({ ok: true, status: 200, json: async () => payload });
+  (globalThis as any).fetch = f;
+  await expect(createStaticRepository(DEFAULTS).listMercados!()).resolves.toBeNull();
+  expect(f).toHaveBeenCalledTimes(2);
+  expect(f.mock.calls[0][1]).toEqual({ headers: { Authorization: 'token vencido' } });
+  expect(f.mock.calls[1][1]).toBeUndefined();
+});
+
 test('404 sugiere pegar el token en Perfil', async () => {
   (globalThis as any).fetch = mockFetch(404);
-  await expect(createStaticRepository(DEFAULTS).listMercados!()).rejects.toThrow(/pega el token en Perfil/);
+  await expect(createStaticRepository(DEFAULTS).listMercados!()).rejects.toThrow(/revisa el token en Perfil/);
 });

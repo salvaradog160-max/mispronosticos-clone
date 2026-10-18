@@ -8,6 +8,7 @@ import TopAiScreen from '../screens/TopAiScreen';
 import LiveScreen from '../screens/LiveScreen';
 import SpecialsScreen from '../screens/SpecialsScreen';
 import RendimientoScreen from '../screens/RendimientoScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 import { palette } from '../theme';
 import type { AppConfig } from '../config';
 import { DEFAULTS } from '../config';
@@ -108,6 +109,16 @@ export default function RootNavigator({ config = DEFAULTS }: { config?: AppConfi
               title: 'Rendimiento',
               tabBarIcon: ({ color, size }) => (
                 <MaterialDesignIcons name="chart-line" color={color} size={size} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Perfil"
+            component={ProfileScreen}
+            options={{
+              title: 'Perfil',
+              tabBarIcon: ({ color, size }) => (
+                <MaterialDesignIcons name="account" color={color} size={size} />
               ),
             }}
           />
