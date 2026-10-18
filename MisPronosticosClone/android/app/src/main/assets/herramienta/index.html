@@ -435,13 +435,32 @@ html.app .wrap{padding-block-end:104px}
 .vheat-ax{display:flex;justify-content:space-between;font:600 11px var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 /* mancuerna apertura -> actual */
 .vdumb{position:relative;height:22px;margin:2px 0}
+.vdumb::before{content:"";position:absolute;left:0;right:0;top:10px;height:3px;border-radius:2px;background:rgba(255,255,255,.08)}
 .vdumb .ln{position:absolute;top:10px;height:3px;border-radius:2px;background:var(--c)}
 .vdumb .pt{position:absolute;top:5px;width:12px;height:12px;border-radius:50%;transform:translateX(-50%)}
 .vdumb .pt.a{border:2px solid var(--c);background:var(--bg)} .vdumb .pt.b{background:var(--c);box-shadow:0 0 0 2px var(--bg)}
 .vdumb.dn{--c:var(--vz-l)} .vdumb.up{--c:var(--vz-d)} .vdumb.eq{--c:#8fa2c0}
-.vdinfo{display:flex;justify-content:space-between;font:600 12px var(--body);color:var(--muted);font-variant-numeric:tabular-nums}
+.vdinfo{display:flex;flex-wrap:wrap;gap:2px 10px;justify-content:space-between;font:600 12px var(--body);color:var(--muted);font-variant-numeric:tabular-nums}
 .vdinfo b{font:700 14px var(--display);color:var(--ink)}
 @media (prefers-reduced-motion:reduce){.vb .tr i,.vstack i,.vdiv i{animation:none}}
+/* ====== GRAFICOS (2): En vivo, OddsMath, historial, revision, momios, tendencias ====== */
+.vsplit{display:flex;align-items:center;gap:8px}
+.vsplit b{min-width:40px;font:700 15px var(--display);font-variant-numeric:tabular-nums}
+.vsplit b:first-child{text-align:right} .vsplit b:last-child{text-align:left}
+.vsplit .tr{flex:1;display:flex;gap:2px;height:10px;border-radius:6px;overflow:hidden}
+.vsplit .tr i{display:block;height:100%;transform-origin:left;animation:crece .9s cubic-bezier(.2,.8,.2,1) both}
+.vsplit .tr i:first-child{background:var(--vz-l);border-radius:6px 0 0 6px} .vsplit .tr i:last-child{background:var(--vz-v);border-radius:0 6px 6px 0}
+.vdumb .rng{position:absolute;top:7px;height:8px;border-radius:4px;background:rgba(255,255,255,.10)}
+.vb.n{--c:#5b6b86}
+.vheat4{display:grid;grid-template-columns:minmax(52px,auto) repeat(4,minmax(0,1fr));gap:3px;font-variant-numeric:tabular-nums}
+.vheat4 .h{font:600 11px var(--body);color:var(--muted);text-align:center;display:grid;place-items:center;line-height:1.15;min-height:26px}
+.vheat4 .r{font:600 12px var(--display);color:var(--muted);display:grid;align-items:center;letter-spacing:.03em}
+.vheat4 .c{display:grid;place-items:center;border-radius:7px;min-height:26px;font:700 13px var(--display);color:var(--ink)}
+.vheat4 .c small{display:block;font:500 9px var(--body);color:var(--ink);opacity:.8;line-height:1}
+.vchk{display:inline-flex;align-items:center;gap:5px;font:700 12px var(--body)}
+.vchk.si{color:var(--vz-l)} .vchk.no{color:#e07a86}
+.vrow.ok{border-left:3px solid var(--vz-l);padding-left:8px} .vrow.ko{border-left:3px solid var(--vz-bad);padding-left:8px}
+.vb.ev{--c:var(--vz-l)}
 </style>
 </head>
 <body>
@@ -1113,6 +1132,8 @@ setTimeout(function(){
   }).catch(function(){ histSrvOk(false); });
 },400);
 function wilson(x,n){ if(!n) return [0,0]; var z=1.96, p=x/n, d=1+z*z/n, c=p+z*z/(2*n), m=z*Math.sqrt(p*(1-p)/n+z*z/(4*n*n)); return [(c-m)/d,(c+m)/d]; }
+function histVz(d,tabla){ try{ return window.vzS?vzS.wrap(vzS.calib(d),tabla):tabla; }catch(e){ return tabla; } }
+function revVz(v,filas){ var t='<table class="mk"><thead><tr><th scope="col">Mercado</th><th scope="col">Qué dijo el modelo / qué pasó</th><th scope="col">Prob. del pronóstico</th><th scope="col">Resultado</th></tr></thead><tbody>'+filas.join('')+'</tbody></table>'; try{ return window.vzS?vzS.wrap(vzS.revision(v),t):t; }catch(e){ return t; } }
 function histHtml(){
   var a=histLoad(); if(!a.length) return '';
   var rows=HIST_MK.map(function(mk){
@@ -1121,9 +1142,10 @@ function histHtml(){
     var w=wilson(h,n), real=h/n, esp=pe/n, diff=(real-esp)*100;
     return '<tr><td>'+mk[1]+'</td><td>'+n+'</td><td>'+h+'</td><td><b>'+pct(real)+'</b></td><td>'+pct(esp)+'</td><td>'+(diff>=0?'+':'')+diff.toFixed(1)+' pts</td><td>'+pct(w[0])+' – '+pct(w[1])+'</td><td>'+(nq?nq:'—')+'</td><td>'+(nq?(ra/nq*100>=0?'+':'')+(ra/nq*100).toFixed(1)+'%':'—')+'</td><td>'+(nq?(rb/nq*100>=0?'+':'')+(rb/nq*100).toFixed(1)+'%':'—')+'</td></tr>';
   }).join('');
+  var calD=[]; HIST_MK.forEach(function(mk){ var n=0,h=0,pe=0; a.forEach(function(e){ var t=e.m&&e.m[mk[0]]; if(t){ n++; h+=t[1]; pe+=t[0]; } }); if(!n) return; var w=wilson(h,n); calD.push({k:mk[1],n:n,h:h,real:h/n,esp:pe/n,lo:w[0],hi:w[1]}); });
   var list=a.slice().reverse().map(function(e){ var ok=0,t=0; Object.keys(e.m).forEach(function(k){ t++; ok+=e.m[k][1]; }); return '<tr><td>'+esc(e.date)+'</td><td>'+esc(e.l)+' '+e.h+' - '+e.a+' '+esc(e.v)+'</td><td>'+(e.src==='mercado'?'momios':'modelo')+'</td><td>'+ok+' de '+t+'</td></tr>'; }).join('');
   return '<details class="block wide" style="margin-bottom:12px" open><summary style="cursor:pointer;font:600 14px var(--body)">Historial de revisiones · '+a.length+(a.length===1?' partido':' partidos')+'</summary>'+
-    '<table class="mk" style="margin-top:8px"><thead><tr><th scope="col">Mercado</th><th scope="col">Partidos</th><th scope="col">Aciertos</th><th scope="col">% real</th><th scope="col">% que decía el modelo</th><th scope="col">Diferencia</th><th scope="col">Rango 95%</th><th scope="col">Con cuota</th><th scope="col">ROI cuota promedio</th><th scope="col">ROI mejor cuota</th></tr></thead><tbody>'+rows+'</tbody></table>'+
+    '<div style="margin-top:8px">'+histVz(calD,'<table class="mk"><thead><tr><th scope="col">Mercado</th><th scope="col">Partidos</th><th scope="col">Aciertos</th><th scope="col">% real</th><th scope="col">% que decía el modelo</th><th scope="col">Diferencia</th><th scope="col">Rango 95%</th><th scope="col">Con cuota</th><th scope="col">ROI cuota promedio</th><th scope="col">ROI mejor cuota</th></tr></thead><tbody>'+rows+'</tbody></table>')+'</div>'+
     '<p class="cap">«% que decía el modelo» es el promedio de la probabilidad de cada pronóstico. Si el % real queda cerca (dentro del rango 95%), el modelo está bien calibrado en ese mercado. ROI = ganancia por unidad apostada al lado que el modelo favorecía, con la cuota que traía el texto al revisar (promedio de las casas y la mejor casa); ahí aún no hay veredicto con menos de ~100 partidos por mercado. Marcador exacto no trae cuota; Ambos anotan sí cuando el texto incluye esa pestaña. Con menos de ~30 partidos el rango es muy ancho: no concluyas nada todavía. Cada partido se guarda una sola vez (la primera revisión).</p><p class="cap" id="hist-srv">'+histSrvTxt()+'</p>'+
     '<details><summary class="cap" style="cursor:pointer">Ver partidos</summary><table class="mk"><thead><tr><th scope="col">Fecha</th><th scope="col">Partido</th><th scope="col">Base</th><th scope="col">Aciertos</th></tr></thead><tbody>'+list+'</tbody></table></details>'+
     '<div class="acts" style="margin-top:8px"><button class="btn" id="hist-csv" type="button">Copiar CSV</button><button class="btn" id="hist-clear" type="button">Borrar historial</button></div></details>';
@@ -1150,10 +1172,11 @@ function lvStakeGo(){
     Object.keys(d.at||{}).sort(function(a,b){ return a-b; }).forEach(function(k){ var Lk=parseFloat(k); if(Lk<o.cur) return;
       var qo=asianQ(T,Lk,true), qu=asianQ(T,Lk,false);
       fila('Más de '+k+' goles',1/qo.fair,d.at[k].o,qo); fila('Menos de '+k+' goles',1/qu.fair,d.at[k].u,qu); });
-    var h='<table class="mk" style="margin-top:8px"><thead><tr><th scope="col">Mercado</th><th scope="col">Prob. del modelo en vivo</th><th scope="col">Cuota justa</th><th scope="col">Stake</th><th scope="col">vs justa</th></tr></thead><tbody>';
-    rows.forEach(function(r){ var ev=evVal(r.p,String(r.odd),r.q), cl=evClase(ev);
+    var h='<table class="mk" style="margin-top:8px"><thead><tr><th scope="col">Mercado</th><th scope="col">Prob. del modelo en vivo</th><th scope="col">Cuota justa</th><th scope="col">Stake</th><th scope="col">vs justa</th></tr></thead><tbody>', evData=[];
+    rows.forEach(function(r){ var ev=evVal(r.p,String(r.odd),r.q), cl=evClase(ev); evData.push({n:r.n,p:r.p,odd:r.odd,ev:ev,star:cl===' opp'});
       h+='<tr'+(cl===' opp'?' style="outline:2px solid var(--win);outline-offset:-2px"':'')+'><td>'+(cl===' opp'?'★ ':'')+r.n+'</td><td>'+pct(r.p)+'</td><td class="q">'+(r.p>0?(1/r.p).toFixed(2):'—')+'</td><td class="q">'+r.odd.toFixed(2)+'</td><td class="q" style="font-weight:700;color:var(--'+(ev!=null&&ev>=0?'win':'loss')+')">'+(ev==null?'—':(ev>=0?'+':'')+ev.toFixed(1)+'%')+'</td></tr>'; });
-    $('lv-stake-out').innerHTML=h+'</tbody></table><p class="cap">Marcador actual '+L.gh+'-'+L.ga+'. «Prob. del modelo» es la del módulo en vivo; la cuota justa usa esa probabilidad. Ojo: el módulo en vivo solo está validado en cuándo caen los goles según el minuto; no hay prueba de que su precio supere al de Stake en juego. ★ = paga desde +'+umbralVal()+'% sobre lo justo.</p>';
+    var tblS=h+'</tbody></table>', vzS2=''; try{ vzS2=window.vzS?vzS.wrap(vzS.evRows(evData),tblS):tblS; }catch(e){ vzS2=tblS; }
+    $('lv-stake-out').innerHTML=vzS2+'<p class="cap">Marcador actual '+L.gh+'-'+L.ga+'. «Prob. del modelo» es la del módulo en vivo; la cuota justa usa esa probabilidad. Ojo: el módulo en vivo solo está validado en cuándo caen los goles según el minuto; no hay prueba de que su precio supere al de Stake en juego. ★ = paga desde +'+umbralVal()+'% sobre lo justo.</p>';
     m('Stake: '+d.partido+' ('+d.estado+')'+(d.estado!=='live'?' ⚠ no está en vivo: sus cuotas no son de juego en curso.':'')+(d.invertido?' · lados volteados':''),d.estado!=='live');
   }).catch(function(){ m('No pude hablar con el servidor local.',true); });
 }
@@ -1220,10 +1243,10 @@ function casasLine(name,p){
 }
 function reviewHtml(K){
   var r=cfg.result; if(!r||!K) return '';
-  var g=r.h+r.a, NL=esc(cfg.names.l||'Local'), NV=esc(cfg.names.v||'Visita'), rows=[], hit=0, tot=0, ent={};
+  var g=r.h+r.a, NL=esc(cfg.names.l||'Local'), NV=esc(cfg.names.v||'Visita'), rows=[], vrows=[], hit=0, tot=0, ent={};
   var Q=cfg.quotes;
   function qo(id,side){ if(!Q) return null; var t=id==='x2'?Q.x2&&Q.x2[side]:(id==='bt'?Q.btts&&Q.btts[side]:(Q.ou&&Q.ou[({o15:'1.5',o25:'2.5',o35:'3.5'})[id]]||{})[side]); return (t&&t[0]>1)?t:null; }
-  function add(m,txt,p,ok,id,side){ var q=side?qo(id,side):null; ent[id]=q?[p,ok?1:0,+q[0].toFixed(3),+q[1].toFixed(3)]:[p,ok?1:0]; rows.push('<tr><td>'+m+'</td><td>'+txt+'</td><td>'+pct(p)+(q?'<br><small style="color:var(--muted)">cuota '+q[0].toFixed(2)+' prom · '+q[1].toFixed(2)+' mejor · justa '+odd(p)+'</small>':'')+'</td><td>'+(ok?'<b style="color:var(--win,#1e7b46)">✔ se cumplió</b>':'<b style="color:var(--loss,#b3261e)">✘ no se cumplió</b>')+'</td></tr>'); tot++; if(ok) hit++; }
+  function add(m,txt,p,ok,id,side){ vrows.push({m:m,t:txt,p:p,ok:ok}); var q=side?qo(id,side):null; ent[id]=q?[p,ok?1:0,+q[0].toFixed(3),+q[1].toFixed(3)]:[p,ok?1:0]; rows.push('<tr><td>'+m+'</td><td>'+txt+'</td><td>'+pct(p)+(q?'<br><small style="color:var(--muted)">cuota '+q[0].toFixed(2)+' prom · '+q[1].toFixed(2)+' mejor · justa '+odd(p)+'</small>':'')+'</td><td>'+(ok?'<b style="color:var(--win,#1e7b46)">✔ se cumplió</b>':'<b style="color:var(--loss,#b3261e)">✘ no se cumplió</b>')+'</td></tr>'); tot++; if(ok) hit++; }
   var res1=r.h>r.a?'Local':(r.h<r.a?'Visita':'Empate'), pr=[['Local',K.home],['Empate',K.draw],['Visita',K.away]].sort(function(x,y){ return y[1]-x[1]; })[0];
   add('1X2','Favorito del modelo: '+pr[0]+' · pasó: '+res1,pr[1],pr[0]===res1,'x2',pr[0]==='Local'?'h':(pr[0]==='Empate'?'d':'a'));
   ['1.5','2.5','3.5'].forEach(function(n){ var o=K.over[n], pickOver=o>=0.5, real=g>+n; add('Goles '+n,'Pronóstico: '+(pickOver?'Más':'Menos')+' de '+n+' · pasó: '+g+(g===1?' gol':' goles'),pickOver?o:1-o,pickOver===real,'o'+n.replace('.',''),pickOver?'o':'u'); });
@@ -1231,7 +1254,7 @@ function reviewHtml(K){
   var top=K.top[0]; add('Marcador exacto','Más probable: '+top.i+'-'+top.j+' · pasó: '+r.h+'-'+r.a,top.p,top.i===r.h&&top.j===r.a,'ex');
   histSave({k:r.date+'|'+norm(cfg.names.l||'')+'|'+norm(cfg.names.v||''),date:r.date,l:cfg.names.l||'',v:cfg.names.v||'',h:r.h,a:r.a,src:(compute().src),m:ent});
   var pReal=(K.M[r.h]&&K.M[r.h][r.a]!==undefined)?K.M[r.h][r.a]:null;
-  return '<div class="block wide" style="margin-bottom:12px"><h3>Revisión: ¿se cumplió? · '+NL+' '+r.h+' - '+r.a+' '+NV+' ('+esc(r.date)+')'+(cfg.loadedAt?' <span style="font:400 12px var(--body);color:var(--muted);text-transform:none">· texto cargado a las '+new Date(cfg.loadedAt).toTimeString().slice(0,5)+'</span>':'')+'</h3><table class="mk"><thead><tr><th scope="col">Mercado</th><th scope="col">Qué dijo el modelo / qué pasó</th><th scope="col">Prob. del pronóstico</th><th scope="col">Resultado</th></tr></thead><tbody>'+rows.join('')+'</tbody></table><p class="cap">Acertó '+hit+' de '+tot+'. El modelo usó solo partidos anteriores a esa fecha'+(pReal!==null?'; al marcador real '+r.h+'-'+r.a+' le daba '+pct(pReal)+'':'')+'. Un solo partido no valida ni invalida nada: un pronóstico de 60% falla 4 de cada 10 veces y eso es normal. Sirve para ver si el resultado cayó dentro de lo esperado, no para juzgar el modelo.</p></div>';
+  return '<div class="block wide" style="margin-bottom:12px"><h3>Revisión: ¿se cumplió? · '+NL+' '+r.h+' - '+r.a+' '+NV+' ('+esc(r.date)+')'+(cfg.loadedAt?' <span style="font:400 12px var(--body);color:var(--muted);text-transform:none">· texto cargado a las '+new Date(cfg.loadedAt).toTimeString().slice(0,5)+'</span>':'')+'</h3>'+revVz(vrows,rows)+'<p class="cap">Acertó '+hit+' de '+tot+'. El modelo usó solo partidos anteriores a esa fecha'+(pReal!==null?'; al marcador real '+r.h+'-'+r.a+' le daba '+pct(pReal)+'':'')+'. Un solo partido no valida ni invalida nada: un pronóstico de 60% falla 4 de cada 10 veces y eso es normal. Sirve para ver si el resultado cayó dentro de lo esperado, no para juzgar el modelo.</p></div>';
 }
 function renderMarkets(C){
   var K=C.K, mer=C.src==='mercado';
@@ -1378,7 +1401,8 @@ function omTabla(r){
     var d=r.dpp[i], cl=Math.abs(d)<0.3?'':(d>0?'up':'dn');
     h+='<tr><td class="lab">'+esc(n)+'</td><td>'+r.apertura.cuotas[i].toFixed(2)+' → '+r.ultimo.cuotas[i].toFixed(2)+'</td><td>'+(r.apertura.p[i]*100).toFixed(1)+'% → '+(r.ultimo.p[i]*100).toFixed(1)+'%</td><td class="'+cl+'">'+(d>0?'+':'')+d.toFixed(1)+' pp</td><td class="q">'+r.minmax[i][0]+'–'+r.minmax[i][1]+'%</td></tr>';
   });
-  return h+'</tbody></table>';
+  h+='</tbody></table>';
+  try{ return window.vzS?vzS.wrap(vzS.dumbProb(r),h):h; }catch(e){ return h; }
 }
 function omRender(d){
   var h='', ko=d.saque_utc?omHora(new Date(d.saque_utc.replace(' ','T')+':00Z').getTime()):'';
@@ -1497,17 +1521,21 @@ function lvRender(o,ax,gh,ga,lh,la,fuente){
   var h='<div class="lvk"><div><small>Marcador y minuto</small><b>'+gh+' - '+ga+'</b><small>'+esc(ax.etiqueta)+' · quedan ~'+Math.round(o.rem*100)+'% de los goles</small></div>';
   h+='<div><small>Goles que faltan (esperados)</small><b>'+f2(o.R)+'</b><small>'+NL+' '+f2(o.rh)+' · '+NV+' '+f2(o.ra)+'</small></div>';
   h+='<div><small>Próximos 10 min: ¿hay gol?</small><b>'+pct(o.win[10].p)+'</b><small>'+NL+' '+pct(o.win[10].ph)+' · '+NV+' '+pct(o.win[10].pa)+'</small></div></div>';
-  h+='<table class="mk"><thead><tr><th scope="col">Ventana</th><th scope="col">Gol (cualquiera)</th><th scope="col">'+NL+' marca</th><th scope="col">'+NV+' marca</th></tr></thead><tbody>';
-  [5,10,15].forEach(function(w){ var x=o.win[w]; h+='<tr><td class="lab">Próximos '+w+' min</td><td>'+pct(x.p)+'</td><td>'+pct(x.ph)+'</td><td>'+pct(x.pa)+'</td></tr>'; });
-  h+='</tbody></table>';
-  h+='<table class="mk" style="margin-top:12px"><thead><tr><th scope="col">Hasta el final</th><th scope="col">Probabilidad</th></tr></thead><tbody>';
-  h+='<tr><td class="lab">Próximo gol: '+NL+'</td><td>'+pct(o.next.h)+'</td></tr><tr><td class="lab">Próximo gol: '+NV+'</td><td>'+pct(o.next.a)+'</td></tr><tr><td class="lab">No cae más gol</td><td>'+pct(o.next.none)+'</td></tr>';
-  h+='<tr class="gap"><td class="lab">Resultado final: '+NL+' / Empate / '+NV+'</td><td>'+pct(o.f.h)+' / '+pct(o.f.d)+' / '+pct(o.f.a)+'</td></tr>';
-  Object.keys(o.over).slice(0,3).forEach(function(L){ h+='<tr><td class="lab">Más de '+L+' goles (final)</td><td>'+pct(o.over[L])+'</td></tr>'; });
-  h+='<tr><td class="lab">Ambos anotan (final)</td><td>'+pct(o.btts)+'</td></tr></tbody></table>';
+  var tv='<table class="mk"><thead><tr><th scope="col">Ventana</th><th scope="col">Gol (cualquiera)</th><th scope="col">'+NL+' marca</th><th scope="col">'+NV+' marca</th></tr></thead><tbody>';
+  [5,10,15].forEach(function(w){ var x=o.win[w]; tv+='<tr><td class="lab">Próximos '+w+' min</td><td>'+pct(x.p)+'</td><td>'+pct(x.ph)+'</td><td>'+pct(x.pa)+'</td></tr>'; });
+  tv+='</tbody></table>';
+  try{ h+=window.vzS?vzS.wrap(vzS.ventanas(o,NL,NV),tv):tv; }catch(e){ h+=tv; }
+  var tf='<table class="mk" style="margin-top:12px"><thead><tr><th scope="col">Hasta el final</th><th scope="col">Probabilidad</th></tr></thead><tbody>';
+  tf+='<tr><td class="lab">Próximo gol: '+NL+'</td><td>'+pct(o.next.h)+'</td></tr><tr><td class="lab">Próximo gol: '+NV+'</td><td>'+pct(o.next.a)+'</td></tr><tr><td class="lab">No cae más gol</td><td>'+pct(o.next.none)+'</td></tr>';
+  tf+='<tr class="gap"><td class="lab">Resultado final: '+NL+' / Empate / '+NV+'</td><td>'+pct(o.f.h)+' / '+pct(o.f.d)+' / '+pct(o.f.a)+'</td></tr>';
+  Object.keys(o.over).slice(0,3).forEach(function(L){ tf+='<tr><td class="lab">Más de '+L+' goles (final)</td><td>'+pct(o.over[L])+'</td></tr>'; });
+  tf+='<tr><td class="lab">Ambos anotan (final)</td><td>'+pct(o.btts)+'</td></tr></tbody></table>';
+  try{ h+=window.vzS?vzS.wrap(vzS.final(o,NL,NV),tf):tf; }catch(e){ h+=tf; }
   var st=window._lvStats||{}, keys=[['xg','xG'],['tiros','Remates'],['puerta','A puerta'],['grandes','Grandes ocasiones'],['corners','Córneres'],['pos','Posesión %'],['rojas','Tarjetas rojas']], sr='';
   keys.forEach(function(k){ if(st[k[0]]) sr+='<tr><td class="lab">'+k[1]+'</td><td>'+st[k[0]][0]+'</td><td>'+st[k[0]][1]+'</td></tr>'; });
-  if(sr) h+='<details class="adv" style="margin-top:12px"><summary>Estadísticas pegadas (solo contexto, no entran al cálculo)</summary><table class="mk"><thead><tr><th scope="col"></th><th scope="col">'+NL+'</th><th scope="col">'+NV+'</th></tr></thead><tbody>'+sr+'</tbody></table></details>';
+  if(sr){ var ts='<table class="mk"><thead><tr><th scope="col"></th><th scope="col">'+NL+'</th><th scope="col">'+NV+'</th></tr></thead><tbody>'+sr+'</tbody></table>', cs='';
+    try{ cs=window.vzS?vzS.stats(st,keys,NL,NV):''; }catch(e){}
+    h+='<details class="adv" style="margin-top:12px"><summary>Estadísticas pegadas (solo contexto, no entran al cálculo)</summary>'+(cs?vzS.wrap(cs,ts):ts)+'</details>'; }
   var avisos=[];
   if(st.rojas&&(st.rojas[0]>0||st.rojas[1]>0)) avisos.push('Hay tarjeta roja: en los datos medidos, después de la primera roja cayeron 17% más goles de lo normal (descriptivo; no lo apliqué).');
   if(!st.rojas&&!st.amarillas) avisos.push('El texto no trae tarjetas: si hubo una roja, el ritmo real cambia.');
@@ -1827,10 +1855,105 @@ clearBtn.addEventListener('click',function(){
     vz.innerHTML=h;
   };
 
+
+  // 8) MOMIOS Y MARGEN: lo que dice la casa contra la probabilidad sin margen
+  function momios(C){
+    var vz=vzOf(g('an-val')); if(!vz) return;
+    if(!(C&&C.od&&C.pm)){ vz.innerHTML=''; return; }
+    var inv=1/C.od.h+1/C.od.d+1/C.od.a, od=[C.od.h,C.od.d,C.od.a];
+    var rows=['Local','Empate','Visita'].map(function(k,i){ return {k:k,s:'momio '+od[i].toFixed(2),a:100/od[i],b:C.pm[i]*100}; });
+    vz.innerHTML=leg([['Casa: 1 ÷ momio (incluye el margen)','var(--vz-d)'],['Sin margen (lo que se usa)','var(--vz-v)']])+pairRows(rows,function(v){ return f1(v)+'%'; },100,'d','v','Casa','Sin margen')+'<div class="vchips"><span class="vchip">Margen de la casa en el 1X2 <b>'+f1((inv-1)*100)+'%</b></span></div>';
+  }
+  // 9) TENDENCIAS POR LINEA: mapa de calor de «% de partidos que pasaron la linea»
+  function tendLineas(){
+    var tb=g('an-tr'); if(!tb) return; var vz=vzOf(tb); if(!vz) return;
+    var ths=[].slice.call(tb.querySelectorAll('thead th')).slice(1), trs=[].slice.call(tb.querySelectorAll('tbody tr'));
+    if(!ths.length||!trs.length){ vz.innerHTML=''; return; }
+    var h='<div class="vheat4"><span></span>'+ths.map(function(t){ var sm=t.querySelector('small'); return '<span class="h">'+esc((t.childNodes[0]||{}).textContent||'')+(sm?'<br>'+esc(sm.textContent):'')+'</span>'; }).join('');
+    trs.forEach(function(tr){ var c=[].slice.call(tr.children), lab=c[0].textContent.trim().replace(/^O /,'Más de ').replace(/^AA$/,'Ambos anotan');
+      h+='<span class="r">'+esc(lab)+'</span>';
+      c.slice(1).forEach(function(td){ var v=parseInt(td.textContent,10), sm=td.querySelector('small');
+        if(!isFinite(v)){ h+='<span class="c" style="background:rgba(255,255,255,.04);color:var(--muted)">—</span>'; return; }
+        h+='<span class="c" style="background:rgba(20,163,115,'+(0.10+0.78*v/100).toFixed(2)+')" title="'+v+'% pasaron esta línea">'+v+'%'+(sm?'<small>'+esc(sm.textContent)+'</small>':'')+'</span>'; });
+    });
+    vz.innerHTML='<p class="cap" style="margin:0 0 6px">% de los partidos capturados que pasaron la línea. Más oscuro = pasa más seguido. Con pocos partidos es ruido.</p>'+h+'</div>';
+  }
+
   window.chartify=function(){
     var C=null, K=null; try{ C=compute(); K=C&&C.K; }catch(e){}
-    [function(){ tablero(); },function(){ tendencias(); },function(){ mercadoModelo(C); },function(){ overUnder(K); },function(){ asiaticas(K); },function(){ handicap(K); },function(){ heat(K); }].forEach(function(f){ try{ f(); }catch(e){ if(window.console) console.warn('grafico',e); } });
+    [function(){ tablero(); },function(){ tendencias(); },function(){ mercadoModelo(C); },function(){ overUnder(K); },function(){ asiaticas(K); },function(){ handicap(K); },function(){ heat(K); },function(){ momios(C); },function(){ tendLineas(); }].forEach(function(f){ try{ f(); }catch(e){ if(window.console) console.warn('grafico',e); } });
   };
+})();
+
+// ====== GRAFICOS (2): constructores de texto para los bloques que se arman con innerHTML ======
+(function(){
+  function wrap(chart,tabla){ return '<div class="vzbox"><div class="vz">'+chart+'</div><details class="vt"><summary>Ver tabla</summary><div class="vt-in">'+tabla+'</div></details></div>'; }
+  function leg(items){ return '<div class="vleg">'+items.map(function(i){ return '<span><i style="background:'+i[1]+'"></i>'+i[0]+'</span>'; }).join('')+'</div>'; }
+  function pc1(p){ return (Math.round(p*1000)/10).toFixed(1)+'%'; }
+  function bar(v,mx,cls,txt,tip){ return '<div class="vb '+cls+'" title="'+esc(tip||'')+'"><span class="tr"><i style="width:'+Math.max(0,Math.min(100,100*v/mx)).toFixed(1)+'%"></i></span><b>'+txt+'</b></div>'; }
+  function stack(label,segs){
+    var tot=segs.reduce(function(s,x){ return s+x.p; },0)||1;
+    return '<div class="vrow"><span class="vl">'+label+'</span><div class="vstack" role="img" aria-label="'+esc(segs.map(function(x){ return x.n+' '+pc1(x.p); }).join(', '))+'">'+
+      segs.map(function(x){ var v=Math.round(x.p/tot*1000)/10; return '<i style="flex:'+(v||0.001)+';background:'+x.c+'" title="'+esc(x.n)+' '+v+'%">'+(v>=9?Math.round(v)+'%':'')+'</i>'; }).join('')+'</div></div>';
+  }
+  // En vivo: ventana de proximos minutos (3 series: cualquiera / local / visita)
+  function ventanas(o,NL,NV){
+    var ws=[5,10,15], mx=Math.max.apply(null,ws.map(function(w){ return Math.max(o.win[w].p,o.win[w].ph,o.win[w].pa); }))||1;
+    var h=leg([['Gol (cualquiera)','var(--vz-d)'],[NL,'var(--vz-l)'],[NV,'var(--vz-v)']]);
+    ws.forEach(function(w){ var x=o.win[w]; h+='<div class="vrow"><span class="vl">Próximos '+w+' min</span><div>'+bar(x.p,mx,'d',pc1(x.p),'Gol (cualquiera)')+bar(x.ph,mx,'l',pc1(x.ph),NL+' marca')+bar(x.pa,mx,'v',pc1(x.pa),NV+' marca')+'</div></div>'; });
+    return h;
+  }
+  // En vivo: hasta el final
+  function final(o,NL,NV){
+    var h='<div class="vleg">Hasta el final del partido</div>';
+    h+=stack('Próximo gol',[{n:NL,p:o.next.h,c:'var(--vz-l)'},{n:'Ninguno',p:o.next.none,c:'#5b6b86'},{n:NV,p:o.next.a,c:'var(--vz-v)'}]);
+    h+=stack('Resultado final',[{n:NL,p:o.f.h,c:'var(--vz-l)'},{n:'Empate',p:o.f.d,c:'var(--vz-d)'},{n:NV,p:o.f.a,c:'var(--vz-v)'}]);
+    h+='<div class="vleg" style="margin-top:6px"><span><i style="background:var(--vz-l)"></i>'+NL+'</span><span><i style="background:#5b6b86"></i>Ninguno</span><span><i style="background:var(--vz-d)"></i>Empate</span><span><i style="background:var(--vz-v)"></i>'+NV+'</span></div>';
+    Object.keys(o.over).slice(0,3).forEach(function(L){ h+='<div class="vrow"><span class="vl">Más de '+L+' goles <small>al final</small></span>'+bar(o.over[L],1,'l',pc1(o.over[L]),'Más de '+L)+'</div>'; });
+    h+='<div class="vrow"><span class="vl">Ambos anotan <small>al final</small></span>'+bar(o.btts,1,'l',pc1(o.btts),'Ambos anotan')+'</div>';
+    return h;
+  }
+  // En vivo: estadisticas pegadas (reparto local / visita)
+  function stats(st,keys,NL,NV){
+    var h=leg([[NL,'var(--vz-l)'],[NV,'var(--vz-v)']]);
+    keys.forEach(function(k){ var v=st[k[0]]; if(!v) return; var a=parseFloat(String(v[0]).replace(',','.')), b=parseFloat(String(v[1]).replace(',','.')); if(!isFinite(a)||!isFinite(b)) return;
+      var t=a+b; h+='<div class="vrow"><span class="vl">'+k[1]+'</span><div class="vsplit" title="'+esc(NL+' '+v[0]+' · '+NV+' '+v[1])+'"><b>'+esc(String(v[0]))+'</b><span class="tr"><i style="flex:'+(t?a/t:0.5).toFixed(3)+'"></i><i style="flex:'+(t?b/t:0.5).toFixed(3)+'"></i></span><b>'+esc(String(v[1]))+'</b></div></div>'; });
+    return h;
+  }
+  // OddsMath: apertura -> ultimo en probabilidad sin margen, con el rango min-max
+  function dumbProb(r){
+    var all=[]; r.nombres.forEach(function(n,i){ all.push(r.apertura.p[i]*100,r.ultimo.p[i]*100,r.minmax[i][0],r.minmax[i][1]); });
+    var mn=Math.min.apply(null,all), mx=Math.max.apply(null,all), pad=(mx-mn)*0.06||2; function pos(v){ return 100*(v-(mn-pad))/((mx+pad)-(mn-pad)); }
+    var h='<div class="vleg"><span><i style="border:2px solid #8fa2c0;background:transparent"></i>apertura</span><span><i style="background:var(--vz-l)"></i>último</span><span><i style="background:rgba(255,255,255,.2)"></i>rango mín–máx</span></div>';
+    r.nombres.forEach(function(n,i){
+      var a=r.apertura.p[i]*100, b=r.ultimo.p[i]*100, d=r.dpp[i], cl=Math.abs(d)<0.3?'eq':(d>0?'dn':'up'), lo=r.minmax[i][0], hi=r.minmax[i][1];   // dn = verde = la probabilidad subio
+      h+='<div class="vrow"><span class="vl">'+esc(n)+'<small>cuota '+r.apertura.cuotas[i].toFixed(2)+' → '+r.ultimo.cuotas[i].toFixed(2)+'</small></span><div><div class="vdumb '+cl+'" role="img" aria-label="'+esc(n+': '+a.toFixed(1)+'% a '+b.toFixed(1)+'%')+'"><span class="rng" style="left:'+pos(lo).toFixed(1)+'%;width:'+Math.max(0.5,pos(hi)-pos(lo)).toFixed(1)+'%"></span><span class="ln" style="left:'+Math.min(pos(a),pos(b)).toFixed(1)+'%;width:'+Math.abs(pos(b)-pos(a)).toFixed(1)+'%"></span><span class="pt a" style="left:'+pos(a).toFixed(1)+'%"></span><span class="pt b" style="left:'+pos(b).toFixed(1)+'%"></span></div><div class="vdinfo"><span>'+a.toFixed(1)+'% → <b>'+b.toFixed(1)+'%</b></span><span><b>'+(d>0?'+':'')+d.toFixed(1)+' pp</b>'+(d>=0.3?' ▲':(d<=-0.3?' ▼':''))+' · rango '+lo+'–'+hi+'%</span></div></div></div>';
+    });
+    return h;
+  }
+  // Comparacion con Stake en vivo: ventaja contra la cuota justa
+  function evRows(rows){
+    var h='<div class="vleg"><span><i style="background:var(--vz-l)"></i>paga más que lo justo (derecha)</span><span><i style="background:var(--vz-bad)"></i>paga menos (izquierda)</span></div>';
+    rows.forEach(function(r){ var e=r.ev, w=e==null?0:Math.max(0,e), l=e==null?0:Math.max(0,-e), sc=30;
+      h+='<div class="vrow'+(r.star?' main':'')+'"><span class="vl">'+(r.star?'★ ':'')+esc(r.n)+'<small>prob. '+pc1(r.p)+' · justa '+(r.p>0?(1/r.p).toFixed(2):'—')+'</small></span><div><div class="vdiv" role="img" aria-label="'+esc(r.n+': '+(e==null?'sin dato':(e>=0?'+':'')+e.toFixed(1)+'% contra lo justo'))+'"><div class="lo"><i style="width:'+Math.min(100,100*l/sc).toFixed(1)+'%"></i></div><div class="wi"><i style="width:'+Math.min(100,100*w/sc).toFixed(1)+'%"></i></div></div><div class="vdnum"><span>Stake <b>@'+r.odd.toFixed(2)+'</b></span><span><b>'+(e==null?'—':(e>=0?'+':'')+e.toFixed(1)+'%')+'</b></span></div></div></div>'; });
+    return h+'<p class="cap" style="margin:0">La escala llega a ±30%.</p>';
+  }
+  // Historial de revisiones: % real contra lo que decia el modelo (con rango 95%)
+  function calib(rows){
+    if(!rows.length) return '';
+    var h='<div class="vleg"><span><i style="border:2px solid var(--vz-d);background:transparent"></i>lo que decía el modelo</span><span><i style="background:var(--vz-l)"></i>% real</span><span><i style="background:rgba(255,255,255,.2)"></i>rango 95%</span></div>';
+    function pos(v){ return Math.max(0,Math.min(100,v*100)); }
+    rows.forEach(function(r){ var d=(r.real-r.esp)*100;
+      h+='<div class="vrow"><span class="vl">'+esc(r.k)+'<small>'+r.h+' de '+r.n+' partidos</small></span><div><div class="vdumb '+(Math.abs(d)<3?'eq':(d>0?'dn':'up')+'" style="--c:var(--vz-l)')+'"><span class="rng" style="left:'+pos(r.lo).toFixed(1)+'%;width:'+Math.max(0.5,pos(r.hi)-pos(r.lo)).toFixed(1)+'%"></span><span class="pt a" style="left:'+pos(r.esp).toFixed(1)+'%;--c:var(--vz-d)"></span><span class="pt b" style="left:'+pos(r.real).toFixed(1)+'%"></span></div><div class="vdinfo"><span>real <b>'+pc1(r.real)+'</b> · modelo '+pc1(r.esp)+'</span><span><b>'+(d>=0?'+':'')+d.toFixed(1)+' pts</b> · '+pc1(r.lo)+'–'+pc1(r.hi)+'</span></div></div></div>'; });
+    return h;
+  }
+  // Revision de un partido jugado: ¿se cumplio?
+  function revision(rows){
+    var h='<div class="vleg"><span class="vchk si">✔ se cumplió</span><span class="vchk no">✘ no se cumplió</span><span>La barra es la probabilidad que le daba el modelo.</span></div>';
+    rows.forEach(function(r){ h+='<div class="vrow '+(r.ok?'ok':'ko')+'"><span class="vl">'+esc(r.m)+'<small>'+esc(r.t.replace(/<[^>]+>/g,''))+'</small></span><div>'+bar(r.p,1,r.ok?'l':'',pc1(r.p),'Probabilidad del pronóstico')+'<span class="vchk '+(r.ok?'si':'no')+'">'+(r.ok?'✔ se cumplió':'✘ no se cumplió')+'</span></div></div>'; });
+    return h;
+  }
+  window.vzS={wrap:wrap,ventanas:ventanas,final:final,stats:stats,dumbProb:dumbProb,evRows:evRows,calib:calib,revision:revision};
 })();
 </script>
 </body>
