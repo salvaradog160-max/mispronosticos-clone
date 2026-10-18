@@ -6,6 +6,7 @@ import { MaterialDesignIcons } from '@react-native-vector-icons/material-design-
 import { WebView } from 'react-native-webview';
 import { spacing } from '../theme';
 import { PARTIDO_JS, VIVO_JS } from '../flashscore/scripts';
+import { ORDEN_JS } from '../flashscore/orden';
 import { jsRecibir, leerMensaje, urlPermitida, urlStakePermitida } from '../flashscore/puente';
 import { STAKE_HOME, buscarStakeJs } from '../stake/buscar';
 import { buscarArbworld } from '../arbworld/arbworld';
@@ -39,6 +40,7 @@ export default function HerramientaScreen({ pantallaCompleta = false }: { pantal
   const [flashMontado, setFlashMontado] = useState(false);
   const [stakeMontado, setStakeMontado] = useState(false);
   const [puedeVolver, setPuedeVolver] = useState(false);
+  const [porHora, setPorHora] = useState(true);       // lista de Flashscore ordenada por hora (por defecto) o por liga
   const herramienta = useRef<WebView<{}>>(null);
   const flash = useRef<WebView<{}>>(null);
   const stake = useRef<WebView<{}>>(null);
@@ -123,6 +125,7 @@ export default function HerramientaScreen({ pantallaCompleta = false }: { pantal
             domStorageEnabled
             setSupportMultipleWindows={false}
             onShouldStartLoadWithRequest={r => urlPermitida(r.url)}
+            injectedJavaScript={ORDEN_JS}
             onNavigationStateChange={s => setPuedeVolver(s.canGoBack)}
             onMessage={e => {
               const c = leerMensaje(e.nativeEvent.data);
@@ -170,6 +173,16 @@ export default function HerramientaScreen({ pantallaCompleta = false }: { pantal
             <View style={styles.pastilla}>
               <Pressable style={[styles.accionIcono, !puedeVolver && styles.apagado]} disabled={!puedeVolver} onPress={() => flash.current?.goBack()} accessibilityLabel="Atrás">
                 <MaterialDesignIcons name="arrow-left" size={20} color={COLOR.texto} />
+              </Pressable>
+              <Pressable
+                style={[styles.accionIcono, porHora && styles.accionIconoOn]}
+                onPress={() => {
+                  const nuevo = !porHora;
+                  setPorHora(nuevo);
+                  flash.current?.injectJavaScript(`window.__pgOrdenar && window.__pgOrdenar(${JSON.stringify(nuevo ? 'hora' : 'liga')}); true;`);
+                }}
+                accessibilityLabel={porHora ? 'Lista por hora; tocar para ordenar por liga' : 'Lista por liga; tocar para ordenar por hora'}>
+                <MaterialDesignIcons name={porHora ? 'clock-outline' : 'format-list-group'} size={20} color={porHora ? COLOR.acento : COLOR.texto} />
               </Pressable>
               <Pressable style={styles.accion} onPress={() => flash.current?.injectJavaScript(PARTIDO_JS + '; true;')} accessibilityLabel="Enviar el partido al análisis">
                 <MaterialDesignIcons name="chart-donut" size={18} color={COLOR.fondo} />
@@ -220,6 +233,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row', alignItems: 'center', gap: spacing.xs, padding: 6, borderRadius: 999,
     backgroundColor: 'rgba(10,20,36,0.94)', borderWidth: 1, borderColor: 'rgba(120,170,255,0.3)', elevation: 10,
   },
+  accionIconoOn: { backgroundColor: 'rgba(46,230,168,0.2)', borderWidth: 1, borderColor: 'rgba(46,230,168,0.6)' },
   accionIcono: { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.08)' },
   accion: { flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 16, height: 40, borderRadius: 20, backgroundColor: COLOR.acento },
   accionSec: { backgroundColor: 'rgba(255,255,255,0.1)' },
