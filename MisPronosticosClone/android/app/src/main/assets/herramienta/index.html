@@ -237,6 +237,16 @@ table.mk.tr td small{display:block;font:400 10px var(--body);color:var(--muted)}
 .lvk{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:12px 0} .lvk>div{border:1px solid var(--line);border-radius:8px;padding:10px 12px} .lvk b{display:block;font-size:22px} .lvk small{color:var(--muted);font-size:12px}
 .omin{width:100%;box-sizing:border-box;font:14px var(--body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 12px}
 .btn.on{border-color:var(--accent);color:var(--accent)}
+/* Botones de fuente de datos: colores fijos (mismo contraste en tema claro y oscuro) para reconocerlos de inmediato */
+.btn-stake,.btn-arb{color:#fff;border:0;font-weight:700;padding:10px 16px;display:inline-flex;align-items:center;gap:8px;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.btn-stake{background:#1b64d8} .btn-stake:hover{background:#1555b8}
+.btn-arb{background:#9a6200} .btn-arb:hover{background:#7f5000}
+.btn-stake::before{content:"\2B07"} .btn-arb::before{content:"\1F4C8"}
+.btn-stake:disabled,.btn-arb:disabled{opacity:.6;cursor:progress}
+.fuente{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:0 0 10px}
+.fuente .cap{margin:0}
+.fuente-stake{border-left:4px solid #1b64d8;padding-left:10px}
+.fuente-arb{border-left:4px solid #9a6200;padding-left:10px}
 .spk{width:100%;max-width:520px;height:auto;display:block;margin:6px 0 2px} .spk path{fill:none;stroke:var(--accent);stroke-width:1.6;stroke-linejoin:round} .spk text{fill:var(--muted);font:10px var(--body)}
 .up{color:var(--win)} .dn{color:var(--loss)} .status.ok{color:var(--win)} .status.warn{color:var(--loss)}
 .odds5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
@@ -319,8 +329,8 @@ details.adv summary{cursor:pointer;font:600 14px var(--body);padding:6px 0}
       <div class="block wide" id="an-trends"></div>
       <div class="block wide">
         <h3>Pronósticos <span class="h3s">orden: probabilidad</span></h3>
-        <div class="acts" style="margin:0 0 8px"><button class="btn" id="btn-stake" type="button">Traer de Stake</button><label class="cap" style="margin:0;display:inline-flex;align-items:center;gap:6px">Parpadear desde +<input id="umbral" type="text" inputmode="decimal" maxlength="4" autocomplete="off" style="width:48px" aria-label="Porcentaje sobre la cuota justa desde el que una tarjeta parpadea">% sobre la justa</label><span class="cap" id="stake-msg" style="margin:0"></span></div>
-        <div class="acts" style="margin:0 0 8px"><button class="btn" id="btn-mov" type="button">Movimiento de cuota (Arbworld)</button><span class="cap" id="mov-msg" style="margin:0"></span></div><div style="overflow-x:auto"><table class="mk" id="mov-tab" hidden></table></div><p class="cap" id="mov-cap" hidden>Apertura → actual en el exchange de Betfair (vía Arbworld), no en tu casa. Menos de 3% casi siempre es ruido; 3–7% es una señal real pero no necesariamente valor; desde 7% es fuerte, sobre todo en mercados líquidos. Descriptivo: en el backtest de tu dashboard, seguir el lado del movimiento no superó al azar. Solo salen partidos por jugar y las 40 filas con más movimiento de cada mercado.</p>
+        <div class="acts fuente fuente-stake"><button class="btn btn-stake" id="btn-stake" type="button">Traer de Stake</button><span class="cap">Cuotas reales de Stake contra la cuota justa del modelo.</span><label class="cap" style="margin:0;display:inline-flex;align-items:center;gap:6px">Parpadear desde +<input id="umbral" type="text" inputmode="decimal" maxlength="4" autocomplete="off" style="width:48px" aria-label="Porcentaje sobre la cuota justa desde el que una tarjeta parpadea">% sobre la justa</label><span class="cap" id="stake-msg" style="margin:0"></span></div>
+        <div class="acts fuente fuente-arb"><button class="btn btn-arb" id="btn-mov" type="button">Movimiento de cuota (Arbworld)</button><span class="cap">Hacia dónde se mueve el mercado: apertura → actual.</span><span class="cap" id="mov-msg" style="margin:0"></span></div><div style="overflow-x:auto"><table class="mk" id="mov-tab" hidden></table></div><p class="cap" id="mov-cap" hidden>Apertura → actual en el exchange de Betfair (vía Arbworld), no en tu casa. Menos de 3% casi siempre es ruido; 3–7% es una señal real pero no necesariamente valor; desde 7% es fuerte, sobre todo en mercados líquidos. Descriptivo: en el backtest de tu dashboard, seguir el lado del movimiento no superó al azar. Solo salen partidos por jugar y las 40 filas con más movimiento de cada mercado.</p>
         <div class="pks" id="an-pk"></div>
         <p class="cap" id="an-pk-cap"></p>
         <p class="cap" id="an-pk-rn" hidden>Toca una tarjeta para abrir ese partido en Stake (solo en la app). La apuesta la haces tú allí.</p>
@@ -355,7 +365,7 @@ details.adv summary{cursor:pointer;font:600 14px var(--body);padding:6px 0}
       </div>
       <p class="status" id="lv-status"></p>
       <div id="lv-out"></div>
-      <div class="acts" style="margin-top:8px"><button class="btn" id="lv-stake" type="button">Comparar con Stake</button><span class="cap" id="lv-stake-msg" style="margin:0"></span></div>
+      <div class="acts" style="margin-top:8px"><button class="btn btn-stake" id="lv-stake" type="button">Comparar con Stake</button><span class="cap" id="lv-stake-msg" style="margin:0"></span></div>
       <div id="lv-stake-out"></div>
     </div></div>
   </section>
