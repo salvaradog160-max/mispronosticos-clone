@@ -794,21 +794,25 @@ $('btn-mov').addEventListener('click',function(){
   if(!l||!v){ msg('Primero carga el partido.',true); return; }
   var MK=[['1x2','1X2'],['ou25','Más/Menos 2.5']], NOM={'1':'Local','X':'Empate','2':'Visita','over':'Más','under':'Menos'};
   msg('Consultando Arbworld (unos segundos)…'); $('btn-mov').disabled=true;
-  var rows='', hallado=null, faltan=[];
-  MK.reduce(function(p,m){ return p.then(function(){
+  var rows='', hallado=null, faltan=[], MK2=[['ou15','Más/Menos 1.5'],['ou35','Más/Menos 3.5']];
+  function correr(lista){ return lista.reduce(function(p,m){ return p.then(function(){
     return arbFetch(l,v,m[0]).then(function(d){
       if(!d.encontrado){ faltan.push(m[1]); return; }
       hallado=d;
       d.res.forEach(function(x,i){ var c=x.cambio_pct, ab=Math.abs(c), lec=ab<3?'ruido':(ab<7?'señal':'fuerte');
         rows+='<tr><td class="lab">'+(i?'':esc(m[1]))+'</td><td>'+esc(NOM[x.et]||x.et)+'</td><td>'+x.apertura.toFixed(2)+' → '+x.actual.toFixed(2)+'</td><td class="'+(ab<3?'q':(c<0?'pos':'neg'))+'">'+(c>0?'+':'')+c.toFixed(1)+'%</td><td class="q">'+lec+(c<=-3?' · el precio bajó':(c>=3?' · el precio subió':''))+'</td></tr>'; });
-    }); });
-  },Promise.resolve()).then(function(){
+    }); }); },Promise.resolve()); }
+  correr(MK).then(function(){
+    if(hallado) return;
+    msg('No salió en 1X2 ni en Más/Menos 2.5; probando Más/Menos 1.5 y 3.5…');   // cada mercado lista solo sus 40 filas con más movimiento
+    return correr(MK2);
+  }).then(function(){
     $('btn-mov').disabled=false;
-    if(!hallado){ tb.hidden=true; $('mov-cap').hidden=true; msg('Arbworld no tiene «'+l+' - '+v+'» entre sus filas con movimiento (solo trae partidos por jugar y las 40 con más cambio por mercado).',true); return; }
+    if(!hallado){ tb.hidden=true; $('mov-cap').hidden=true; msg('«'+l+' - '+v+'» no está hoy entre las 40 filas con más movimiento que Arbworld publica en 1X2 ni en Más/Menos 1.5, 2.5 y 3.5. Es un límite de la página (el resto solo se ve entrando a Arbworld y tocando «Load more»); un partido con poco movimiento puede quedar fuera, y los que ya empezaron salen de la lista.',true); return; }
     tb.innerHTML='<thead><tr><th scope="col">Mercado</th><th scope="col">Resultado</th><th scope="col">Apertura → actual</th><th scope="col">Cambio</th><th scope="col">Lectura</th></tr></thead><tbody>'+rows+'</tbody>';
     tb.hidden=false; $('mov-cap').hidden=false;
     msg('Arbworld: '+hallado.partido+' ('+hallado.liga+')'+(faltan.length?' · sin datos de: '+faltan.join(', '):'')+'.');
-  }).catch(function(){ $('btn-mov').disabled=false; msg('No pude hablar con el servidor local. Enciende «Pronóstico de Goles» y abre http://localhost:8770/.',true); });
+  }).catch(function(e){ $('btn-mov').disabled=false; msg(window.ReactNativeWebView?('No pude leer Arbworld: '+((e&&e.message)||'sin respuesta')+'.'):'No pude hablar con el servidor local. Enciende «Pronóstico de Goles» y abre http://localhost:8770/.',true); });
 });
 function pickList(K){
   var x=[['Gana Local',K.home,['x2','h']],['Empate',K.draw,['x2','d']],['Gana Visita',K.away,['x2','a']],['Local o empate (1X)',K.home+K.draw],['Visita o empate (X2)',K.away+K.draw]];
