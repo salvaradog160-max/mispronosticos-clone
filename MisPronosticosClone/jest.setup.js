@@ -24,3 +24,9 @@ jest.mock('./src/firebase', () => ({
   auth: () => null,
   loadRemoteConfig: jest.fn().mockResolvedValue({}),
 }));
+
+jest.mock('react-native-keychain', () => ({
+  getGenericPassword: jest.fn().mockResolvedValue(false),
+  setGenericPassword: jest.fn().mockResolvedValue({ service: 'x', storage: 'x' }),
+  resetGenericPassword: jest.fn().mockResolvedValue(true),
+}));

@@ -1,3 +1,4 @@
+import { leerToken } from '../tokenStore';
 import type { AppConfig } from '../config';
 import type { Match, Pick } from '../domain/picks';
 import type { AnalisisFila, AnalisisStats, TablaLiga } from './analisisRepository';
@@ -105,8 +106,13 @@ export const createStaticRepository = (config: AppConfig): PicksRepository => {
   const load = async (): Promise<DailyPayload> => {
     if (cache) return cache;
     const url = `${config.picksUrl.replace(/\/$/, '')}?t=${Date.now()}`;
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`${res.status} leyendo picks.json`);
+    // Repo privado: raw.githubusercontent pide el token; publico, no hace falta.
+    const token = await leerToken();
+    const res = await fetch(url, token ? { headers: { Authorization: `token ${token}` } } : undefined);
+    if (!res.ok) {
+      const pista = res.status === 404 || res.status === 401 ? ' (si el repo es privado, pega el token en Perfil)' : '';
+      throw new Error(`${res.status} leyendo picks.json${pista}`);
+    }
     cache = (await res.json()) as DailyPayload;
     return cache;
   };

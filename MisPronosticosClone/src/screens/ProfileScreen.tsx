@@ -1,10 +1,11 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import { ActivityIndicator, Button, Surface, Text } from 'react-native-paper';
+import { Button, Surface, Text, TextInput } from 'react-native-paper';
 import { palette, radius, spacing } from '../theme';
 import type { AppConfig } from '../config';
 import { DEFAULTS } from '../config';
 import { usePicks } from '../data/usePicks';
+import { borrarToken, guardarToken, leerToken } from '../tokenStore';
 
 interface Props {
   config?: AppConfig;
@@ -18,6 +19,25 @@ interface Props {
  */
 export default function ProfileScreen({ config = DEFAULTS }: Props) {
   const { data } = usePicks(config);
+  const [token, setToken] = useState('');
+  const [hayToken, setHayToken] = useState(false);
+  const [aviso, setAviso] = useState('');
+
+  useEffect(() => {
+    leerToken().then(t => setHayToken(!!t));
+  }, []);
+
+  const guardar = async () => {
+    const ok = await guardarToken(token);
+    setHayToken(ok);
+    setToken('');
+    setAviso(ok ? 'Token guardado. Cierra y abre la app para recargar los picks.' : 'No se pudo guardar el token.');
+  };
+  const quitar = async () => {
+    await borrarToken();
+    setHayToken(false);
+    setAviso('Token borrado.');
+  };
 
   const publicadas = data.filter(p => p.odds > 0).length;
   const conMargen = data.filter(p => (p.margen ?? 0) > 0).length;
@@ -71,6 +91,31 @@ export default function ProfileScreen({ config = DEFAULTS }: Props) {
         </Text>
         <Text style={styles.body}>football-data.co.uk y ESPN. Todo público, sin credenciales de terceros.</Text>
         <Text style={styles.body}>El margen histórico medido es pequeño. Trata esto como una herramienta, no como una máquina de dinero.</Text>
+      </Surface>
+
+      <Surface elevation={1} style={styles.card}>
+        <Text variant="titleSmall" style={styles.title}>
+          Acceso a los picks
+        </Text>
+        <Text style={styles.body}>
+          {hayToken ? 'Hay un token guardado en este teléfono.' : 'Sin token. Solo hace falta si el repo es privado.'}
+        </Text>
+        <TextInput
+          mode="outlined"
+          label="Token de GitHub (solo lectura)"
+          value={token}
+          onChangeText={setToken}
+          secureTextEntry
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+        <View style={styles.row}>
+          <Button mode="contained" onPress={guardar} disabled={!token.trim()}>
+            Guardar
+          </Button>
+          {hayToken ? <Button onPress={quitar}>Borrar</Button> : null}
+        </View>
+        {aviso ? <Text style={styles.body}>{aviso}</Text> : null}
       </Surface>
     </ScrollView>
   );
