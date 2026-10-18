@@ -1,5 +1,5 @@
 import { ESPERADO, MUESTRA } from '../__fixtures__/betmexicoMuestra';
-import { BASE, GAP_MS, TTL_ARCHIVO_MS, _reiniciar, buscarBetmexico } from '../src/betmexico/api';
+import { BASE, GAP_MS, WEB, TTL_ARCHIVO_MS, _reiniciar, buscarBetmexico } from '../src/betmexico/api';
 import { leerMensaje } from '../src/flashscore/puente';
 
 const montar = (opciones: { status?: number } = {}) => {
@@ -33,6 +33,23 @@ test('misma salida que la version Python (betmexico.py), equipos en orden normal
 test('partido ausente: mensaje claro, igual que Python', async () => {
   const { deps } = montar();
   expect((await buscarBetmexico('Equipo Fantasma', 'Otro Ficticio', deps)).error).toBe(ESPERADO.ausente.error);
+});
+
+test('enlace directo: pais, liga, slug del partido e id del feed (el mismo que abre la pagina)', async () => {
+  const { deps } = montar();
+  const r = await buscarBetmexico('Hoffenheim', 'Bayer Leverkusen', deps);
+  expect(r.url).toBe('https://betmexico.mx/deportes-elite/soccer/germany/bundesliga/tsg-hoffenheim-bayer-leverkusen-2721030337223331885');
+  expect(r.url?.startsWith(WEB)).toBe(true);
+});
+
+test('sin pais o liga en el feed no inventa enlace (url null) pero si devuelve las cuotas', async () => {
+  const { deps } = montar();
+  const sinNombres = { ...MUESTRA.archivo, categories: {}, tournaments: {} };
+  const d2 = { ...deps, fetcher: async (url: string, init: { headers: Record<string, string> }) => (url.endsWith(MUESTRA.ruta) ? { ok: true, status: 200, text: async () => JSON.stringify(sinNombres) } : deps.fetcher(url, init)) };
+  const r = await buscarBetmexico('Hoffenheim', 'Bayer Leverkusen', d2);
+  expect(r.encontrado).toBe(true);
+  expect(r.url).toBeNull();
+  expect(r.x2).toEqual({ h: 2.62, d: 3.9, a: 2.34 });
 });
 
 test('mapeo de mercados: 1X2, doble oportunidad, totales y handicap con valores reales', async () => {

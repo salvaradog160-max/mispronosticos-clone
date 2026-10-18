@@ -18,8 +18,12 @@ export const GAP_MS = 2000;
 export const TTL_INDICE_MS = 60_000;
 export const TTL_ARCHIVO_MS = 300_000;
 
+export const WEB = 'https://betmexico.mx/deportes-elite/soccer';
+
 export interface BetmexicoRespuesta extends StakeRespuesta {
   fuente?: string;
+  /** Enlace directo al partido en betmexico.mx (null si el feed no trae el pais o la liga). */
+  url?: string | null;
 }
 
 type Respuesta = { ok: boolean; status: number; text: () => Promise<string> };
@@ -102,17 +106,32 @@ export const parsearEvento = (ev: any, inv: boolean): StakeRespuesta => {
   return out;
 };
 
+/** Enlace directo: /deportes-elite/soccer/<pais>/<liga>/<slug-del-partido>-<id>. null si falta algun dato. */
+export const urlPartido = (id: string, ev: any, cats: Record<string, any>, tors: Record<string, any>): string | null => {
+  const d = ev?.desc ?? {};
+  const cat = cats[d.category]?.slug;
+  const tor = tors[d.tournament]?.slug;
+  return cat && tor && d.slug ? `${WEB}/${cat}/${tor}/${d.slug}-${id}` : null;
+};
+
 export const buscarBetmexico = async (local: string, visita: string, d: Deps): Promise<BetmexicoRespuesta> => {
   try {
     const idx = await traer('/0', TTL_INDICE_MS, d);
     const versiones: number[] = [...(idx.top_events_versions ?? []), ...(idx.rest_events_versions ?? [])];
     let mejor: any = null;
+    let mejorId = '';
     let mejorPt = 0;
     let inv = false;
     let vistos = 0;
+    let hechos = 0;
+    const cats: Record<string, any> = {};
+    const tors: Record<string, any> = {};
     for (const v of versiones) {
       const arch = await traer(`/${v}`, TTL_ARCHIVO_MS, d);
-      for (const ev of Object.values<any>(arch.events ?? {})) {
+      hechos++;
+      Object.assign(cats, arch.categories ?? {});
+      Object.assign(tors, arch.tournaments ?? {});
+      for (const [id, ev] of Object.entries<any>(arch.events ?? {})) {
         const desc = ev.desc ?? {};
         const comp = desc.competitors ?? [];
         if (desc.type !== 'match' || desc.sport !== '1' || comp.length !== 2) continue;
@@ -122,11 +141,20 @@ export const buscarBetmexico = async (local: string, visita: string, d: Deps): P
         const [pt, vuelta] = a >= b ? [a, false] : [b, true];
         if (pt > mejorPt) {
           mejor = ev;
+          mejorId = id;
           mejorPt = pt;
           inv = vuelta as boolean;
         }
       }
       if (mejorPt >= 0.9) break;
+    }
+    if (mejor && mejorPt >= 0.6 && !urlPartido(mejorId, mejor, cats, tors)) {
+      for (const v of versiones.slice(hechos)) {              // los nombres de pais y liga pueden venir en otro archivo
+        const arch = await traer(`/${v}`, TTL_ARCHIVO_MS, d);
+        Object.assign(cats, arch.categories ?? {});
+        Object.assign(tors, arch.tournaments ?? {});
+        if (urlPartido(mejorId, mejor, cats, tors)) break;
+      }
     }
     if (!mejor || mejorPt < 0.6) {
       return { encontrado: false, error: `No encontré «${local} - ${visita}» entre los ${vistos} partidos de fútbol por jugar de Betmexico.` };
@@ -139,6 +167,7 @@ export const buscarBetmexico = async (local: string, visita: string, d: Deps): P
       inicio: Number(mejor.desc.scheduled ?? 0) * 1000,
       invertido: inv,
       fuente: 'Betmexico (feed público de su página)',
+      url: urlPartido(mejorId, mejor, cats, tors),
     };
   } catch (e) {
     return { encontrado: false, error: `No pude leer el feed de Betmexico: ${e instanceof Error ? e.message : String(e)}` };

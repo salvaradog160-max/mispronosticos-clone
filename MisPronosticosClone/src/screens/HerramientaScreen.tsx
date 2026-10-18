@@ -12,6 +12,7 @@ import { STAKE_HOME, buscarStakeJs } from '../stake/buscar';
 import { buscarArbworld } from '../arbworld/arbworld';
 import { buscarStake as buscarStakeApi } from '../stake/api';
 import { buscarBetmexico } from '../betmexico/api';
+import { BETMEXICO_HOME, urlBetmexicoPermitida } from '../betmexico/web';
 
 /**
  * Pronostico de Goles dentro de la app. El HTML va empaquetado en
@@ -22,12 +23,13 @@ import { buscarBetmexico } from '../betmexico/api';
  * por los nombres de los equipos y abre su pagina. El usuario inicia sesion y apuesta por su cuenta.
  * «Traer de Stake» (API), Movimiento (Arbworld) y el historial siguen sin servidor local.
  */
-type Vista = 'herramienta' | 'flashscore' | 'stake';
+type Vista = 'herramienta' | 'flashscore' | 'stake' | 'betmexico';
 const COLOR = { fondo: '#060a11', barra: '#0a1424', texto: '#eaf1ff', apagado: '#7f93b3', acento: '#2ee6a8' };
-const PESTANAS: Array<{ id: Vista; nombre: string; icono: 'chart-donut' | 'soccer' | 'ticket-confirmation' }> = [
+const PESTANAS: Array<{ id: Vista; nombre: string; icono: 'chart-donut' | 'soccer' | 'ticket-confirmation' | 'ticket-percent' }> = [
   { id: 'herramienta', nombre: 'Análisis', icono: 'chart-donut' },
   { id: 'flashscore', nombre: 'Flashscore', icono: 'soccer' },
   { id: 'stake', nombre: 'Stake', icono: 'ticket-confirmation' },
+  { id: 'betmexico', nombre: 'Betmexico', icono: 'ticket-percent' },
 ];
 
 export const HERRAMIENTA_URI = 'file:///android_asset/herramienta/index.html';
@@ -39,11 +41,14 @@ export default function HerramientaScreen({ pantallaCompleta = false }: { pantal
   const [vista, setVista] = useState<Vista>('herramienta');
   const [flashMontado, setFlashMontado] = useState(false);
   const [stakeMontado, setStakeMontado] = useState(false);
+  const [betMontado, setBetMontado] = useState(false);
   const [puedeVolver, setPuedeVolver] = useState(false);
   const [porHora, setPorHora] = useState(true);       // lista de Flashscore ordenada por hora (por defecto) o por liga
   const herramienta = useRef<WebView<{}>>(null);
   const flash = useRef<WebView<{}>>(null);
   const stake = useRef<WebView<{}>>(null);
+  const bet = useRef<WebView<{}>>(null);
+  const [betUri, setBetUri] = useState(BETMEXICO_HOME);
   const pendienteStake = useRef<{ l: string; v: string } | null>(null);
   const intentosStake = useRef(0);
   const consultarStakeApi = (id: number, l: string, v: string) => {
@@ -59,6 +64,32 @@ export default function HerramientaScreen({ pantallaCompleta = false }: { pantal
     setVista('stake');
     // Si el visor ya existe, se recarga la portada para que onLoadEnd lance la busqueda con el buscador a la vista.
     stake.current?.injectJavaScript(`window.location.href=${JSON.stringify(STAKE_HOME)}; true;`);
+  };
+
+  const avisar = (texto: string) =>
+    herramienta.current?.injectJavaScript(`window.__pgAviso && window.__pgAviso(${JSON.stringify(texto)}); true;`);
+
+  // Betmexico: el enlace directo sale del mismo feed que las cuotas (pais/liga/slug/id); no hace falta buscar en su pagina.
+  const abrirBetmexico = (l: string, v: string) => {
+    avisar('Buscando el partido en Betmexico…');
+    buscarBetmexico(l, v, {
+      fetcher: (url, init) => fetch(url, init),
+      ahora: () => Date.now(),
+      dormir: ms => new Promise<void>(r => setTimeout(() => r(), ms)),
+    }).then(r => {
+      if (!r.encontrado) {
+        avisar(`${r.error ?? 'No encontré el partido en Betmexico.'} Puedes buscarlo a mano en la pestaña Betmexico.`);
+        return;
+      }
+      if (!r.url) {
+        avisar('Betmexico tiene el partido, pero no pude armar su enlace. Búscalo a mano en la pestaña Betmexico.');
+        return;
+      }
+      setBetMontado(true);
+      setBetUri(r.url);
+      setVista('betmexico');
+      bet.current?.injectJavaScript(`window.location.href=${JSON.stringify(r.url)}; true;`);
+    });
   };
 
   // Atras de Android: dentro de Flashscore retrocede en su historial y, sin historial, vuelve a la herramienta.
@@ -93,6 +124,10 @@ export default function HerramientaScreen({ pantallaCompleta = false }: { pantal
           onMessage={e => {
             const m = leerMensaje(e.nativeEvent.data);
             if (m?.tipo === 'stake') abrirStake(m.l, m.v);
+            if (m?.tipo === 'abrir') {
+              if (m.casa === 'stake') abrirStake(m.l, m.v);
+              else abrirBetmexico(m.l, m.v);
+            }
             if (m?.tipo === 'stakeapi') consultarStakeApi(m.id, m.l, m.v);
             if (m?.tipo === 'betmexico') {
               buscarBetmexico(m.l, m.v, {
@@ -129,7 +164,7 @@ export default function HerramientaScreen({ pantallaCompleta = false }: { pantal
             onNavigationStateChange={s => setPuedeVolver(s.canGoBack)}
             onMessage={e => {
               const c = leerMensaje(e.nativeEvent.data);
-              if (!c || c.tipo === 'stake' || c.tipo === 'stake-fin' || c.tipo === 'arbworld' || c.tipo === 'stakeapi' || c.tipo === 'betmexico') return;
+              if (!c || c.tipo === 'stake' || c.tipo === 'stake-fin' || c.tipo === 'arbworld' || c.tipo === 'stakeapi' || c.tipo === 'betmexico' || c.tipo === 'abrir') return;
               setVista('herramienta');
               herramienta.current?.injectJavaScript(jsRecibir(c));
             }}
@@ -163,6 +198,22 @@ export default function HerramientaScreen({ pantallaCompleta = false }: { pantal
               }
               stake.current?.injectJavaScript(buscarStakeJs(p.l, p.v));
             }}
+            style={styles.web}
+          />
+        </View>
+      )}
+
+      {betMontado && (
+        <View style={[styles.web, vista !== 'betmexico' && styles.oculto]}>
+          <WebView
+            ref={bet}
+            source={{ uri: betUri }}
+            originWhitelist={['https://*']}
+            javaScriptEnabled
+            webviewDebuggingEnabled={__DEV__}
+            domStorageEnabled
+            setSupportMultipleWindows={false}
+            onShouldStartLoadWithRequest={r => urlBetmexicoPermitida(r.url)}
             style={styles.web}
           />
         </View>
@@ -209,6 +260,7 @@ export default function HerramientaScreen({ pantallaCompleta = false }: { pantal
               onPress={() => {
                 if (t.id === 'flashscore') abrirFlashscore();
                 else if (t.id === 'stake') { setStakeMontado(true); setVista('stake'); }
+                else if (t.id === 'betmexico') { setBetMontado(true); setVista('betmexico'); }
                 else setVista('herramienta');
               }}>
               <View style={[styles.icoCaja, activa && styles.icoCajaOn]}>

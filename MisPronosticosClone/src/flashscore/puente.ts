@@ -34,12 +34,20 @@ export interface PedidoBetmexico {
   l: string;
   v: string;
 }
+/** Peticion de la herramienta: abrir el partido de una tarjeta en una casa (el usuario apuesta por su cuenta). */
+export interface PedidoAbrir {
+  tipo: 'abrir';
+  casa: 'stake' | 'betmexico';
+  l: string;
+  v: string;
+  mercado: string;
+}
 /** El script de Stake avisa al terminar (haya encontrado el partido o no). */
 export interface FinStake {
   tipo: 'stake-fin';
   ok: boolean;
 }
-export type Mensaje = Captura | PedidoStake | FinStake | PedidoArbworld | PedidoStakeApi | PedidoBetmexico;
+export type Mensaje = Captura | PedidoStake | FinStake | PedidoArbworld | PedidoStakeApi | PedidoBetmexico | PedidoAbrir;
 
 const MAX_TEXTO = 2_000_000;
 
@@ -47,6 +55,11 @@ const MAX_TEXTO = 2_000_000;
 export const leerMensaje = (data: string): Mensaje | null => {
   try {
     const m = JSON.parse(data);
+    if (m?.tipo === 'abrir') {
+      const ok = (x: unknown) => typeof x === 'string' && x.trim().length > 0 && x.length <= 120;
+      if ((m.casa !== 'stake' && m.casa !== 'betmexico') || !ok(m.l) || !ok(m.v)) return null;
+      return { tipo: 'abrir', casa: m.casa, l: m.l, v: m.v, mercado: typeof m.mercado === 'string' ? m.mercado.slice(0, 120) : '' };
+    }
     if (m?.tipo === 'betmexico') {
       const ok = (x: unknown) => typeof x === 'string' && x.trim().length > 0 && x.length <= 120;
       if (!ok(m.l) || !ok(m.v) || !Number.isInteger(m.id)) return null;

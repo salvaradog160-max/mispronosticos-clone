@@ -461,6 +461,23 @@ html.app .wrap{padding-block-end:104px}
 .vchk.si{color:var(--vz-l)} .vchk.no{color:#e07a86}
 .vrow.ok{border-left:3px solid var(--vz-l);padding-left:8px} .vrow.ko{border-left:3px solid var(--vz-bad);padding-left:8px}
 .vb.ev{--c:var(--vz-l)}
+
+/* hoja para elegir casa */
+.hoja{position:fixed;inset:0;z-index:50;display:flex;align-items:flex-end;justify-content:center}
+.hoja-fondo{position:absolute;inset:0;background:rgba(2,6,12,.66);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.hoja-caja{position:relative;width:min(560px,100%);margin:0 0 0;padding:18px 16px calc(16px + env(safe-area-inset-bottom,0px));border-radius:22px 22px 0 0;border:1px solid rgba(120,170,255,.28);background:linear-gradient(160deg,#142a52,#0a1830);box-shadow:0 -18px 50px rgba(0,0,0,.6);animation:sube .35s cubic-bezier(.2,.8,.2,1) both;display:flex;flex-direction:column;gap:10px}
+.hoja-caja small{font:600 11px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.hoja-caja h4{margin:0;font:700 22px var(--display);letter-spacing:.02em;line-height:1.1}
+.hoja-caja p{margin:0;font-size:12px;color:var(--muted)}
+.hoja-b{display:flex;justify-content:space-between;align-items:center;gap:10px;border:0;border-radius:16px;padding:14px 16px;color:#fff;text-align:left;cursor:pointer;font:600 15px var(--body);box-shadow:0 8px 22px rgba(0,0,0,.4);transition:transform .12s}
+.hoja-b:active{transform:scale(.98)}
+.hoja-b b{font:700 20px var(--display);letter-spacing:.03em}
+.hoja-b span{font-size:13px;text-align:right}
+.hoja-b em{font-style:normal;font-weight:700}
+.hoja-stake{background:linear-gradient(135deg,#2b7bff,#1456c9)} .hoja-betmexico{background:linear-gradient(135deg,#8b5cf6,#5b2fd1)}
+.hoja-x{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:11px;font:600 14px var(--body);cursor:pointer}
+.aviso-flota{position:fixed;left:12px;right:12px;bottom:calc(118px + env(safe-area-inset-bottom,0px));z-index:60;padding:12px 14px;border-radius:14px;background:rgba(10,20,36,.96);border:1px solid rgba(120,170,255,.35);color:#fff;font:600 13px/1.35 var(--body);box-shadow:0 10px 30px rgba(0,0,0,.5)}
+html.app .aviso-flota{bottom:130px}
 </style>
 </head>
 <body>
@@ -551,7 +568,7 @@ html.app .wrap{padding-block-end:104px}
         <div class="acts fuente fuente-arb"><button class="btn btn-arb" id="btn-mov" type="button">Movimiento de cuota (Arbworld)</button><span class="cap">Hacia dónde se mueve el mercado: apertura → actual.</span><span class="cap" id="mov-msg" style="margin:0"></span></div><div style="overflow-x:auto"><table class="mk" id="mov-tab" hidden></table></div><p class="cap" id="mov-cap" hidden>Apertura → actual en el exchange de Betfair (vía Arbworld), no en tu casa. Menos de 3% casi siempre es ruido; 3–7% es una señal real pero no necesariamente valor; desde 7% es fuerte, sobre todo en mercados líquidos. Descriptivo: en el backtest de tu dashboard, seguir el lado del movimiento no superó al azar. Solo salen partidos por jugar y las 40 filas con más movimiento de cada mercado.</p>
         <div class="pks" id="an-pk"></div>
         <p class="cap" id="an-pk-cap"></p>
-        <p class="cap" id="an-pk-rn" hidden>Toca una tarjeta para abrir ese partido en Stake (solo en la app). La apuesta la haces tú allí.</p>
+        <p class="cap" id="an-pk-rn" hidden>Toca una tarjeta para elegir dónde abrir el partido: Stake o Betmexico (solo en la app). La apuesta la haces tú en la página de la casa.</p>
       </div>
       <div class="block"><h3>Mercado contra modelo</h3><table class="mk" id="an-cmp"></table><p class="cap" id="an-cmp-cap"></p></div>
       <div class="block">
@@ -1595,8 +1612,24 @@ if(window.ReactNativeWebView){ $('an-pk-rn').hidden=false; $('an-pk').classList.
 $('an-pk').addEventListener('click',function(e){
   if(!window.ReactNativeWebView||e.target.closest('input,button,a,label')) return;
   var c=e.target.closest('.pk'); if(!c||!cfg.names.l||!cfg.names.v) return;
-  window.ReactNativeWebView.postMessage(JSON.stringify({tipo:'stake',l:cfg.names.l,v:cfg.names.v,mercado:c.getAttribute('data-n')||''}));
+  abrirHoja(c);
 });
+// Hoja para elegir en que casa abrir el partido de la tarjeta (solo en la app). La apuesta la hace el usuario en la pagina de la casa.
+function abrirHoja(c){
+  var n=c.getAttribute('data-n')||'', p=parseFloat(c.getAttribute('data-p'))||0, so=stakeOddsFor(n), bo=bmOddsFor(n), best=mejorCuota(n);
+  var hoja=document.getElementById('pg-hoja'); if(hoja) hoja.remove();
+  function btn(nombre,casa,o){
+    var ev=o?(o*p-1)*100:null, star=(so&&bo&&best&&best.c===nombre)?' ★':'';
+    return '<button type="button" class="hoja-b hoja-'+casa+'" data-casa="'+casa+'"><b>'+nombre+star+'</b><span>'+(o?'@'+o.toFixed(2)+' <em class="'+(ev>=0?'up':'dn')+'">'+(ev>=0?'+':'')+ev.toFixed(1)+'% vs justa</em>':'sin cuota cargada (usa «Traer de '+nombre+'»)')+'</span></button>';
+  }
+  hoja=document.createElement('div'); hoja.id='pg-hoja'; hoja.className='hoja';
+  hoja.innerHTML='<div class="hoja-fondo"></div><div class="hoja-caja" role="dialog" aria-label="Elegir casa"><small>Abrir el partido para apostar a</small><h4>'+esc(n)+'</h4>'+btn('Stake','stake',so)+btn('Betmexico','betmexico',bo)+'<p>Se abre la página de la casa y ahí inicias sesión y apuestas tú. La app no apuesta por ti.</p><button type="button" class="hoja-x">Cancelar</button></div>';
+  document.body.appendChild(hoja);
+  function cerrar(){ hoja.remove(); }
+  hoja.querySelector('.hoja-fondo').addEventListener('click',cerrar); hoja.querySelector('.hoja-x').addEventListener('click',cerrar);
+  [].forEach.call(hoja.querySelectorAll('.hoja-b'),function(b){ b.addEventListener('click',function(){ cerrar(); window.ReactNativeWebView.postMessage(JSON.stringify({tipo:'abrir',casa:b.getAttribute('data-casa'),l:cfg.names.l,v:cfg.names.v,mercado:n})); }); });
+}
+window.__pgAviso=function(t){ var d=document.getElementById('pg-aviso'); if(!d){ d=document.createElement('div'); d.id='pg-aviso'; d.className='aviso-flota'; document.body.appendChild(d); } d.textContent=t; d.hidden=false; clearTimeout(d._t); d._t=setTimeout(function(){ d.hidden=true; },6000); };
 window.__pgRecibir=function(tipo,texto){
   try{
     var sec;
