@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#10233f">
+<meta name="theme-color" content="#060a11">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Pronóstico">
@@ -247,6 +247,9 @@ table.mk.tr td small{display:block;font:400 10px var(--body);color:var(--muted)}
 .fuente .cap{margin:0}
 .fuente-stake{border-left:4px solid #1b64d8;padding-left:10px}
 .fuente-arb{border-left:4px solid #9a6200;padding-left:10px}
+.btn-bm{color:#fff;border:0;font-weight:700;padding:10px 16px;display:inline-flex;align-items:center;gap:8px;box-shadow:0 1px 3px rgba(0,0,0,.25);background:linear-gradient(135deg,#8b5cf6,#5b2fd1)} .btn-bm:hover{background:#5b2fd1} .btn-bm::before{content:"\1F4B1"} .btn-bm:disabled{opacity:.6;cursor:progress}
+.fuente-bm{border-left:4px solid #8b5cf6;padding-left:10px}
+.pq.casas{border-top:1px dashed var(--line)} .pq.casas b{font:700 15px var(--display)}
 .spk{width:100%;max-width:520px;height:auto;display:block;margin:6px 0 2px} .spk path{fill:none;stroke:var(--accent);stroke-width:1.6;stroke-linejoin:round} .spk text{fill:var(--muted);font:10px var(--body)}
 .up{color:var(--win)} .dn{color:var(--loss)} .status.ok{color:var(--win)} .status.warn{color:var(--loss)}
 .odds5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
@@ -259,6 +262,127 @@ table.mk.tr td small{display:block;font:400 10px var(--body);color:var(--muted)}
 details.adv{border:1px solid var(--line);border-radius:8px;padding:8px 12px;background:var(--surface)}
 details.adv summary{cursor:pointer;font:600 14px var(--body);padding:6px 0}
 @media (max-width:520px){.odds5{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style>
+<style id="skin">
+/* ====== SKIN v2 · oscuro deportivo (solo estilos: la logica de calculo no cambia) ====== */
+:root,:root[data-theme="light"],:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#060a11; --bg-2:#0a1220; --surface:#0f1a2b; --ink:#eaf1ff; --muted:#8fa2c0; --line:rgba(255,255,255,.09);
+  --accent:#2ee6a8; --field:rgba(255,255,255,.045);
+  --board:#102447; --board-2:rgba(255,255,255,.07); --board-ink:#f3f7ff; --board-muted:#9db2d6; --hi:#ffc35a;
+  --win:#2ee6a8; --draw:#ffc35a; --loss:#ff6b7a; --blue:#58a8ff; --chip-ink:#04121b;
+  --glass:linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.025));
+  --shadow:0 10px 34px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.05);
+}
+html{background:#060a11}
+body{
+  background:
+    radial-gradient(900px 520px at 88% -8%,rgba(46,230,168,.13),transparent 62%),
+    radial-gradient(800px 480px at -12% 6%,rgba(88,168,255,.13),transparent 58%),
+    radial-gradient(700px 600px at 50% 112%,rgba(255,195,90,.07),transparent 60%),
+    var(--bg);
+  background-attachment:fixed; -webkit-tap-highlight-color:transparent;
+}
+.wrap{gap:18px}
+/* encabezado */
+.top h1{font-size:34px;letter-spacing:.02em;background:linear-gradient(92deg,#fff 0%,#9ff3d6 55%,#58a8ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--muted)}
+#match-title:not(:empty){color:var(--ink);font-weight:600;letter-spacing:.02em}
+/* tarjetas de cristal */
+.block,.board,.reco,.honest,details.adv,.pat-b,.tile{
+  border:1px solid var(--line);border-radius:18px;background:var(--glass);box-shadow:var(--shadow);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.board{background:linear-gradient(160deg,rgba(32,70,130,.55),rgba(14,30,60,.75));border-color:rgba(120,170,255,.22)}
+.block{padding:14px}
+.block h3{letter-spacing:.03em}
+.honest{border-left:4px solid var(--accent)}
+.sec{color:var(--ink);font-size:17px;letter-spacing:.1em;display:flex;align-items:center;gap:10px}
+.sec::before{content:"";width:5px;height:20px;border-radius:3px;background:linear-gradient(180deg,var(--accent),var(--blue));box-shadow:0 0 14px rgba(46,230,168,.55)}
+.group h2{color:var(--muted)}
+/* botones */
+.btn{border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--ink);padding:10px 16px;transition:transform .12s ease,background .2s,border-color .2s,box-shadow .2s}
+.btn:hover{border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.1)}
+.btn:active{transform:scale(.96)}
+.btn.on{background:rgba(46,230,168,.14);border-color:var(--accent);color:var(--accent)}
+.btn-stake,.btn-arb{box-shadow:0 6px 18px rgba(0,0,0,.35)}
+.btn-stake{background:linear-gradient(135deg,#2b7bff,#1456c9)}
+.btn-arb{background:linear-gradient(135deg,#e39a1d,#a96500)}
+.btn-bm{background:linear-gradient(135deg,#8b5cf6,#5b2fd1);box-shadow:0 6px 18px rgba(0,0,0,.35)}
+.btn:disabled{animation:pulso 1.1s ease-in-out infinite}
+@keyframes pulso{50%{opacity:.55}}
+.fuente{padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.03)}
+/* navegacion de secciones: una fila, deslizable, con la seccion activa */
+.jump{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:8px 2px;margin-inline:-2px;background:linear-gradient(180deg,rgba(6,10,17,.92) 55%,rgba(6,10,17,0));-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-radius:0 0 16px 16px}
+.jump::-webkit-scrollbar{display:none}
+.jump a{flex:0 0 auto;padding:9px 16px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--line);color:var(--muted);font-weight:600;transition:all .2s}
+.jump a.on{background:linear-gradient(135deg,rgba(46,230,168,.22),rgba(88,168,255,.18));color:#fff;border-color:rgba(46,230,168,.55);box-shadow:0 0 18px rgba(46,230,168,.22)}
+/* campos */
+.score,.odds input,.odds5 input,#paste,.paste-box,select,.rho input[type="text"],input[type="text"],textarea{background:rgba(0,0,0,.28);border-color:var(--line);color:var(--ink);border-radius:12px}
+.score:focus,.odds input:focus,input:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(46,230,168,.18);outline:none}
+/* tablero */
+.bt .n.up,.total b{color:var(--hi);text-shadow:0 0 18px rgba(255,195,90,.35)}
+.total{background:rgba(255,255,255,.07);border-radius:14px}
+/* barra inferior de lambdas */
+.dock{left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));border-radius:20px;border:1px solid rgba(120,170,255,.28);background:linear-gradient(160deg,rgba(24,54,104,.88),rgba(10,22,46,.92));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 12px 36px rgba(0,0,0,.55)}
+.dock div:last-child b{text-shadow:0 0 16px rgba(255,195,90,.5)}
+/* tarjetas de pronostico */
+.pk{border-radius:16px;border:1px solid var(--line);border-left-width:4px;background:var(--glass);box-shadow:var(--shadow);transition:transform .18s ease,box-shadow .18s ease;animation:sube .5s cubic-bezier(.2,.8,.2,1) both}
+.pk:nth-child(2){animation-delay:.05s}.pk:nth-child(3){animation-delay:.1s}.pk:nth-child(4){animation-delay:.15s}.pk:nth-child(n+5){animation-delay:.2s}
+.toca .pk:active{transform:scale(.985)}
+@media (hover:hover){.pk:hover{transform:translateY(-2px);box-shadow:0 14px 38px rgba(0,0,0,.5)}}
+.pk[data-t=top]{background:linear-gradient(160deg,rgba(46,230,168,.20),rgba(46,230,168,.05));box-shadow:0 0 0 1px rgba(46,230,168,.35),0 12px 34px rgba(46,230,168,.12)}
+.pk[data-t=alto]{background:linear-gradient(160deg,rgba(46,230,168,.11),rgba(255,255,255,.02))}
+.pk[data-t=medio]{background:linear-gradient(160deg,rgba(255,195,90,.10),rgba(255,255,255,.02))}
+.pk .meter{height:8px;border-radius:99px;background:rgba(255,255,255,.1)}
+.pk .meter i{border-radius:99px;background:linear-gradient(90deg,#6c7f9c,#9fb2cf);transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.pk[data-t=top] .meter i,.pk[data-t=alto] .meter i{background:linear-gradient(90deg,#1fbf8a,#7dffd3)}
+.pk[data-t=medio] .meter i{background:linear-gradient(90deg,#d49a1f,#ffd783)}
+.pk .oppb{background:linear-gradient(135deg,#2ee6a8,#58a8ff);color:#04121b}
+/* tablas */
+table.mk td,table.mk th{border-color:var(--line)}
+table.mk tbody tr:hover td{background:rgba(255,255,255,.03)}
+table.xs td{border-radius:8px}
+.chip{border-radius:8px}
+.pick{border-radius:999px;background:rgba(255,255,255,.05)}
+/* ====== HERO: resumen visual del partido ====== */
+.hero{position:relative;overflow:hidden;border-radius:24px;padding:18px 14px 16px;border:1px solid rgba(120,170,255,.25);
+  background:radial-gradient(520px 260px at 20% 0%,rgba(46,230,168,.16),transparent 65%),radial-gradient(520px 260px at 100% 100%,rgba(88,168,255,.18),transparent 65%),linear-gradient(160deg,rgba(24,50,98,.7),rgba(8,18,36,.85));
+  box-shadow:0 18px 50px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.08);animation:sube .6s cubic-bezier(.2,.8,.2,1) both}
+.hero-teams{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;margin-bottom:14px}
+.tm{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;min-width:0}
+.tm b{font:700 17px var(--display);letter-spacing:.04em;text-transform:uppercase;line-height:1.1;overflow-wrap:anywhere}
+.av{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font:700 18px var(--display);font-style:normal;color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.14),0 8px 20px rgba(0,0,0,.4)}
+.vs{font:700 13px var(--display);letter-spacing:.2em;color:var(--muted)}
+.rings{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px}
+.ring{position:relative;display:grid;justify-items:center;gap:4px}
+.ring svg{width:100%;max-width:104px;height:auto;transform:rotate(-90deg);overflow:visible}
+.ring .bg{fill:none;stroke:rgba(255,255,255,.1);stroke-width:9}
+.ring .fg{fill:none;stroke-width:9;stroke-linecap:round;stroke-dasharray:214;stroke-dashoffset:214;transition:stroke-dashoffset 1.1s cubic-bezier(.2,.8,.2,1)}
+.ring.fav .fg{filter:drop-shadow(0 0 7px currentColor)}
+.ring .v{position:absolute;top:0;left:0;right:0;aspect-ratio:1;max-width:104px;margin-inline:auto;display:flex;align-items:center;justify-content:center;gap:1px;font:700 25px var(--display);font-variant-numeric:tabular-nums}
+.ring .v small{font-size:13px;opacity:.8;align-self:center;margin-top:5px}
+.ring .t{font:600 12px var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.ring.fav .t{color:var(--ink)}
+.ring .o{font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.splitbar{margin:0 2px 14px}
+.splitbar .lab{display:flex;justify-content:space-between;align-items:baseline;font:700 26px var(--display);font-variant-numeric:tabular-nums}
+.splitbar .lab small{font:600 11px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.splitbar .bar{display:flex;height:10px;border-radius:99px;overflow:hidden;background:rgba(255,255,255,.08);margin-top:6px}
+.splitbar .bar i{display:block;height:100%;transition:flex-grow .9s cubic-bezier(.2,.8,.2,1)}
+.hchips{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:8px;margin-bottom:12px}
+.hchip{border:1px solid var(--line);border-radius:14px;padding:9px 10px;background:rgba(255,255,255,.05)}
+.hchip small{display:block;font:600 10.5px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.hchip b{display:block;font:700 22px var(--display);font-variant-numeric:tabular-nums;line-height:1.15}
+.hchip span{font-size:11.5px;color:var(--muted)}
+.hread{border-radius:14px;padding:11px 13px;background:linear-gradient(135deg,rgba(46,230,168,.16),rgba(88,168,255,.10));border:1px solid rgba(46,230,168,.3);font-size:14px;line-height:1.4}
+.hread b{font:700 17px var(--display);letter-spacing:.03em}
+.hread small{display:block;margin-top:4px;color:var(--muted);font-size:11.5px}
+@keyframes sube{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+.rv:not(.in){opacity:0;transform:translateY(16px)}
+.rv{transition:opacity .6s ease,transform .6s cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv:not(.in){opacity:1;transform:none}}
+
+html{scroll-behavior:smooth}
 </style>
 </head>
 <body>
@@ -279,6 +403,21 @@ details.adv summary{cursor:pointer;font:600 14px var(--body);padding:6px 0}
   <nav class="jump" aria-label="Secciones">
     <a href="#cargar">Cargar</a><a href="#resultado">Tablero</a><a href="#analisis">Análisis</a><a href="#envivo">En vivo</a><a href="#mercado-om">Mercado</a><a href="#mercados">Mercados</a>
   </nav>
+
+  <section class="hero" id="hero" hidden aria-label="Resumen del partido">
+    <div class="hero-teams">
+      <div class="tm"><i class="av" id="hv-al">L</i><b id="hv-l">Local</b></div>
+      <span class="vs">VS</span>
+      <div class="tm"><i class="av" id="hv-av">V</i><b id="hv-v">Visita</b></div>
+    </div>
+    <div class="rings" id="hv-rings"></div>
+    <div class="splitbar">
+      <div class="lab"><span id="hv-ll" style="color:var(--win)">0.00</span><small>goles esperados</small><span id="hv-lv" style="color:var(--blue)">0.00</span></div>
+      <div class="bar"><i id="hv-bl" style="flex-grow:1;background:linear-gradient(90deg,#1fbf8a,#7dffd3)"></i><i id="hv-bv" style="flex-grow:1;background:linear-gradient(90deg,#3d86e6,#8cc4ff)"></i></div>
+    </div>
+    <div class="hchips" id="hv-chips"></div>
+    <div class="hread" id="hv-read" hidden></div>
+  </section>
 
   <section class="markets" id="cargar">
     <h2 class="sec">1 · Cargar el partido</h2>
@@ -330,6 +469,7 @@ details.adv summary{cursor:pointer;font:600 14px var(--body);padding:6px 0}
       <div class="block wide">
         <h3>Pronósticos <span class="h3s">orden: probabilidad</span></h3>
         <div class="acts fuente fuente-stake"><button class="btn btn-stake" id="btn-stake" type="button">Traer de Stake</button><span class="cap">Cuotas reales de Stake contra la cuota justa del modelo.</span><label class="cap" style="margin:0;display:inline-flex;align-items:center;gap:6px">Parpadear desde +<input id="umbral" type="text" inputmode="decimal" maxlength="4" autocomplete="off" style="width:48px" aria-label="Porcentaje sobre la cuota justa desde el que una tarjeta parpadea">% sobre la justa</label><span class="cap" id="stake-msg" style="margin:0"></span></div>
+        <div class="acts fuente fuente-bm"><button class="btn btn-bm" id="btn-bm" type="button">Traer de Betmexico</button><span class="cap">Segunda casa: en cada tarjeta se llena sola la mejor cuota de las dos.</span><span class="cap" id="bm-msg" style="margin:0"></span></div>
         <div class="acts fuente fuente-arb"><button class="btn btn-arb" id="btn-mov" type="button">Movimiento de cuota (Arbworld)</button><span class="cap">Hacia dónde se mueve el mercado: apertura → actual.</span><span class="cap" id="mov-msg" style="margin:0"></span></div><div style="overflow-x:auto"><table class="mk" id="mov-tab" hidden></table></div><p class="cap" id="mov-cap" hidden>Apertura → actual en el exchange de Betfair (vía Arbworld), no en tu casa. Menos de 3% casi siempre es ruido; 3–7% es una señal real pero no necesariamente valor; desde 7% es fuerte, sobre todo en mercados líquidos. Descriptivo: en el backtest de tu dashboard, seguir el lado del movimiento no superó al azar. Solo salen partidos por jugar y las 40 filas con más movimiento de cada mercado.</p>
         <div class="pks" id="an-pk"></div>
         <p class="cap" id="an-pk-cap"></p>
@@ -678,7 +818,7 @@ function applyParsed(res){
   [['gl',10],['gv',10],['hl',10]].forEach(function(p){ var k=p[0]; if(!o.has[k]) return; for(var i=0;i<p[1];i++){ var r=o[k][i]; state[k][i]=r?[String(r[0]),String(r[1])]:['','']; if(k!=='hl') cfg.meta[k]=o.meta[k].slice(0,10); } });
   if(o.names.l||o.names.v){ cfg.names={l:o.names.l,v:o.names.v}; }
   if(res.odds){ cfg.odds.h=res.odds.h.toFixed(2); cfg.odds.d=res.odds.d.toFixed(2); cfg.odds.a=res.odds.a.toFixed(2); cfg.odds.ov=res.ou?res.ou.o.toFixed(2):''; cfg.odds.un=res.ou?res.ou.u.toFixed(2):''; cfg.ouLines={}; if(res.ou&&res.ouLines) Object.keys(res.ouLines).forEach(function(ln){ var t=res.ouLines[ln], q=devig([t.o,t.u]); cfg.ouLines[ln]=q[0]; }); }
-  cfg.loadedAt=Date.now(); cfg.mine={}; cfg.stake=null; cfg.quotes=null; cfg.bttsP=null; if(res.odds||res.btts||res.ah){ cfg.quotes={x2:res.odds?{h:[res.odds.h,res.odds.hm],d:[res.odds.d,res.odds.dm],a:[res.odds.a,res.odds.am]}:null,ou:{},btts:res.btts?{s:[res.btts.s,res.btts.sm],n:[res.btts.no,res.btts.nm]}:null,ah:{}}; if(res.ou) cfg.quotes.ou['2.5']={o:[res.ou.o,res.ou.om],u:[res.ou.u,res.ou.um]}; if(res.ouLines) Object.keys(res.ouLines).forEach(function(ln){ var t=res.ouLines[ln]; cfg.quotes.ou[ln]={o:[t.o,t.om],u:[t.u,t.um]}; }); if(res.ah) Object.keys(res.ah).forEach(function(k){ var t=res.ah[k]; cfg.quotes.ah[k]={h:[t.h,t.hm],a:[t.a,t.am]}; }); if(res.btts) cfg.bttsP=devig([res.btts.s,res.btts.no])[0]; }
+  cfg.loadedAt=Date.now(); cfg.mine={}; cfg.stake=null; cfg.bm=null; cfg.quotes=null; cfg.bttsP=null; if(res.odds||res.btts||res.ah){ cfg.quotes={x2:res.odds?{h:[res.odds.h,res.odds.hm],d:[res.odds.d,res.odds.dm],a:[res.odds.a,res.odds.am]}:null,ou:{},btts:res.btts?{s:[res.btts.s,res.btts.sm],n:[res.btts.no,res.btts.nm]}:null,ah:{}}; if(res.ou) cfg.quotes.ou['2.5']={o:[res.ou.o,res.ou.om],u:[res.ou.u,res.ou.um]}; if(res.ouLines) Object.keys(res.ouLines).forEach(function(ln){ var t=res.ouLines[ln]; cfg.quotes.ou[ln]={o:[t.o,t.om],u:[t.u,t.um]}; }); if(res.ah) Object.keys(res.ah).forEach(function(k){ var t=res.ah[k]; cfg.quotes.ah[k]={h:[t.h,t.hm],a:[t.a,t.am]}; }); if(res.btts) cfg.bttsP=devig([res.btts.s,res.btts.no])[0]; }
   if(res.score&&res.finished) cfg.result={h:res.score.h,a:res.score.a,date:res.fixture}; else delete cfg.result;
   save(); saveCfg(); syncInputs(); render();
 }
@@ -757,7 +897,7 @@ $('btn-stake').addEventListener('click',function(){
     if(!d.encontrado){ msg(d.error||'Stake no devolvió el partido.',true); return; }
     cfg.stake=d; cfg.mine={};
     var C=compute(), pk=C.K?pickList(C.K):[], n=0;
-    pk.forEach(function(x){ var o=stakeOddsFor(x[0]); if(o){ cfg.mine[x[0]]=o.toFixed(2); n++; } });
+    pk.forEach(function(x){ var o=(mejorCuota(x[0])||{}).v; if(o){ cfg.mine[x[0]]=o.toFixed(2); n++; } });
     saveCfg(); render();
     var ops=pk.filter(function(x){ var e=evVal(x[1],cfg.mine[x[0]],x[3]); return e!=null&&e>=umbralVal(); }).map(function(x){ return x[0]+' (+'+evVal(x[1],cfg.mine[x[0]],x[3]).toFixed(1)+'%)'; });
     var aviso=d.estado==='live'?' ⚠ Partido EN VIVO: son precios de juego en curso, no comparables con el pronóstico de antes del partido.':(d.estado==='ended'?' ⚠ Partido terminado.':'');
@@ -765,6 +905,34 @@ $('btn-stake').addEventListener('click',function(){
     $('stake-msg').textContent='Stake: '+d.partido+' ('+d.estado+')'+(d.invertido?' · local y visita al revés, ya volteados':'')+'. Llené '+n+' de '+pk.length+' tarjetas; el resto no está en Stake.'+(d.margen_x2!=null?' Margen de Stake en 1X2: '+(d.margen_x2*100).toFixed(1)+'%.':'')+(ops.length?' ★ OPORTUNIDAD: '+ops.join(', ')+'.':' Sin oportunidades sobre +'+umbralVal()+'%.')+aviso;
   }).catch(function(){ msg('No pude hablar con el servidor local. Enciende «Pronóstico de Goles» y abre http://localhost:8770/.',true); });
 });
+$('btn-bm').addEventListener('click',function(){
+  var st=$('bm-msg'), l=cfg.names.l, v=cfg.names.v;
+  function msg(t,warn){ st.textContent=t; st.style.color=warn?'var(--loss)':'var(--muted)'; }
+  if(location.protocol==='file:'&&!window.ReactNativeWebView){ msg('Ábrelo desde http://localhost:8770/ (con el servidor encendido) para consultar Betmexico.',true); return; }
+  if(!l||!v){ msg('Primero carga el partido.',true); return; }
+  msg('Consultando Betmexico (unos segundos)…'); $('btn-bm').disabled=true;
+  bmFetch(l,v).then(function(d){
+    $('btn-bm').disabled=false;
+    if(!d.encontrado){ msg(d.error||'Betmexico no devolvió el partido.',true); return; }
+    cfg.bm=d; cfg.mine={};
+    var C=compute(), pk=C.K?pickList(C.K):[], n=0, nb=0;
+    pk.forEach(function(x){ var o=mejorCuota(x[0]); if(o){ cfg.mine[x[0]]=o.v.toFixed(2); n++; if(bmOddsFor(x[0])) nb++; } });
+    saveCfg(); render();
+    var ops=pk.filter(function(x){ var e=evVal(x[1],cfg.mine[x[0]],x[3]); return e!=null&&e>=umbralVal(); }).map(function(x){ return x[0]+' (+'+evVal(x[1],cfg.mine[x[0]],x[3]).toFixed(1)+'%)'; });
+    msg('Betmexico: '+d.partido+(d.invertido?' · local y visita al revés, ya volteados':'')+'. Tiene '+nb+' de '+pk.length+' tarjetas; llené '+n+' con la mejor cuota'+(cfg.stake?' de las dos casas':' (aún sin Stake)')+'.'+(d.margen_x2!=null?' Margen de Betmexico en 1X2: '+(d.margen_x2*100).toFixed(1)+'%.':'')+(ops.length?' ★ OPORTUNIDAD: '+ops.join(', ')+'.':' Sin oportunidades sobre +'+umbralVal()+'%.')+' Solo hay mercados 1X2, doble oportunidad, totales y hándicap (sin Ambos anotan).');
+  }).catch(function(e){ $('btn-bm').disabled=false; msg(window.ReactNativeWebView?('No pude leer Betmexico: '+((e&&e.message)||'sin respuesta')+'.'):'No pude hablar con el servidor local. Enciende «Pronóstico de Goles» y abre http://localhost:8770/.',true); });
+});
+// Cuotas de Betmexico: en la PC las pide al servidor local; en la app, a la app (que lee el feed publico de su pagina).
+var __bmPend={}, __bmId=0;
+window.__pgBmRespuesta=function(id,obj){ var f=__bmPend[id]; if(f){ delete __bmPend[id]; f(obj); } };
+function bmFetch(l,v){
+  if(window.ReactNativeWebView) return new Promise(function(res,rej){
+    var id=++__bmId; __bmPend[id]=res;
+    window.ReactNativeWebView.postMessage(JSON.stringify({tipo:'betmexico',id:id,l:l,v:v}));
+    setTimeout(function(){ if(__bmPend[id]){ delete __bmPend[id]; rej(new Error('Betmexico no respondió a tiempo')); } },90000);
+  });
+  return fetch('/api/betmexico?l='+encodeURIComponent(l)+'&v='+encodeURIComponent(v)).then(function(r){ return r.json(); });
+}
 // Cuotas de Stake (API): en la PC las pide al servidor local; en la app, a la app (que guarda la clave en el Keychain del telefono).
 var __stkPend={}, __stkId=0;
 window.__pgStakeRespuesta=function(id,obj){ var f=__stkPend[id]; if(f){ delete __stkPend[id]; f(obj); } };
@@ -942,8 +1110,8 @@ function asianRows(K){
   out.forEach(function(r){ r.main=r.L===best.L; });
   return out;
 }
-function stakeCellAT(L,side,q){
-  var S=cfg.stake; if(!S||!S.encontrado) return '<td class="q">—</td>';
+function stakeCellAT(L,side,q,S0){
+  var S=S0||cfg.stake; if(!S||!S.encontrado) return '<td class="q">—</td>';
   var t=S.at&&S.at[String(L)]; if(!t) return '<td class="q" style="color:var(--muted)">no ofrece</td>';
   var o=t[side]; if(!(o>1)) return '<td class="q">—</td>';
   var ev=q.ew*(o-1)-q.el, e=ev*100;
@@ -951,10 +1119,11 @@ function stakeCellAT(L,side,q){
 }
 function tierColor(p){ return p>=0.75?'var(--win)':(p>=0.65?'var(--win)':(p>=0.55?'var(--draw)':'inherit')); }
 function asianTable(K){
-  var rows=asianRows(K), h='<thead><tr><th scope="col">Línea</th><th scope="col">Más: gana / pierde</th><th scope="col">Cuota justa</th><th scope="col">Stake (vs justa)</th><th scope="col">Menos: gana / pierde</th><th scope="col">Cuota justa</th><th scope="col">Stake (vs justa)</th></tr></thead><tbody>';
+  var bmOn=!!(cfg.bm&&cfg.bm.encontrado&&cfg.bm.at), thB=bmOn?'<th scope="col">Betmexico (vs justa)</th>':'';
+  var rows=asianRows(K), h='<thead><tr><th scope="col">Línea</th><th scope="col">Más: gana / pierde</th><th scope="col">Cuota justa</th><th scope="col">Stake (vs justa)</th>'+thB+'<th scope="col">Menos: gana / pierde</th><th scope="col">Cuota justa</th><th scope="col">Stake (vs justa)</th>'+thB+'</tr></thead><tbody>';
   rows.forEach(function(r){
     function cell(q){ return '<td style="color:'+tierColor(q.win)+';font-weight:'+(q.win>=0.55?700:400)+'">'+pct(q.win)+' <span style="color:var(--muted);font-weight:400">/ '+pct(q.lose)+'</span></td>'; }
-    h+='<tr'+(r.main?' class="gap" style="outline:2px solid var(--accent);outline-offset:-2px"':'')+'><td>'+(r.main?'★ ':'')+r.L+'</td>'+cell(r.o)+'<td class="q">'+(isFinite(r.o.fair)?r.o.fair.toFixed(2):'—')+'</td>'+stakeCellAT(r.L,'o',r.o)+cell(r.u)+'<td class="q">'+(isFinite(r.u.fair)?r.u.fair.toFixed(2):'—')+'</td>'+stakeCellAT(r.L,'u',r.u)+'</tr>';
+    h+='<tr'+(r.main?' class="gap" style="outline:2px solid var(--accent);outline-offset:-2px"':'')+'><td>'+(r.main?'★ ':'')+r.L+'</td>'+cell(r.o)+'<td class="q">'+(isFinite(r.o.fair)?r.o.fair.toFixed(2):'—')+'</td>'+stakeCellAT(r.L,'o',r.o)+(bmOn?stakeCellAT(r.L,'o',r.o,cfg.bm):'')+cell(r.u)+'<td class="q">'+(isFinite(r.u.fair)?r.u.fair.toFixed(2):'—')+'</td>'+stakeCellAT(r.L,'u',r.u)+(bmOn?stakeCellAT(r.L,'u',r.u,cfg.bm):'')+'</tr>';
   });
   return h+'</tbody>';
 }
@@ -965,13 +1134,26 @@ function asianLead(K){
   if(fm) fuertes.push('Más '+fm.L+' (gana '+pct(fm.o.win)+', cuota justa '+fm.o.fair.toFixed(2)+')'); if(fu) fuertes.push('Menos '+fu.L+' (gana '+pct(fu.u.win)+', cuota justa '+fu.u.fair.toFixed(2)+')');
   return 'El mercado espera <b>'+tg.toFixed(2)+'</b> goles. Línea central: <b>'+m.L+'</b> (Más gana '+pct(m.o.win)+', Menos gana '+pct(m.u.win)+'). '+(fuertes.length?'Lados más seguros (≥70% de ganar y ≤25% de perder), el más cercano a la línea central: '+fuertes.join(' · ')+'. Ojo: lo más seguro paga lo mínimo.':'Ningún lado llega a 70% de ganar con ≤25% de perder.');
 }
-function stakeOddsFor(name){
-  var S=cfg.stake, m, v=null; if(!S||!S.encontrado) return null;
+function casaOdds(S,name){
+  var m, v=null; if(!S||!S.encontrado) return null;
   if(name==='Gana Local') v=S.x2&&S.x2.h; else if(name==='Empate') v=S.x2&&S.x2.d; else if(name==='Gana Visita') v=S.x2&&S.x2.a;
   else if(name==='Local o empate (1X)') v=S.dc&&S.dc.hd; else if(name==='Visita o empate (X2)') v=S.dc&&S.dc.da;
   else if(name==='Ambos anotan: Sí') v=S.btts&&S.btts.s; else if(name==='Ambos anotan: No') v=S.btts&&S.btts.n;
   else if((m=/^(Más|Menos) de ([\d.]+) goles(?: \(asiática\))?$/.exec(name))){ var t=S.at&&S.at[m[2]]; v=t&&(m[1]==='Más'?t.o:t.u); }
   return v>1?v:null;
+}
+function stakeOddsFor(name){ return casaOdds(cfg.stake,name); }
+function bmOddsFor(name){ return casaOdds(cfg.bm,name); }
+function mejorCuota(name){
+  var a=stakeOddsFor(name), b=bmOddsFor(name);
+  if(a&&b) return a>=b?{v:a,c:'Stake'}:{v:b,c:'Betmexico'};
+  return a?{v:a,c:'Stake'}:(b?{v:b,c:'Betmexico'}:null);
+}
+function casasLine(name,p){
+  var a=stakeOddsFor(name), b=bmOddsFor(name); if(!a&&!b) return '';
+  var best=mejorCuota(name);
+  function it(n,o){ if(!o) return ''; var d=(o*p-1)*100; return '<span>'+n+' <b>@'+o.toFixed(2)+'</b> <span class="'+(d>=0?'up':'dn')+'">'+(d>=0?'+':'')+d.toFixed(1)+'%</span>'+((a&&b&&best.c===n)?' ★':'')+'</span>'; }
+  return '<div class="pq casas">'+it('Stake',a)+it('Betmexico',b)+'</div>';
 }
 function reviewHtml(K){
   var r=cfg.result; if(!r||!K) return '';
@@ -1044,7 +1226,7 @@ function renderAnalysis(C,A){
     var mv=(cfg.mine&&cfg.mine[x[0]])||'';
     var qa=x[3], extra=qa?'<div class="pq"><span>Gana <b>'+pct(qa.win)+'</b></span><span>Pierde <b>'+pct(qa.lose)+'</b></span>'+(qa.push>0.0005?'<span>Devuelve <b>'+pct(qa.push)+'</b></span>':'')+'<span style="flex-basis:100%">Probabilidad equivalente: incluye medias y devoluciones</span></div>':'';
     var evn=evVal(p,mv,qa);
-    return '<div class="pk'+evClase(evn)+'" data-t="'+tier+'" data-p="'+p+'"'+(qa?' data-ew="'+qa.ew+'" data-el="'+qa.el+'"':'')+' data-n="'+esc(x[0])+'"><b><em class="oppb">★ OPORTUNIDAD</em>'+(ix===0?'<em class="star">★ Más probable</em>':'')+x[0]+'</b><div class="meter"><i style="width:'+Math.round(p*100)+'%"></i></div><div class="row" style="grid-template-columns:repeat(2,minmax(0,1fr))"><div><span class="pv">'+pct(p)+'</span><small>Probabilidad</small></div><div><span>@'+odd(p)+'</span><small>Cuota justa</small></div></div>'+extra+cmp+'<label class="mine">Mi cuota <input class="mine-in" type="text" inputmode="decimal" maxlength="5" autocomplete="off" placeholder="ej. 1.60" value="'+esc(mv)+'" aria-label="Tu cuota en tu casa para '+esc(x[0])+'"></label><div class="ev" aria-live="polite">'+(cfg.stake&&cfg.stake.encontrado&&!stakeOddsFor(x[0])?'<span class="na">no disponible en Stake</span>':evText(p,mv,qa))+'</div></div>'; }).join(''):'<p class="cap" style="margin:0">Aún no hay pronósticos.</p>';
+    return '<div class="pk'+evClase(evn)+'" data-t="'+tier+'" data-p="'+p+'"'+(qa?' data-ew="'+qa.ew+'" data-el="'+qa.el+'"':'')+' data-n="'+esc(x[0])+'"><b><em class="oppb">★ OPORTUNIDAD</em>'+(ix===0?'<em class="star">★ Más probable</em>':'')+x[0]+'</b><div class="meter"><i style="width:'+Math.round(p*100)+'%"></i></div><div class="row" style="grid-template-columns:repeat(2,minmax(0,1fr))"><div><span class="pv">'+pct(p)+'</span><small>Probabilidad</small></div><div><span>@'+odd(p)+'</span><small>Cuota justa</small></div></div>'+extra+cmp+casasLine(x[0],p)+'<label class="mine">Mi cuota <input class="mine-in" type="text" inputmode="decimal" maxlength="5" autocomplete="off" placeholder="ej. 1.60" value="'+esc(mv)+'" aria-label="Tu cuota en tu casa para '+esc(x[0])+'"></label><div class="ev" aria-live="polite">'+(cfg.stake&&cfg.stake.encontrado&&!stakeOddsFor(x[0])?'<span class="na">no disponible en Stake</span>':evText(p,mv,qa))+'</div></div>'; }).join(''):'<p class="cap" style="margin:0">Aún no hay pronósticos.</p>';
   $('an-pk-cap').textContent=K?'Color: verde fuerte ≥75%, verde 65–75%, ámbar 55–65%, gris menos de 55%. Más probable no significa mejor apuesta: una probabilidad alta con cuota baja deja poco o nada. «vs justa» compara la mejor cuota de las casas de Flashscore con la cuota justa (rojo = paga menos de lo justo). Escribe en «Mi cuota» lo que paga TU casa y verás si supera la justa. En el estudio de 10,823 partidos, apostar a todo a la cuota promedio perdió entre 3% y 6%. Los favoritos fáciles pagan poco: Menos 3.5, Más 1.5 y 1X solo superaron su tasa base por unos 3 puntos.':'';
   // mercado contra modelo
   var t='', hi=hist1x2();
@@ -1366,6 +1548,77 @@ clearBtn.addEventListener('click',function(){
   $('paste').value=''; $('paste-status').textContent=''; $('paste-status').className='status';
   save(); saveCfg(); syncInputs(); render(); $('paste').focus();
 });
+
+// ====== SKIN v2: resumen visual (hero), animaciones y navegacion. Solo lee compute(); no cambia ningun calculo. ======
+(function(){
+  var reduce=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches), VAL={};
+  function g(id){ return document.getElementById(id); }
+  function hue(s){ var h=0,i; for(i=0;i<s.length;i++) h=(h*31+s.charCodeAt(i))%360; return h; }
+  function ini(s){ var w=String(s||'').trim().split(/\s+/).filter(Boolean); return ((w[0]||'?').charAt(0)+((w[1]||w[0]||'').charAt(w[1]?0:1))).toUpperCase(); }
+  function avatar(el,name){ el.textContent=ini(name); var h=hue(String(name||'')); el.style.background='linear-gradient(135deg,hsl('+h+' 70% 46%),hsl('+((h+45)%360)+' 70% 28%))'; }
+  function tween(el,to,dec,pref,suf){
+    var key=el.id||(el.id='n'+Math.random().toString(36).slice(2)), from=VAL[key]==null?0:VAL[key]; VAL[key]=to;
+    function paint(v){ el.textContent=(pref||'')+v.toFixed(dec)+(suf||''); }
+    if(reduce||from===to){ paint(to); return; }
+    var t0=null; function step(t){ if(t0===null) t0=t; var k=Math.min(1,(t-t0)/650), e=1-Math.pow(1-k,3); paint(from+(to-from)*e); if(k<1) requestAnimationFrame(step); } requestAnimationFrame(step);
+  }
+  var RINGS=[['h','Local','#2ee6a8'],['d','Empate','#ffc35a'],['a','Visita','#58a8ff']];
+  function buildRings(){
+    var box=g('hv-rings'); if(!box||box.firstChild) return;
+    box.innerHTML=RINGS.map(function(r){
+      return '<div class="ring" id="rg-'+r[0]+'" style="color:'+r[2]+'"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="bg" cx="40" cy="40" r="34"/><circle class="fg" cx="40" cy="40" r="34" style="stroke:'+r[2]+'"/></svg><div class="v"><span id="rv-'+r[0]+'">0</span><small>%</small></div><span class="t">'+r[1]+'</span><span class="o" id="ro-'+r[0]+'"></span></div>';
+    }).join('');
+  }
+  function pc(p){ return Math.round(p*1000)/10; }
+  function renderHero(){
+    var h=g('hero'); if(!h||typeof compute!=='function') return;
+    var C=compute(), K=C&&C.K;
+    if(!K||K.home==null){ h.hidden=true; return; }
+    h.hidden=false; buildRings();
+    var L=(cfg.names&&cfg.names.l)||'Local', V=(cfg.names&&cfg.names.v)||'Visita';
+    g('hv-l').textContent=L; g('hv-v').textContent=V; avatar(g('hv-al'),L); avatar(g('hv-av'),V);
+    var ps={h:K.home,d:K.draw,a:K.away}, fav=(ps.h>=ps.d&&ps.h>=ps.a)?'h':(ps.a>=ps.d?'a':'d');
+    RINGS.forEach(function(r){
+      var k=r[0], el=g('rg-'+k), fg=el.querySelector('.fg');
+      el.classList.toggle('fav',k===fav);
+      fg.style.strokeDashoffset=String(214*(1-Math.max(0,Math.min(1,ps[k]))));
+      tween(g('rv-'+k),pc(ps[k]),1);
+      g('ro-'+k).textContent=ps[k]>0.0005?'cuota justa @'+(1/ps[k]).toFixed(2):'—';
+    });
+    var lam=C.lam||[0,0], tot=lam[0]+lam[1];
+    tween(g('hv-ll'),lam[0],2); tween(g('hv-lv'),lam[1],2);
+    g('hv-bl').style.flexGrow=String(Math.max(0.05,lam[0])); g('hv-bv').style.flexGrow=String(Math.max(0.05,lam[1]));
+    var top=K.top&&K.top[0], o25=K.over&&K.over['2.5'];
+    var chips=[
+      ['Total de goles',tot.toFixed(2),C.src==='mercado'?'λ del mercado':'λ del modelo'],
+      top?['Marcador probable',top.i+'-'+top.j,pc(top.p)+'%']:null,
+      K.btts!=null?['Ambos anotan',pc(K.btts)+'%','cuota justa @'+(1/Math.max(K.btts,0.001)).toFixed(2)]:null,
+      o25!=null?['Más de 2.5',pc(o25)+'%','cuota justa @'+(1/Math.max(o25,0.001)).toFixed(2)]:null
+    ].filter(Boolean);
+    g('hv-chips').innerHTML=chips.map(function(c){ return '<div class="hchip"><small>'+c[0]+'</small><b>'+c[1]+'</b><span>'+c[2]+'</span></div>'; }).join('');
+    var rd=g('hv-read'), pk=(typeof pickList==='function')?pickList(K):[];
+    if(pk.length){ var p=pk[0]; rd.hidden=false; rd.innerHTML='★ <b>'+esc(p[0])+'</b> · '+pc(p[1])+'% · cuota justa @'+(1/Math.max(p[1],0.001)).toFixed(2)+'<small>Lo más probable no es lo mejor apuesta: compáralo con lo que paga tu casa (botón «Traer de Stake»).</small>'; } else rd.hidden=true;
+  }
+  var viejo=window.render;
+  if(typeof viejo==='function'){ window.render=function(){ var r=viejo.apply(this,arguments); try{ renderHero(); }catch(e){} return r; }; }
+  try{ renderHero(); }catch(e){}
+
+  // aparecer al hacer scroll (sin IntersectionObserver todo queda visible)
+  if('IntersectionObserver' in window&&!reduce){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{rootMargin:'0px 0px -6% 0px',threshold:0.04});
+    document.querySelectorAll('.layout,.markets').forEach(function(el){ el.classList.add('rv'); io.observe(el); });
+  }
+  // seccion activa en la barra de navegacion
+  var nav=document.querySelector('.jump');
+  if(nav&&'IntersectionObserver' in window){
+    var links={}; [].forEach.call(nav.querySelectorAll('a'),function(a){ links[a.getAttribute('href').slice(1)]=a; });
+    var no=new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return; var a=links[e.target.id]; if(!a) return;
+      [].forEach.call(nav.querySelectorAll('a.on'),function(x){ x.classList.remove('on'); }); a.classList.add('on');
+      try{ nav.scrollTo({left:a.offsetLeft-nav.clientWidth/2+a.offsetWidth/2,behavior:'smooth'}); }catch(_){}
+    }); },{rootMargin:'-30% 0px -62% 0px'});
+    Object.keys(links).forEach(function(id){ var s=document.getElementById(id); if(s) no.observe(s); });
+  }
+})();
 </script>
 </body>
 </html>

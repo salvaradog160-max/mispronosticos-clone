@@ -27,12 +27,19 @@ export interface PedidoStakeApi {
   l: string;
   v: string;
 }
+/** Peticion de la herramienta: cuotas de Betmexico (feed publico de su pagina); la app las lee. */
+export interface PedidoBetmexico {
+  tipo: 'betmexico';
+  id: number;
+  l: string;
+  v: string;
+}
 /** El script de Stake avisa al terminar (haya encontrado el partido o no). */
 export interface FinStake {
   tipo: 'stake-fin';
   ok: boolean;
 }
-export type Mensaje = Captura | PedidoStake | FinStake | PedidoArbworld | PedidoStakeApi;
+export type Mensaje = Captura | PedidoStake | FinStake | PedidoArbworld | PedidoStakeApi | PedidoBetmexico;
 
 const MAX_TEXTO = 2_000_000;
 
@@ -40,6 +47,11 @@ const MAX_TEXTO = 2_000_000;
 export const leerMensaje = (data: string): Mensaje | null => {
   try {
     const m = JSON.parse(data);
+    if (m?.tipo === 'betmexico') {
+      const ok = (x: unknown) => typeof x === 'string' && x.trim().length > 0 && x.length <= 120;
+      if (!ok(m.l) || !ok(m.v) || !Number.isInteger(m.id)) return null;
+      return { tipo: 'betmexico', id: m.id, l: m.l, v: m.v };
+    }
     if (m?.tipo === 'stakeapi') {
       const ok = (x: unknown) => typeof x === 'string' && x.trim().length > 0 && x.length <= 120;
       if (!ok(m.l) || !ok(m.v) || !Number.isInteger(m.id)) return null;
