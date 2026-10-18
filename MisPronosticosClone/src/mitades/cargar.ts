@@ -14,7 +14,8 @@ export interface Enlaces {
   visita: string;
   equipos: Array<{ nombre: string; filas: FilaEnlace[] }>;
 }
-export type Leido<T> = { ok: true; datos: T } | { ok: false; error: string; omitir?: boolean };
+/** omitir: partido no usable (prorroga/penales), no es un fallo. bloqueo: Flashscore pidio verificacion o nego el acceso; hay que parar ya. */
+export type Leido<T> = { ok: true; datos: T } | { ok: false; error: string; omitir?: boolean; bloqueo?: boolean };
 
 /** Lo que la app sabe hacer con el lector oculto: abrir una pagina y devolver lo que el script leyo. */
 export interface Lector {
@@ -42,8 +43,10 @@ export interface Opciones {
   dormir: (ms: number) => Promise<void>;
   /** cuantos partidos recientes por equipo (por defecto 5) */
   porEquipo?: number;
-  /** pausa entre fichas que si se leen de la red (por defecto 3 s) */
-  pausaMs?: number;
+  /** pausa entre fichas que si se leen de la red: al azar entre estos dos valores (por defecto 6 a 10 s), para no ir a ritmo de maquina */
+  pausaMinMs?: number;
+  pausaMaxMs?: number;
+  azar?: () => number;
   /** fallos seguidos que detienen la carga (por defecto 3), para no insistir si Flashscore empieza a negar */
   maxFallosSeguidos?: number;
   alProgreso?: (hecho: number, total: number, texto: string) => void;
@@ -61,10 +64,13 @@ const mismoEquipo = (a: string, b: string) => {
 /** Lee los ultimos partidos de cada equipo y arma su perfil por mitades. Solo toca fichas de Flashscore, una a la vez y con pausa. */
 export const cargarMitades = async (o: Opciones): Promise<ResultadoMitades | { error: string }> => {
   const N = o.porEquipo ?? 5;
-  const pausa = o.pausaMs ?? 3000;
+  const pMin = o.pausaMinMs ?? 6000;
+  const pMax = Math.max(pMin, o.pausaMaxMs ?? 10000);
+  const azar = o.azar ?? Math.random;
   const maxFallos = o.maxFallosSeguidos ?? 3;
   const en = await o.lector.enlaces(o.urlH2h);
-  if (!en.ok) return { error: en.error };
+  if (!en.ok) return { error: en.bloqueo ? `${en.error} Abre Flashscore en la pestaña, resuelve lo que pida y espera un rato antes de volver a intentar.` : en.error };
+  const bloqueado = (r: Leido<unknown>) => !r.ok && r.bloqueo === true;
   const pend = en.datos.equipos.map(e => ({
     nombre: e.nombre,
     filas: e.filas.filter(f => /^[GEP]$/.test(f.res) && FLASHSCORE.test(f.href) && f.mid).slice(0, N),
@@ -82,7 +88,7 @@ export const cargarMitades = async (o: Opciones): Promise<ResultadoMitades | { e
     for (const f of pend[i].filas) {
       let ficha = o.cache.get(f.mid);
       if (!ficha) {
-        await o.dormir(pausa);
+        await o.dormir(Math.round(pMin + azar() * (pMax - pMin)));
         const r = await o.lector.ficha(f.href);
         if (r.ok && fichaValida(r.datos)) {
           ficha = { ...r.datos, mid: f.mid };
@@ -92,6 +98,12 @@ export const cargarMitades = async (o: Opciones): Promise<ResultadoMitades | { e
           omitidos += 1;
           const porque = r.ok ? 'la ficha no cuadra con el marcador final' : r.error;
           motivos.push(`${f.local} - ${f.visita}: ${porque}`);
+          // verificacion / acceso negado: se para en seco, sin reintentar ni terminar la cola
+          if (bloqueado(r)) {
+            parcial = true;
+            error = 'Flashscore pidió verificación o negó el acceso; paré para no insistir. Abre Flashscore en la pestaña, resuelve lo que pida y espera un rato antes de volver a intentar.';
+            break;
+          }
           // un partido con prorroga o penales no es un fallo de Flashscore: se salta sin contar para detenerse
           if (!r.ok && r.omitir) {
             hecho += 1;

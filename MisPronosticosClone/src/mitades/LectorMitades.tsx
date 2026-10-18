@@ -26,7 +26,7 @@ const LectorMitades = forwardRef<Lector, {}>((_, ref) => {
         clearTimeout(pedido.current.t);
         pedido.current = null;
         if (m?.ok) resolve({ ok: true, datos: (m.ficha ?? m) as T });
-        else resolve({ ok: false, error: m?.error ?? 'No pude leer la página.', omitir: m?.omitir === true });
+        else resolve({ ok: false, error: m?.error ?? 'No pude leer la página.', omitir: m?.omitir === true, bloqueo: m?.bloqueo === true });
       };
       pedido.current = { tipo, js, fin: terminar, inyectado: false, t: setTimeout(() => terminar({ ok: false, error: 'La página tardó demasiado.' }), ESPERA_MS) };
       setUri(url);

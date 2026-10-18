@@ -72,3 +72,12 @@ test('sin partidos terminados lo dice', () => {
   w.__pgMitades({ local: perfil('A', 0), visita: perfil('B', 0), fichas: {}, omitidos: 3, parcial: true });
   expect(w.document.getElementById('mt-body').textContent).toContain('No encontré partidos terminados');
 });
+
+test('un aviso (p. ej. el tope por hora) no borra el ultimo resultado bueno', () => {
+  const { w } = abrir();
+  w.__pgMitades({ local: perfil('Cincinnati', 5), visita: perfil('Columbus Crew', 5), fichas: {}, omitidos: 0, parcial: false });
+  w.__pgMitades({ estado: 'error', texto: 'Ya hiciste 2 lecturas de mitades en la última hora.' });
+  const t = w.document.getElementById('mt-body').textContent;
+  expect(t).toContain('Ya hiciste 2 lecturas');
+  expect(t).toContain('n = 5 partidos');
+});

@@ -10,6 +10,7 @@ import { ORDEN_JS } from '../flashscore/orden';
 import { PEDIR_MITADES_JS, esLoginGoogle, explicarBloqueo, jsRecibir, leerMensaje, urlPermitida, urlStakePermitida, type Bloqueo } from '../flashscore/puente';
 import LectorMitades from '../mitades/LectorMitades';
 import { cargarMitades, type Lector } from '../mitades/cargar';
+import { revisarLimite, textoLimite } from '../mitades/limite';
 import type { Ficha } from '../mitades/modelo';
 import { STAKE_HOME, buscarStakeJs } from '../stake/buscar';
 import { buscarArbworld } from '../arbworld/arbworld';
@@ -60,6 +61,7 @@ export default function HerramientaScreen({ pantallaCompleta = false }: { pantal
   const lector = useRef<Lector>(null);
   const cacheMitades = useRef(new Map<string, Ficha>());     // fichas ya leidas (la herramienta guarda copia y la devuelve al abrir)
   const leyendoMitades = useRef(false);
+  const lecturasMitades = useRef<number[]>([]);          // cuando se hicieron las lecturas de la ultima hora (tope por hora)
   const [lectorMontado, setLectorMontado] = useState(false);
   const mitadesEnHerramienta = (r: object) =>
     herramienta.current?.injectJavaScript(`window.__pgMitades && window.__pgMitades(${JSON.stringify(r).replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029')}); true;`);
@@ -71,6 +73,13 @@ export default function HerramientaScreen({ pantallaCompleta = false }: { pantal
     }
     if (leyendoMitades.current) {
       avisar('Ya estoy leyendo las mitades; espera a que termine.');
+      return;
+    }
+    const permiso = revisarLimite(lecturasMitades.current, Date.now());
+    lecturasMitades.current = permiso.historial;
+    if (!permiso.ok) {
+      mitadesEnHerramienta({ estado: 'error', texto: textoLimite(permiso.libreEn) });
+      setVista('herramienta');
       return;
     }
     leyendoMitades.current = true;

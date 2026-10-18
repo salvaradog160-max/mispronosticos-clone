@@ -1,6 +1,7 @@
 const { JSDOM } = require('jsdom');
 import { ENLACES_JS, FICHA_JS } from '../src/mitades/extraer';
 import { cargarMitades, type Lector } from '../src/mitades/cargar';
+import { MAX_LECTURAS, revisarLimite, textoLimite, VENTANA_MS } from '../src/mitades/limite';
 import { fichaValida, perfilEquipo, resumirFicha, type Ficha } from '../src/mitades/modelo';
 
 // Fichas reales leidas de Flashscore el 18-oct-2026 (marcador acumulado tras cada gol).
@@ -139,6 +140,41 @@ describe('cargarMitades', () => {
     expect(r.omitidos).toBe(3);
     expect(r.motivos[0]).toMatch(/prórroga/);
     expect(r.local.n).toBe(1);
+  });
+
+  test('la pausa entre fichas es al azar entre 6 y 10 s, no un valor fijo', async () => {
+    const { lector } = lectorDe([CIN_NE, ATL_CIN]);
+    const pausas: number[] = [];
+    const azares = [0, 0.5, 1];
+    let i = 0;
+    await cargarMitades({ urlH2h: 'u', lector, cache: new Map(), dormir: async ms => void pausas.push(ms), azar: () => azares[i++ % 3] });
+    expect(pausas).toEqual([6000, 8000]);
+    const todas: number[] = [];
+    await cargarMitades({ urlH2h: 'u', lector: lectorDe([CIN_NE, ATL_CIN]).lector, cache: new Map(), dormir: async ms => void todas.push(ms) });
+    todas.forEach(ms => {
+      expect(ms).toBeGreaterThanOrEqual(6000);
+      expect(ms).toBeLessThanOrEqual(10000);
+    });
+  });
+
+  test('si Flashscore pide verificacion se para en seco (sin reintentar ni seguir con la cola) y se explica', async () => {
+    const fs = ['c1', 'c2', 'c3', 'c4'].map(mid => ({ ...CIN_NE, mid }));
+    const lector: Lector = {
+      enlaces: async () => ({ ok: true, datos: { local: 'A', visita: 'B', equipos: [{ nombre: 'A', filas: fs.map(f => fila(f)) }, { nombre: 'B', filas: [] }] } }),
+      ficha: async () => ({ ok: false, error: 'Flashscore pidió verificación o negó el acceso.', bloqueo: true }),
+    };
+    const pedir = jest.spyOn(lector, 'ficha');
+    const r: any = await cargarMitades({ urlH2h: 'u', lector, cache: new Map(), dormir });
+    expect(pedir).toHaveBeenCalledTimes(1);
+    expect(r.parcial).toBe(true);
+    expect(r.error).toMatch(/verificación/);
+  });
+
+  test('si la pagina H2H ya pide verificacion, no se lee ninguna ficha', async () => {
+    const lector: Lector = { enlaces: async () => ({ ok: false, error: 'Flashscore pidió verificación o negó el acceso.', bloqueo: true }), ficha: jest.fn() as any };
+    const r: any = await cargarMitades({ urlH2h: 'u', lector, cache: new Map(), dormir });
+    expect(r.error).toMatch(/verificación.*espera un rato/);
+    expect(lector.ficha).not.toHaveBeenCalled();
   });
 
   test('si no hay enlaces devuelve el error del lector', async () => {
@@ -317,5 +353,57 @@ describe('puente de mitades', () => {
     const m: any = leerMensaje(JSON.stringify({ tipo: 'mitades-cache', fichas: { a: LEV_FRI, b: { ...LEV_FRI, mid: 'b', gl: 9 }, c: 'x', d: { mid: 'd' } } }));
     expect(m.tipo).toBe('mitades-cache');
     expect(m.fichas.map((f: Ficha) => f.mid)).toEqual(['r7ZNv3no']);
+  });
+});
+
+describe('tope por hora', () => {
+  const t0 = Date.UTC(2026, 9, 18, 18, 0, 0);
+  test('permite hasta el maximo y registra cada lectura', () => {
+    let h: number[] = [];
+    for (let i = 0; i < MAX_LECTURAS; i++) {
+      const p = revisarLimite(h, t0 + i * 60_000);
+      expect(p.ok).toBe(true);
+      h = p.historial;
+    }
+    expect(h).toHaveLength(MAX_LECTURAS);
+  });
+
+  test('la siguiente se niega y dice cuando se libera (una hora despues de la mas vieja)', () => {
+    const h = [t0, t0 + 60_000];
+    const p = revisarLimite(h, t0 + 120_000);
+    expect(p.ok).toBe(false);
+    if (!p.ok) {
+      expect(p.libreEn).toBe(t0 + VENTANA_MS);
+      expect(p.historial).toEqual(h); // un intento negado no cuenta como lectura
+    }
+  });
+
+  test('pasada la hora vuelve a haber cupo y las viejas se olvidan', () => {
+    const p = revisarLimite([t0, t0 + 60_000], t0 + VENTANA_MS + 1);
+    expect(p.ok).toBe(true);
+    expect(p.historial).toHaveLength(2); // la de t0 + 60 s sigue vigente, mas la nueva
+  });
+
+  test('el aviso nombra la hora y aclara que lo leido sigue guardado', () => {
+    expect(textoLimite(t0 + VENTANA_MS)).toMatch(/\d{1,2}:\d{2}/);
+    expect(textoLimite(t0)).toMatch(/sigue guardado/);
+  });
+});
+
+describe('deteccion de verificacion en las paginas', () => {
+  const FICHA_URL = 'https://www.flashscore.com.mx/partido/futbol/a/b/?mid=zz';
+  test('Cloudflare "Just a moment" se informa como bloqueo, no como pagina vacia', async () => {
+    const m = await correr('<html><head><title>Just a moment...</title></head><body>Checking your browser</body></html>', FICHA_JS, FICHA_URL);
+    expect(m).toMatchObject({ ok: false, bloqueo: true });
+  });
+  test('una pagina corta que pide captcha tambien', async () => {
+    const m = await correr('<html><head><title>Flashscore</title></head><body><div>Verifica que eres humano</div><div>CAPTCHA</div></body></html>', ENLACES_JS, FICHA_URL);
+    expect(m).toMatchObject({ tipo: 'mitades-enlaces', ok: false, bloqueo: true });
+  });
+  test('una ficha normal (larga) que solo menciona "captcha" en algun lado NO se toma por bloqueo', async () => {
+    const relleno = '<p>' + 'Texto normal de la pagina. '.repeat(200) + ' captcha </p>';
+    const html = FICHA_HTML.replace('</body>', relleno + '</body>');
+    const m = await correr(html, FICHA_JS, FICHA_URL);
+    expect(m.ok).toBe(true);
   });
 });

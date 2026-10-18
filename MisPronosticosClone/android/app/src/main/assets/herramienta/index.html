@@ -2026,10 +2026,11 @@ clearBtn.addEventListener('click',function(){
   function filaProb(txt,l,lineas){
     return '<tr><td>'+txt+'</td>'+lineas.map(function(x){ return '<td>'+pct(sobre(l,x))+'</td>'; }).join('')+'</tr>';
   }
+  var ultimoHtml='';
   function render(r){
     var box=g('mt-body'); if(!box) return;
     if(!r){ return; }
-    if(r.estado==='error'){ box.innerHTML='<p class="status">'+esc(r.texto||'No pude leer las mitades.')+'</p>'; return; }
+    if(r.estado==='error'){ box.innerHTML='<p class="status">'+esc(r.texto||'No pude leer las mitades.')+'</p>'+(ultimoHtml||''); return; }
     var a=r.local, b=r.visita;
     if(!a||!b||(!a.n&&!b.n)){ box.innerHTML='<p class="status">No encontré partidos terminados para calcular mitades.</p>'; return; }
     var mx=Math.max(a.total1,a.total2,b.total1,b.total2,1);
@@ -2046,7 +2047,7 @@ clearBtn.addEventListener('click',function(){
     if(r.motivos&&r.motivos.length) h+='<br>'+r.motivos.map(function(t){ return '· '+esc(t); }).join('<br>');
     if(r.parcial&&r.error) h+=' '+esc(r.error);
     h+='</p>';
-    box.innerHTML=h;
+    box.innerHTML=h; ultimoHtml=h;
   }
   window.__pgMitades=function(r){
     try{

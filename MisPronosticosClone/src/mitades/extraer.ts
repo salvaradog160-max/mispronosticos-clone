@@ -8,9 +8,16 @@
 
 export const ENLACES_JS = `(function(){
   var post=function(o){ try{ window.ReactNativeWebView.postMessage(JSON.stringify(o)); }catch(e){} };
+  // Flashscore (o su proteccion) pide verificar que eres humano o niega el acceso: parar, no insistir.
+  function bloqueo(){
+    var t=(document.title||''), c=(document.body&&document.body.innerText)||'';
+    return /just a moment|attention required|access denied|un momento|acceso denegado|too many requests/i.test(t)
+      ||(c.length<2500&&/captcha|verifica(r)? que (eres|no eres)|verify you are|are you a robot|too many requests|demasiadas (solicitudes|peticiones)|acceso denegado|access denied/i.test(c));
+  }
   var t0=Date.now();
   function lineas(el){ return (el.innerText||'').split('\\n').map(function(s){return s.trim();}).filter(Boolean); }
   function intentar(){
+    if(bloqueo()) return post({tipo:'mitades-enlaces',ok:false,bloqueo:true,error:'Flashscore pidió verificación o negó el acceso.'});
     var secs=[].slice.call(document.querySelectorAll('.h2h__section')).slice(0,2);
     var filas=secs.map(function(s){ return [].slice.call(s.querySelectorAll('a.h2h__row')); });
     if(secs.length<2||!filas[0].length||!filas[1].length){
@@ -35,7 +42,14 @@ true;`;
 export const FICHA_JS = `(function(){
   var post=function(o){ try{ window.ReactNativeWebView.postMessage(JSON.stringify(o)); }catch(e){} };
   var t0=Date.now();
+  // Flashscore (o su proteccion) pide verificar que eres humano o niega el acceso: parar, no insistir.
+  function bloqueo(){
+    var t=(document.title||''), c=(document.body&&document.body.innerText)||'';
+    return /just a moment|attention required|access denied|un momento|acceso denegado|too many requests/i.test(t)
+      ||(c.length<2500&&/captcha|verifica(r)? que (eres|no eres)|verify you are|are you a robot|too many requests|demasiadas (solicitudes|peticiones)|acceso denegado|access denied/i.test(c));
+  }
   function intentar(){
+    if(bloqueo()) return post({tipo:'mitades-ficha',ok:false,bloqueo:true,error:'Flashscore pidió verificación o negó el acceso.'});
     var tit=(document.title||''), m=/\\b(\\d+)-(\\d+)\\b/.exec(tit.split('|')[0]||'');
     var cuerpo=(document.body&&document.body.innerText)||'';
     var final=/^FINALIZADO$/m.test(cuerpo);
