@@ -20,12 +20,19 @@ export interface PedidoArbworld {
   v: string;
   m: string;
 }
+/** Peticion de la herramienta: cuotas de Stake (API) para un partido; la app guarda la clave y hace la consulta. */
+export interface PedidoStakeApi {
+  tipo: 'stakeapi';
+  id: number;
+  l: string;
+  v: string;
+}
 /** El script de Stake avisa al terminar (haya encontrado el partido o no). */
 export interface FinStake {
   tipo: 'stake-fin';
   ok: boolean;
 }
-export type Mensaje = Captura | PedidoStake | FinStake | PedidoArbworld;
+export type Mensaje = Captura | PedidoStake | FinStake | PedidoArbworld | PedidoStakeApi;
 
 const MAX_TEXTO = 2_000_000;
 
@@ -33,6 +40,11 @@ const MAX_TEXTO = 2_000_000;
 export const leerMensaje = (data: string): Mensaje | null => {
   try {
     const m = JSON.parse(data);
+    if (m?.tipo === 'stakeapi') {
+      const ok = (x: unknown) => typeof x === 'string' && x.trim().length > 0 && x.length <= 120;
+      if (!ok(m.l) || !ok(m.v) || !Number.isInteger(m.id)) return null;
+      return { tipo: 'stakeapi', id: m.id, l: m.l, v: m.v };
+    }
     if (m?.tipo === 'arbworld') {
       const ok = (x: unknown) => typeof x === 'string' && x.trim().length > 0 && x.length <= 120;
       if (!ok(m.l) || !ok(m.v) || !ok(m.m) || !Number.isInteger(m.id)) return null;

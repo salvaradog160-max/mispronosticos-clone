@@ -8,6 +8,7 @@ import { PARTIDO_JS, VIVO_JS } from '../flashscore/scripts';
 import { jsRecibir, leerMensaje, urlPermitida, urlStakePermitida } from '../flashscore/puente';
 import { STAKE_HOME, buscarStakeJs } from '../stake/buscar';
 import { buscarArbworld } from '../arbworld/arbworld';
+import { buscarStake as buscarStakeApi } from '../stake/api';
 
 /**
  * Pronostico de Goles dentro de la app. El HTML va empaquetado en
@@ -34,6 +35,11 @@ export default function HerramientaScreen({ pantallaCompleta = false }: { pantal
   const stake = useRef<WebView<{}>>(null);
   const pendienteStake = useRef<{ l: string; v: string } | null>(null);
   const intentosStake = useRef(0);
+  const consultarStakeApi = (id: number, l: string, v: string) => {
+    buscarStakeApi(l, v, { fetcher: (url, init) => fetch(url, init), ahora: () => Date.now() }).then(r =>
+      herramienta.current?.injectJavaScript(`window.__pgStakeRespuesta && window.__pgStakeRespuesta(${id}, ${JSON.stringify(r)}); true;`),
+    );
+  };
 
   const abrirStake = (l: string, v: string) => {
     pendienteStake.current = { l, v };
@@ -100,6 +106,7 @@ export default function HerramientaScreen({ pantallaCompleta = false }: { pantal
           onMessage={e => {
             const m = leerMensaje(e.nativeEvent.data);
             if (m?.tipo === 'stake') abrirStake(m.l, m.v);
+            if (m?.tipo === 'stakeapi') consultarStakeApi(m.id, m.l, m.v);
             if (m?.tipo === 'arbworld') {
               // Arbworld se lee desde la app (la pagina de la herramienta no puede por CORS) y la respuesta vuelve por el mismo puente.
               buscarArbworld(m.l, m.v, m.m).then(r =>
@@ -125,7 +132,7 @@ export default function HerramientaScreen({ pantallaCompleta = false }: { pantal
             onNavigationStateChange={s => setPuedeVolver(s.canGoBack)}
             onMessage={e => {
               const c = leerMensaje(e.nativeEvent.data);
-              if (!c || c.tipo === 'stake' || c.tipo === 'stake-fin' || c.tipo === 'arbworld') return;
+              if (!c || c.tipo === 'stake' || c.tipo === 'stake-fin' || c.tipo === 'arbworld' || c.tipo === 'stakeapi') return;
               setVista('herramienta');
               herramienta.current?.injectJavaScript(jsRecibir(c));
             }}

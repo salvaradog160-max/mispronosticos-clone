@@ -750,10 +750,10 @@ $('umbral').addEventListener('input',function(e){ var v=e.target.value.replace(/
 $('btn-stake').addEventListener('click',function(){
   var st=$('stake-msg'), l=cfg.names.l, v=cfg.names.v;
   function msg(t,warn){ st.textContent=t; st.style.color=warn?'var(--loss)':'var(--muted)'; }
-  if(location.protocol==='file:'){ msg('Ábrelo desde http://localhost:8770/ (con el servidor encendido) para consultar Stake.',true); return; }
+  if(location.protocol==='file:'&&!window.ReactNativeWebView){ msg('Ábrelo desde http://localhost:8770/ (con el servidor encendido) para consultar Stake.',true); return; }
   if(!l||!v){ msg('Primero carga el partido.',true); return; }
   msg('Consultando Stake…');
-  fetch('/api/stake?l='+encodeURIComponent(l)+'&v='+encodeURIComponent(v)).then(function(r){ return r.json(); }).then(function(d){
+  stakeFetch(l,v).then(function(d){
     if(!d.encontrado){ msg(d.error||'Stake no devolvió el partido.',true); return; }
     cfg.stake=d; cfg.mine={};
     var C=compute(), pk=C.K?pickList(C.K):[], n=0;
@@ -765,6 +765,17 @@ $('btn-stake').addEventListener('click',function(){
     $('stake-msg').textContent='Stake: '+d.partido+' ('+d.estado+')'+(d.invertido?' · local y visita al revés, ya volteados':'')+'. Llené '+n+' de '+pk.length+' tarjetas; el resto no está en Stake.'+(d.margen_x2!=null?' Margen de Stake en 1X2: '+(d.margen_x2*100).toFixed(1)+'%.':'')+(ops.length?' ★ OPORTUNIDAD: '+ops.join(', ')+'.':' Sin oportunidades sobre +'+umbralVal()+'%.')+aviso;
   }).catch(function(){ msg('No pude hablar con el servidor local. Enciende «Pronóstico de Goles» y abre http://localhost:8770/.',true); });
 });
+// Cuotas de Stake (API): en la PC las pide al servidor local; en la app, a la app (que guarda la clave en el Keychain del telefono).
+var __stkPend={}, __stkId=0;
+window.__pgStakeRespuesta=function(id,obj){ var f=__stkPend[id]; if(f){ delete __stkPend[id]; f(obj); } };
+function stakeFetch(l,v){
+  if(window.ReactNativeWebView) return new Promise(function(res,rej){
+    var id=++__stkId; __stkPend[id]=res;
+    window.ReactNativeWebView.postMessage(JSON.stringify({tipo:'stakeapi',id:id,l:l,v:v}));
+    setTimeout(function(){ if(__stkPend[id]){ delete __stkPend[id]; rej(new Error('Stake no respondió a tiempo')); } },90000);
+  });
+  return fetch('/api/stake?l='+encodeURIComponent(l)+'&v='+encodeURIComponent(v)).then(function(r){ return r.json(); });
+}
 // Movimiento de cuota: en la PC lo pide al servidor local; en la app, a la app (que lee Arbworld directo, sin CORS).
 var __arbPend={}, __arbId=0;
 window.__pgArbRespuesta=function(id,obj){ var f=__arbPend[id]; if(f){ delete __arbPend[id]; f(obj); } };
@@ -890,11 +901,11 @@ document.addEventListener('click',function(e){
 function lvStakeGo(){
   var msg=$('lv-stake-msg'), L=window._lvLast, l=cfg.names.l, v=cfg.names.v;
   function m(t,w){ msg.textContent=t; msg.style.color=w?'var(--loss)':'var(--muted)'; }
-  if(location.protocol==='file:'){ m('Ábrelo desde http://localhost:8770/ para consultar Stake.',true); return; }
+  if(location.protocol==='file:'&&!window.ReactNativeWebView){ m('Ábrelo desde http://localhost:8770/ para consultar Stake.',true); return; }
   if(!L){ m('Primero calcula el partido en vivo.',true); return; }
   if(!l||!v){ m('Carga el partido arriba (con los nombres de los equipos) para buscarlo en Stake.',true); return; }
   m('Consultando Stake…');
-  fetch('/api/stake?l='+encodeURIComponent(l)+'&v='+encodeURIComponent(v)).then(function(r){ return r.json(); }).then(function(d){
+  stakeFetch(l,v).then(function(d){
     if(!d.encontrado){ m(d.error||'Stake no devolvió el partido.',true); return; }
     var o=L.o, rows=[], T=[], i;
     for(i=0;i<o.cur;i++) T[i]=0; o.tot.forEach(function(p){ T.push(p); });
