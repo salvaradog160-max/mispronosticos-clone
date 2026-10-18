@@ -1,3 +1,10 @@
+/**
+ * true = la app abre directo en la Herramienta (Pronostico de Goles), sin pestañas ni lectura de
+ * picks de GitHub. El codigo de las demas pantallas sigue en el repo: poner false para volver a
+ * las 7 pestañas.
+ */
+export const SOLO_HERRAMIENTA = true;
+
 export type DataSource = 'mock' | 'api' | 'static';
 
 export const RC_KEYS = {

@@ -1,5 +1,6 @@
-import React, { useRef, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { BackHandler, StyleSheet, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Button } from 'react-native-paper';
 import { WebView } from 'react-native-webview';
 import { palette, spacing } from '../theme';
@@ -18,12 +19,24 @@ export const FLASHSCORE_URI = 'https://www.flashscore.com.mx/';
 
 type Vista = 'herramienta' | 'flashscore';
 
-export default function HerramientaScreen() {
+export default function HerramientaScreen({ pantallaCompleta = false }: { pantallaCompleta?: boolean }) {
+  const insets = useSafeAreaInsets();
   const [vista, setVista] = useState<Vista>('herramienta');
   const [flashMontado, setFlashMontado] = useState(false);
   const [puedeVolver, setPuedeVolver] = useState(false);
   const herramienta = useRef<WebView<{}>>(null);
   const flash = useRef<WebView<{}>>(null);
+
+  // Atras de Android: dentro de Flashscore retrocede en su historial y, sin historial, vuelve a la herramienta.
+  useEffect(() => {
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (vista !== 'flashscore') return false;
+      if (puedeVolver) flash.current?.goBack();
+      else setVista('herramienta');
+      return true;
+    });
+    return () => sub.remove();
+  }, [vista, puedeVolver]);
 
   const abrirFlashscore = () => {
     setFlashMontado(true);
@@ -31,7 +44,7 @@ export default function HerramientaScreen() {
   };
 
   return (
-    <View style={styles.screen}>
+    <View style={[styles.screen, pantallaCompleta && { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
       <View style={styles.barra}>
         <Button compact mode={vista === 'herramienta' ? 'contained' : 'text'} onPress={() => setVista('herramienta')}>
           Herramienta

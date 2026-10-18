@@ -12,7 +12,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import HerramientaScreen from '../screens/HerramientaScreen';
 import { palette } from '../theme';
 import type { AppConfig } from '../config';
-import { DEFAULTS } from '../config';
+import { DEFAULTS, SOLO_HERRAMIENTA } from '../config';
 
 const Tab = createBottomTabNavigator();
 
@@ -37,22 +37,30 @@ const navTheme = {
   },
 };
 
+const paperTheme = {
+  dark: true,
+  colors: {
+    primary: palette.accent,
+    background: palette.bg,
+    surface: palette.surface,
+    surfaceVariant: palette.surfaceAlt,
+    onSurface: palette.text,
+    onSurfaceVariant: palette.textMuted,
+    error: palette.danger,
+  },
+};
+
 export default function RootNavigator({ config = DEFAULTS }: { config?: AppConfig }) {
+  void config;
+  if (SOLO_HERRAMIENTA) {
+    return (
+      <PaperProvider theme={paperTheme}>
+        <HerramientaScreen pantallaCompleta />
+      </PaperProvider>
+    );
+  }
   return (
-    <PaperProvider
-      theme={{
-        dark: true,
-        colors: {
-          primary: palette.accent,
-          background: palette.bg,
-          surface: palette.surface,
-          surfaceVariant: palette.surfaceAlt,
-          onSurface: palette.text,
-          onSurfaceVariant: palette.textMuted,
-          error: palette.danger,
-        },
-      }}
-    >
+    <PaperProvider theme={paperTheme}>
       <NavigationContainer theme={navTheme}>
         <Tab.Navigator
           screenOptions={{
