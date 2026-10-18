@@ -1278,6 +1278,15 @@ $('btn-clip').addEventListener('click',function(){
 function omMsgPaste(t){ var st=$('paste-status'); st.className='status warn'; st.textContent=t; }
 $('btn-paste-clear').addEventListener('click',function(){ $('paste').value=''; $('paste-status').textContent=''; $('paste-status').className='status'; $('paste-audit').innerHTML=''; });
 $('paste').addEventListener('paste',function(){ setTimeout(function(){ if($('paste').value.length>40) loadPasted(); },50); });
+// Puente con la app (WebView de Flashscore): la app entrega aquí el texto capturado. En el navegador de la PC no se usa.
+window.__pgRecibir=function(tipo,texto){
+  try{
+    var sec;
+    if(tipo==='vivo'){ $('lv-paste').value=String(texto); lvLoad(); sec=$('envivo'); }
+    else { $('paste').value=String(texto); loadPasted(); sec=$('analisis'); }
+    if(sec&&sec.scrollIntoView) sec.scrollIntoView();
+  }catch(e){ omMsgPaste('No pude cargar el texto de Flashscore: '+e.message); }
+};
 $('paste').addEventListener('input',function(e){ if(e.inputType==='insertFromPaste'||e.inputType==='insertFromDrop'){ clearTimeout(window._pgIn); window._pgIn=setTimeout(function(){ if($('paste').value.length>40) loadPasted(); },120); } });
 
 document.addEventListener('click',function(e){
