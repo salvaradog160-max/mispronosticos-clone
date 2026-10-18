@@ -496,7 +496,7 @@ html.app .aviso-flota{bottom:130px}
   </div>
 
   <nav class="jump" aria-label="Secciones">
-    <a href="#cargar">Cargar</a><a href="#resultado">Tablero</a><a href="#analisis">Análisis</a><a href="#envivo">En vivo</a><a href="#mercado-om">Mercado</a><a href="#mercados">Mercados</a>
+    <a href="#cargar">Cargar</a><a href="#resultado">Tablero</a><a href="#analisis">Análisis</a><a href="#envivo">En vivo</a><a href="#mitades">Mitades</a><a href="#mercado-om">Mercado</a><a href="#mercados">Mercados</a>
   </nav>
 
   <section class="hero" id="hero" hidden aria-label="Resumen del partido">
@@ -602,6 +602,13 @@ html.app .aviso-flota{bottom:130px}
       <div id="lv-out"></div>
       <div class="acts" style="margin-top:8px"><button class="btn btn-stake" id="lv-stake" type="button">Comparar con Stake</button><span class="cap" id="lv-stake-msg" style="margin:0"></span></div>
       <div id="lv-stake-out"></div>
+    </div></div>
+  </section>
+
+  <section class="markets" id="mitades">
+    <div class="mk-head"><div><h2 class="sec">Mitades</h2><p class="lam">Goles del 1er y del 2º tiempo en los últimos partidos de cada equipo, leídos de Flashscore.</p></div></div>
+    <div class="mk-grid"><div class="block wide" id="mt-body">
+      <p class="status">Sin datos todavía. En la pestaña Flashscore abre el partido y toca «Mitades» (en la app).</p>
     </div></div>
   </section>
 
@@ -1987,6 +1994,69 @@ clearBtn.addEventListener('click',function(){
     return h;
   }
   window.vzS={wrap:wrap,ventanas:ventanas,final:final,stats:stats,dumbProb:dumbProb,evRows:evRows,calib:calib,revision:revision};
+})();
+// ====== MITADES: goles del 1T y del 2T en los ultimos partidos de cada equipo (los lee la app desde Flashscore). Solo lee compute(); no cambia ningun calculo. ======
+(function(){
+  var KEY='pg_mitades_v2', KEYU='pg_mitades_ultimo', MAXF=300;
+  function g(id){ return document.getElementById(id); }
+  function leer(k,def){ try{ var v=localStorage.getItem(k); return v?JSON.parse(v):def; }catch(e){ return def; } }
+  function poner(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+  function guardarFichas(f){
+    var c=leer(KEY,{}), ks; Object.keys(f||{}).forEach(function(k){ c[k]=f[k]; });
+    ks=Object.keys(c); if(ks.length>MAXF) ks.slice(0,ks.length-MAXF).forEach(function(k){ delete c[k]; });
+    poner(KEY,c);
+  }
+  // Al abrir, la herramienta le entrega a la app lo que ya leyo (un partido terminado no cambia: no se vuelve a pedir).
+  try{ if(window.ReactNativeWebView) window.ReactNativeWebView.postMessage(JSON.stringify({tipo:'mitades-cache',fichas:leer(KEY,{})})); }catch(e){}
+
+  function pois(l,k){ var p=Math.exp(-l), i; for(i=1;i<=k;i++) p=p*l/i; return p; }
+  /** P(goles > linea) con Poisson de media l; linea .5 => al menos entero(linea)+1. */
+  function sobre(l,linea){ var n=Math.floor(linea), s=0, i; for(i=0;i<=n;i++) s+=pois(l,i); return 1-s; }
+  function bar(v,mx,cls,txt){ return '<div class="vb '+cls+'"><span class="tr"><i style="width:'+Math.max(0,Math.min(100,100*v/mx)).toFixed(1)+'%"></i></span><b>'+txt+'</b></div>'; }
+  function p1(x){ return (Math.round(x*10)/10).toFixed(1); }
+  function bloqueEquipo(p,cls,mx){
+    var nota=p.n<5?' <span class="cap" style="display:inline">· muestra chica</span>':'';
+    return '<div class="vrow"><div class="vl">'+esc(p.equipo)+'<small>n = '+p.n+' partidos'+nota+'</small></div><div>'
+      +'<div class="cap" style="margin:0">1er tiempo · goles por partido</div>'+bar(p.total1,mx,cls,p1(p.total1))
+      +'<div class="cap" style="margin:6px 0 0">2º tiempo · goles por partido</div>'+bar(p.total2,mx,cls,p1(p.total2))
+      +'<div class="cap">A favor / en contra: 1T '+p1(p.gf1)+' / '+p1(p.gc1)+' · 2T '+p1(p.gf2)+' / '+p1(p.gc2)
+      +'<br>'+Math.round(p.pct2*100)+'% de sus goles caen en el 2T · goles del 76\' en adelante: '+p1(p.tardios)+' por partido'
+      +'<br>Llegó empatado al descanso en '+p.empatesDescanso+' de '+p.n+'</div></div></div>';
+  }
+  function filaProb(txt,l,lineas){
+    return '<tr><td>'+txt+'</td>'+lineas.map(function(x){ return '<td>'+pct(sobre(l,x))+'</td>'; }).join('')+'</tr>';
+  }
+  function render(r){
+    var box=g('mt-body'); if(!box) return;
+    if(!r){ return; }
+    if(r.estado==='error'){ box.innerHTML='<p class="status">'+esc(r.texto||'No pude leer las mitades.')+'</p>'; return; }
+    var a=r.local, b=r.visita;
+    if(!a||!b||(!a.n&&!b.n)){ box.innerHTML='<p class="status">No encontré partidos terminados para calcular mitades.</p>'; return; }
+    var mx=Math.max(a.total1,a.total2,b.total1,b.total2,1);
+    var l1=(a.total1+b.total1)/2, l2=(a.total2+b.total2)/2, lt=l1+l2, C=null, modelo='';
+    try{ C=compute(); if(C&&C.lam) modelo=' El modelo del partido completo espera '+f2(C.lam[0]+C.lam[1])+' goles.'; }catch(e){}
+    var h='';
+    h+=bloqueEquipo(a,'l',mx)+bloqueEquipo(b,'v',mx);
+    h+='<h3 style="margin:14px 0 4px;font:700 14px var(--display)">Cruce de los dos perfiles</h3>';
+    h+='<p class="cap" style="margin:0 0 6px">Promedio de los dos equipos (goles a favor + en contra): 1T '+f2(l1)+' · 2T '+f2(l2)+' · suma '+f2(lt)+'.'+modelo+'</p>';
+    h+='<div class="vt-in"><table class="mtab" style="width:100%;border-collapse:collapse;font:600 13px var(--body)"><thead><tr><th style="text-align:left"></th><th>Más de 0.5</th><th>Más de 1.5</th><th>Más de 2.5</th></tr></thead><tbody>'
+      +filaProb('1er tiempo',l1,[0.5,1.5,2.5])+filaProb('2º tiempo',l2,[0.5,1.5,2.5])+filaProb('Partido',lt,[0.5,1.5,2.5])+'</tbody></table></div>';
+    h+='<p class="cap">Estimación simple (Poisson con estos promedios), sin cuotas, sin ajustar por rival ni por local/visita. Con '+Math.min(a.n,b.n)+' a '+Math.max(a.n,b.n)+' partidos por equipo es una muestra chica y no se ha comprobado que bata al mercado: úsala como contexto, no como señal.';
+    if(r.omitidos) h+=' No pude leer '+r.omitidos+' ficha'+(r.omitidos>1?'s':'')+'.';
+    if(r.motivos&&r.motivos.length) h+='<br>'+r.motivos.map(function(t){ return '· '+esc(t); }).join('<br>');
+    if(r.parcial&&r.error) h+=' '+esc(r.error);
+    h+='</p>';
+    box.innerHTML=h;
+  }
+  window.__pgMitades=function(r){
+    try{
+      if(r&&r.fichas) guardarFichas(r.fichas);
+      if(r&&r.local&&r.visita){ var u={local:r.local,visita:r.visita,omitidos:r.omitidos,parcial:r.parcial,error:r.error}; poner(KEYU,u); }
+      render(r);
+      var s=g('mitades'); if(s&&s.scrollIntoView&&r&&(r.local||r.estado==='error')) setTimeout(function(){ s.scrollIntoView(); },250);
+    }catch(e){ if(g('mt-body')) g('mt-body').innerHTML='<p class="status">No pude mostrar las mitades: '+esc(e.message)+'</p>'; }
+  };
+  var ult=leer(KEYU,null); if(ult) try{ render(ult); }catch(e){}
 })();
 </script>
 </body>

@@ -1,4 +1,5 @@
 /** Puente Flashscore -> herramienta. Funciones puras para poder probarlas sin WebView. */
+import { fichaValida, type Ficha } from '../mitades/modelo';
 
 export type TipoCaptura = 'partido' | 'vivo';
 export interface Captura {
@@ -47,14 +48,34 @@ export interface FinStake {
   tipo: 'stake-fin';
   ok: boolean;
 }
-export type Mensaje = Captura | PedidoStake | FinStake | PedidoArbworld | PedidoStakeApi | PedidoBetmexico | PedidoAbrir;
+/** La herramienta entrega al arrancar las fichas de mitades que ya guardo (un partido terminado no cambia). */
+export interface CacheMitades {
+  tipo: 'mitades-cache';
+  fichas: Ficha[];
+}
+/** El boton «Mitades» de la app, ya dentro de la pagina de Flashscore, manda la direccion del partido abierto. */
+export interface PedidoMitades {
+  tipo: 'mitades-pedir';
+  urlH2h: string | null;
+}
+export type Mensaje = PedidoMitades | Captura | PedidoStake | FinStake | PedidoArbworld | PedidoStakeApi | PedidoBetmexico | PedidoAbrir | CacheMitades;
 
 const MAX_TEXTO = 2_000_000;
+
+const esFicha = (f: any): f is Ficha =>
+  !!f && typeof f.mid === 'string' && f.mid.length <= 40 && typeof f.local === 'string' && typeof f.visita === 'string' &&
+  Number.isInteger(f.gl) && Number.isInteger(f.gv) && Array.isArray(f.goles) && f.goles.length <= 30 &&
+  f.goles.every((g: any) => [g?.m, g?.x, g?.l, g?.v].every(Number.isInteger) && (g.t === 1 || g.t === 2)) && fichaValida(f);
 
 /** Lee y valida el mensaje que manda el script de Flashscore; null si no es lo esperado. */
 export const leerMensaje = (data: string): Mensaje | null => {
   try {
     const m = JSON.parse(data);
+    if (m?.tipo === 'mitades-pedir') return { tipo: 'mitades-pedir', urlH2h: typeof m.url === 'string' ? urlH2h(m.url) : null };
+    if (m?.tipo === 'mitades-cache') {
+      const vals = m.fichas && typeof m.fichas === 'object' ? Object.values(m.fichas) : [];
+      return { tipo: 'mitades-cache', fichas: vals.slice(0, 300).filter(esFicha) as Ficha[] };
+    }
     if (m?.tipo === 'abrir') {
       const ok = (x: unknown) => typeof x === 'string' && x.trim().length > 0 && x.length <= 120;
       if ((m.casa !== 'stake' && m.casa !== 'betmexico') || !ok(m.l) || !ok(m.v)) return null;
@@ -126,3 +147,13 @@ export const explicarBloqueo = (url: string): Bloqueo => {
   }
   return { motivo: 'otro', host, texto: `El visor no abre direcciones de otros sitios (${host || 'desconocido'}). Puedes abrir la página en tu navegador.` };
 };
+
+/** Pagina H2H del partido que se esta viendo en Flashscore (de ahi salen los ultimos partidos de cada equipo); null si no es una ficha de partido. */
+export const urlH2h = (url: string): string | null => {
+  const m = /^(https:\/\/(?:[a-z0-9-]+\.)*flashscore\.(?:com\.mx|com))\/partido\/futbol\/([^/?#]+)\/([^/?#]+)\/(?:[^?#]*)?(\?[^#]*)?/i.exec(url);
+  const mid = m?.[4] ? /[?&]mid=([A-Za-z0-9]+)/.exec(m[4])?.[1] : undefined;
+  return m && mid ? `${m[1]}/partido/futbol/${m[2]}/${m[3]}/h2h/general/?mid=${mid}` : null;
+};
+
+/** JS que el boton «Mitades» inyecta en Flashscore: avisa a la app que partido esta abierto. */
+export const PEDIR_MITADES_JS = "window.ReactNativeWebView.postMessage(JSON.stringify({tipo:'mitades-pedir',url:location.href})); true;";

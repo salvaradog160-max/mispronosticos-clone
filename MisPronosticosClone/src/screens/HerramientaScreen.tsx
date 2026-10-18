@@ -7,7 +7,10 @@ import { WebView } from 'react-native-webview';
 import { spacing } from '../theme';
 import { PARTIDO_JS, VIVO_JS } from '../flashscore/scripts';
 import { ORDEN_JS } from '../flashscore/orden';
-import { esLoginGoogle, explicarBloqueo, jsRecibir, leerMensaje, urlPermitida, urlStakePermitida, type Bloqueo } from '../flashscore/puente';
+import { PEDIR_MITADES_JS, esLoginGoogle, explicarBloqueo, jsRecibir, leerMensaje, urlPermitida, urlStakePermitida, type Bloqueo } from '../flashscore/puente';
+import LectorMitades from '../mitades/LectorMitades';
+import { cargarMitades, type Lector } from '../mitades/cargar';
+import type { Ficha } from '../mitades/modelo';
 import { STAKE_HOME, buscarStakeJs } from '../stake/buscar';
 import { buscarArbworld } from '../arbworld/arbworld';
 import { buscarStake as buscarStakeApi } from '../stake/api';
@@ -53,6 +56,44 @@ export default function HerramientaScreen({ pantallaCompleta = false }: { pantal
   const urlActual = useRef<{ stake: string; betmexico: string }>({ stake: STAKE_HOME, betmexico: BETMEXICO_HOME });
   const abrirEnNavegador = (url: string) => {
     Linking.openURL(url).catch(() => undefined);
+  };
+  const lector = useRef<Lector>(null);
+  const cacheMitades = useRef(new Map<string, Ficha>());     // fichas ya leidas (la herramienta guarda copia y la devuelve al abrir)
+  const leyendoMitades = useRef(false);
+  const [lectorMontado, setLectorMontado] = useState(false);
+  const mitadesEnHerramienta = (r: object) =>
+    herramienta.current?.injectJavaScript(`window.__pgMitades && window.__pgMitades(${JSON.stringify(r).replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029')}); true;`);
+  // «Mitades»: lee, de una en una y con pausa, las fichas de los ultimos partidos de cada equipo y manda el perfil a la herramienta.
+  const leerMitades = async (urlH2h: string | null) => {
+    if (!urlH2h) {
+      avisar('Abre primero la página de un partido en Flashscore (no la lista) y vuelve a tocar «Mitades».');
+      return;
+    }
+    if (leyendoMitades.current) {
+      avisar('Ya estoy leyendo las mitades; espera a que termine.');
+      return;
+    }
+    leyendoMitades.current = true;
+    setLectorMontado(true);
+    setVista('herramienta');
+    avisar('Leyendo mitades de Flashscore…');
+    try {
+      await new Promise<void>(r => setTimeout(() => r(), 600)); // da tiempo a que el lector exista
+      if (!lector.current) throw new Error('El lector no arrancó.');
+      const r = await cargarMitades({
+        urlH2h,
+        lector: lector.current,
+        cache: cacheMitades.current,
+        dormir: ms => new Promise<void>(res => setTimeout(() => res(), ms)),
+        alProgreso: (h, t) => avisar(`Mitades: ${h} de ${t} partidos…`),
+      });
+      if ('error' in r && !('local' in r)) mitadesEnHerramienta({ estado: 'error', texto: r.error });
+      else mitadesEnHerramienta(r);
+    } catch (err) {
+      mitadesEnHerramienta({ estado: 'error', texto: `No pude leer las mitades: ${(err as Error).message}` });
+    } finally {
+      leyendoMitades.current = false;
+    }
   };
   const pendienteStake = useRef<{ l: string; v: string } | null>(null);
   const intentosStake = useRef(0);
@@ -134,6 +175,7 @@ export default function HerramientaScreen({ pantallaCompleta = false }: { pantal
               else abrirBetmexico(m.l, m.v);
             }
             if (m?.tipo === 'stakeapi') consultarStakeApi(m.id, m.l, m.v);
+            if (m?.tipo === 'mitades-cache') m.fichas.forEach(f => cacheMitades.current.set(f.mid, f));
             if (m?.tipo === 'betmexico') {
               buscarBetmexico(m.l, m.v, {
                 fetcher: (url, init) => fetch(url, init),
@@ -169,7 +211,11 @@ export default function HerramientaScreen({ pantallaCompleta = false }: { pantal
             onNavigationStateChange={s => setPuedeVolver(s.canGoBack)}
             onMessage={e => {
               const c = leerMensaje(e.nativeEvent.data);
-              if (!c || c.tipo === 'stake' || c.tipo === 'stake-fin' || c.tipo === 'arbworld' || c.tipo === 'stakeapi' || c.tipo === 'betmexico' || c.tipo === 'abrir') return;
+              if (c?.tipo === 'mitades-pedir') {
+                leerMitades(c.urlH2h);
+                return;
+              }
+              if (!c || c.tipo === 'mitades-cache' || c.tipo === 'stake' || c.tipo === 'stake-fin' || c.tipo === 'arbworld' || c.tipo === 'stakeapi' || c.tipo === 'betmexico' || c.tipo === 'abrir') return;
               setVista('herramienta');
               herramienta.current?.injectJavaScript(jsRecibir(c));
             }}
@@ -283,6 +329,10 @@ export default function HerramientaScreen({ pantallaCompleta = false }: { pantal
                 <MaterialDesignIcons name="chart-donut" size={18} color={COLOR.fondo} />
                 <Text style={styles.accionTxt}>Al análisis</Text>
               </Pressable>
+              <Pressable style={[styles.accion, styles.accionSec]} onPress={() => flash.current?.injectJavaScript(PEDIR_MITADES_JS)} accessibilityLabel="Leer los goles por mitades de los últimos partidos">
+                <MaterialDesignIcons name="timer-sand" size={18} color={COLOR.texto} />
+                <Text style={[styles.accionTxt, { color: COLOR.texto }]}>Mitades</Text>
+              </Pressable>
               <Pressable style={[styles.accion, styles.accionSec]} onPress={() => flash.current?.injectJavaScript(VIVO_JS + '; true;')} accessibilityLabel="Enviar el partido en vivo">
                 <MaterialDesignIcons name="flash-outline" size={18} color={COLOR.texto} />
                 <Text style={[styles.accionTxt, { color: COLOR.texto }]}>En vivo</Text>
@@ -291,6 +341,7 @@ export default function HerramientaScreen({ pantallaCompleta = false }: { pantal
           </View>
         )}
       </View>
+      {lectorMontado && <LectorMitades ref={lector} />}
 
       <View style={styles.barraInf}>
         {PESTANAS.map(t => {
@@ -326,7 +377,7 @@ const styles = StyleSheet.create({
   oculto: { display: 'none' },
   flota: { position: 'absolute', left: 0, right: 0, bottom: spacing.md, alignItems: 'center' },
   pastilla: {
-    flexDirection: 'row', alignItems: 'center', gap: spacing.xs, padding: 6, borderRadius: 999,
+    flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: spacing.xs, padding: 6, borderRadius: 28, maxWidth: '96%',
     backgroundColor: 'rgba(10,20,36,0.94)', borderWidth: 1, borderColor: 'rgba(120,170,255,0.3)', elevation: 10,
   },
   accionIconoOn: { backgroundColor: 'rgba(46,230,168,0.2)', borderWidth: 1, borderColor: 'rgba(46,230,168,0.6)' },
