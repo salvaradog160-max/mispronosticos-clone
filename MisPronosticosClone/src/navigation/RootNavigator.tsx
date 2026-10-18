@@ -9,6 +9,7 @@ import LiveScreen from '../screens/LiveScreen';
 import SpecialsScreen from '../screens/SpecialsScreen';
 import RendimientoScreen from '../screens/RendimientoScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import HerramientaScreen from '../screens/HerramientaScreen';
 import { palette } from '../theme';
 import type { AppConfig } from '../config';
 import { DEFAULTS } from '../config';
@@ -109,6 +110,16 @@ export default function RootNavigator({ config = DEFAULTS }: { config?: AppConfi
               title: 'Rendimiento',
               tabBarIcon: ({ color, size }) => (
                 <MaterialDesignIcons name="chart-line" color={color} size={size} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Herramienta"
+            component={HerramientaScreen}
+            options={{
+              title: 'Herramienta',
+              tabBarIcon: ({ color, size }) => (
+                <MaterialDesignIcons name="calculator-variant" color={color} size={size} />
               ),
             }}
           />

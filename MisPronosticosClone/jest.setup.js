@@ -30,3 +30,6 @@ jest.mock('react-native-keychain', () => ({
   setGenericPassword: jest.fn().mockResolvedValue({ service: 'x', storage: 'x' }),
   resetGenericPassword: jest.fn().mockResolvedValue(true),
 }));
+
+
+jest.mock('react-native-webview', () => ({ WebView: () => null }));
