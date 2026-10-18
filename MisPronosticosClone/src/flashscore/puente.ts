@@ -102,3 +102,27 @@ export const urlStakePermitida = (url: string): boolean =>
 /** Solo se navega dentro de Flashscore; los anuncios que abren otros sitios se bloquean. */
 export const urlPermitida = (url: string): boolean =>
   url.startsWith('about:') || /^https:\/\/([a-z0-9-]+\.)*flashscore\.(com\.mx|com)(\/|$)/i.test(url);
+
+export interface Bloqueo {
+  motivo: 'google' | 'otro';
+  host: string;
+  texto: string;
+}
+
+/** Inicio de sesion con Google (directo o por el manejador de Firebase que usan las casas antes de saltar a Google). */
+export const esLoginGoogle = (url: string): boolean =>
+  /^https?:\/\/accounts\.google\.[a-z.]+\//i.test(url) || /\/__\/auth\/(handler|iframe)/i.test(url) || /accounts\.google\.[a-z.]+/i.test(url);
+
+/** Explica por que el visor no deja abrir una direccion externa (p. ej. el inicio de sesion con Google). */
+export const explicarBloqueo = (url: string): Bloqueo => {
+  const host = (/^https?:\/\/([^/?#:]+)/i.exec(url)?.[1] ?? '').toLowerCase();
+  if (esLoginGoogle(url)) {
+    return {
+      motivo: 'google',
+      host,
+      texto:
+        'Google no permite iniciar sesión dentro de otras apps. Entra con tu correo y contraseña de la casa (si creaste la cuenta con Google, usa «Olvidé mi contraseña» con ese mismo Gmail) o abre la página en Chrome, donde Google sí funciona.',
+    };
+  }
+  return { motivo: 'otro', host, texto: `El visor no abre direcciones de otros sitios (${host || 'desconocido'}). Puedes abrir la página en tu navegador.` };
+};

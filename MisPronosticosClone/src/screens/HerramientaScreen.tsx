@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { BackHandler, Pressable, StyleSheet, Text, View } from 'react-native';
+import { BackHandler, Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { MaterialDesignIcons } from '@react-native-vector-icons/material-design-icons';
@@ -7,7 +7,7 @@ import { WebView } from 'react-native-webview';
 import { spacing } from '../theme';
 import { PARTIDO_JS, VIVO_JS } from '../flashscore/scripts';
 import { ORDEN_JS } from '../flashscore/orden';
-import { jsRecibir, leerMensaje, urlPermitida, urlStakePermitida } from '../flashscore/puente';
+import { esLoginGoogle, explicarBloqueo, jsRecibir, leerMensaje, urlPermitida, urlStakePermitida, type Bloqueo } from '../flashscore/puente';
 import { STAKE_HOME, buscarStakeJs } from '../stake/buscar';
 import { buscarArbworld } from '../arbworld/arbworld';
 import { buscarStake as buscarStakeApi } from '../stake/api';
@@ -49,6 +49,11 @@ export default function HerramientaScreen({ pantallaCompleta = false }: { pantal
   const stake = useRef<WebView<{}>>(null);
   const bet = useRef<WebView<{}>>(null);
   const [betUri, setBetUri] = useState(BETMEXICO_HOME);
+  const [bloqueo, setBloqueo] = useState<Bloqueo | null>(null);
+  const urlActual = useRef<{ stake: string; betmexico: string }>({ stake: STAKE_HOME, betmexico: BETMEXICO_HOME });
+  const abrirEnNavegador = (url: string) => {
+    Linking.openURL(url).catch(() => undefined);
+  };
   const pendienteStake = useRef<{ l: string; v: string } | null>(null);
   const intentosStake = useRef(0);
   const consultarStakeApi = (id: number, l: string, v: string) => {
@@ -183,7 +188,12 @@ export default function HerramientaScreen({ pantallaCompleta = false }: { pantal
             webviewDebuggingEnabled={__DEV__}
             domStorageEnabled
             setSupportMultipleWindows={false}
-            onShouldStartLoadWithRequest={r => urlStakePermitida(r.url)}
+            onShouldStartLoadWithRequest={r => {
+              if (!esLoginGoogle(r.url) && urlStakePermitida(r.url)) return true;
+              setBloqueo(explicarBloqueo(r.url));
+              return false;
+            }}
+            onNavigationStateChange={st => { if (!esLoginGoogle(st.url)) urlActual.current.stake = st.url; }}
             onMessage={e => {
               const m = leerMensaje(e.nativeEvent.data);
               if (m?.tipo === 'stake-fin') pendienteStake.current = null;
@@ -213,12 +223,46 @@ export default function HerramientaScreen({ pantallaCompleta = false }: { pantal
             webviewDebuggingEnabled={__DEV__}
             domStorageEnabled
             setSupportMultipleWindows={false}
-            onShouldStartLoadWithRequest={r => urlBetmexicoPermitida(r.url)}
+            onShouldStartLoadWithRequest={r => {
+              if (!esLoginGoogle(r.url) && urlBetmexicoPermitida(r.url)) return true;
+              setBloqueo(explicarBloqueo(r.url));
+              return false;
+            }}
+            onNavigationStateChange={st => { if (!esLoginGoogle(st.url)) urlActual.current.betmexico = st.url; }}
             style={styles.web}
           />
         </View>
       )}
 
+        {(vista === 'stake' || vista === 'betmexico') && (
+          <View style={styles.flota} pointerEvents="box-none">
+            <View style={styles.pastilla}>
+              <Pressable
+                style={styles.accion}
+                onPress={() => abrirEnNavegador(vista === 'stake' ? urlActual.current.stake : urlActual.current.betmexico)}
+                accessibilityLabel="Abrir esta página en el navegador">
+                <MaterialDesignIcons name="open-in-new" size={18} color={COLOR.fondo} />
+                <Text style={styles.accionTxt}>Abrir en el navegador</Text>
+              </Pressable>
+            </View>
+          </View>
+        )}
+        {bloqueo && (vista === 'stake' || vista === 'betmexico') && (
+          <View style={styles.bloqueo} accessibilityLiveRegion="polite">
+            <MaterialDesignIcons name="alert-circle-outline" size={22} color="#ffc35a" />
+            <View style={{ flex: 1 }}>
+              <Text style={styles.bloqueoTxt}>{bloqueo.texto}</Text>
+              <View style={styles.bloqueoFila}>
+                <Pressable style={styles.accion} onPress={() => abrirEnNavegador(vista === 'stake' ? urlActual.current.stake : urlActual.current.betmexico)}>
+                  <Text style={styles.accionTxt}>Abrir en el navegador</Text>
+                </Pressable>
+                <Pressable style={[styles.accion, styles.accionSec]} onPress={() => setBloqueo(null)}>
+                  <Text style={[styles.accionTxt, { color: COLOR.texto }]}>Entendido</Text>
+                </Pressable>
+              </View>
+            </View>
+          </View>
+        )}
         {vista === 'flashscore' && (
           <View style={styles.flota} pointerEvents="box-none">
             <View style={styles.pastilla}>
@@ -291,6 +335,12 @@ const styles = StyleSheet.create({
   accionSec: { backgroundColor: 'rgba(255,255,255,0.1)' },
   accionTxt: { color: COLOR.fondo, fontWeight: '700', fontSize: 14 },
   apagado: { opacity: 0.35 },
+  bloqueo: {
+    position: 'absolute', left: 12, right: 12, top: 12, flexDirection: 'row', gap: spacing.sm, padding: 14, borderRadius: 16,
+    backgroundColor: 'rgba(10,20,36,0.97)', borderWidth: 1, borderColor: 'rgba(255,195,90,0.5)', elevation: 12,
+  },
+  bloqueoTxt: { color: COLOR.texto, fontSize: 13.5, lineHeight: 19 },
+  bloqueoFila: { flexDirection: 'row', gap: spacing.xs, marginTop: 10, flexWrap: 'wrap' },
   barraInf: {
     flexDirection: 'row', backgroundColor: COLOR.barra, borderTopWidth: 1, borderTopColor: 'rgba(255,255,255,0.08)', paddingTop: 6, paddingBottom: 4,
   },

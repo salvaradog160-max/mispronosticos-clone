@@ -1,4 +1,4 @@
-import { jsRecibir, leerMensaje, urlPermitida } from '../src/flashscore/puente';
+import { esLoginGoogle, explicarBloqueo, jsRecibir, leerMensaje, urlPermitida } from '../src/flashscore/puente';
 import { PARTIDO_JS, VIVO_JS } from '../src/flashscore/scripts';
 
 test('leerMensaje acepta partido y vivo, y rechaza lo demas', () => {
@@ -56,4 +56,22 @@ test('urlStakePermitida: solo stake.mx / stake.com por https', () => {
 test('leerMensaje: aviso de fin de la busqueda en Stake', () => {
   expect(leerMensaje(JSON.stringify({ tipo: 'stake-fin', ok: true }))).toEqual({ tipo: 'stake-fin', ok: true });
   expect(leerMensaje(JSON.stringify({ tipo: 'stake-fin' }))).toEqual({ tipo: 'stake-fin', ok: false });
+});
+
+test('explicarBloqueo: el inicio de sesion con Google se explica; otros sitios, con su host', () => {
+  const g = explicarBloqueo('https://accounts.google.com/o/oauth2/v2/auth?client_id=x');
+  expect(g.motivo).toBe('google');
+  expect(g.texto).toMatch(/Google no permite iniciar sesión dentro de otras apps/);
+  expect(g.texto).toMatch(/correo y contraseña/);
+  const o = explicarBloqueo('https://anuncios.ejemplo.com/ad?x=1');
+  expect(o.motivo).toBe('otro');
+  expect(o.host).toBe('anuncios.ejemplo.com');
+});
+
+test('esLoginGoogle: detecta Google directo y el manejador de Firebase de la casa, no paginas normales', () => {
+  expect(esLoginGoogle('https://accounts.google.com/o/oauth2/v2/auth?x=1')).toBe(true);
+  expect(esLoginGoogle('https://auth.betmexico.mx/__/auth/handler?apiKey=k&appName=%5BDEFAULT%5D')).toBe(true);
+  expect(esLoginGoogle('https://betmexico.mx/deportes-elite/soccer/germany/bundesliga/x-1')).toBe(false);
+  expect(esLoginGoogle('https://stake.mx/sports/soccer')).toBe(false);
+  expect(explicarBloqueo('https://auth.betmexico.mx/__/auth/handler?apiKey=k').motivo).toBe('google');
 });
