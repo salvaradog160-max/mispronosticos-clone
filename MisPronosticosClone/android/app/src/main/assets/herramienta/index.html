@@ -824,6 +824,8 @@ function parseFlash(txt,opts){
       }
     }
   }
+  // Flashscore Femenil: el encabezado dice «TIGRES UANL - LOCAL» pero las filas dicen «Tigres UANL F». Se toma el nombre de la sección ÚLTIMOS PARTIDOS cuando solo difiere por un sufijo
+  [['local',0],['visit',1]].forEach(function(p){ var t=res.teams[p[1]], h=res[p[0]]; if(!t||!h) return; var a=norm(h), b=norm(t.name); if(a!==b&&(b.indexOf(a+' ')===0||a.indexOf(b+' ')===0)) res[p[0]]=t.name; });
   // momios 1X2 (filas de 3 decimales después de "1X2" / "1 X 2")
   var k=-1; L.forEach(function(x,ix){ if(/^MOMIOS$/i.test(x)) k=ix; });
   if(k>=0&&inOdds){
