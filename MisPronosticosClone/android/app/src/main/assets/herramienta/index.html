@@ -1003,7 +1003,7 @@ function renderClas(C){
   h+=row('Posición',o.gl?o.gl.pos+'/'+o.total:'—',o.gv?o.gv.pos+'/'+o.total:'—');
   h+=row('Puntos (PJ)',o.gl?o.gl.pts+' ('+o.gl.pj+')':'—',o.gv?o.gv.pts+' ('+o.gv.pj+')':'—');
   h+=row('Forma (últ. 5)',o.gl&&o.gl.form?o.gl.form:'—',o.gv&&o.gv.form?o.gv.form:'—',false);
-  h+=row('Como local / visita G-E-P · GF:GC',rec(o.hl),rec(o.av),false);
+  h+=row('Récord casa / fuera',rec(o.hl),rec(o.av),false);
   h+=row('Pts por partido (casa / fuera)',X(o.hl&&o.hl.pj?(o.hl.g*3+o.hl.e)/o.hl.pj:null),X(o.av&&o.av.pj?(o.av.g*3+o.av.e)/o.av.pj:null));
   h+=row('Marca (casa / fuera)',X(pg(o.hl,'gf')),X(pg(o.av,'gf')));
   h+=row('Recibe (casa / fuera)',X(pg(o.hl,'gc')),X(pg(o.av,'gc')));
@@ -1011,11 +1011,13 @@ function renderClas(C){
   if(o.lam&&C&&C.pm) h+=row('λ mercado',X(C.lam[0]),X(C.lam[1]));
   box.innerHTML='<div class="bt">'+h+'</div>';
   var nt=[];
+  nt.push('Récord = G-E-P · goles a favor:en contra, del local solo en casa y de la visita solo fuera.');
   if(o.mpg!==null) nt.push('Liga: '+X(o.mpg)+' goles por partido'+(o.muH!==null?' (local marca '+X(o.muH)+', visita '+X(o.muA)+')':''));
   if(!o.gl) nt.push('⚠ No encontré a «'+esc(cfg.names.l||'?')+'» en la tabla General: ¿es la liga correcta?');
   if(!o.gv) nt.push('⚠ No encontré a «'+esc(cfg.names.v||'?')+'» en la tabla General.');
   if(cfg.clas.G&&!cfg.clas.L&&!cfg.clas.V) nt.push('Solo hay tabla General: faltan Local y Visitante para los promedios de casa y fuera.');
-  function gap(r,up,dn){ if(!r) return ''; var t=[]; if(up) t.push((up.pts-r.pts)+' pts del de arriba ('+esc(up.name)+')'); if(dn) t.push((r.pts-dn.pts)+' pts sobre el de abajo ('+esc(dn.name)+')'); return t.join(', '); }
+  function pt(n){ return n+(n===1?' pt':' pts'); }
+  function gap(r,up,dn){ if(!r) return ''; var t=[]; if(up) t.push(pt(up.pts-r.pts)+' del de arriba ('+esc(up.name)+')'); if(dn) t.push(pt(r.pts-dn.pts)+' sobre el de abajo ('+esc(dn.name)+')'); return t.join(', '); }
   if(o.gl&&(o.upL||o.dnL)) nt.push(esc(o.gl.name)+': '+gap(o.gl,o.upL,o.dnL));
   if(o.gv&&(o.upV||o.dnV)) nt.push(esc(o.gv.name)+': '+gap(o.gv,o.upV,o.dnV));
   var chica=[]; if(o.hl&&o.hl.pj<5) chica.push(esc(o.gl?o.gl.name:'local')+' '+o.hl.pj+' en casa'); if(o.av&&o.av.pj<5) chica.push(esc(o.gv?o.gv.name:'visita')+' '+o.av.pj+' fuera');
