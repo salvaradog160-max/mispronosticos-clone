@@ -1013,6 +1013,7 @@ function renderClas(C){
   var nt=[];
   nt.push('Récord = G-E-P · goles a favor:en contra, del local solo en casa y de la visita solo fuera.');
   if(o.mpg!==null) nt.push('Liga: '+X(o.mpg)+' goles por partido'+(o.muH!==null?' (local marca '+X(o.muH)+', visita '+X(o.muA)+')':''));
+  if(cfg.result) nt.unshift('⚠ Este partido ya se jugó ('+cfg.result.date+', '+cfg.result.h+'-'+cfg.result.a+'): la tabla que da Flashscore ahora probablemente ya incluye su resultado, así que NO es la de antes del partido. Para pronosticar usa un partido por jugar.');
   if(!o.gl) nt.push('⚠ No encontré a «'+esc(cfg.names.l||'?')+'» en la tabla General: ¿es la liga correcta?');
   if(!o.gv) nt.push('⚠ No encontré a «'+esc(cfg.names.v||'?')+'» en la tabla General.');
   if(cfg.clas.G&&!cfg.clas.L&&!cfg.clas.V) nt.push('Solo hay tabla General: faltan Local y Visitante para los promedios de casa y fuera.');
@@ -1262,7 +1263,10 @@ function render(){
   renderMarkets(C); renderAnalysis(C,A); renderClas(C);
 }
 
-var HIST_KEY='pronostico-goles-hist-v1', HIST_MK=[['x2','1X2: favorito del modelo'],['o15','Más/Menos 1.5'],['o25','Más/Menos 2.5'],['o35','Más/Menos 3.5'],['bt','Ambos anotan'],['ex','Marcador exacto más probable']];
+var HIST_KEY='pronostico-goles-hist-v1', HIST_MK=[['x2','1X2: favorito'],['o15','Más/Menos 1.5'],['o25','Más/Menos 2.5'],['o35','Más/Menos 3.5'],['bt','Ambos anotan'],['ex','Marcador exacto más probable']];
+// Qué probabilidad se guardó en el historial: con momios cargados la herramienta usa la del MERCADO (sin margen); sin momios, la del modelo de marcadores
+function histFuente(){ var a=histLoad(), m=0, o=0; a.forEach(function(e){ if(e.src==='mercado') m++; else o++; }); return (m&&!o)?'el mercado':((o&&!m)?'el modelo':'el mercado (o el modelo si no había momios)'); }
+function fuenteActual(){ return compute().src==='mercado'?'el mercado':'el modelo'; }
 function histLoad(){ try{ var a=JSON.parse(localStorage.getItem(HIST_KEY)||'[]'); return Array.isArray(a)?a:[]; }catch(e){ return []; } }
 function histWrite(a){ try{ localStorage.setItem(HIST_KEY,JSON.stringify(a)); }catch(err){} }
 function histSave(e){ var a=histLoad(); if(a.some(function(x){ return x.k===e.k; })) return; a.push(e); histWrite(a); histSync(); }
@@ -1288,7 +1292,7 @@ setTimeout(function(){
 },400);
 function wilson(x,n){ if(!n) return [0,0]; var z=1.96, p=x/n, d=1+z*z/n, c=p+z*z/(2*n), m=z*Math.sqrt(p*(1-p)/n+z*z/(4*n*n)); return [(c-m)/d,(c+m)/d]; }
 function histVz(d,tabla){ try{ return window.vzS?vzS.wrap(vzS.calib(d),tabla):tabla; }catch(e){ return tabla; } }
-function revVz(v,filas){ var t='<table class="mk"><thead><tr><th scope="col">Mercado</th><th scope="col">Qué dijo el modelo / qué pasó</th><th scope="col">Prob. del pronóstico</th><th scope="col">Resultado</th></tr></thead><tbody>'+filas.join('')+'</tbody></table>'; try{ return window.vzS?vzS.wrap(vzS.revision(v),t):t; }catch(e){ return t; } }
+function revVz(v,filas){ var t='<table class="mk"><thead><tr><th scope="col">Mercado</th><th scope="col">Qué dijo '+fuenteActual()+' / qué pasó</th><th scope="col">Prob. del pronóstico</th><th scope="col">Resultado</th></tr></thead><tbody>'+filas.join('')+'</tbody></table>'; try{ return window.vzS?vzS.wrap(vzS.revision(v),t):t; }catch(e){ return t; } }
 function histHtml(){
   var a=histLoad(); if(!a.length) return '';
   var rows=HIST_MK.map(function(mk){
@@ -1300,8 +1304,8 @@ function histHtml(){
   var calD=[]; HIST_MK.forEach(function(mk){ var n=0,h=0,pe=0; a.forEach(function(e){ var t=e.m&&e.m[mk[0]]; if(t){ n++; h+=t[1]; pe+=t[0]; } }); if(!n) return; var w=wilson(h,n); calD.push({k:mk[1],n:n,h:h,real:h/n,esp:pe/n,lo:w[0],hi:w[1]}); });
   var list=a.slice().reverse().map(function(e){ var ok=0,t=0; Object.keys(e.m).forEach(function(k){ t++; ok+=e.m[k][1]; }); return '<tr><td>'+esc(e.date)+'</td><td>'+esc(e.l)+' '+e.h+' - '+e.a+' '+esc(e.v)+'</td><td>'+(e.src==='mercado'?'momios':'modelo')+'</td><td>'+ok+' de '+t+'</td></tr>'; }).join('');
   return '<details class="block wide" style="margin-bottom:12px" open><summary style="cursor:pointer;font:600 14px var(--body)">Historial de revisiones · '+a.length+(a.length===1?' partido':' partidos')+'</summary>'+
-    '<div style="margin-top:8px">'+histVz(calD,'<table class="mk"><thead><tr><th scope="col">Mercado</th><th scope="col">Partidos</th><th scope="col">Aciertos</th><th scope="col">% real</th><th scope="col">% que decía el modelo</th><th scope="col">Diferencia</th><th scope="col">Rango 95%</th><th scope="col">Con cuota</th><th scope="col">ROI cuota promedio</th><th scope="col">ROI mejor cuota</th></tr></thead><tbody>'+rows+'</tbody></table>')+'</div>'+
-    '<p class="cap">«% que decía el modelo» es el promedio de la probabilidad de cada pronóstico. Si el % real queda cerca (dentro del rango 95%), el modelo está bien calibrado en ese mercado. ROI = ganancia por unidad apostada al lado que el modelo favorecía, con la cuota que traía el texto al revisar (promedio de las casas y la mejor casa); ahí aún no hay veredicto con menos de ~100 partidos por mercado. Marcador exacto no trae cuota; Ambos anotan sí cuando el texto incluye esa pestaña. Con menos de ~30 partidos el rango es muy ancho: no concluyas nada todavía. Cada partido se guarda una sola vez (la primera revisión).</p><p class="cap" id="hist-srv">'+histSrvTxt()+'</p>'+
+    '<div style="margin-top:8px">'+histVz(calD,'<table class="mk"><thead><tr><th scope="col">Mercado</th><th scope="col">Partidos</th><th scope="col">Aciertos</th><th scope="col">% real</th><th scope="col">% que decía '+histFuente().replace(/ \(.*\)/,'')+'</th><th scope="col">Diferencia</th><th scope="col">Rango 95%</th><th scope="col">Con cuota</th><th scope="col">ROI cuota promedio</th><th scope="col">ROI mejor cuota</th></tr></thead><tbody>'+rows+'</tbody></table>')+'</div>'+
+    '<p class="cap">«% que decía» es el promedio de la probabilidad de cada pronóstico, tomada de '+histFuente()+' (con momios cargados es la del mercado sin margen). Si el % real queda cerca (dentro del rango 95%), esa fuente está bien calibrada en ese mercado. Marcador exacto no tiene precio de mercado: sale del modelo ajustado al mercado. ROI = ganancia por unidad apostada al lado favorecido, con la cuota que traía el texto al revisar (promedio de las casas y la mejor casa); ahí aún no hay veredicto con menos de ~100 partidos por mercado. Marcador exacto no trae cuota; Ambos anotan sí cuando el texto incluye esa pestaña. Con menos de ~30 partidos el rango es muy ancho: no concluyas nada todavía. Cada partido se guarda una sola vez (la primera revisión).</p><p class="cap" id="hist-srv">'+histSrvTxt()+'</p>'+
     '<details><summary class="cap" style="cursor:pointer">Ver partidos</summary><table class="mk"><thead><tr><th scope="col">Fecha</th><th scope="col">Partido</th><th scope="col">Base</th><th scope="col">Aciertos</th></tr></thead><tbody>'+list+'</tbody></table></details>'+
     '<div class="acts" style="margin-top:8px"><button class="btn" id="hist-csv" type="button">Copiar CSV</button><button class="btn" id="hist-clear" type="button">Borrar historial</button></div></details>';
 }
@@ -1403,7 +1407,7 @@ function reviewHtml(K){
   function qo(id,side){ if(!Q) return null; var t=id==='x2'?Q.x2&&Q.x2[side]:(id==='bt'?Q.btts&&Q.btts[side]:(Q.ou&&Q.ou[({o15:'1.5',o25:'2.5',o35:'3.5'})[id]]||{})[side]); return (t&&t[0]>1)?t:null; }
   function add(m,txt,p,ok,id,side){ vrows.push({m:m,t:txt,p:p,ok:ok}); var q=side?qo(id,side):null; ent[id]=q?[p,ok?1:0,+q[0].toFixed(3),+q[1].toFixed(3)]:[p,ok?1:0]; rows.push('<tr><td>'+m+'</td><td>'+txt+'</td><td>'+pct(p)+(q?'<br><small style="color:var(--muted)">cuota '+q[0].toFixed(2)+' prom · '+q[1].toFixed(2)+' mejor · justa '+odd(p)+'</small>':'')+'</td><td>'+(ok?'<b style="color:var(--win,#1e7b46)">✔ se cumplió</b>':'<b style="color:var(--loss,#b3261e)">✘ no se cumplió</b>')+'</td></tr>'); tot++; if(ok) hit++; }
   var res1=r.h>r.a?'Local':(r.h<r.a?'Visita':'Empate'), pr=[['Local',K.home],['Empate',K.draw],['Visita',K.away]].sort(function(x,y){ return y[1]-x[1]; })[0];
-  add('1X2','Favorito del modelo: '+pr[0]+' · pasó: '+res1,pr[1],pr[0]===res1,'x2',pr[0]==='Local'?'h':(pr[0]==='Empate'?'d':'a'));
+  add('1X2','Favorito de '+fuenteActual()+': '+pr[0]+' · pasó: '+res1,pr[1],pr[0]===res1,'x2',pr[0]==='Local'?'h':(pr[0]==='Empate'?'d':'a'));
   ['1.5','2.5','3.5'].forEach(function(n){ var o=K.over[n], pickOver=o>=0.5, real=g>+n; add('Goles '+n,'Pronóstico: '+(pickOver?'Más':'Menos')+' de '+n+' · pasó: '+g+(g===1?' gol':' goles'),pickOver?o:1-o,pickOver===real,'o'+n.replace('.',''),pickOver?'o':'u'); });
   var bt=K.btts>=0.5, rb=r.h>0&&r.a>0; add('Ambos anotan','Pronóstico: '+(bt?'Sí':'No')+' · pasó: '+(rb?'Sí':'No'),bt?K.btts:1-K.btts,bt===rb,'bt',bt?'s':'n');
   var top=K.top[0]; add('Marcador exacto','Más probable: '+top.i+'-'+top.j+' · pasó: '+r.h+'-'+r.a,top.p,top.i===r.h&&top.j===r.a,'ex');
@@ -2123,7 +2127,7 @@ clearBtn.addEventListener('click',function(){
   // Historial de revisiones: % real contra lo que decia el modelo (con rango 95%)
   function calib(rows){
     if(!rows.length) return '';
-    var h='<div class="vleg"><span><i style="border:2px solid var(--vz-d);background:transparent"></i>lo que decía el modelo</span><span><i style="background:var(--vz-l)"></i>% real</span><span><i style="background:rgba(255,255,255,.2)"></i>rango 95%</span></div>';
+    var h='<div class="vleg"><span><i style="border:2px solid var(--vz-d);background:transparent"></i>lo que decía '+histFuente().replace(/ \(.*\)/,'')+'</span><span><i style="background:var(--vz-l)"></i>% real</span><span><i style="background:rgba(255,255,255,.2)"></i>rango 95%</span></div>';
     function pos(v){ return Math.max(0,Math.min(100,v*100)); }
     rows.forEach(function(r){ var d=(r.real-r.esp)*100;
       h+='<div class="vrow"><span class="vl">'+esc(r.k)+'<small>'+r.h+' de '+r.n+' partidos</small></span><div><div class="vdumb '+(Math.abs(d)<3?'eq':(d>0?'dn':'up')+'" style="--c:var(--vz-l)')+'"><span class="rng" style="left:'+pos(r.lo).toFixed(1)+'%;width:'+Math.max(0.5,pos(r.hi)-pos(r.lo)).toFixed(1)+'%"></span><span class="pt a" style="left:'+pos(r.esp).toFixed(1)+'%;--c:var(--vz-d)"></span><span class="pt b" style="left:'+pos(r.real).toFixed(1)+'%"></span></div><div class="vdinfo"><span>real <b>'+pc1(r.real)+'</b> · modelo '+pc1(r.esp)+'</span><span><b>'+(d>=0?'+':'')+d.toFixed(1)+' pts</b> · '+pc1(r.lo)+'–'+pc1(r.hi)+'</span></div></div></div>'; });
