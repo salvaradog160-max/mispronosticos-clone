@@ -525,6 +525,12 @@ html.app .aviso-flota{bottom:130px}
       <div id="paste-audit"></div>
     </div>
     <div class="block wide">
+      <h3>Clasificación (opcional)</h3>
+      <p class="cap" style="margin:0 0 8px">En Flashscore abre Clasificación y copia las tablas General, Local y Visitante (cada una con Ctrl+A, Ctrl+C), pégalas aquí una tras otra, en cualquier orden. La app las trae sola con «Al análisis». No mueve las probabilidades: solo da contexto y un λ por tabla para comparar con el mercado.</p>
+      <textarea class="paste-box" id="paste-clas" placeholder="Pega aquí las tablas de Clasificación…" aria-label="Tablas de clasificación"></textarea>
+      <p class="status" id="clas-status"></p>
+    </div>
+    <div class="block wide">
       <h3>Momios decimales</h3>
       <div class="odds5">
         <label for="o-h">Local<input id="o-h" type="text" inputmode="decimal" maxlength="5" placeholder="—" autocomplete="off"></label>
@@ -551,6 +557,10 @@ html.app .aviso-flota{bottom:130px}
       <section>
         <h2>Puntos por partido (G = 3, E = 1)</h2>
         <div class="bt" id="bt-points"></div>
+      </section>
+      <section>
+        <h2>Contexto de tabla</h2>
+        <div id="ctx-clas"></div>
       </section>
       <p class="note">Prom. = promedio de los últimos partidos capturados. λ modelo = (ataque propio + defensa rival) ÷ 2 más la ventaja de local. λ mercado = la que reproduce los momios.</p>
     </aside>
@@ -739,7 +749,7 @@ function load(){
 function save(){ try{ BLOCKS.forEach(function(b){ RAW[b.k]=state[b.k]; }); localStorage.setItem(KEY,JSON.stringify(RAW)); }catch(e){} }
 var state=load();
 var cfg={odds:{h:'',d:'',a:'',ov:'',un:''},liga:'1.30',ha:'0.35',names:{l:'',v:''},meta:{gl:[],gv:[]}};
-try{ var c0=JSON.parse(localStorage.getItem(CFG_KEY)||'null'); if(c0){ if(c0.result&&typeof c0.result==='object') cfg.result=c0.result; if(c0.ouLines&&typeof c0.ouLines==='object') cfg.ouLines=c0.ouLines; if(c0.quotes&&typeof c0.quotes==='object') cfg.quotes=c0.quotes; if(typeof c0.bttsP==='number') cfg.bttsP=c0.bttsP; if(typeof c0.loadedAt==='number') cfg.loadedAt=c0.loadedAt; if(typeof c0.umbral==='string') cfg.umbral=c0.umbral; if(c0.mine&&typeof c0.mine==='object') cfg.mine=c0.mine; if(c0.stake&&typeof c0.stake==='object') cfg.stake=c0.stake; if(typeof c0.liga==='string') cfg.liga=c0.liga; if(typeof c0.ha==='string') cfg.ha=c0.ha; if(c0.odds&&typeof c0.odds==='object') Object.keys(cfg.odds).forEach(function(x){ if(typeof c0.odds[x]==='string') cfg.odds[x]=c0.odds[x]; }); if(c0.names&&typeof c0.names==='object'){ cfg.names.l=String(c0.names.l||''); cfg.names.v=String(c0.names.v||''); } if(c0.meta&&typeof c0.meta==='object'){ ['gl','gv'].forEach(function(k){ if(Array.isArray(c0.meta[k])) cfg.meta[k]=c0.meta[k].filter(function(m){ return m&&(m.v==='L'||m.v==='V'); }).map(function(m){ return {v:m.v,a:String(m.a),b:String(m.b)}; }); }); } } }catch(e){}
+try{ var c0=JSON.parse(localStorage.getItem(CFG_KEY)||'null'); if(c0){ if(c0.result&&typeof c0.result==='object') cfg.result=c0.result; if(c0.ouLines&&typeof c0.ouLines==='object') cfg.ouLines=c0.ouLines; if(c0.quotes&&typeof c0.quotes==='object') cfg.quotes=c0.quotes; if(typeof c0.bttsP==='number') cfg.bttsP=c0.bttsP; if(typeof c0.loadedAt==='number') cfg.loadedAt=c0.loadedAt; if(typeof c0.umbral==='string') cfg.umbral=c0.umbral; if(c0.mine&&typeof c0.mine==='object') cfg.mine=c0.mine; if(c0.stake&&typeof c0.stake==='object') cfg.stake=c0.stake; if(c0.clas&&typeof c0.clas==='object') cfg.clas=c0.clas; if(typeof c0.liga==='string') cfg.liga=c0.liga; if(typeof c0.ha==='string') cfg.ha=c0.ha; if(c0.odds&&typeof c0.odds==='object') Object.keys(cfg.odds).forEach(function(x){ if(typeof c0.odds[x]==='string') cfg.odds[x]=c0.odds[x]; }); if(c0.names&&typeof c0.names==='object'){ cfg.names.l=String(c0.names.l||''); cfg.names.v=String(c0.names.v||''); } if(c0.meta&&typeof c0.meta==='object'){ ['gl','gv'].forEach(function(k){ if(Array.isArray(c0.meta[k])) cfg.meta[k]=c0.meta[k].filter(function(m){ return m&&(m.v==='L'||m.v==='V'); }).map(function(m){ return {v:m.v,a:String(m.a),b:String(m.b)}; }); }); } } }catch(e){}
 function saveCfg(){ try{ localStorage.setItem(CFG_KEY,JSON.stringify(cfg)); }catch(e){} }
 var $=function(id){return document.getElementById(id);};
 function f2(x){ return x.toFixed(2); }
@@ -895,13 +905,14 @@ function parseFlash(txt,opts){
     out.comp[dest]=code;
   });
   if(res.h2h.length) out.has.hl=true;
-  var refD=res.fixture?pd(res.fixture):new Date(), H2H_DIAS=5*365.25;
+  var refD=res.fixture?pd(res.fixture):new Date(), H2H_DIAS=10*365.25;
   function viejo(r){ return (refD-pd(r.date))/864e5>H2H_DIAS; }
   res.h2h.forEach(function(r){
     var venue=nl&&norm(r.home)===nl?'Local':'Visita', st;
     if(isFixture(r)&&!res.score) res.score=fixScore(r);
     if(isFixture(r)||late(r)){ res.skipped++; st=isFixture(r)?'omitido: es este partido':'omitido: es de esa fecha o posterior'; }
-    else if(viejo(r)){ res.h2hOld=(res.h2hOld||0)+1; st='fuera: más de 5 años'; }
+    else if(viejo(r)){ res.h2hOld=(res.h2hOld||0)+1; st='fuera: más de 10 años'; }
+    else if(/^(AC|CUP)$/.test(r.comp)) st='fuera: amistoso o copa ('+r.comp+')';
     else if(out.comp.gl&&r.comp!==out.comp.gl) st='fuera: otra competición ('+r.comp+')';
     else if(venue!=='Local') st='no cuenta: el local jugó de visita';
     else if(out.hl.length>=10) st='fuera: ya hay 10';
@@ -909,6 +920,128 @@ function parseFlash(txt,opts){
     res.audit.push({who:'H2H',date:r.date,comp:r.comp,venue:venue,vs:r.home+' - '+r.away,score:r.a+'-'+r.b,st:st});
   });
   res.out=out; return res;
+}
+// ---- Clasificación (General / Local / Visitante) ----
+// Lee las tablas de la pestaña Clasificación de Flashscore. Filas: «1.», nombre (a veces repetido), PJ, G, E, P, GF:GC, DG, PTS, «?», forma.
+// Si el texto trae los rótulos CLASIFICACION_GENERAL / _LOCAL / _VISITANTE (los pone el marcador) se usan; si no, se deduce:
+// General = la de más partidos jugados; entre las otras dos, Local = la que suma más goles a favor (los locales marcan más que los visitantes).
+var CLAS_K=8;   // convención, NO probada en backtest: cuántos partidos de la liga pesa el promedio de la liga al encoger las tasas de un equipo
+function parseClas(txt){
+  var L=String(txt||'').split(/\r?\n/).map(function(x){ return x.replace(/ /g,' ').trim(); }).filter(function(x){ return x; });
+  var tabs=[], cur=null, lastPos=0, label=null, i, j, n=L.length;
+  var MK={CLASIFICACION_GENERAL:'G',CLASIFICACION_LOCAL:'L',CLASIFICACION_VISITANTE:'V'};
+  for(i=0;i<n;i++){
+    if(MK[L[i]]){ label=MK[L[i]]; cur=null; lastPos=0; continue; }
+    if(!/^\d{1,2}\.$/.test(L[i])) continue;
+    var pos=parseInt(L[i],10), names=[];
+    j=i+1; while(j<n&&!/^\d+$/.test(L[j])&&names.length<4){ if(names[names.length-1]!==L[j]) names.push(L[j]); j++; }
+    if(!names.length) continue;
+    var v=[]; for(var q=0;q<4;q++){ if(!/^\d+$/.test(L[j+q]||'')){ v=null; break; } v.push(+L[j+q]); }
+    if(!v) continue;
+    var m=/^(\d+):(\d+)$/.exec(L[j+4]||''); if(!m||!/^-?\d+$/.test(L[j+5]||'')||!/^-?\d+$/.test(L[j+6]||'')) continue;
+    var k=j+7; if(L[k]==='?') k++;
+    var form=''; while(k<n&&/^[GEP]$/.test(L[k])&&form.length<5){ form+=L[k]; k++; }
+    if(!cur||pos<=lastPos){ cur={label:label,rows:[]}; tabs.push(cur); label=null; }
+    lastPos=pos;
+    cur.rows.push({pos:pos,name:names[0],pj:v[0],g:v[1],e:v[2],p:v[3],gf:+m[1],gc:+m[2],dg:+L[j+5],pts:+L[j+6],form:form});
+    i=k-1;
+  }
+  tabs=tabs.filter(function(t){ return t.rows.length>=4; });
+  if(!tabs.length) return null;
+  function sum(t,f){ return t.rows.reduce(function(a,r){ return a+r[f]; },0); }
+  var out={G:null,L:null,V:null}, free=[], how='rótulos';
+  tabs.forEach(function(t){ if(t.label&&!out[t.label]) out[t.label]=t.rows; else free.push(t); });
+  if(free.length){
+    how=free.length===tabs.length?'deducido':'rótulos + deducido';
+    if(!out.G){ free.sort(function(a,b){ return sum(b,'pj')-sum(a,'pj'); }); out.G=free.shift().rows; }
+    free.forEach(function(t){ var home=sum(t,'gf')>=sum(t,'gc'); if(home&&!out.L) out.L=t.rows; else if(!home&&!out.V) out.V=t.rows; else if(!out.L) out.L=t.rows; else if(!out.V) out.V=t.rows; });
+  }
+  out.how=how; return out;
+}
+function clasMsg(cl){
+  if(!cl) return '';
+  var p=[]; if(cl.G) p.push('General'); if(cl.L) p.push('Local'); if(cl.V) p.push('Visitante');
+  var solo=(cl.G?1:0)+(cl.L?1:0)+(cl.V?1:0)===1;
+  return 'Clasificación: '+p.join(', ')+' ('+(cl.G||cl.L||cl.V).length+' equipos)'+(solo&&cl.how==='deducido'?' — una sola tabla, la tomé como General; para promedios de local y visita pega también esas dos':'')+'.';
+}
+function clasFila(rows,name){
+  if(!rows||!name) return null; var n=norm(name), r, i;
+  for(i=0;i<rows.length;i++) if(norm(rows[i].name)===n) return rows[i];
+  for(i=0;i<rows.length;i++){ r=norm(rows[i].name); if(r&&(r.indexOf(n+' ')===0||n.indexOf(r+' ')===0)) return rows[i]; }
+  return null;
+}
+// Contexto de tabla para el partido. Descriptivo: no mueve ninguna probabilidad.
+function clasCtx(cl,nameL,nameV){
+  if(!cl) return null;
+  var o={nL:nameL,nV:nameV,gl:clasFila(cl.G,nameL),gv:clasFila(cl.G,nameV),hl:clasFila(cl.L,nameL),av:clasFila(cl.V,nameV),total:cl.G?cl.G.length:0};
+  function S(rows,f){ return rows.reduce(function(a,r){ return a+r[f]; },0); }
+  var muH=null, muA=null, mpg=null;
+  if(cl.L&&S(cl.L,'pj')>0){ muH=S(cl.L,'gf')/S(cl.L,'pj'); muA=S(cl.L,'gc')/S(cl.L,'pj'); }
+  else if(cl.V&&S(cl.V,'pj')>0){ muA=S(cl.V,'gf')/S(cl.V,'pj'); muH=S(cl.V,'gc')/S(cl.V,'pj'); }
+  if(cl.G&&S(cl.G,'pj')>0) mpg=2*S(cl.G,'gf')/S(cl.G,'pj'); else if(muH!==null) mpg=muH+muA;
+  o.muH=muH; o.muA=muA; o.mpg=mpg;
+  if(cl.G&&o.gl){ var up=clasFila0(cl.G,o.gl.pos-1), dn=clasFila0(cl.G,o.gl.pos+1); o.upL=up; o.dnL=dn; }
+  if(cl.G&&o.gv){ o.upV=clasFila0(cl.G,o.gv.pos-1); o.dnV=clasFila0(cl.G,o.gv.pos+1); }
+  function shr(x,nn,mu){ return (x*nn+CLAS_K*mu)/(nn+CLAS_K); }
+  if(muH!==null&&muA!==null&&muH>0&&muA>0&&o.hl&&o.av&&o.hl.pj>0&&o.av.pj>0){
+    var attH=shr(o.hl.gf/o.hl.pj,o.hl.pj,muH), defH=shr(o.hl.gc/o.hl.pj,o.hl.pj,muA);
+    var attA=shr(o.av.gf/o.av.pj,o.av.pj,muA), defA=shr(o.av.gc/o.av.pj,o.av.pj,muH);
+    o.lam=[attH*defA/muH, attA*defH/muA];
+  }
+  return o;
+}
+function clasFila0(rows,pos){ for(var i=0;i<rows.length;i++) if(rows[i].pos===pos) return rows[i]; return null; }
+function renderClas(C){
+  var box=$('ctx-clas'); if(!box) return;
+  var o=clasCtx(cfg.clas,cfg.names.l,cfg.names.v);
+  if(!o){ box.innerHTML='<p class="note">Sin tabla. Pega las pestañas Clasificación → General, Local y Visitante en «Clasificación» (o usa el marcador/«Al análisis», que las lee solo).</p>'; return; }
+  function pg(r,f){ return r&&r.pj>0?r[f]/r.pj:null; }
+  function X(v){ return v===null||v===undefined?'—':v.toFixed(2); }
+  function rec(r){ return r?(r.g+'-'+r.e+'-'+r.p+' · '+r.gf+':'+r.gc):'—'; }
+  var h='<span class="h"></span><span class="h">Local</span><span class="h">Visita</span>';
+  function row(lab,a,b,big){ return '<span class="l">'+lab+'</span><span class="'+(big===false?'l':'n')+'" style="'+(big===false?'text-align:center;font-size:13px':'font-size:18px')+'">'+a+'</span><span class="'+(big===false?'l':'n')+'" style="'+(big===false?'text-align:center;font-size:13px':'font-size:18px')+'">'+b+'</span>'; }
+  h+=row('Posición',o.gl?o.gl.pos+'/'+o.total:'—',o.gv?o.gv.pos+'/'+o.total:'—');
+  h+=row('Puntos (PJ)',o.gl?o.gl.pts+' ('+o.gl.pj+')':'—',o.gv?o.gv.pts+' ('+o.gv.pj+')':'—');
+  h+=row('Forma (últ. 5)',o.gl&&o.gl.form?o.gl.form:'—',o.gv&&o.gv.form?o.gv.form:'—',false);
+  h+=row('Como local / visita G-E-P · GF:GC',rec(o.hl),rec(o.av),false);
+  h+=row('Pts por partido (casa / fuera)',X(o.hl&&o.hl.pj?(o.hl.g*3+o.hl.e)/o.hl.pj:null),X(o.av&&o.av.pj?(o.av.g*3+o.av.e)/o.av.pj:null));
+  h+=row('Marca (casa / fuera)',X(pg(o.hl,'gf')),X(pg(o.av,'gf')));
+  h+=row('Recibe (casa / fuera)',X(pg(o.hl,'gc')),X(pg(o.av,'gc')));
+  if(o.lam) h+=row('λ por tabla (encogida)',X(o.lam[0]),X(o.lam[1]));
+  if(o.lam&&C&&C.pm) h+=row('λ mercado',X(C.lam[0]),X(C.lam[1]));
+  box.innerHTML='<div class="bt">'+h+'</div>';
+  var nt=[];
+  if(o.mpg!==null) nt.push('Liga: '+X(o.mpg)+' goles por partido'+(o.muH!==null?' (local marca '+X(o.muH)+', visita '+X(o.muA)+')':''));
+  if(!o.gl) nt.push('⚠ No encontré a «'+esc(cfg.names.l||'?')+'» en la tabla General: ¿es la liga correcta?');
+  if(!o.gv) nt.push('⚠ No encontré a «'+esc(cfg.names.v||'?')+'» en la tabla General.');
+  if(cfg.clas.G&&!cfg.clas.L&&!cfg.clas.V) nt.push('Solo hay tabla General: faltan Local y Visitante para los promedios de casa y fuera.');
+  function gap(r,up,dn){ if(!r) return ''; var t=[]; if(up) t.push((up.pts-r.pts)+' pts del de arriba ('+esc(up.name)+')'); if(dn) t.push((r.pts-dn.pts)+' pts sobre el de abajo ('+esc(dn.name)+')'); return t.join(', '); }
+  if(o.gl&&(o.upL||o.dnL)) nt.push(esc(o.gl.name)+': '+gap(o.gl,o.upL,o.dnL));
+  if(o.gv&&(o.upV||o.dnV)) nt.push(esc(o.gv.name)+': '+gap(o.gv,o.upV,o.dnV));
+  var chica=[]; if(o.hl&&o.hl.pj<5) chica.push(esc(o.gl?o.gl.name:'local')+' '+o.hl.pj+' en casa'); if(o.av&&o.av.pj<5) chica.push(esc(o.gv?o.gv.name:'visita')+' '+o.av.pj+' fuera');
+  if(chica.length) nt.push('⚠ Muestra chica ('+chica.join(', ')+'): las tasas por localía son poco fiables.');
+  if(o.lam) nt.push('λ por tabla = ataque propio × defensa rival ÷ promedio de la liga, con cada tasa encogida hacia el promedio (peso de '+CLAS_K+' partidos; convención sin probar).');
+  nt.push('Es contexto descriptivo: no cambia ninguna probabilidad. El mercado ya trae la tabla y la motivación en el precio.');
+  box.innerHTML+='<p class="note">'+nt.join('<br>')+'</p>';
+}
+// Momios prepartido por partido: Flashscore en vivo solo muestra los de juego en curso, que distorsionan el pronóstico.
+// Al cargar un partido que aún no empieza se guardan; al cargarlo en vivo se restauran en vez de usar los de en vivo.
+var PRE_KEY='pronostico-goles-pre-v1';
+function preClave(res){ return res.local&&res.visit?norm(res.local)+'|'+norm(res.visit):''; }
+function preLeer(){ try{ return JSON.parse(localStorage.getItem(PRE_KEY)||'{}')||{}; }catch(e){ return {}; } }
+function prepartido(res){
+  var k=preClave(res), mem=preLeer();
+  if(!k||!res.odds) return res;
+  if(!res.live){
+    mem[k]={t:Date.now(),odds:res.odds,ou:res.ou||null,ouLines:res.ouLines||null,btts:res.btts||null,ah:res.ah||null};
+    var ks=Object.keys(mem).sort(function(a,b){ return mem[b].t-mem[a].t; }); ks.slice(30).forEach(function(x){ delete mem[x]; });
+    try{ localStorage.setItem(PRE_KEY,JSON.stringify(mem)); }catch(e){}
+    return res;
+  }
+  var p=mem[k];
+  if(p&&Date.now()-p.t<3*864e5){ res.odds=p.odds; res.ou=p.ou||undefined; res.ouLines=p.ouLines||undefined; res.btts=p.btts||undefined; res.ah=p.ah||undefined; res.preDe=p.t; }
+  else res.sinPre=true;
+  return res;
 }
 function applyParsed(res){
   var o=res.out;
@@ -923,11 +1056,12 @@ function statusFrom(res){
   var o=res.out, parts=[], warn=false;
   parts.push('<b>'+(o.names.l||'Local')+'</b>: '+o.gl.length+' partidos');
   parts.push('<b>'+(o.names.v||'Visita')+'</b>: '+o.gv.length+' partidos');
-  parts.push('H2H en casa del local: '+o.hl.length+(res.h2hOld?' ('+res.h2hOld+' de más de 5 años descartados)':''));
+  parts.push('H2H en casa del local: '+o.hl.length+(res.h2hOld?' ('+res.h2hOld+' de más de 10 años descartados)':''));
   parts.push(res.odds?('momios 1X2 de '+res.odds.n+(res.odds.n===1?' casa':' casas')+' (promedio '+res.odds.h.toFixed(2)+' / '+res.odds.d.toFixed(2)+' / '+res.odds.a.toFixed(2)+')'):'sin momios en el texto');
   if(res.odds) parts.push(res.ou?('Más/Menos 2.5 de '+res.ou.n+(res.ou.n===1?' casa':' casas')+' (promedio '+res.ou.o.toFixed(2)+' / '+res.ou.u.toFixed(2)+')'):'sin Más/Menos 2.5 (los goles salen solo del 1X2)');
   var msg='Cargado. '+parts.join(' · ')+'.';
-  if(res.live&&res.odds) msg+=' (Partido en curso: los momios son los de prepartido.)';
+  if(res.live&&res.odds&&res.preDe) msg+=' (Partido en curso: se usaron los momios de prepartido guardados el '+new Date(res.preDe).toLocaleString('es-MX',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'})+', no los de en vivo.)';
+  else if(res.live&&res.odds) msg+=' ⚠ Partido en curso y no hay momios de prepartido guardados: estos son momios EN VIVO y distorsionan el pronóstico. Carga el partido antes de que empiece para guardarlos.';
   if(res.inferred) msg+=' (Sin encabezado en el texto: tomé como partido ya jugado el '+res.fixture+', que es el más reciente de ambos equipos.)';
   if(res.skipped) msg+=' Modo revisión'+(res.explicit?' (fecha que escribiste)':'')+': se omitieron '+res.skipped+' renglones del partido del '+res.fixture+' y de fechas posteriores, para no usar lo que pasó como dato.';
   else if(res.explicit) msg+=' ⚠ Escribiste la fecha '+res.fixture+' pero ningún renglón es de esa fecha o posterior.';
@@ -1123,7 +1257,7 @@ function render(){
   $('o-h2h').textContent=f2(A.hl.gf+A.hl.gc);
   $('d-l').textContent=f2(lam?lam[0]:0); $('d-v').textContent=f2(lam?lam[1]:0); $('d-t').textContent=f2(tot);
   $('match-title').textContent=(cfg.names.l&&cfg.names.v)?(cfg.names.l+' vs '+cfg.names.v):'Pega el partido desde Flashscore (con momios) o captura los marcadores. Tus datos se quedan guardados en este navegador.';
-  renderMarkets(C); renderAnalysis(C,A);
+  renderMarkets(C); renderAnalysis(C,A); renderClas(C);
 }
 
 var HIST_KEY='pronostico-goles-hist-v1', HIST_MK=[['x2','1X2: favorito del modelo'],['o15','Más/Menos 1.5'],['o25','Más/Menos 2.5'],['o35','Más/Menos 3.5'],['bt','Ambos anotan'],['ex','Marcador exacto más probable']];
@@ -1594,11 +1728,22 @@ $('ha').addEventListener('input',function(e){ var v=e.target.value.replace(/[^0-
 function loadPasted(){
   var st=$('paste-status'), dt=normDate($('paste-date').value), res;
   if($('paste-date').value.trim()&&!dt){ st.className='status warn'; st.textContent='Fecha no válida. Escríbela como 17.10.26 o 17/10/2026, o déjala vacía para pronosticar.'; return; }
-  res=parseFlash($('paste').value,{date:dt}); var s=statusFrom(res);
-  if(!res.out.gl.length&&!res.out.gv.length&&!res.odds){ st.className='status warn'; st.textContent=s.msg; $('paste-audit').innerHTML=auditHtml(res); return; }
+  res=prepartido(parseFlash($('paste').value,{date:dt})); var s=statusFrom(res);
+  var cl=parseClas($('paste').value);
+  if(!res.out.gl.length&&!res.out.gv.length&&!res.odds){
+    if(cl){ var cb=$('paste-clas'); cb.value=(cb.value?cb.value+'\n':'')+$('paste').value; $('paste').value=''; clasDesdeCaja(); st.className='status ok'; st.textContent='Solo traía tablas de clasificación: pasaron al cuadro «Clasificación».'; return; }
+    st.className='status warn'; st.textContent=s.msg; $('paste-audit').innerHTML=auditHtml(res); return;
+  }
   $('paste-audit').innerHTML=auditHtml(res);
-  applyParsed(res); st.className='status ok'; st.innerHTML=s.msg+(s.wm?' <span style="color:var(--loss)">'+s.wm+'</span>':'');
+  applyParsed(res); if(cl){ cfg.clas=cl; $('paste-clas').value=''; } else cfg.clas=parseClas($('paste-clas').value); saveCfg(); render();
+  st.className='status ok'; st.innerHTML=s.msg+(cl?' '+clasMsg(cl):'')+(s.wm?' <span style="color:var(--loss)">'+s.wm+'</span>':'');
 }
+function clasDesdeCaja(){
+  var cl=parseClas($('paste-clas').value), st=$('clas-status');
+  cfg.clas=cl; saveCfg(); render();
+  st.className=cl?'status ok':'status'; st.textContent=cl?clasMsg(cl):($('paste-clas').value.trim()?'No encontré tablas de clasificación en ese texto.':'');
+}
+$('paste-clas').addEventListener('input',clasDesdeCaja);
 $('btn-load').addEventListener('click',loadPasted);
 $('paste-date').addEventListener('change',function(){ if($('paste').value.length>40) loadPasted(); });
 $('btn-clip').addEventListener('click',function(){
